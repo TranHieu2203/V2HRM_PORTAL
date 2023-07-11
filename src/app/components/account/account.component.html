@@ -1,0 +1,621 @@
+<div class="main-content right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12">
+
+
+                    <div class="v2hrm-card-container" data-v-d837c158="">
+                        <div class="v2hrm-edit-employee" data-v-d837c158="">
+                            <div class="v2hrm-edit-employee-navigation" data-v-d837c158="">
+                                <div class="v2hrm-edit-employee-imagesection" data-v-d837c158="">
+                                    <div class="v2hrm-edit-employee-name" data-v-d837c158="">
+                                        <h6 class="oxd-text oxd-text--h6 --strong" data-v-7588b244=""
+                                            data-v-d837c158="">{{ fullname }}</h6>
+                                    </div>
+                                    <div class="v2hrm-edit-employee-image-wrapper" data-v-d837c158="">
+                                        <div class="v2hrm-edit-employee-image" data-v-d837c158=""><img style="height: 40px;margin: auto;"
+                                                alt="profile picture" class="employee-image" [src]="avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul role="tablist" class="v2hrm-tabs" data-v-0c35ff1f="" data-v-d837c158="">
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item --active"
+                                            href="/web/index.php/pim/viewPersonalDetails/empNumber/7"
+                                            data-v-0c35ff1f="">Sơ yếu lý lịch</a></li>
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item"
+                                            href="/web/index.php/pim/contactDetails/empNumber/7"
+                                            data-v-0c35ff1f="">Thông tin phụ</a>
+                                    </li>
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item"
+                                            href="/web/index.php/pim/viewEmergencyContacts/empNumber/7"
+                                            data-v-0c35ff1f="">Trình độ văn hóa</a></li>
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item"
+                                            href="/web/index.php/pim/viewDependents/empNumber/7" data-v-0c35ff1f="">Tài
+                                            khoản ngân hàng</a></li>
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item"
+                                            href="/web/index.php/pim/viewImmigration/empNumber/7" data-v-0c35ff1f="">Gia
+                                            cảnh</a></li>
+                                    <li role="tab" class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            class="v2hrm-tabs-item"
+                                            href="/web/index.php/pim/viewJobDetails/empNumber/7" data-v-0c35ff1f="">Giấy
+                                            tờ cần nộp</a></li>
+                                </ul>
+                            </div>
+
+                            <form [formGroup]="staffProfileForm">
+                                <div class="v2hrm-edit-employee-content" data-v-d837c158="">
+                                    <div class="v2hrm-horizontal-padding v2hrm-vertical-padding"
+                                        data-v-6dc896a6="">
+                                        <h6 class="oxd-text oxd-text--h6 v2hrm-main-title" data-v-7588b244=""
+                                            data-v-6dc896a6="">
+                                            Hồ sơ nhân viên</h6>
+                                        <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                            data-v-15f084db="" data-v-6dc896a6="">
+                                        <form class="oxd-form" novalidate="" data-v-2027e1a1="" data-v-6dc896a6="">
+                                            <!---->
+                                            <div class="oxd-form-row" data-v-89f667ec="" data-v-6dc896a6="">
+                                                <div class="oxd-grid-1 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group" data-v-2fe357a6=""
+                                                            data-v-428506ce="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label oxd-input-field-required"
+                                                                    data-v-81397e1a="" data-v-2fe357a6="">Employee Full
+                                                                    Name</label>
+                                                            </div>
+                                                            <div class="--name-grouped-field" data-v-2fe357a6="">
+                                                                <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                    data-v-2fe357a6="" data-v-428506ce="">
+                                                                    <div class="oxd-input-group__label-wrapper"
+                                                                        data-v-2fe357a6="">
+                                                                        <!---->
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="" data-v-2fe357a6=""><input
+                                                                            class="form-control oxd-input oxd-input--active v2hrm-firstname"
+                                                                            name="firstName" placeholder="First Name"
+                                                                            data-v-844e87dc="">
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                                <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                    data-v-2fe357a6="" data-v-428506ce="">
+                                                                    <div class="oxd-input-group__label-wrapper"
+                                                                        data-v-2fe357a6="">
+                                                                        <!---->
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="" data-v-2fe357a6=""><input
+                                                                            class="form-control oxd-input oxd-input--active v2hrm-middlename"
+                                                                            name="middleName" placeholder="Middle Name"
+                                                                            data-v-844e87dc="">
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                                <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                    data-v-2fe357a6="" data-v-428506ce="">
+                                                                    <div class="oxd-input-group__label-wrapper"
+                                                                        data-v-2fe357a6="">
+                                                                        <!---->
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="" data-v-2fe357a6=""><input
+                                                                            class="form-control oxd-input oxd-input--active v2hrm-lastname"
+                                                                            name="lastName" placeholder="Last Name"
+                                                                            data-v-844e87dc="">
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Nickname</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                data-v-15f084db="" data-v-6dc896a6="">
+                                            <div class="oxd-form-row" data-v-89f667ec="" data-v-6dc896a6="">
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Employee
+                                                                    Id</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Other
+                                                                    Id</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Driver's
+                                                                    License Number</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">License
+                                                                    Expiry Date</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6="">
+                                                                <div class="oxd-date-wrapper" data-v-70a38c42="">
+                                                                    <div class="oxd-date-input" data-v-70a38c42="">
+                                                                        <input
+                                                                            class="form-control oxd-input oxd-input--active"
+                                                                            placeholder="yyyy-mm-dd" data-v-844e87dc=""
+                                                                            data-v-70a38c42=""><i
+                                                                            class="oxd-icon bi-calendar oxd-date-input-icon"
+                                                                            data-v-013b3fcc="" data-v-70a38c42=""></i>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">SSN
+                                                                    Number</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">SIN
+                                                                    Number</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                data-v-15f084db="" data-v-6dc896a6="">
+                                            <div class="oxd-form-row" data-v-89f667ec="" data-v-6dc896a6="">
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Nationality</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6="">
+                                                                <div class="oxd-select-wrapper" data-v-15ec1d6f="">
+                                                                    <div class="oxd-select-text oxd-select-text--active"
+                                                                        data-v-4acd865c="" data-v-15ec1d6f="">
+                                                                        <div class="oxd-select-text-input" tabindex="0"
+                                                                            clear="false" data-v-4acd865c="">American
+                                                                        </div>
+                                                                        <div class="oxd-select-text--after"
+                                                                            data-v-4acd865c=""><i
+                                                                                class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"
+                                                                                data-v-013b3fcc=""
+                                                                                data-v-4acd865c=""></i></div>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Marital
+                                                                    Status</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6="">
+                                                                <div class="oxd-select-wrapper" data-v-15ec1d6f="">
+                                                                    <div class="oxd-select-text oxd-select-text--active"
+                                                                        data-v-4acd865c="" data-v-15ec1d6f="">
+                                                                        <div class="oxd-select-text-input" tabindex="0"
+                                                                            clear="false" data-v-4acd865c="">Married
+                                                                        </div>
+                                                                        <div class="oxd-select-text--after"
+                                                                            data-v-4acd865c=""><i
+                                                                                class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"
+                                                                                data-v-013b3fcc=""
+                                                                                data-v-4acd865c=""></i></div>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Date
+                                                                    of
+                                                                    Birth</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6="">
+                                                                <div class="oxd-date-wrapper" data-v-70a38c42="">
+                                                                    <div class="oxd-date-input" data-v-70a38c42="">
+                                                                        <input
+                                                                            class="form-control oxd-input oxd-input--active"
+                                                                            placeholder="yyyy-mm-dd" data-v-844e87dc=""
+                                                                            data-v-70a38c42=""><i
+                                                                            class="oxd-icon bi-calendar oxd-date-input-icon"
+                                                                            data-v-013b3fcc="" data-v-70a38c42=""></i>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group" data-v-2fe357a6=""
+                                                            data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Gender</label>
+                                                            </div>
+                                                            <div class="--gender-grouped-field" data-v-2fe357a6="">
+                                                                <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                    data-v-2fe357a6="" data-v-6dc896a6="">
+                                                                    <div class="oxd-input-group__label-wrapper"
+                                                                        data-v-2fe357a6="">
+                                                                        <!---->
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="" data-v-2fe357a6="">
+                                                                        <div class="oxd-radio-wrapper"
+                                                                            data-v-3d0015de=""><label class=""
+                                                                                data-v-3d0015de="">
+                                                                                <!----><input type="radio" value="1"
+                                                                                    data-v-3d0015de=""><span
+                                                                                    class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"
+                                                                                    data-v-3d0015de=""></span>Male
+                                                                            </label></div>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                                <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                    data-v-2fe357a6="" data-v-6dc896a6="">
+                                                                    <div class="oxd-input-group__label-wrapper"
+                                                                        data-v-2fe357a6="">
+                                                                        <!---->
+                                                                        <!---->
+                                                                    </div>
+                                                                    <div class="" data-v-2fe357a6="">
+                                                                        <div class="oxd-radio-wrapper"
+                                                                            data-v-3d0015de=""><label class=""
+                                                                                data-v-3d0015de="">
+                                                                                <!----><input type="radio" value="2"
+                                                                                    data-v-3d0015de=""><span
+                                                                                    class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"
+                                                                                    data-v-3d0015de=""></span>Female
+                                                                            </label></div>
+                                                                    </div>
+                                                                    <!---->
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                data-v-15f084db="" data-v-6dc896a6="">
+                                            <div class="oxd-form-row" data-v-89f667ec="" data-v-6dc896a6="">
+                                                <div class="oxd-grid-3 v2hrm-full-width-grid" data-v-963c7300=""
+                                                    data-v-6dc896a6="">
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Military
+                                                                    Service</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6=""><input
+                                                                    class="form-control oxd-input oxd-input--active"
+                                                                    data-v-844e87dc=""></div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oxd-grid-item oxd-grid-item--gutters" data-v-77a413b5=""
+                                                        data-v-6dc896a6="">
+                                                        <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                            data-v-2fe357a6="" data-v-6dc896a6="">
+                                                            <div class="oxd-input-group__label-wrapper"
+                                                                data-v-2fe357a6="">
+                                                                <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                    data-v-2fe357a6="">Smoker</label>
+                                                            </div>
+                                                            <div class="" data-v-2fe357a6="">
+                                                                <div class="oxd-checkbox-wrapper" data-v-5ba85061="">
+                                                                    <label class="" data-v-5ba85061="">
+                                                                        <!----><input type="checkbox"
+                                                                            data-v-5ba85061=""><span
+                                                                            class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"
+                                                                            data-v-5ba85061=""><i
+                                                                                class="oxd-icon bi-check oxd-checkbox-input-icon"
+                                                                                data-v-013b3fcc=""
+                                                                                data-v-5ba85061=""></i></span>Yes
+                                                                    </label></div>
+                                                            </div>
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                data-v-15f084db="" data-v-6dc896a6="">
+                                            <div class="oxd-form-actions" data-v-6d58aa9a="" data-v-6dc896a6="">
+                                                <p class="oxd-text oxd-text--p v2hrm-form-hint" data-v-7588b244=""
+                                                    data-v-0e12dedd="" data-v-6dc896a6=""> * Required</p><button
+                                                    type="submit"
+                                                    class="oxd-button oxd-button--medium oxd-button--secondary v2hrm-left-space"
+                                                    data-v-7e88b27e="" data-v-6dc896a6="">
+                                                    <!----> Save
+                                                    <!---->
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="v2hrm-custom-fields" data-v-d837c158="">
+                                        <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                            data-v-15f084db="">
+                                        <div class="v2hrm-card-container">
+                                            <h6 class="oxd-text oxd-text--h6 v2hrm-main-title" data-v-7588b244="">
+                                                Custom Fields</h6>
+                                            <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                data-v-15f084db="">
+                                            <form class="oxd-form" novalidate="" data-v-2027e1a1="">
+                                                <!---->
+                                                <div class="oxd-form-row" data-v-89f667ec="">
+                                                    <div class="oxd-grid-3 v2hrm-full-width-grid"
+                                                        data-v-963c7300="">
+                                                        <div class="oxd-grid-item oxd-grid-item--gutters"
+                                                            data-v-77a413b5="">
+                                                            <div class="oxd-input-group oxd-input-field-bottom-space"
+                                                                data-v-2fe357a6="">
+                                                                <div class="oxd-input-group__label-wrapper"
+                                                                    data-v-2fe357a6="">
+                                                                    <!----><label class="oxd-label" data-v-81397e1a=""
+                                                                        data-v-2fe357a6="">Blood
+                                                                        Type</label>
+                                                                </div>
+                                                                <div class="" data-v-2fe357a6="">
+                                                                    <div class="oxd-select-wrapper" data-v-15ec1d6f="">
+                                                                        <div class="oxd-select-text oxd-select-text--active"
+                                                                            data-v-4acd865c="" data-v-15ec1d6f="">
+                                                                            <div class="oxd-select-text-input"
+                                                                                tabindex="0" data-v-4acd865c="">
+                                                                                -- Select --</div>
+                                                                            <div class="oxd-select-text--after"
+                                                                                data-v-4acd865c=""><i
+                                                                                    class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"
+                                                                                    data-v-013b3fcc=""
+                                                                                    data-v-4acd865c=""></i></div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                </div>
+                                                                <!---->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                                    data-v-15f084db="">
+                                                <div class="oxd-form-actions" data-v-6d58aa9a=""><button type="submit"
+                                                        class="oxd-button oxd-button--medium oxd-button--secondary v2hrm-left-space"
+                                                        data-v-7e88b27e="">
+                                                        <!----> Save
+                                                        <!---->
+                                                    </button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="v2hrm-attachment" data-v-a8aff5a0="" data-v-d837c158="">
+                                        <hr class="oxd-divider" role="separator" aria-orientation="horizontal"
+                                            data-v-15f084db="" data-v-a8aff5a0="">
+                                        <div class="v2hrm-horizontal-padding v2hrm-vertical-padding"
+                                            data-v-a8aff5a0="">
+                                            <div class="v2hrm-action-header" data-v-3dab643a="" data-v-a8aff5a0="">
+                                                <h6 class="oxd-text oxd-text--h6 v2hrm-main-title"
+                                                    data-v-7588b244="" data-v-3dab643a="">
+                                                    Attachments</h6><button type="button"
+                                                    class="oxd-button oxd-button--medium oxd-button--text"
+                                                    data-v-7e88b27e="" data-v-3dab643a=""><i
+                                                        class="oxd-icon bi-plus oxd-button-icon" data-v-013b3fcc=""
+                                                        data-v-7e88b27e=""></i> Add
+                                                    <!---->
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div data-v-0dea79bd="" data-v-a8aff5a0="">
+                                            <hr class="oxd-divider v2hrm-horizontal-margin" role="separator"
+                                                aria-orientation="horizontal" data-v-15f084db="" data-v-0dea79bd="">
+                                            <div class="v2hrm-horizontal-padding v2hrm-vertical-padding"
+                                                data-v-0dea79bd=""><span class="oxd-text oxd-text--span"
+                                                    data-v-7588b244="" data-v-0dea79bd="">No Records
+                                                    Found</span></div>
+                                        </div>
+                                        <div class="v2hrm-container" data-v-a8aff5a0="">
+                                            <div class="oxd-table" role="table" row-decorator="oxd-table-decorator-card"
+                                                data-v-a8aff5a0="">
+                                                <div class="oxd-table-header" role="rowgroup" data-v-e78e7554=""
+                                                    data-v-553514fe="">
+                                                    <div class="oxd-table-row oxd-table-row--with-border" role="row"
+                                                        data-v-9971f952="" data-v-553514fe="">
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe="">
+                                                            <div class="oxd-checkbox-wrapper" data-v-5ba85061=""
+                                                                data-v-553514fe=""><label class="" data-v-5ba85061="">
+                                                                    <!----><input type="checkbox"
+                                                                        data-v-5ba85061=""><span
+                                                                        class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"
+                                                                        data-v-5ba85061=""><i
+                                                                            class="oxd-icon bi-check oxd-checkbox-input-icon"
+                                                                            data-v-013b3fcc=""
+                                                                            data-v-5ba85061=""></i></span>
+                                                                </label></div>
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">File Name
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Description
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Size
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Type
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Date Added
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Added By
+                                                            <!---->
+                                                        </div>
+                                                        <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th"
+                                                            role="columnheader" data-v-35755011="" data-v-553514fe=""
+                                                            style="flex: 1 1 0%;">Actions
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oxd-table-body" role="rowgroup" data-v-e8ae99ba=""
+                                                    data-v-77b08b9a=""></div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

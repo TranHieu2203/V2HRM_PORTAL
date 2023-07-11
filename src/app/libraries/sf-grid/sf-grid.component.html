@@ -1,0 +1,27 @@
+<ejs-grid #grid
+    [dataSource]="data" 
+    [allowPaging]="true"
+    [pageSettings]="pageSettings"
+    [allowSorting]="true"
+    [sortSettings]="sortSettings"
+    [allowFiltering]="true"
+    [filterSettings]="filterSettings"
+    [searchSettings]="searchSettings"
+    [toolbar]="toolbarSettings"
+    [selectionSettings]="selectionSettings"
+    [allowReordering]="true"
+    [editSettings]="editSettings"
+    [toolbar]="toolbar"
+    [frozenColumns]="2"
+    [height]="height"
+    [locale]="locale"
+    (actionBegin)="actionBegin($event)"
+    (actionComplete)="actionComplete($event)"
+    (rowSelected)="rowSelected($event)"
+    (rowDeselected)="rowDeselected($event)"
+>
+    <e-columns>
+        <e-column type="checkbox" width=50></e-column>
+        <e-column *ngFor="let c of columns" [field]="c.field" [isPrimaryKey]="c.isPrimaryKey" [headerText]="c.headerText" [textAlign]="c.textAlign" [width]="c.width" [format]="c.format"></e-column>
+    </e-columns>
+</ejs-grid>

@@ -1,0 +1,47 @@
+<div class="v2hrm-edit-employee-content" data-v-d837c158="">
+  <div class="v2hrm-horizontal-padding v2hrm-vertical-padding" data-v-6dc896a6="">
+      <h6 class="oxd-text oxd-text--h6 v2hrm-main-title" data-v-7588b244="" data-v-6dc896a6="">
+          Thông tin phụ</h6>
+      <hr class="oxd-divider" role="separator" aria-orientation="horizontal" data-v-15f084db="" data-v-6dc896a6="">
+
+      <div class="w-100">
+          <ejs-accordion>
+              <e-accordionitems>
+                  <e-accordionitem #passport expanded='true'>
+                      <ng-template #header>
+                          <div class="text">Thông tin hộ chiếu</div>
+                      </ng-template>
+                      <ng-template #content>
+                          <app-dynamic-form [formName]="'passportForm'" [submitText]="'Gửi duyệt'" [controls]="passportControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitPassport($event)" ></app-dynamic-form>
+                      </ng-template>
+                  </e-accordionitem>
+                  <e-accordionitem #visa>
+                      <ng-template #header>
+                          <div class="text">Số visa</div>
+                      </ng-template>
+                      <ng-template #content>
+                          <app-dynamic-form [formName]="'ownAddressForm'" [submitText]="'Gửi duyệt'" [controls]="visaControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitVisa($event)"></app-dynamic-form>
+                      </ng-template>
+                  </e-accordionitem>
+                  <e-accordionitem #permit>
+                      <ng-template #header>
+                          <div class="text">Giấy phép lao động</div>
+                      </ng-template>
+                      <ng-template #content>
+                          <app-dynamic-form [formName]="'nowAddressControls'" [submitText]="'Gửi duyệt'" [controls]="permitControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitWorkPermit($event)"></app-dynamic-form>
+                      </ng-template>
+                  </e-accordionitem>
+                  <e-accordionitem #certificate>
+                    <ng-template #header>
+                        <div class="text">Chứng chỉ hành nghề</div>
+                    </ng-template>
+                    <ng-template #content>
+                        <app-dynamic-form [formName]="'nowAddressControls'" [submitText]="'Gửi duyệt'" [controls]="certificateControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitCertificate($event)"></app-dynamic-form>
+                    </ng-template>
+                </e-accordionitem>
+              </e-accordionitems>
+          </ejs-accordion>
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="bread-crum">
+    <span class="path-element" *ngFor="let path of task.paths">{{ path }}</span>
+</div>
+<div class="title">{{ task.title }}</div>
+<div class="task-warning">
+    <span class="due-time">{{ task.dueDate | shortTime }}</span>
+    <span class="due-day">{{ task.dueDate | vnDate }}</span>
+</div>

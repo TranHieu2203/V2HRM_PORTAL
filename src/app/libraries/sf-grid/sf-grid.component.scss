@@ -1,0 +1,51 @@
+$backgroundthemedark: #293145;
+$highlighthemedark: #e3165b;
+$backgroundthemedark-darker: #1a2236;
+$forecolorthemedark: #ddd;
+$selectionthemedark: #747988;
+$hoverthemedark: #676b77;
+
+.theme-dark .e-control,
+.theme-dark .e-toolbar-items {
+    background-color: $backgroundthemedark !important;
+}
+
+.theme-dark {
+
+    [class^=e-],
+    [class^=e-]::placeholder {
+        background-color: $backgroundthemedark !important;
+        color: $forecolorthemedark !important;
+    }
+
+    .e-currentitem,
+    .e-check {
+        background-color: $highlighthemedark !important;
+    }
+
+    .e-flmenu-okbtn {
+        color: $highlighthemedark !important;
+    }
+
+    .e-selectionbackground {
+        background-color: $selectionthemedark !important;
+
+        .e-checkbox-wrapper {
+            background-color: $selectionthemedark !important;
+        }
+    }
+
+    .e-grid.e-gridhover tr.e-row:hover .e-rowcell:not(.e-cellselectionbackground):not(.e-active):not(.e-updatedtd):not(.e-indentcell) {
+        background-color: rgb(87, 87, 87) !important;
+        .e-checkbox-wrapper {
+            background-color: rgb(87, 87, 87) !important;
+        }
+    }
+
+    .e-grid.e-gridhover tr.e-frozenhover .e-rowcell:not(.e-cellselectionbackground):not(.e-active):not(.e-updatedtd):not(.e-indentcell) {
+        background-color: rgb(87, 87, 87) !important;
+        .e-checkbox-wrapper {
+            background-color: rgb(87, 87, 87) !important;
+        }
+    }
+}

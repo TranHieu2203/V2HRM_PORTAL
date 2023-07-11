@@ -1,0 +1,31 @@
+<div class="mb-3 overdues-sector">
+    <a [class.expanded]="expanded.overdues" routerLink="/task-overdues" class="nav-content-bttn open-font" (click)="toggleExpanded('overdues')">
+        <span [class.expanded]="expanded.overdues">Công việc quá hạn ({{ overdues.length }})</span>
+    </a>
+    <ul *ngIf="!!overdues!.length" [class.expanded]="expanded.overdues">
+
+        <li *ngFor="let task of overdues">
+            <app-task-card [task]="task"></app-task-card>
+        </li>
+    </ul>
+</div>
+<div class="mb-3 comings-sector">
+    <a [class.expanded]="expanded.comings" routerLink="/task-comings" class="nav-content-bttn open-font" (click)="toggleExpanded('comings')">
+        <span [class.expanded]="expanded.comings">Công việc cần hoàn thành ({{ comings.length }})</span>
+    </a>
+    <ul *ngIf="!!comings!.length" [class.expanded]="expanded.comings">
+        <li *ngFor="let task of comings">
+            <app-task-card [task]="task"></app-task-card>
+        </li>
+    </ul>
+</div>
+<div class="mb-3 willcomes-sector">
+    <a [class.expanded]="expanded.willcomes" routerLink="/task-willcomes" class="nav-content-bttn open-font" (click)="toggleExpanded('willcomes')">
+        <span [class.expanded]="expanded.willcomes">Công việc sắp tới hạn ({{ willcomes.length }})</span>
+    </a>
+    <ul *ngIf="!!willcomes!.length" [class.expanded]="expanded.willcomes">
+        <li *ngFor="let task of willcomes">
+            <app-task-card [task]="task"></app-task-card>
+        </li>
+    </ul>
+</div>

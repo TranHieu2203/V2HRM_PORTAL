@@ -1,0 +1,22 @@
+<div [formGroup]="form.value">
+    <label [class]="'control-label' +  (required ? ' required' : '')"
+        [attr.for]="control.key">{{control.label}}</label>
+
+    <input *ngIf="controlType===0 && control.type==='text'" [formControlName]="control.key" [id]="control.key"
+        [type]="control.type" class="form-control" [readonly]="control.readonly">
+
+    <input *ngIf="controlType===0 && control.type==='date'" [formControlName]="control.key" [id]="control.key"
+        [type]="control.type" class="form-control" [readonly]="control.readonly" useValueAsDate>
+
+    <select [id]="control.key" *ngIf="controlType===1" [formControlName]="control.key" class="form-control">
+        <option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+    <app-mcc *ngIf="controlType===2 && !!control.mccData!" [control]="control" [inputData]="control.mccData!" (onMccChanged)="control.onMccChanged!($event)">
+    </app-mcc>
+
+    <div *ngIf="errors!.length">
+        <div class="errorMessage" *ngFor="let error of errors">{{ error.errorMessage }}</div>
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+@keyframes expand {
+    0% {
+        opacity: 0;
+        height: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        height: 410px;
+    }
+}
+
+@keyframes collapse {
+    0% {
+        opacity: 1;
+        height: 410px;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0px;
+    }
+}
+
+.mcc-wrap {
+    position: relative;
+}
+
+.loading { 
+    position: absolute;
+    z-index: 101;
+    width: 100%;
+    min-height: 410px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.popup-wrap {
+    position: absolute;
+    top: 55px;
+    max-height: 410px;
+    min-width: 600px;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 8px 8px #979797;
+}
+
+.theme-dark .popup-wrap {
+    box-shadow: 0 8px 8px black;
+}
+
+.default {
+    height: 0px;
+}
+
+.being-opened {
+    height: 0px;
+    animation-name: collapse;
+    animation-duration: 0.25s;
+}
+
+.being-closed {
+    height: 410px;
+    animation-name: expand;
+    animation-duration: 0.25s;
+}

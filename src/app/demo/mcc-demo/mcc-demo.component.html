@@ -1,0 +1,39 @@
+<div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="middle-wrap">
+                <div class="card w-100 border-0 bg-white shadow-xs p-4 mb-4">
+
+                    <app-pagetitle title="Mcc Demo Form"></app-pagetitle>
+
+                    <form [formGroup]="mccDemoForm" (ngSubmit)="submit()">
+                        <label for="firstArticleId">First ArticleId</label>
+                        <div>
+                            <app-mcc [inputData]="inputData1" (onMccChanged)="onMccChanged($event)">
+                            </app-mcc>
+                        </div>
+
+                        <label for="secondArticleId">Second ArticleId</label>
+                        <div>
+                            <app-mcc [inputData]="inputData2" (onMccChanged)="onMccChanged($event)">
+                            </app-mcc>
+
+                        </div>
+
+                        <div class="h100"></div>
+
+                        <div className='col-sm-12 p-0 text-left'>
+                            <button type='submit'
+                                class='form-control text-center text-white fw-600 bg-dark border-0 p-0 '>Submit</button>
+                        </div>
+
+                        <div>firstArticleId: {{ mccDemoForm.value.firstArticleId}}</div>
+                        <div>secondArticleId: {{ mccDemoForm.value.secondArticleId}}</div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

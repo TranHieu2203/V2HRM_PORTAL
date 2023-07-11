@@ -1,0 +1,21 @@
+<div class="p-1">
+  <app-pagetitle title="Config" [showSearch]="false"></app-pagetitle>
+  <div class="btn-group">
+    <button class="btn btn-primary" type="button" (click)="clear(); showConfig()">Get</button>
+    <button class="btn btn-primary" type="button" (click)="clear(); showConfigResponse()">GetResponse</button>
+    <button class="btn btn-primary" type="button" (click)="clear()">Clear</button>
+    <button class="btn btn-primary" type="button" (click)="clear(); makeError()">Error</button>
+  </div>
+  <span *ngIf="config">
+    <p>Heroes API URL is "{{config.heroesUrl}}"</p>
+    <p>Textfile URL is "{{config.textfile}}"</p>
+    <p>Date is "{{config.date.toString()}}" ({{getType(config.date)}})</p>
+    <div *ngIf="headers">
+      Response headers:
+      <ul>
+        <li *ngFor="let header of headers">{{header}}</li>
+      </ul>
+    </div>
+  </span>
+</div>
+<p *ngIf="error" class="error">{{error | json}}</p>

@@ -1,0 +1,59 @@
+$timeUnit: 2;
+
+@keyframes spin-down {
+  0% {
+    transform: rotate(-0.25turn);
+  }
+
+  100% {
+    transform: rotate(0turn);
+  }
+}
+
+@keyframes spin-up {
+  0% {
+    transform: rotate(0.25turn);
+  }
+
+  100% {
+    transform: rotate(0turn);
+  }
+}
+
+.input-container {
+  width: 100%;
+}
+
+.icon {
+  position: absolute;
+  right: -20px;
+  top: 0px;
+  padding: 10px;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon .feather-chevron-down {
+  display: block;
+  animation: spin-down 0.5s linear;
+}
+
+.icon .feather-chevron-right {
+  display: block;
+  animation: spin-up 0.5s linear;  
+}
+
+.input-field {
+  outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: transparent;
+  padding-right: 40px;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}

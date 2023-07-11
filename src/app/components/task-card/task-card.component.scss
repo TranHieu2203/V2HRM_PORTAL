@@ -1,0 +1,54 @@
+@use 'src/app/style-variables';
+
+app-task-card {
+
+    font-family: style-variables.$typography-main-font-family;
+    
+    .bread-crum {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.32px;
+        color: #A7A7A7;
+
+        span.path-element:not(:last-child)::after {
+            font-family: "feather";
+            content: "\e930";
+        }
+    }
+
+    .title {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+        color: #464646;
+    }
+
+    .task-warning {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 18px;
+        border-radius: 5px;
+        width: 153px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+    }
+
+    .task-warning::before {
+        margin-right: 6px;
+        width: 14px;
+        transform: translate(0px, 2px);
+    }
+
+    .due-time::after {
+        margin-left: 2px;
+        margin-right: 2px;
+        transform: translate(0px, -2px);
+    }
+
+    .bread-crum, .title {
+        margin-bottom: 9px;
+    }
+
+}

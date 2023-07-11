@@ -1,0 +1,14 @@
+<ngx-slick-carousel class="carousel mh207" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let value of totalOverviewList" class="mr15i w178 mh207"> <!-- w178 IS IMPORTANT! -->
+        <div class="w178 h207" [style]="{ 
+                'background-color': value.bgColor,
+                backgroundPosition: 'center'
+            }">
+            <div class="icon-holder"> <img width="90px" [src]="value.iconPath"> </div>
+            <div class="title open-font"> {{ value.name}} </div>
+            <div class="total open-font"> {{ value.total}}
+            </div>
+        </div>
+    </div>
+</ngx-slick-carousel>
+<div class="mb-3"></div>

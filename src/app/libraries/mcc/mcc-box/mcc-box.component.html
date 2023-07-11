@@ -1,0 +1,8 @@
+<div #inputcontainer class="input-container">
+    <input class="input-field form-control" [style]="'width: ' + width + 'px'" type="text" [placeholder]="placeholder" [(ngModel)]="displayString"
+        [appTooltip]="displayString" readonly>
+    <a class="icon">
+        <i #icon [class.feather-chevron-right]="!isOpen" [class.feather-chevron-down]="isOpen"
+            class="font-xl text-current me-3" (click)="toogleOpen()"></i>
+    </a>
+</div>

@@ -1,0 +1,53 @@
+.avatar-rounder{
+    border-radius: 50%;
+}
+
+#right-bar-content{
+    position: fixed;
+    top: 96px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+    width: 336px;
+    height: calc(100vh - 96px);
+    background-color: #F5F5F5;
+    transition: width 0.25s;
+    z-index: 9;  
+      border-radius: 10px;
+    right: 10px;
+
+}
+.br50per{
+    border-radius: 50%;
+}
+.checkboxes{display:flex;flex-wrap:wrap;margin-bottom:2rem}.checkboxes>label{flex:0 0 max-content;margin:.5rem;cursor:pointer}section:not(:last-of-type){padding-bottom:2rem;border-bottom:1px solid black}.main-content .middle-sidebar-bottom{background-color:#f5f5f5!important;padding:0!important}.main-content,.right-chat{background-color:#f5f5f5!important}.theme-dark .main-content .middle-sidebar-bottom,.theme-dark .main-content,.theme-dark .right-chat{background-color:#1a2236!important}@media (max-width: 991.98px){.navigation{left:-340px!important;box-shadow:none!important;transition:left .5s ease-out!important}.nav-active{left:0!important;transition:left .5s ease-out!important}}@media (min-width: 1200px){.main-content{padding-top:96px!important;padding-right:412px!important;padding-left:340px!important}}.flex-center{display:flex;align-items:center;justify-content:center}.rounded-10px,.br10px{border-radius:10px}.mb24px{margin-bottom:24px}.bb-gray{border-bottom:1px solid #DADADA}.mr25px{margin-right:25px}.br50per{border-radius:50%}.flex-v-around{display:flex;flex-direction:column;align-items:center;justify-content:space-around}.bold17{font-weight:700;font-size:17px}.gray14{font-weight:400;font-size:14px}.pt13px{padding-top:13px}.pb13px{padding-bottom:13px}.pl19px{padding-left:19px}.mt15px{margin-top:15px}.mb30px{margin-bottom:30px}.pd19px{padding:19px}.pr19px{padding-right:19px}.mt19px{margin-top:19px}.w58{width:58px}.fs24{font-size:24px}.mr12px{margin-right:12px}.bg-orangelighter{background-color:#fbedd9}.text-orangelight{color:#ffa427}.flex-around{display:flex;align-items:center;justify-content:space-around}@media (max-width: 992px){.word-des{display:none}}.row{margin-top:0!important;margin-left:0!important;margin-right:0!important}
+
+
+.star5 {
+    width: 170px;
+}
+
+i.star.filled:before {
+    background-image: url('/assets/images/star.png');
+    background-size: 25px 25px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    content: "";
+}
+.h240 {
+    height: 240px;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+.theme-dark .bg-transparent-card {
+    background: #293145 !important;
+}
+.theme-dark .right-chat
+{
+    background: #293145 !important;
+}
+.text-center {
+    text-align: center;
+}

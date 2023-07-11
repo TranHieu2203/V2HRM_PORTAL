@@ -1,0 +1,40 @@
+<div class="right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <label class="p-1">
+                        <input type="checkbox" [checked]="showMessenger" (click)="toggleMessenger()">
+                        Messager
+                    </label>
+
+                    <label class="p-1">
+                        <input type="checkbox" [checked]="showConfig" (click)="toggleConfig()">
+                        Config
+                    </label>
+
+                    <section *ngIf="showMessenger">
+                        <app-messages></app-messages>
+                    </section>
+                    <section *ngIf="showConfig">
+                        <app-config></app-config>
+                    </section>
+
+                    <h3>Dashboard</h3>
+
+                    <p>Session ID: {{ sessionId | async }}</p>
+                    <div id="anchor"></div>
+                    <p>Token: {{ token | async }}</p>
+
+                    Preloaded Modules
+                    <ul>
+                        <li *ngFor="let module of modules">{{ module }}</li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

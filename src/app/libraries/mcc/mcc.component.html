@@ -1,0 +1,25 @@
+<!-- <div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="middle-wrap">
+                <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4"> -->
+
+    <div #container class="mcc-wrap">
+        <app-mcc-box></app-mcc-box>
+        <div #popup [class]="'popup-wrap bg-white ' + popupClass">
+            <div class="loading bg-white" *ngIf="isLoading">
+                <app-load></app-load>
+            </div>
+            <app-mcc-search></app-mcc-search>
+            <app-mcc-datatable></app-mcc-datatable>
+            <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [pageSizeOption]="pageSizeOption"
+                [pageCount]="pageCount" [recordCount]="totalRow" (onCurrentPageChanged)="onCurrentPageChanged($event)"
+                (onPageSizeChanged)="onPageSizeChanged($event)"></app-pagination>
+        </div>
+    </div>
+
+<!-- </div>
+            </div>
+        </div>
+    </div>
+</div> -->

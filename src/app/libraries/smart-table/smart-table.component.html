@@ -1,0 +1,62 @@
+<div #wrapper role="region" aria-labelledby="caption" tabindex="0" class="smart-table-wrapper">
+
+    <div *ngIf="loading.value && viewInited" class="loader-wrapper"
+        [style]="'width: ' + wrapperWidth + 'px; height: ' + wrapperHeight + 'px;'">
+        <app-loader></app-loader>
+    </div>
+
+    <table *ngIf="columns?.length" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="smart-table">
+        <thead>
+            <tr>
+                <th *ngIf="showCheck">
+                    <div class="header-check-1">
+
+                    </div>
+                </th>
+                <th *ngFor="let column of columns; let index=index" [style]="thStyle(index)">
+                    <div class="cell" [style]="thDivStyle(index)">
+                        <a  
+                        (click)="onHeaderClick(index)"
+                        >
+                            <div class="flex-between pointer">
+                                {{ column.header }}
+                                <i [class.ti-angle-down]="columns[index].sort==='asc'"
+                                    [class.ti-angle-up]="columns[index].sort==='desc'"></i>
+                            </div>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+            <tr *ngIf="showFilter">
+                <th class="header-check-2" *ngIf="showCheck">
+                    <div>
+                        <input type="checkbox" (change)="onHeaderCheckChanged($event)">
+                    </div>
+                </th>
+                <th *ngFor="let column of columns; let index=index" [style]="thStyle(index)">
+                    <div class="cell" [style]="thDivStyle(index)">
+                        <input [type]="column.type === 'date' ? 'date':'text'" [placeholder]="'Search ' + column.header"
+                            (keyup)="search($event, index)" (change)="search($event, index)"
+                            class="bg-grey border-0 font-xssss theme-dark-bg">
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let listItem of list; let index=index" (click)="onRowClick(index)"
+                [class.selected]="index===selectedIndex">
+                <td style="position: sticky; left: 0px" *ngIf="showCheck">
+                    <div class="body-check">
+                        <input type="checkbox" [checked]="listItem.checkedForUI">
+                    </div>
+                </td>
+                <td *ngFor="let column of columns; let i=index" [appTooltip]="listItem[column.accessor]"
+                    [class.freeze]="frozenColumnCount && i < frozenColumnCount" [style]="tdStyle(i)"
+                    [class.lastFreezeColoumn]="i === frozenColumnCount! - 1">
+                    <div class="cell" [style]="tdDivStyle(i)">
+                        {{ listItem[column.accessor] | tableData: column.type }}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

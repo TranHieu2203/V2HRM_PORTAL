@@ -1,0 +1,52 @@
+<div class="main-content right-chat-active">
+  <div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left">
+      <div class="row feed-body">
+        <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
+          <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+            <div class="card-body p-0 d-flex">
+              <ejs-accordion>
+                <e-accordionitems disable="false" >
+                  <e-accordionitem #primary expanded='false'>
+                    <ng-template #header>
+                      <div class="text">Thông tin cơ bản</div>
+                    </ng-template>
+                    <ng-template #content>
+                      <div class="row">
+                        <div class="col-sm-6 ">
+                          <div class="d-flex h-100">
+                            <div class="row justify-content-center align-self-center">
+                              <img src="/assets/images/Ellipse 1.png"
+                                class="rounded-circle img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                                alt="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label class="font-weight-bold" for="">Mã nhân viên: </label>
+                            <label type="text" name="" id="" >{{employeeInfo.code}}</label>
+                          </div>
+                          <div class="form-group">
+                            <label for="">Họ tên</label>
+                            <input type="text" name="" id="" class="form-control" [(ngModel)]="employeeInfo.fullname"
+                              placeholder="" aria-describedby="helpId" readonly>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+            
+                      </div>
+
+                    </ng-template>
+                  </e-accordionitem>
+
+                </e-accordionitems>
+              </ejs-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="main-content right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12">
+                    <router-outlet></router-outlet>
+
+                    <a routerLink="dashboard" class="module-center">
+                        <button *ngIf="childRouteUrl !== 'dashboard'" class="btn btn-info text">Dashboard</button>
+                        <img [src]="backgroundImage" [appTooltip]="backgroundImageCaption">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+.miuka-text-logo {
+    background: -webkit-linear-gradient(#09f, rgb(0, 69, 207));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.form-group.icon-input{
+    padding-bottom: 10px;
+}
+.theme-dark .style2-input {
+    background-color: #1a2236 !important;
+    color: #ddd !important;
+}
+.login-logo{
+    position: absolute;
+    left: 100px;
+    top: 50px;
+}
+.login-background{
+    background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('../../../assets/images/auth/login-background.png');
+        z-index: 999999;
+        
+}
+.card {
+    
+}
+
+
+.form-check{
+    padding-bottom: 10px;
+}
+.card-body{
+    margin: 10px;
+}
+.login-text{
+    padding-bottom: 10px;
+    p{
+        color: #ff6d00;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: xx-large;
+    
+    }
+}
+.login-text label{
+    color:black;
+    height: 60px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 60px;
+    /* identical to box height */
+    text-transform: uppercase;
+    color: #000000;
+}
+.remember{
+    color: #FFA427;
+
+}
+.login-button{
+    background: #464646!important;
+    border-radius: 10px;
+}

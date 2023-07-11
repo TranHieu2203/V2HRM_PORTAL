@@ -1,0 +1,56 @@
+<div class="v2hrm-edit-employee-content" data-v-d837c158="">
+    <div class="v2hrm-horizontal-padding v2hrm-vertical-padding" data-v-6dc896a6="">
+        <h6 class="oxd-text oxd-text--h6 v2hrm-main-title" data-v-7588b244="" data-v-6dc896a6="">
+            Sơ yếu lý lịch</h6>
+        <hr class="oxd-divider" role="separator" aria-orientation="horizontal" data-v-15f084db="" data-v-6dc896a6="">
+
+        <div class="w-100">
+            <ejs-accordion>
+                <e-accordionitems>
+                    <e-accordionitem #primary expanded='true'>
+                        <ng-template #header>
+                            <div class="text">Thông tin chính</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <app-dynamic-form [formName]="'primaryForm'" [submitText]="'Gửi duyệt'" [controls]="primaryControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitMainInfo($event)" ></app-dynamic-form>
+                        </ng-template>
+                    </e-accordionitem>
+                    <e-accordionitem #personal>
+                        <ng-template #header>
+                            <div class="text">Thông tin cá nhân</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <app-dynamic-form [formName]="'personalForm'" [submitText]="'Gửi duyệt'" [controls]="personalControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitInfo($event)"></app-dynamic-form>
+                        </ng-template>
+                    </e-accordionitem>
+                    <e-accordionitem #ownaddress>
+                        <ng-template #header>
+                            <div class="text">Địa chỉ thường trú</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <app-dynamic-form [formName]="'ownAddressForm'" [submitText]="'Gửi duyệt'" [controls]="ownAddressControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitAddress($event)"></app-dynamic-form>
+                        </ng-template>
+                    </e-accordionitem>
+                    <e-accordionitem #nowaddress>
+                        <ng-template #header>
+                            <div class="text">Địa chỉ hiện tại</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <app-dynamic-form [formName]="'nowAddressControls'" [submitText]="'Gửi duyệt'" [controls]="nowAddressControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitCurAddress($event)"></app-dynamic-form>
+                        </ng-template>
+                    </e-accordionitem>
+                    <e-accordionitem #contact>
+                        <ng-template #header>
+                            <div class="text">Thông tin liên hệ</div>
+                        </ng-template>
+                        <ng-template #content>
+                            <app-dynamic-form [formName]="'contactForm'" [submitText]="'Gửi duyệt'" [controls]="contactControls$" (onFormCreated)="onFormCreated($event)" (onSubmit)="onSubmitContactInfo($event)"></app-dynamic-form>
+                        </ng-template>
+                    </e-accordionitem>
+
+                </e-accordionitems>
+            </ejs-accordion>
+        </div>
+
+    </div>
+</div>

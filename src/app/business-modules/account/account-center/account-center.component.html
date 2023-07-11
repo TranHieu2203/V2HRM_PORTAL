@@ -1,0 +1,40 @@
+<div class="main-content right-chat-active">
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <div class="v2hrm-card-container" data-v-d837c158="">
+                        <div class="v2hrm-edit-employee" data-v-d837c158="">
+                            <div class="v2hrm-edit-employee-navigation" data-v-d837c158="">
+                                <div class="v2hrm-edit-employee-imagesection" data-v-d837c158="">
+                                    <div class="v2hrm-edit-employee-name" data-v-d837c158="">
+                                        <h6 class="oxd-text oxd-text--h6 --strong" data-v-7588b244=""
+                                            data-v-d837c158="">{{ fullname }}</h6>
+                                    </div>
+                                    <div class="v2hrm-edit-employee-image-wrapper" data-v-d837c158="">
+                                        <div class="v2hrm-edit-employee-image" data-v-d837c158=""><img style="height: 45px; margin: auto;"
+                                                alt="profile picture" class="employee-image" [src]="avatar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul role="tablist" class="v2hrm-tabs" data-v-0c35ff1f="" data-v-d837c158="">
+                                    <li *ngFor="let tab of tabs; let index=index" role="tab"
+                                        class="v2hrm-tabs-wrapper" data-v-0c35ff1f=""><a
+                                            [class]="'v2hrm-tabs-item'" [class.--active]="index === activeTabIndex"
+                                            [routerLink]="tab.routerLink" data-v-0c35ff1f="">{{ tab.linkText}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-100">
+                                <router-outlet></router-outlet>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

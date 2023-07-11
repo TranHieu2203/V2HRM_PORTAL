@@ -1,0 +1,66 @@
+<div class='main-wrap'>
+    <div class='nav-header bg-transparent shadow-none border-0'>
+        <div class='nav-top w-100'>
+            <a href='/'><i class="text-success display1-size me-2 ms-0">
+                <img src="../../../assets/images/auth/vmo_logo.png"  alt='VMO' width="300px"  class="login-logo" />
+                </i>
+            </a>
+         
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-xl-12 vh-100 align-items-center d-flex login-background rounded-3 overflow-hidden'>
+            <div class='shadow-none border-0 ms-auto me-auto login-card'>
+                <div class='card-body rounded-0 text-left bg-white '>
+                    <form [formGroup]="authForm" (ngSubmit)="signIn()">
+                        <div class="login-text">
+                            <p>Cổng thông tin nhân sự</p>
+                        </div>
+                        <div class='form-group icon-input mb-3'>
+                            <p [ngClass]="{ 'text-danger': loading && formControls['user_name'].errors }">
+                                <i class='font-sm ti-user text-grey-500 pe-0'></i>
+                                <input #username type="text" id="user_name" formControlName="user_name"
+                                    class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
+                                    placeholder="Tên đăng nhập" />
+                            </p>
+                            <div *ngIf="formControls['user_name'].errors && isDirty()" class="help-block">
+                                <div style="color: red;" *ngIf="formControls['user_name'].errors['required']">Tên đăng nhập là bắt buộc</div>
+                            </div>
+                        </div>
+                        <div class='form-group icon-input mb-1'>
+                            <p [ngClass]="{ 'text-danger': formControls['password'].errors }">
+                                <input type="password" id="password" formControlName="password"
+                                    autocomplete="false"
+                                    class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
+                                    placeholder="Mật khẩu" />
+                                <i class='font-sm ti-lock text-grey-500 pe-0'></i>
+                            </p>
+                            <div *ngIf="formControls['password'].errors  && isDirty()" class="help-block">
+                                <div style="color: red;" *ngIf="formControls['password'].errors['required']">Mật khẩu là bắt buộc</div>
+                            </div>
+                        </div>
+                        <div class='form-check text-left mb-3'>
+                            <input #remember type='checkbox' name="remember" formControlName="remember"
+                                class='form-check-input mt-2' id='exampleCheck5' />
+                            <label class='form-check-label font-xsss text-grey-500 '>Ghi nhớ đăng nhập</label>
+                            <a class='float-right remember'>Quên mật khẩu?</a>
+                        </div>
+                        <div *ngIf="!loading" className='col-sm-12 p-0 text-left'>
+                            <button #button type='submit' (submit)="signIn()"
+                                class='form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng nhập</button>
+                        </div>
+                    </form>
+                    <select (change)="onServerChanged($event)" class="form-control" style="display: none">
+                        <option value="0" [selected]="server==='Oracle_localhost'">V2Hrm2022</option>
+                        <option value="1" [selected]="server==='Oracle_localhost'">Oracle_localhost</option>
+                        <option value="2" [selected]="server==='V2Hrm2021_server'">V2Hrm2021_server</option>
+                        <option value="3" [selected]="server==='V2Hrm2021_localhost'">V2Hrm2021_localhost</option>
+                        <option value="4" [selected]="server==='MiukaFoto'">MiukaFoto</option>
+                        <option value="5" [selected]="server==='MiukaFoto_localhost'">MiukaFoto_localhost</option>
+                    </select>
+                    <app-load *ngIf="loading"></app-load>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

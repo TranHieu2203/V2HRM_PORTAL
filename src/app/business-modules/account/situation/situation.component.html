@@ -1,0 +1,90 @@
+
+<div class="right-chat-active">
+  <div class="middle-sidebar-bottom">
+      <div class="middle-sidebar-left pe-0">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="row ps-2 pe-1">
+                      <div *ngFor="let x of situation" class="col-md-12 col-sm-12 pe-2 ps-2">
+                          <div class="card d-block border-0 shadow-xss rounded-3 overflow-hidden mb-3">
+                              <div class="card-body d-block w-100 p-4">
+                                <div class="row">
+                                  <div class="col-md-6 col-sm-12">
+                                      <ul class=" align-items-center justify-content-center mt-1">
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Tên: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.name}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Mối quan hệ: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.relationshipName}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Ngày sinh: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.birth | date :'dd/MM/yyyy'}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Số CMND: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.no}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Mã số thuế: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.taxNo}}</span></div>
+                                          </div>
+                                        </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-6 col-sm-12">
+                                      <ul class=" align-items-center justify-content-center mt-1">
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-500 mt-1 text-grey-500">Số sổ hộ khẩu: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.familyNo}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6">  <span class="font-xsss fw-500 mt-1 text-grey-500">Tên chủ hộ: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.familyName}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6">   <span class="font-xsss fw-500 mt-1 text-grey-500">Địa chỉ: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.address}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-500 mt-1 text-grey-500">Ngày bắt đầu: </span></div>
+                                            <div class="col-md-6 col-sm-6"> <span class="font-xsss fw-600 mt-1 text-grey-600">{{x.dateStart | date :'dd/MM/yyyy'}}</span></div>
+                                          </div>
+                                        </li>
+                                        <li class="m-2">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6">  <span class="font-xsss fw-500 mt-1 text-grey-500">Ngày kết thúc: </span></div>
+                                            <div class="col-md-6 col-sm-6"><span class="font-xsss fw-600 mt-1 text-grey-600">{{x.dateEnd | date :'dd/MM/yyyy'}}</span></div>
+                                          </div>
+                                        </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

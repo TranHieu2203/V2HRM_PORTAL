@@ -1,0 +1,54 @@
+.pagination-container {
+    width: 100%;
+    position: sticky;
+    bottom: 0px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    z-index: 4;
+}
+
+span {
+    margin-left: 5px;
+}
+
+button {
+    align-content: center;
+    background-color: darkcyan;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    color: white;
+}
+
+select, option {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ddd;
+}
+.theme-dark option,
+.theme-dark select {
+    color: #ddd;
+    background-color: #1a2236;
+}
+
+@media screen and (max-width: 680px) {
+    .info {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 333px) {
+    .size {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .buttons {
+        display: none !important;
+    }
+}
