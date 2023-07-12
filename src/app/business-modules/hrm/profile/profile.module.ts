@@ -20,6 +20,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     DatePickerModule,
     NumericTextBoxModule
   ],
+  
   declarations: [EmployeeComponent]
 })
 export class ProfileModule { }
