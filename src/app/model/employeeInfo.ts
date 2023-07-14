@@ -1,4 +1,4 @@
-export interface EmployeeInfo {
+export class EmployeeInfo {
     id?: number
     code?: string
     firstName?: string

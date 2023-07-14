@@ -25,7 +25,7 @@ const $ = require("jquery");
 })
 export class EmployeeComponent implements OnInit {
   editForm!: FormGroup;
-   employeeInfo!:EmployeeInfo;
+   employeeInfo:EmployeeInfo = new EmployeeInfo();
    situation: Situation = new Situation();
    trainingbefore: TrainingBefore = new TrainingBefore();
    workingbefore: WorkingBefore = new WorkingBefore();
@@ -71,7 +71,7 @@ export class EmployeeComponent implements OnInit {
   public headerText: any = [{ text: 'HTML' }, { text: 'C Sharp(C#)' }, { text: 'Java' }, { text: 'VB.Net' },
   { text: 'Xamarin' }, { text: 'ASP.NET' }, { text: 'ASP.NET MVC' }, { text: 'JavaScript' }];
 
-  public fields: FieldSettingsModel = { value: "id", text: "name" };
+  public fields: FieldSettingsModel = { value: "key", text: "value" };
 
   public curentTab:string='profile';
   constructor(
@@ -310,12 +310,12 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.genderList.subscribe((res:any)=>{
-       
-        if(res.status==200){
+
+
           
-          this.lstGenderId = res.body.result;
+          this.lstGenderId = res;
           console.log("lstGenderId: ", this.lstGenderId )
-        }
+        
       })
     });
   }
