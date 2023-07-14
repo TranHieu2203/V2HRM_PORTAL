@@ -10,7 +10,7 @@ export class AppErrorHandler implements ErrorHandler {
                 console.log(error.stack)
                 break
             default:
-                console.error("AppErrorHandler: ", error);
+                // console.error("AppErrorHandler: ", error);
         }
         
     }

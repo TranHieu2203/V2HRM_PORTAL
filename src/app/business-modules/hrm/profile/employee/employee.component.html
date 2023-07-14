@@ -12,6 +12,7 @@
                       <div class="text">Thông tin cơ bản</div>
                     </ng-template>
                     <ng-template #content>
+                      
                       <div class="row">
                         <div class="col-sm-6 ">
                           <div class="d-flex h-100">
@@ -22,22 +23,361 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                           <div class="form-group">
                             <label class="font-weight-bold" for="">Mã nhân viên: </label>
-                            <label type="text" name="" id="" >{{employeeInfo.code}}</label>
+                            <label type="text" name="code" id="code" >{{employeeInfo.code}}</label>
+                            
                           </div>
-                          <div class="form-group">
-                            <label for="">Họ tên</label>
-                            <input type="text" name="" id="" class="form-control" [(ngModel)]="employeeInfo.fullname"
-                              placeholder="" aria-describedby="helpId" readonly>
+                          <div class="form-group">  
+                            <label for="">Họ tên:  </label>
+                            <label type="text" name="fullname" id="fullname" >{{employeeInfo.fullname}}</label>
+                            
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="row">
-            
+                        <div class="col-sm-12">
+                          <!-- Thẻ tab -->
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                              <a (click)="changeTab(1)" class="nav-link active" data-toggle="tab" href="#home">Sơ yếu lý lịch</a>
+                            </li>
+                            <li class="nav-item">
+                              <a (click)="changeTab(2)" class="nav-link" data-toggle="tab" href="#profile">Thông tin phụ</a>
+                            </li>
+                            <li class="nav-item">
+                              <a (click)="changeTab(3)" class="nav-link" data-toggle="tab" href="#education">Trình độ văn hoá</a>
+                            </li>
+                            <li class="nav-item">
+                              <a (click)="changeTab(4)" class="nav-link" data-toggle="tab" href="#situation">Gia cảnh</a>
+                            </li>
+                            <li class="nav-item">
+                              <a (click)="changeTab(5)" class="nav-link" data-toggle="tab" href="#trainingbefore">Quá trình đào tạo trước đây</a>
+                            </li>
+                            <li class="nav-item">
+                              <a (click)="changeTab(6)" class="nav-link" data-toggle="tab" href="#workingbefore">Quá trình công tác trước đây</a>
+                            </li>
+                          </ul>
+                      <form name="editForm" [formGroup]="editForm" novalidate>
+                        <div class="group-box" formGroupName="currentinfor">
+                          <div class="tab-content">
+                            <!-- Tab Profile -->
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                              <div class = "row">
+                                <label class="bold-label">THÔNG TIN CÁ NHÂN</label>
+                              </div>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Họ và tên đệm</label>
+                                    <input  type="text" class="form-control" name="firstName" formControlName="firstName" 
+                                      [(ngModel)]="employeeInfo.firstName"   (ngModelChange)="changeName()">
+                                  </div>
+                                </div>
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Tên</label>
+                                    <input  type="text" class="form-control" name="lastName" formControlName="lastName"  [(ngModel)]="employeeInfo.lastName"
+                                      (ngModelChange)="changeName()">
+                                    <!-- <span class="input-error"
+                                      *ngIf="editForm.controls['currentinfor'].get('lastName')!.hasError('required') && !editForm.controls['currentinfor'].get('lastName')!.untouched">
+                                      Bắt buộc nhập </span> -->
+                                  </div>
+                                </div>
+                                <!-- Mã số thuế -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Mã số thuế cá nhân</label>
+                                    <input  class="form-control" name="taxCode" formControlName="taxCode"  type="text"  [(ngModel)]="employeeInfo.taxCode">
+                                  </div>
+                                </div>  
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Nơi làm việc</label>
+                                    <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.insRegionId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstPlaceId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <!--Ngày sinh  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Ngày sinh</label>
+                                    <ejs-datepicker id="birthDate" name="birthDate" formControlName="birthDate" format="dd/MM/yyyy" [(ngModel)]="employeeInfo.birthDate"
+                                      (keydown)="changeDate('birthDate')" (blur)="changeDate('birthDate')"
+                                      placeholder=".../.../...">
+                                    </ejs-datepicker>
+                                    <!-- <span class="input-error"
+                                      *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('') && !editForm.controls['infor'].get('birthDate')!.untouched">
+                                      Bắt buộc chọn</span> -->
+                                    <!-- <span class="input-error"
+                                      *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('incorrect') && !editForm.controls['infor'].get('birthDate')!.untouched">
+                                      Sai định dạng</span> -->
+                                  </div>
+                                </div>
+                                <!-- Nơi sinh -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Nơi sinh</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.birthPlace">
+                                  </div>
+                                </div>
+                              
+                                <!--Giới tính  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Giới tính</label>
+                                    <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.genderId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstGenderId)'>
+                                    </ejs-dropdownlist>
+                                    <!-- <span class="input-error"
+                                      *ngIf="editForm.controls['infor'].get('genderId')!.hasError('') && !editForm.controls['infor'].get('genderId')!.untouched">
+                                      Bắt buộc chọn</span> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <!-- CMNN/TCC -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Số CMND/Căn cước</label>
+                                    <input  type="text" class="form-control"  [(ngModel)]="employeeInfo.idNo"
+                                      maxlength="12">
+                                  </div>
+                                </div>
+                                <!--Ngày cấp  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Ngày cấp</label>
+                                    <ejs-datepicker id="idDate" format="dd/MM/yyyy" [(ngModel)]="employeeInfo.idDate"
+                                    
+                                      placeholder=".../.../...">
+                                    </ejs-datepicker>
+                                  </div>
+                                </div>
+                                <!-- Nơi cấp-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Nơi cấp</label>
+                                    <input  class="form-control" type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.idPlace">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <!--Quốc tịch  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Quốc tịch</label>
+                                    <ejs-dropdownlist id='nationalityId' [dataSource]='lstNationalityId'
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.nationalityId"
+                                      [fields]='fields' [allowFiltering]='true' (filtering)='onFiltering($event,lstNationalityId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Dân tộc  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Dân tộc</label>
+                                    <ejs-dropdownlist id='nativeId' [dataSource]='lstNativeId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.nativeId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstNativeId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Tôn giáo  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Tôn giáo</label>
+                                    <ejs-dropdownlist id='religionId' [dataSource]='lstReligionId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.religionId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstReligionId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                              
+                                <!--Tình trạng hôn nhân  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Tình trạng hôn nhân</label>
+                                    <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId'
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.maritalStatusId"
+                                      [fields]='fields' [allowFiltering]='true'
+                                      (filtering)='onFiltering($event,lstMaritalStatusId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Thưởng trú tại việt nam -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Đối tượng cư trú</label>
+                                    <ejs-dropdownlist id='resident' [dataSource]='lstResident' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.residentId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstResident)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <label class="bold-label">ĐỊA CHỈ THƯỜNG TRÚ</label>
+                              </div>
+                              <div class = "row">
+                                <!--Tỉnh/TP  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Tỉnh/TP</label>
+                                    <ejs-dropdownlist id='provinceId' [dataSource]='lstProvinceId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.provinceId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstProvinceId)'
+                                      (change)="changeProvince($event!)">
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Quận huyện  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Quận/Huyện</label>
+                                    <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.districtId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstDistrictId)'
+                                      (change)="changeDistrict($event!)">
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Xã/Phường  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Xã/Phường</label>
+                                    <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.wardId" [fields]='fields' [allowFiltering]='true'
+                                      (filtering)='onFiltering($event,lstWardId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                              
+                          
+                                <div class="col-sm-12">
+                                  <div class="form-group ">
+                                    <label class="">Số nhà, đường phố, thôn xóm</label>
+                                    <input  type="text" class="form-control"  [(ngModel)]="employeeInfo.address">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <label class="bold-label">ĐỊA CHỈ HIỆN NAY</label>
+                              </div>
+                              <div class = "row">
+                                <!--Tỉnh/TP  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Tỉnh/TP</label>
+                                    <ejs-dropdownlist id='curProvinceId' [dataSource]='lstCurProvinceId'
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.curProvinceId"
+                                      [fields]='fields' [allowFiltering]='true' (filtering)='onFiltering($event,lstCurProvinceId)'
+                                      (change)="changeCurProvince($event!)">
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Quận huyện  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Quận/Huyện</label>
+                                    <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId'
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.curDistrictId"
+                                      [fields]='fields' [allowFiltering]='true' (filtering)='onFiltering($event,lstCurDistrictId)'
+                                      (change)="changeCurDistrict($event!)">
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <!--Xã/Phường  -->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Xã/Phường</label>
+                                    <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId' 
+                                      [showClearButton]="true" [(ngModel)]="employeeInfo.curWardId" [fields]='fields'
+                                      [allowFiltering]='true' (filtering)='onFiltering($event,lstCurWardId)'>
+                                    </ejs-dropdownlist>
+                                  </div>
+                                </div>
+                                <div class="col-sm-12">
+                                  <div class="form-group ">
+                                    <label class="">Số nhà, đường phố, thôn xóm</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.curAddress">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <label class="bold-label">THÔNG TIN LIÊN HỆ</label>
+                              </div>
+                              <div class = "row">
+                                <!-- Điện thoại di động-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Điện thoại cá nhân</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.mobilePhone" maxlength="50">
+                                  </div>
+                                </div>
+                                <!-- Email cá nhân-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Email cá nhân</label>
+                                    <input  type="text" class="form-control"  [(ngModel)]="employeeInfo.email">
+                                  </div>
+                                </div>
+
+
+                                
+                                <!-- Email công ty-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Email công ty</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.workEmail">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class = "row">
+                                <!-- Người liên hệ khi cần-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Người liên hệ khi cần</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.contactPer">
+                                    
+                                  </div>
+                                </div>
+                                <!-- Số điện thoại người liên hệ-->
+                                <div class="col-sm-3">
+                                  <div class="form-group ">
+                                    <label class="">Số điện thoại người liên hệ</label>
+                                    <input  type="text" class="form-control" 
+                                      [(ngModel)]="employeeInfo.contactPerPhone">
+                                    
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                      
+                            
+                            
+                          </div>
+                        </div>
+                        </form>
+                        </div>
+                        
                       </div>
 
+                      
+                    
                     </ng-template>
                   </e-accordionitem>
 
