@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeInfo } from 'src/app/model/employeeInfo';
+import { EmployeeInfo, Situation } from 'src/app/model/employeeInfo';
 import { ProfileEmployeeService } from 'src/app/services/profile-employee.service';
 import { OtherListService } from 'src/app/services/other-list.service';
 import { Query, Predicate } from "@syncfusion/ej2-data";
@@ -11,6 +11,10 @@ import {
 } from "@angular/forms";
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
+import { TabComponent } from '@syncfusion/ej2-angular-navigations';
+import { TrainingBefore } from 'src/app/model/trainingbefore';
+import { WorkingBefore } from 'src/app/model/workingbefore';
+
 // import { Consts } from "src/app/common/const";
 const $ = require("jquery");
  const async = require("async");
@@ -22,6 +26,9 @@ const $ = require("jquery");
 export class EmployeeComponent implements OnInit {
   editForm!: FormGroup;
    employeeInfo!:EmployeeInfo;
+   situation: Situation = new Situation();
+   trainingbefore: TrainingBefore = new TrainingBefore();
+   workingbefore: WorkingBefore = new WorkingBefore();
   // employeeInfo = NEW EmployeeInfo();
   tab: any;
   removeId: any;
@@ -61,7 +68,12 @@ export class EmployeeComponent implements OnInit {
   lstSpecialized: any = [];
   lstCompanyId: any = [];
   data: any;
+  public headerText: any = [{ text: 'HTML' }, { text: 'C Sharp(C#)' }, { text: 'Java' }, { text: 'VB.Net' },
+  { text: 'Xamarin' }, { text: 'ASP.NET' }, { text: 'ASP.NET MVC' }, { text: 'JavaScript' }];
+
   public fields: FieldSettingsModel = { value: "id", text: "name" };
+
+  public curentTab:string='profile';
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
@@ -195,7 +207,7 @@ export class EmployeeComponent implements OnInit {
     this.loadData();
   }
   changeTab(e: any) {
-    this.tab = e;
+    this.curentTab = e;
   }
   public onFiltering(e: any, a: any) {
     e.preventDefaultAction = true;
@@ -593,4 +605,25 @@ export class EmployeeComponent implements OnInit {
     // this.modalService.open("confirm-back-modal1");
    // this.modalService.open("confirm-delete-modal1");
   }
+  saveForm() {
+    if (!this.editForm.valid) {
+      alert(" form chưa hợp lệ")
+      return;
+    }
+    let param = this.employeeInfo
+    return new Promise((resolve) => {
+      
+      this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation','').subscribe((res: any) => {
+        if (res.statusCode == 400) {
+          alert("lỗi")
+        } else {
+          alert("thành công")
+          // this.router.navigate(["/cms/profile/business/staffprofile"]);
+        }
+     });
+  });
+    
+  } 
+  
+  
 }

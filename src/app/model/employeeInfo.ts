@@ -88,4 +88,28 @@ export interface EmployeeInfo {
     insRegionId?: number
     insRegionName?: string
   }
+  export class Situation {
+    relationshipId?: number;
+    employeeId?: number;
+    name?: string;
+    no?: string;
+    taxNo?: string;
+    familyNo?: string;
+    familyName?: string;
+    address?: string;
+    birth?: any;
+    dateStart?: any;
+    dateEnd?: any;
+  }
+  
+  export class PosPage {
+    id?: number;
+    empId?: number;
+    paperId?: number;
+    url?: string;
+    note?: string;
+    statusId?: boolean;
+    dateInput?: Date;
+    pageName?: string;
+  }
   
