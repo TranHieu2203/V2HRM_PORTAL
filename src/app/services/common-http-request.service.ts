@@ -62,7 +62,7 @@ export interface IServerModel {
 
 export const V2Hrm2022: IServerModel = {
   modelName: 'HiSraff2022',
-  loginUrl: 'authen/clientslogin',
+  loginUrl: 'authen/applogin',
   refreshTokenUrl: 'authen/refreshtoken',
   getEmployeeInfoUrl: 'client/profile/getemployeeinfo',
   // updateAccountInfoUrl: 'client/profile/updateemployee',

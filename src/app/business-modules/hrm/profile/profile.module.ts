@@ -9,6 +9,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,8 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     FormsModule,
     DropDownListModule,
     DatePickerModule,
-    NumericTextBoxModule
+    NumericTextBoxModule,
+    
   ],
   
   declarations: [EmployeeComponent]

@@ -21,7 +21,8 @@ const $ = require("jquery");
 })
 export class EmployeeComponent implements OnInit {
   editForm!: FormGroup;
-  employeeInfo!:EmployeeInfo;
+   employeeInfo!:EmployeeInfo;
+  // employeeInfo = NEW EmployeeInfo();
   tab: any;
   removeId: any;
   public query = new Query();
@@ -69,115 +70,115 @@ export class EmployeeComponent implements OnInit {
     private _formBuilder: FormBuilder,
 
   ) { 
-    // this.editForm = this._formBuilder.group({
-    //   currentinfor: this._formBuilder.group({
-    //     code: [
-    //       { value: null, disabled: false },
-    //       [Validators.required, this.globals.noWhitespaceValidator],
-    //     ],
-    //     firstName: [
-    //       "",
-    //       [Validators.required, this.globals.noWhitespaceValidator],
-    //     ],
-    //     lastName: [
-    //       "",
-    //       [Validators.required, this.globals.noWhitespaceValidator],
-    //     ],
-    //     taxCode: [[]], //Mã sô thuế
-    //     salTotal: ["", []],
-    //     insRegionId: ["",[Validators.required]]
-    //   }),
-    //   infor: this._formBuilder.group({
-    //     birthDate: ["", []],
-    //     genderId: [""],
-    //     birthPlace: ["", []],
-    //     idNo: ["", []], //CMND
-    //     idDate: [""], //Ngày cấp
-    //     idPlace: ["", []], //Nơi cấp
-    //     passPlace: ["", []],
-    //     nationalityId: ["", []], //Quốc tịch
-    //     nativeId: ["", []], //Dân tộc
-    //     religionId: ["", []], //Tôn giáo
-    //     maritalStatusId: ["", []], //Tình trạng hôn nhân
-    //     resident: [""],
-    //     placeId: ["",[]]
+    this.editForm = this._formBuilder.group({
+      currentinfor: this._formBuilder.group({
+        code: [
+          { value: null, disabled: false },
+          [Validators.required, this.globals.noWhitespaceValidator],
+        ],
+        firstName: [
+          "",
+          [Validators.required, this.globals.noWhitespaceValidator],
+        ],
+        lastName: [
+          "",
+          [Validators.required, this.globals.noWhitespaceValidator],
+        ],
+        taxCode: [[]], //Mã sô thuế
+        salTotal: ["", []],
+        insRegionId: ["",[Validators.required]]
+      }),
+      infor: this._formBuilder.group({
+        birthDate: ["", []],
+        genderId: [""],
+        birthPlace: ["", []],
+        idNo: ["", []], //CMND
+        idDate: [""], //Ngày cấp
+        idPlace: ["", []], //Nơi cấp
+        passPlace: ["", []],
+        nationalityId: ["", []], //Quốc tịch
+        nativeId: ["", []], //Dân tộc
+        religionId: ["", []], //Tôn giáo
+        maritalStatusId: ["", []], //Tình trạng hôn nhân
+        resident: [""],
+        placeId: ["",[]]
         
-    //   }),
-    //   address: this._formBuilder.group({
-    //     address: ["", []],
-    //     provinceId: ["", []],
-    //     districtId: ["", []],
-    //     wardId: ["", []],
-    //     directManagerId: ["", []],
-    //     curAddress: [""],
-    //     joinDate: ["", []],
-    //     workStatusId: ["", []],
-    //   }),
-    //   curAddress: this._formBuilder.group({
-    //     curAddress: ["", []],
-    //     curProvinceId: ["", []],
-    //     curDistrictId: ["", []],
-    //     curWardId: ["", []],
-    //   }),
-    //   contact: this._formBuilder.group({
-    //     mobilePhone: ["", []],
-    //     email: ["", []],
-    //     workEmail: ["", []],
-    //     contactPer: ["", []], //Người liên hệ khi cần
-    //     contactPerPhone: ["", []],
-    //   }),
-    //   addinfo: this._formBuilder.group({
-    //     passNo: ["", []], //Hộ chiếu
-    //     passDate: ["", []], //Ngày cấp
-    //     passExpire: ["", []],
-    //     passPlace: ["", []],
-    //     visaNo: ["", []],
-    //     visaDate: ["", []],
-    //     visaExpire: ["", []],
-    //     visaPlace: ["", []],
-    //     workPermit: ["", []], //Giấy phép lao động
-    //     workPermitDate: ["", []],
-    //     workPermitExpire: ["", []],
-    //     workPermitPlace: ["", []],
-    //     workNo: ["", []],
-    //     workDate: ["", []],
-    //     workScope: ["", []],
-    //     workPlace: ["", []],
-    //   }),
-    //   user: this._formBuilder.group({
-    //     bankId: ["", []],
-    //     bankBranch: ["", []],
-    //     bankNo: ["", []],
-    //   }),
-    //   education: this._formBuilder.group({
-    //     schoolId: ["", []],
-    //     qualificationId: ["", []], //Trình độ chuyên môn
-    //     trainingFormId: ["", []], //Hình thức đào tạo
-    //     learningLevelId: ["", []], //trình độ học vấn
-    //     languageMark: ["", []], //điểm số
-    //     language: ["", []], //ngoại ngữ
-    //   }),
-    //   situation: this._formBuilder.group({
-    //     name: ["", []],
-    //     birth: ["", []],
-    //     no: ["", []], // CMND
-    //     taxNo: ["", []], // CMND
-    //     familyNo: ["", []], // CMND
-    //     familyName: ["", []], // CMND
-    //     address: ["", []], // CMND
-    //     relationshipId: ["", []],
-    //     dateStart: ["", []],
-    //     dateEnd: ["", []],
-    //   }),
-    //   page: this._formBuilder.group({
-    //     paperId: ["", []],
-    //     dateInput: ["", []],
-    //     note: ["", []], // CMND
-    //     statusId: ["", []], // CMND
-    //     pageName: ["", []],
-    //   }),
-    // });
-
+      }),
+      address: this._formBuilder.group({
+        address: ["", []],
+        provinceId: ["", []],
+        districtId: ["", []],
+        wardId: ["", []],
+        directManagerId: ["", []],
+        curAddress: [""],
+        joinDate: ["", []],
+        workStatusId: ["", []],
+      }),
+      curAddress: this._formBuilder.group({
+        curAddress: ["", []],
+        curProvinceId: ["", []],
+        curDistrictId: ["", []],
+        curWardId: ["", []],
+      }),
+      contact: this._formBuilder.group({
+        mobilePhone: ["", []],
+        email: ["", []],
+        workEmail: ["", []],
+        contactPer: ["", []], //Người liên hệ khi cần
+        contactPerPhone: ["", []],
+      }),
+      addinfo: this._formBuilder.group({
+        passNo: ["", []], //Hộ chiếu
+        passDate: ["", []], //Ngày cấp
+        passExpire: ["", []],
+        passPlace: ["", []],
+        visaNo: ["", []],
+        visaDate: ["", []],
+        visaExpire: ["", []],
+        visaPlace: ["", []],
+        workPermit: ["", []], //Giấy phép lao động
+        workPermitDate: ["", []],
+        workPermitExpire: ["", []],
+        workPermitPlace: ["", []],
+        workNo: ["", []],
+        workDate: ["", []],
+        workScope: ["", []],
+        workPlace: ["", []],
+      }),
+      user: this._formBuilder.group({
+        bankId: ["", []],
+        bankBranch: ["", []],
+        bankNo: ["", []],
+      }),
+      education: this._formBuilder.group({
+        schoolId: ["", []],
+        qualificationId: ["", []], //Trình độ chuyên môn
+        trainingFormId: ["", []], //Hình thức đào tạo
+        learningLevelId: ["", []], //trình độ học vấn
+        languageMark: ["", []], //điểm số
+        language: ["", []], //ngoại ngữ
+      }),
+      situation: this._formBuilder.group({
+        name: ["", []],
+        birth: ["", []],
+        no: ["", []], // CMND
+        taxNo: ["", []], // CMND
+        familyNo: ["", []], // CMND
+        familyName: ["", []], // CMND
+        address: ["", []], // CMND
+        relationshipId: ["", []],
+        dateStart: ["", []],
+        dateEnd: ["", []],
+      }),
+      page: this._formBuilder.group({
+        paperId: ["", []],
+        dateInput: ["", []],
+        note: ["", []], // CMND
+        statusId: ["", []], // CMND
+        pageName: ["", []],
+      }),
+    });
+    console.log("vào nè")
     this.loadData();
    
     
@@ -254,20 +255,20 @@ export class EmployeeComponent implements OnInit {
       }
     }, 200);
   };
-  coppyAddress() {
-    if (this.employeeInfo.provinceId != null) {
-      this.employeeInfo.curProvinceId = this.employeeInfo.provinceId;
-      this.getDistrict(this.employeeInfo.curProvinceId).then((res: any) => {
-        this.lstCurDistrictId = res;
-        this.employeeInfo.curDistrictId = this.employeeInfo.districtId;
-        this.getWard(this.employeeInfo.curDistrictId).then((res: any) => {
-          this.lstCurWardId = res;
-          this.employeeInfo.curWardId = this.employeeInfo.wardId;
-        });
-      });
-      this.employeeInfo.curAddress = this.employeeInfo.address;
-    }
-  }
+  // coppyAddress() {
+  //   if (this.employeeInfo.provinceId != null) {
+  //     this.employeeInfo.curProvinceId = this.employeeInfo.provinceId;
+  //     this.getDistrict(this.employeeInfo.curProvinceId).then((res: any) => {
+  //       this.lstCurDistrictId = res;
+  //       this.employeeInfo.curDistrictId = this.employeeInfo.districtId;
+  //       this.getWard(this.employeeInfo.curDistrictId).then((res: any) => {
+  //         this.lstCurWardId = res;
+  //         this.employeeInfo.curWardId = this.employeeInfo.wardId;
+  //       });
+  //     });
+  //     this.employeeInfo.curAddress = this.employeeInfo.address;
+  //   }
+  // }
   loadData() {
     Promise.all([
       this.getGender(), //0
@@ -286,8 +287,8 @@ export class EmployeeComponent implements OnInit {
       this.getlstPaperId(),//13
       this.getlstPlaceId(),//14
       this.getlstCertificate(),
-      this.getlstFormTrain(),
-      this.getlstSpecialized(),
+      // this.getlstFormTrain(),
+      // this.getlstSpecialized(),
       this.getlstCompanyId()
     ]);
   }
@@ -297,9 +298,11 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.genderList.subscribe((res:any)=>{
+       
         if(res.status==200){
-          console.log("vào k : ",res)
+          
           this.lstGenderId = res.body.result;
+          console.log("lstGenderId: ", this.lstGenderId )
         }
       })
     });
@@ -468,8 +471,10 @@ export class EmployeeComponent implements OnInit {
     });
   }
   changeProvince(e: any) {
+    
     if (e.e) {
       this.employeeInfo.districtId = undefined;
+      console.log("vafo tuwf changeprovince")
       this.lstDistrictId = [];
       this.employeeInfo.wardId = undefined;
       this.lstWardId = [];
@@ -481,7 +486,9 @@ export class EmployeeComponent implements OnInit {
     }
   }
   changeCurProvince(e: any) {
+    
     if (e.e) {
+      console.log("vafo tuwf changeCurProvince")
       this.employeeInfo.curDistrictId = undefined;
       this.lstCurDistrictId = [];
       this.employeeInfo.curWardId = undefined;
@@ -548,6 +555,7 @@ export class EmployeeComponent implements OnInit {
   }
   
   getWard(id: any) {
+    console.log(" sao vao luon day vay", id)
     return new Promise((resolve) => {
       
       this.commomHttpService.commonGetRequest('laythongtin', 'hr/province/getListWard?districtid=' + id).subscribe((res: any) => {

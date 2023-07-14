@@ -12,7 +12,7 @@
                       <div class="text">Thông tin cơ bản</div>
                     </ng-template>
                     <ng-template #content>
-                      <form name="editForm" [formGroup]="editForm" novalidate>
+                      
                       <div class="row">
                         <div class="col-sm-6 ">
                           <div class="d-flex h-100">
@@ -23,20 +23,18 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                           <div class="form-group">
                             <label class="font-weight-bold" for="">Mã nhân viên: </label>
                             <label type="text" name="code" id="code" >{{employeeInfo.code}}</label>
-                            <!-- <input type="text" name="code" id="code" class="form-control"  
-                            placeholder="" aria-describedby="helpId" readonly> -->
+                            
                           </div>
                           <div class="form-group">  
                             <label for="">Họ tên:  </label>
                             <label type="text" name="fullname" id="fullname" >{{employeeInfo.fullname}}</label>
-                            <!-- <input type="text" name="fullname" id="fullname" class="form-control"  
-                              placeholder="" aria-describedby="helpId" readonly> -->
+                            
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="row">
                         <div class="col-sm-12">
@@ -61,7 +59,8 @@
                               <a (click)="changeTab(6)" class="nav-link" data-toggle="tab" href="#workingbefore">Quá trình công tác trước đây</a>
                             </li>
                           </ul>
-                        
+                      <form name="editForm" [formGroup]="editForm" novalidate>
+                        <div class="group-box" formGroupName="currentinfor">
                           <div class="tab-content">
                             <!-- Tab Profile -->
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -72,14 +71,14 @@
                                 <div class="col-sm-3">
                                   <div class="form-group ">
                                     <label class="">Họ và tên đệm</label>
-                                    <input  type="text" class="form-control" 
-                                      [(ngModel)]="employeeInfo.firstName" (ngModelChange)="changeName()">
+                                    <input  type="text" class="form-control" name="firstName" formControlName="firstName" 
+                                      [(ngModel)]="employeeInfo.firstName"   (ngModelChange)="changeName()">
                                   </div>
                                 </div>
                                 <div class="col-sm-3">
                                   <div class="form-group ">
                                     <label class="">Tên</label>
-                                    <input  type="text" class="form-control"  [(ngModel)]="employeeInfo.lastName"
+                                    <input  type="text" class="form-control" name="lastName" formControlName="lastName"  [(ngModel)]="employeeInfo.lastName"
                                       (ngModelChange)="changeName()">
                                     <!-- <span class="input-error"
                                       *ngIf="editForm.controls['currentinfor'].get('lastName')!.hasError('required') && !editForm.controls['currentinfor'].get('lastName')!.untouched">
@@ -90,7 +89,7 @@
                                 <div class="col-sm-3">
                                   <div class="form-group ">
                                     <label class="">Mã số thuế cá nhân</label>
-                                    <input  class="form-control" type="text"  [(ngModel)]="employeeInfo.taxCode">
+                                    <input  class="form-control" name="taxCode" formControlName="taxCode"  type="text"  [(ngModel)]="employeeInfo.taxCode">
                                   </div>
                                 </div>  
                                 <div class="col-sm-3">
@@ -108,7 +107,7 @@
                                 <div class="col-sm-3">
                                   <div class="form-group ">
                                     <label class="">Ngày sinh</label>
-                                    <ejs-datepicker id="birthDate" format="dd/MM/yyyy" [(ngModel)]="employeeInfo.birthDate"
+                                    <ejs-datepicker id="birthDate" name="birthDate" formControlName="birthDate" format="dd/MM/yyyy" [(ngModel)]="employeeInfo.birthDate"
                                       (keydown)="changeDate('birthDate')" (blur)="changeDate('birthDate')"
                                       placeholder=".../.../...">
                                     </ejs-datepicker>
@@ -362,18 +361,20 @@
                                   </div>
                                 </div>
                               </div>
+
                             </div>
                       
                             
                             
                           </div>
-                        
+                        </div>
+                        </form>
                         </div>
                         
                       </div>
 
                       
-                    </form>
+                    
                     </ng-template>
                   </e-accordionitem>
 
