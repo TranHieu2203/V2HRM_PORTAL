@@ -102,7 +102,8 @@ export class EmployeeComponent implements OnInit {
         ],
         taxCode: [[]], //Mã sô thuế
         salTotal: ["", []],
-        insRegionId: ["",[Validators.required]]
+        insRegionId: ["",[Validators.required]],
+        placeId: ["",[]]
       }),
       infor: this._formBuilder.group({
         birthDate: ["", []],
@@ -117,7 +118,7 @@ export class EmployeeComponent implements OnInit {
         religionId: ["", []], //Tôn giáo
         maritalStatusId: ["", []], //Tình trạng hôn nhân
         resident: [""],
-        placeId: ["",[]]
+        
         
       }),
       address: this._formBuilder.group({

@@ -233,7 +233,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Đối tượng cư trú</label>
-                                        <ejs-dropdownlist id='resident' [dataSource]='lstResident'
+                                        <ejs-dropdownlist id='resident' [dataSource]='lstResident' name="residentId" formControlName="residentId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.residentId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstResident)'>
@@ -251,7 +251,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Tỉnh/TP</label>
-                                        <ejs-dropdownlist id='provinceId' [dataSource]='lstProvinceId'
+                                        <ejs-dropdownlist id='provinceId' [dataSource]='lstProvinceId' name="provinceId" formControlName="provinceId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.provinceId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstProvinceId)'
@@ -348,7 +348,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Điện thoại cá nhân</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.mobilePhone"
+                                        <input type="text" class="form-control" name="mobilePhone" formControlName="mobilePhone" [(ngModel)]="employeeInfo.mobilePhone"
                                           maxlength="50">
                                       </div>
                                     </div>
