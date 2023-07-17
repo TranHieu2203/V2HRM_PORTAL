@@ -307,6 +307,8 @@ export class EmployeeComponent implements OnInit {
       
     ]).then((res: any) => {
       console.log(res)
+      this.lstGenderId = res[1];
+      console.log("lstGenderId: ",this.lstGenderId )
       this.lstNativeId = res[2];
       this.lstNationalityId = res[3];
       this.lstReligionId = res[4];
@@ -322,10 +324,12 @@ export class EmployeeComponent implements OnInit {
       this.lstInsRegionId = res[13];
       this.lstPaperId = res[14];
       this.lstPlaceId = res[15];
-
-      this.otherListService.genderList.subscribe((res:any)=>{
-        this.lstGenderId = res;
-      })
+      this.lstCertificate = res[16].body.data;
+      console.log("vào tới chưa")
+      this.lstCompanyId = res[17];
+      // this.otherListService.genderList.subscribe((res:any)=>{
+      //   this.lstGenderId = res;
+      // })
       this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
       
       this.loadDatalazy(res[0].body.result);
@@ -754,6 +758,7 @@ export class EmployeeComponent implements OnInit {
     //   : null;
     // model.workPermitExpire = model.workPermitExpire
     //   ? moment(model.workPermitExpire).format("YYYY-MM-DD")
+    
     //   : null;
 
     return model;
