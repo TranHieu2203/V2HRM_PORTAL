@@ -102,6 +102,8 @@ export class OtherListService {
   constructor(private commonHttpRequestService: CommonHttpRequestService, private authService: AuthService) {
     this.commonHttpRequestService.commonGetRequest('getGenderList', this.authService.serverModel.getGendersUrl!)
       .subscribe(x => {
+        debugger;
+        console.log('vaoday')
         if (x.ok && x.status === 200) {
           const newList: {
             key: string,

@@ -8,7 +8,9 @@ import { EmployeeComponent } from './employee/employee.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { TabModule } from '@syncfusion/ej2-angular-navigations';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     DropDownListModule,
     DatePickerModule,
     NumericTextBoxModule,
-    
+    TabModule,
+    GridModule 
   ],
   
   declarations: [EmployeeComponent]
