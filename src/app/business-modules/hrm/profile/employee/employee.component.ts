@@ -54,7 +54,7 @@ export class EmployeeComponent implements OnInit {
   lstCurProvinceId: any = [];
   lstCurDistrictId: any = [];
   lstCurWardId: any = [];
-  lstContractId: any = [];
+  lstContractId: any = []; 
   lstLastWorkingId: any = [];
   lstObjectSalaryId: any = [];
   lstMaritalStatusId: any = [];
