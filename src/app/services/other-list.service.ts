@@ -15,87 +15,87 @@ export class OtherListService {
   }[]>([])
 
   provinceList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   districtList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   wardList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   nationList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   nationalityList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   religionList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   familyStatusList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   statusEmpList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   trainingFormIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   learningLevelList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   bankIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   residentList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   insRegionIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   placeIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   paperIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   companyIdList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
   empSituationList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
@@ -120,11 +120,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.provinceList.next(newList);
@@ -135,11 +135,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.districtList.next(newList);
@@ -150,11 +150,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.wardList.next(newList);
@@ -165,11 +165,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.nationList.next(newList);
@@ -180,11 +180,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.nationalityList.next(newList);
@@ -195,11 +195,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.religionList.next(newList);
@@ -210,11 +210,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.familyStatusList.next(newList);
@@ -225,11 +225,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.statusEmpList.next(newList);
@@ -240,11 +240,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.trainingFormIdList.next(newList);
@@ -255,11 +255,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.learningLevelList.next(newList);
@@ -270,11 +270,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.bankIdList.next(newList);
@@ -285,11 +285,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.residentList.next(newList);
@@ -300,11 +300,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.insRegionIdList.next(newList);
@@ -315,11 +315,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.placeIdList.next(newList);
@@ -330,11 +330,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.paperIdList.next(newList);
@@ -345,11 +345,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.companyIdList.next(newList);
@@ -360,11 +360,11 @@ export class OtherListService {
       .subscribe(x => {
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.empSituationList.next(newList);
