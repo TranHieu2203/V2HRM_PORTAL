@@ -521,3 +521,6 @@ html{
 .theme-dark label{
   color: #ddd;
 }
+.form-control{
+  height: 32px!important;
+}
