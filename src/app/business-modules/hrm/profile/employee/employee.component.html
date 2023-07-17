@@ -105,8 +105,9 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Nơi làm việc</label>
-                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId'
-                                          [showClearButton]="true" [(ngModel)]="employeeInfo.insRegionId"
+                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' name="placeId"
+                                          formControlName="placeId"
+                                          [showClearButton]="true" [(ngModel)]="employeeInfo.placeId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstPlaceId)'>
                                         </ejs-dropdownlist>

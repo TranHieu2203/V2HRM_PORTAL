@@ -268,69 +268,79 @@ export class EmployeeComponent implements OnInit {
       }
     }, 200);
   };
-  // coppyAddress() {
-  //   if (this.employeeInfo.provinceId != null) {
-  //     this.employeeInfo.curProvinceId = this.employeeInfo.provinceId;
-  //     this.getDistrict(this.employeeInfo.curProvinceId).then((res: any) => {
-  //       this.lstCurDistrictId = res;
-  //       this.employeeInfo.curDistrictId = this.employeeInfo.districtId;
-  //       this.getWard(this.employeeInfo.curDistrictId).then((res: any) => {
-  //         this.lstCurWardId = res;
-  //         this.employeeInfo.curWardId = this.employeeInfo.wardId;
-  //       });
-  //     });
-  //     this.employeeInfo.curAddress = this.employeeInfo.address;
-  //   }
-  // }
+
   loadData() {
     Promise.all([
       this.getById(),
-      this.getGender(), //0
-      this.getNation(), //1
-      this.getNationality(), //2
-      this.getReligion(), //3
-      this.getListStatusEmp(), //4
-      this.getProvince(), //5
-      this.getListFamilyStatus(), //6
-      this.getEmpSituation(), //7
-      this.getlstTrainingFormId(), //8
-      this.GetListLearningLevel(), //9
-      this.getlstBankId(), //10
-      this.getlstResident(), //11
-      this.getlstInsRegionId(),//12
-      this.getlstPaperId(),//13
-      this.getlstPlaceId(),//14
-      this.getlstCertificate(),
-      // this.getlstFormTrain(),
-      // this.getlstSpecialized(),
-      this.getlstCompanyId(),
+      
       
     ]).then((res: any) => {
-      console.log(res)
-      console.log("lstGenderId: ",this.lstGenderId )
-      this.lstNativeId = res[2];
-      this.lstNationalityId = res[3];
-      this.lstReligionId = res[4];
-      this.lstWorkStatusId = res[5];
-      this.lstProvinceId = res[6];
-      this.lstCurProvinceId = res[6];
-      this.lstMaritalStatusId = res[7];
-      this.lstEmpSituation = res[8];
-      this.lstTrainingFormId = res[9];
-      this.lstLearningLevelId = res[10];  
-      this.lstBankId = res[11];
-      this.lstResident = res[12];
-      this.lstInsRegionId = res[13];
-      this.lstPaperId = res[14];
-      this.lstPlaceId = res[15];
-      this.lstCertificate = res[16].body.data;
-      console.log("vào tới chưa: ", this.lstCertificate)
-      this.lstCompanyId = res[17];
+
+      this.otherListService.nationList.subscribe((res:any)=>{
+        this.lstNativeId = res;
+      })
+
+      this.otherListService.nationalityList.subscribe((res:any)=>{
+        this.lstNationalityId = res;
+      })
+
+
+      this.otherListService.religionList.subscribe((res:any)=>{
+        this.lstReligionId = res;
+      })
+      this.otherListService.statusEmpList.subscribe((res:any)=>{
+        this.lstWorkStatusId = res;
+      })
+      this.otherListService.provinceList.subscribe((res:any)=>{
+        this.lstProvinceId = res;
+      })
+      this.otherListService.provinceList.subscribe((res:any)=>{
+        this.lstCurProvinceId = res;
+      })
+      
+      this.otherListService.familyStatusList.subscribe((res:any)=>{
+        this.lstMaritalStatusId = res;
+      })
+      this.otherListService.empSituationList.subscribe((res:any)=>{
+        this.lstEmpSituation = res;
+      })
+      this.otherListService.trainingFormIdList.subscribe((res:any)=>{
+        this.lstTrainingFormId = res;
+      })
+      this.otherListService.learningLevelList.subscribe((res:any)=>{
+        this.lstLearningLevelId = res;
+      })
+      this.otherListService.bankIdList.subscribe((res:any)=>{
+        this.lstBankId = res;
+      })
+      this.otherListService.residentList.subscribe((res:any)=>{
+        this.lstResident = res;
+      })
+      this.otherListService.insRegionIdList.subscribe((res:any)=>{
+        this.lstInsRegionId = res;
+      })
+      this.otherListService.paperIdList.subscribe((res:any)=>{
+        this.lstPaperId = res;
+      })
+      this.otherListService.placeIdList.subscribe((res:any)=>{
+        this.lstPlaceId = res;
+
+      })
+      this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
+        // this.lstCertificate = res;
+        this.lstCertificate = res
+      })
+      this.otherListService.companyIdList.subscribe((res:any)=>{
+      this.lstCompanyId = res;
+      })
+
+     
       this.otherListService.genderList.subscribe((res:any)=>{
         this.lstGenderId = res;
       })
       this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
-      
+
+      console.log(res[0].body.result )
       this.loadDatalazy(res[0].body.result);
       // this.getListSituation();
       // this.getListPaper();

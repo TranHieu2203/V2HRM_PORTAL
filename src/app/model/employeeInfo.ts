@@ -19,6 +19,7 @@ export class EmployeeInfo {
     idNo?: any
     idDate?: any
     idPlace?: any
+    placeId?:any
     provinceId?: any
     provinceName?: any
     districtId?: any
