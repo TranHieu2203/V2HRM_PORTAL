@@ -105,9 +105,8 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Nơi làm việc</label>
-                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' name="placeId"
-                                          formControlName="placeId"
-                                          [showClearButton]="true" [(ngModel)]="employeeInfo.placeId"
+                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId'
+                                          [showClearButton]="true" [(ngModel)]="employeeInfo.insRegionId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstPlaceId)'>
                                         </ejs-dropdownlist>
@@ -188,7 +187,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Quốc tịch</label>
-                                        <ejs-dropdownlist id='nationalityId' [dataSource]='lstNationalityId'
+                                        <ejs-dropdownlist id='nationalityId' [dataSource]='lstNationalityId' name="nationalityId" formControlName="nationalityId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.nationalityId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstNationalityId)'>
@@ -200,7 +199,7 @@
                                       <div class="form-group ">
                                         <label class="">Dân tộc</label>
                                         <ejs-dropdownlist id='nativeId' [dataSource]='lstNativeId'
-                                          [showClearButton]="true" [(ngModel)]="employeeInfo.nativeId" [fields]='fields'
+                                          [showClearButton]="true" [(ngModel)]="employeeInfo.nativeId" [fields]='fields' name="nativeId" formControlName="nativeId"
                                           [allowFiltering]='true' (filtering)='onFiltering($event,lstNativeId)'>
                                         </ejs-dropdownlist>
                                       </div>
@@ -209,7 +208,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Tôn giáo</label>
-                                        <ejs-dropdownlist id='religionId' [dataSource]='lstReligionId'
+                                        <ejs-dropdownlist id='religionId' [dataSource]='lstReligionId' name="religionId" formControlName="religionId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.religionId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstReligionId)'>
@@ -221,7 +220,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Tình trạng hôn nhân</label>
-                                        <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId'
+                                        <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId' name="maritalStatusId" formControlName="maritalStatusId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.maritalStatusId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstMaritalStatusId)'>

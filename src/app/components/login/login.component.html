@@ -20,7 +20,7 @@
                             <p [ngClass]="{ 'text-danger': loading && formControls['user_name'].errors }">
                                 <i class='font-sm ti-user text-grey-500 pe-0'></i>
                                 <input #username type="text" id="user_name" formControlName="user_name"
-                                    class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
+                                    class="style2-input ps-5 form-control h-50 text-grey-900 font-xsss fw-600"
                                     placeholder="Tên đăng nhập" />
                             </p>
                             <div *ngIf="formControls['user_name'].errors && isDirty()" class="help-block">
@@ -31,7 +31,7 @@
                             <p [ngClass]="{ 'text-danger': formControls['password'].errors }">
                                 <input type="password" id="password" formControlName="password"
                                     autocomplete="false"
-                                    class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
+                                    class="style2-input ps-5 form-control h-50 text-grey-900 font-xsss fw-600"
                                     placeholder="Mật khẩu" />
                                 <i class='font-sm ti-lock text-grey-500 pe-0'></i>
                             </p>
@@ -47,7 +47,7 @@
                         </div>
                         <div *ngIf="!loading" className='col-sm-12 p-0 text-left'>
                             <button #button type='submit' (submit)="signIn()"
-                                class='form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng nhập</button>
+                                class='form-control text-center style2-input h-50 text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng nhập</button>
                         </div>
                     </form>
                     <select (change)="onServerChanged($event)" class="form-control" style="display: none">

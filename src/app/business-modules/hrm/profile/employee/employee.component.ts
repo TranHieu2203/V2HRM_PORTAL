@@ -14,14 +14,12 @@ import {
 } from "@angular/forms";
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
-import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 import { TrainingBefore } from 'src/app/model/trainingbefore';
 import { WorkingBefore } from 'src/app/model/workingbefore';
 import { Subject } from 'rxjs';
 
 // import { Consts } from "src/app/common/const";
 const $ = require("jquery");
- const async = require("async");
  const _ = require("lodash");
 @Component({
   selector: 'app-employee',
@@ -145,56 +143,7 @@ export class EmployeeComponent implements OnInit {
         contactPer: ["", []], //Người liên hệ khi cần
         contactPerPhone: ["", []],
       }),
-      // addinfo: this._formBuilder.group({
-      //   passNo: ["", []], //Hộ chiếu
-      //   passDate: ["", []], //Ngày cấp
-      //   passExpire: ["", []],
-      //   passPlace: ["", []],
-      //   visaNo: ["", []],
-      //   visaDate: ["", []],
-      //   visaExpire: ["", []],
-      //   visaPlace: ["", []],
-      //   workPermit: ["", []], //Giấy phép lao động
-      //   workPermitDate: ["", []],
-      //   workPermitExpire: ["", []],
-      //   workPermitPlace: ["", []],
-      //   workNo: ["", []],
-      //   workDate: ["", []],
-      //   workScope: ["", []],
-      //   workPlace: ["", []],
-      // }),
-      // user: this._formBuilder.group({
-      //   bankId: ["", []],
-      //   bankBranch: ["", []],
-      //   bankNo: ["", []],
-      // }),
-      // education: this._formBuilder.group({
-      //   schoolId: ["", []],
-      //   qualificationId: ["", []], //Trình độ chuyên môn
-      //   trainingFormId: ["", []], //Hình thức đào tạo
-      //   learningLevelId: ["", []], //trình độ học vấn
-      //   languageMark: ["", []], //điểm số
-      //   language: ["", []], //ngoại ngữ
-      // }),
-      // situation: this._formBuilder.group({
-      //   name: ["", []],
-      //   birth: ["", []],
-      //   no: ["", []], // CMND
-      //   taxNo: ["", []], // CMND
-      //   familyNo: ["", []], // CMND
-      //   familyName: ["", []], // CMND
-      //   address: ["", []], // CMND
-      //   relationshipId: ["", []],
-      //   dateStart: ["", []],
-      //   dateEnd: ["", []],
-      // }),
-      // page: this._formBuilder.group({
-      //   paperId: ["", []],
-      //   dateInput: ["", []],
-      //   note: ["", []], // CMND
-      //   statusId: ["", []], // CMND
-      //   pageName: ["", []],
-      // }),
+      
     });
     this._unsubscribeAll = new Subject();
     this.loadData();
@@ -322,8 +271,11 @@ export class EmployeeComponent implements OnInit {
       this.otherListService.paperIdList.subscribe((res:any)=>{
         this.lstPaperId = res;
       })
+      
       this.otherListService.placeIdList.subscribe((res:any)=>{
+        
         this.lstPlaceId = res;
+        console.log(this.lstPlaceId, this.lstPlaceId)
 
       })
       this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
