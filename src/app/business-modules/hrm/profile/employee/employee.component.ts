@@ -285,8 +285,6 @@ export class EmployeeComponent implements OnInit {
       })
 
 
-      
-
       this.otherListService.religionList.subscribe((res:any)=>{
         this.lstReligionId = res;
       })
