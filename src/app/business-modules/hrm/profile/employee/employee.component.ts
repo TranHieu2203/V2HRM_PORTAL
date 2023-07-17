@@ -284,6 +284,9 @@ export class EmployeeComponent implements OnInit {
         this.lstNationalityId = res;
       })
 
+
+      
+
       this.otherListService.religionList.subscribe((res:any)=>{
         this.lstReligionId = res;
       })
@@ -338,7 +341,7 @@ export class EmployeeComponent implements OnInit {
         this.lstGenderId = res;
       })
       this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
-      
+
       console.log(res[0].body.result )
       this.loadDatalazy(res[0].body.result);
       // this.getListSituation();
