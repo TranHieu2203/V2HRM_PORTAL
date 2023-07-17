@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class OtherListService {
 
   genderList = new BehaviorSubject<{
-    key: string,
+    key: number,
     value: string
   }[]>([])
 
@@ -102,15 +102,14 @@ export class OtherListService {
   constructor(private commonHttpRequestService: CommonHttpRequestService, private authService: AuthService) {
     this.commonHttpRequestService.commonGetRequest('getGenderList', this.authService.serverModel.getGendersUrl!)
       .subscribe(x => {
-        debugger;
-        console.log('vaoday')
+
         if (x.ok && x.status === 200) {
           const newList: {
-            key: string,
+            key: number,
             value: string
           }[] = [];
           x.body.data.map((g: any) => newList.push({
-            key: g.id.toString(),
+            key: g.id,
             value: g.name
           }))
           this.genderList.next(newList);
