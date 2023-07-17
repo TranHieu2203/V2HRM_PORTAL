@@ -285,7 +285,7 @@ export class EmployeeComponent implements OnInit {
   loadData() {
     Promise.all([
       this.getById(),
-      // this.getGender(), //0
+      this.getGender(), //0
       this.getNation(), //1
       this.getNationality(), //2
       this.getReligion(), //3
@@ -307,7 +307,6 @@ export class EmployeeComponent implements OnInit {
       
     ]).then((res: any) => {
       console.log(res)
-      this.lstGenderId = res[1];
       console.log("lstGenderId: ",this.lstGenderId )
       this.lstNativeId = res[2];
       this.lstNationalityId = res[3];
@@ -325,11 +324,11 @@ export class EmployeeComponent implements OnInit {
       this.lstPaperId = res[14];
       this.lstPlaceId = res[15];
       this.lstCertificate = res[16].body.data;
-      console.log("vào tới chưa")
+      console.log("vào tới chưa: ", this.lstCertificate)
       this.lstCompanyId = res[17];
-      // this.otherListService.genderList.subscribe((res:any)=>{
-      //   this.lstGenderId = res;
-      // })
+      this.otherListService.genderList.subscribe((res:any)=>{
+        this.lstGenderId = res;
+      })
       this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
       
       this.loadDatalazy(res[0].body.result);
@@ -408,18 +407,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
   getGender() {
-
-
-    return new Promise((resolve) => {
-      
-      this.otherListService.genderList.subscribe((res:any)=>{
-
-          // this.lstGenderId = res;
-          console.log("giới tính: ", res)
-          resolve(res);
-        
-      })
-    });
+    return;
   }
   getEmpSituation() {
     return new Promise((resolve) => {
@@ -758,7 +746,7 @@ export class EmployeeComponent implements OnInit {
     //   : null;
     // model.workPermitExpire = model.workPermitExpire
     //   ? moment(model.workPermitExpire).format("YYYY-MM-DD")
-    
+
     //   : null;
 
     return model;

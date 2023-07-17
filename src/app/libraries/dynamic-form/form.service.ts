@@ -15,7 +15,7 @@ export enum EnumFormBaseContolType {
 }
 
 interface IFormBaseDropdownOption {
-  key: string,
+  key: number,
   value: string,
 }
 
@@ -51,16 +51,16 @@ export class FormService {
 
       const fiels: ControlBase<string>[] = [];
 
-      controls.map(control => {
-        switch (control.controlType) {
-          case EnumFormBaseContolType.Dropdown:
-            fiels.push(new Dropdown(control))
-            break;
+      // controls.map(control => {
+      //   switch (control.controlType) {
+      //     case EnumFormBaseContolType.Dropdown:
+      //       fiels.push(new Dropdown(control))
+      //       break;
 
-          default:
-            fiels.push(new Textbox(control))
-        }
-      })
+      //     default:
+      //       fiels.push(new Textbox(control))
+      //   }
+      // })
 
       return of(fiels.sort((a, b) => a.order - b.order));
 
