@@ -104,12 +104,14 @@
                                     </div>
                                     <div class="col-sm-3">
                                       <div class="form-group ">
-                                        <label class="">Nơi làm việc</label>
-                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId'
-                                          [showClearButton]="true" [(ngModel)]="employeeInfo.insRegionId"
-                                          [fields]='fields' [allowFiltering]='true'
-                                          (filtering)='onFiltering($event,lstPlaceId)'>
+                                        <label class="">Nơi làm viêc</label>
+                                        <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' name="placeId" formControlName="placeId"
+                                          [showClearButton]="true" [(ngModel)]="employeeInfo.placeId" [fields]='fields'
+                                          [allowFiltering]='true' (filtering)='onFiltering($event,lstPlaceId)'>
                                         </ejs-dropdownlist>
+                                        <!-- <span class="input-error"
+                                      *ngIf="editForm.controls['infor'].get('genderId')!.hasError('') && !editForm.controls['infor'].get('genderId')!.untouched">
+                                      Bắt buộc chọn</span> -->
                                       </div>
                                     </div>
                                   </div>
@@ -145,7 +147,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Giới tính</label>
-                                        <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' name="email" formControlName="genderId"
+                                        <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' name="genderId" formControlName="genderId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.genderId" [fields]='fields'
                                           [allowFiltering]='true' (filtering)='onFiltering($event,lstGenderId)'>
                                         </ejs-dropdownlist>
