@@ -145,7 +145,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Giới tính</label>
-                                        <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId'
+                                        <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' name="email" formControlName="genderId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.genderId" [fields]='fields'
                                           [allowFiltering]='true' (filtering)='onFiltering($event,lstGenderId)'>
                                         </ejs-dropdownlist>
@@ -263,7 +263,7 @@
                                         <label class="">Quận/Huyện</label>
                                         <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId'
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.districtId"
-                                          [fields]='fields' [allowFiltering]='true'
+                                          [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstDistrictId)'
                                           (change)="changeDistrict($event!)">
                                         </ejs-dropdownlist>
@@ -274,7 +274,7 @@
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
                                         <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' [showClearButton]="true"
-                                          [(ngModel)]="employeeInfo.wardId" [fields]='fields' [allowFiltering]='true'
+                                          [(ngModel)]="employeeInfo.wardId" [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstWardId)'>
                                         </ejs-dropdownlist>
                                       </div>
@@ -312,7 +312,7 @@
                                         <label class="">Quận/Huyện</label>
                                         <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId'
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.curDistrictId"
-                                          [fields]='fields' [allowFiltering]='true'
+                                          [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstCurDistrictId)'
                                           (change)="changeCurDistrict($event!)">
                                         </ejs-dropdownlist>
@@ -324,7 +324,7 @@
                                         <label class="">Xã/Phường</label>
                                         <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId'
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.curWardId"
-                                          [fields]='fields' [allowFiltering]='true'
+                                          [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstCurWardId)'>
                                         </ejs-dropdownlist>
                                       </div>
@@ -354,7 +354,8 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Email cá nhân</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.email">
+                                        <input type="text" class="form-control" name="email"
+                                        formControlName="email" [(ngModel)]="employeeInfo.email">
                                       </div>
                                     </div>
 
@@ -623,7 +624,7 @@
                               </div>
                               <!-- TRÌNH ĐỘ VĂN HÓA -->
 
-                              /**/
+                              
                               <div class=" " id="syll1" *ngIf="curentTab=='tdvh'">
                                 <div class = "row">
                                   <label class="bold-label">THÔNG TIN TRÌNH ĐỘ VĂN HÓA</label>

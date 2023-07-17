@@ -4,20 +4,25 @@ import { ProfileEmployeeService } from 'src/app/services/profile-employee.servic
 import { OtherListService } from 'src/app/services/other-list.service';
 import { Query, Predicate } from "@syncfusion/ej2-data";
 import { FieldSettingsModel } from "@syncfusion/ej2-dropdowns";
+import { L10n, setCulture } from "@syncfusion/ej2-base";
+import { Configs } from "src/app/common/configs";
 import {
   FormBuilder,
   FormGroup,
   Validators,
+  FormControl 
 } from "@angular/forms";
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 import { TrainingBefore } from 'src/app/model/trainingbefore';
 import { WorkingBefore } from 'src/app/model/workingbefore';
+import { Subject } from 'rxjs';
 
 // import { Consts } from "src/app/common/const";
 const $ = require("jquery");
  const async = require("async");
+ const _ = require("lodash");
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -31,6 +36,7 @@ export class EmployeeComponent implements OnInit {
    workingbefore: WorkingBefore = new WorkingBefore();
   // employeeInfo = NEW EmployeeInfo();
   tab: any;
+  private _unsubscribeAll: Subject<any>;
   removeId: any;
   public query = new Query();
   lstOrgId: any = [];
@@ -72,7 +78,7 @@ export class EmployeeComponent implements OnInit {
   { text: 'Xamarin' }, { text: 'ASP.NET' }, { text: 'ASP.NET MVC' }, { text: 'JavaScript' }];
 
   public fields: FieldSettingsModel = { value: "key", text: "value" };
-
+  public fields1: FieldSettingsModel = { value: "id", text: "name" };
   public curentTab:string='profile';
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
@@ -139,72 +145,67 @@ export class EmployeeComponent implements OnInit {
         contactPer: ["", []], //Người liên hệ khi cần
         contactPerPhone: ["", []],
       }),
-      addinfo: this._formBuilder.group({
-        passNo: ["", []], //Hộ chiếu
-        passDate: ["", []], //Ngày cấp
-        passExpire: ["", []],
-        passPlace: ["", []],
-        visaNo: ["", []],
-        visaDate: ["", []],
-        visaExpire: ["", []],
-        visaPlace: ["", []],
-        workPermit: ["", []], //Giấy phép lao động
-        workPermitDate: ["", []],
-        workPermitExpire: ["", []],
-        workPermitPlace: ["", []],
-        workNo: ["", []],
-        workDate: ["", []],
-        workScope: ["", []],
-        workPlace: ["", []],
-      }),
-      user: this._formBuilder.group({
-        bankId: ["", []],
-        bankBranch: ["", []],
-        bankNo: ["", []],
-      }),
-      education: this._formBuilder.group({
-        schoolId: ["", []],
-        qualificationId: ["", []], //Trình độ chuyên môn
-        trainingFormId: ["", []], //Hình thức đào tạo
-        learningLevelId: ["", []], //trình độ học vấn
-        languageMark: ["", []], //điểm số
-        language: ["", []], //ngoại ngữ
-      }),
-      situation: this._formBuilder.group({
-        name: ["", []],
-        birth: ["", []],
-        no: ["", []], // CMND
-        taxNo: ["", []], // CMND
-        familyNo: ["", []], // CMND
-        familyName: ["", []], // CMND
-        address: ["", []], // CMND
-        relationshipId: ["", []],
-        dateStart: ["", []],
-        dateEnd: ["", []],
-      }),
-      page: this._formBuilder.group({
-        paperId: ["", []],
-        dateInput: ["", []],
-        note: ["", []], // CMND
-        statusId: ["", []], // CMND
-        pageName: ["", []],
-      }),
+      // addinfo: this._formBuilder.group({
+      //   passNo: ["", []], //Hộ chiếu
+      //   passDate: ["", []], //Ngày cấp
+      //   passExpire: ["", []],
+      //   passPlace: ["", []],
+      //   visaNo: ["", []],
+      //   visaDate: ["", []],
+      //   visaExpire: ["", []],
+      //   visaPlace: ["", []],
+      //   workPermit: ["", []], //Giấy phép lao động
+      //   workPermitDate: ["", []],
+      //   workPermitExpire: ["", []],
+      //   workPermitPlace: ["", []],
+      //   workNo: ["", []],
+      //   workDate: ["", []],
+      //   workScope: ["", []],
+      //   workPlace: ["", []],
+      // }),
+      // user: this._formBuilder.group({
+      //   bankId: ["", []],
+      //   bankBranch: ["", []],
+      //   bankNo: ["", []],
+      // }),
+      // education: this._formBuilder.group({
+      //   schoolId: ["", []],
+      //   qualificationId: ["", []], //Trình độ chuyên môn
+      //   trainingFormId: ["", []], //Hình thức đào tạo
+      //   learningLevelId: ["", []], //trình độ học vấn
+      //   languageMark: ["", []], //điểm số
+      //   language: ["", []], //ngoại ngữ
+      // }),
+      // situation: this._formBuilder.group({
+      //   name: ["", []],
+      //   birth: ["", []],
+      //   no: ["", []], // CMND
+      //   taxNo: ["", []], // CMND
+      //   familyNo: ["", []], // CMND
+      //   familyName: ["", []], // CMND
+      //   address: ["", []], // CMND
+      //   relationshipId: ["", []],
+      //   dateStart: ["", []],
+      //   dateEnd: ["", []],
+      // }),
+      // page: this._formBuilder.group({
+      //   paperId: ["", []],
+      //   dateInput: ["", []],
+      //   note: ["", []], // CMND
+      //   statusId: ["", []], // CMND
+      //   pageName: ["", []],
+      // }),
     });
-    console.log("vào nè")
+    this._unsubscribeAll = new Subject();
     this.loadData();
    
     
   }
 
   ngOnInit() {
-    
-    this.profileEmployeeService.getEmployeeInfo().subscribe((res:any)=>{
-      if(res.status==200){
-        this.employeeInfo = res.body.result;
-        console.log("data",this.employeeInfo)
-      }
-    })
-    this.loadData();
+
+  
+
   }
   changeTab(e: any) {
     this.curentTab = e;
@@ -283,7 +284,8 @@ export class EmployeeComponent implements OnInit {
   // }
   loadData() {
     Promise.all([
-      this.getGender(), //0
+      this.getById(),
+      // this.getGender(), //0
       this.getNation(), //1
       this.getNationality(), //2
       this.getReligion(), //3
@@ -301,20 +303,116 @@ export class EmployeeComponent implements OnInit {
       this.getlstCertificate(),
       // this.getlstFormTrain(),
       // this.getlstSpecialized(),
-      this.getlstCompanyId()
-    ]);
-  }
+      this.getlstCompanyId(),
+      
+    ]).then((res: any) => {
+      console.log(res)
+      this.lstNativeId = res[2];
+      this.lstNationalityId = res[3];
+      this.lstReligionId = res[4];
+      this.lstWorkStatusId = res[5];
+      this.lstProvinceId = res[6];
+      this.lstCurProvinceId = res[6];
+      this.lstMaritalStatusId = res[7];
+      this.lstEmpSituation = res[8];
+      this.lstTrainingFormId = res[9];
+      this.lstLearningLevelId = res[10];  
+      this.lstBankId = res[11];
+      this.lstResident = res[12];
+      this.lstInsRegionId = res[13];
+      this.lstPaperId = res[14];
+      this.lstPlaceId = res[15];
 
- 
+      this.otherListService.genderList.subscribe((res:any)=>{
+        this.lstGenderId = res;
+      })
+      this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
+      
+      this.loadDatalazy(res[0].body.result);
+      // this.getListSituation();
+      // this.getListPaper();
+      
+    });
+    
+    ;
+  }
+  loadDatalazy(model: EmployeeInfo) {
+    if (model && model.provinceId ) {
+      
+      this.getDistrict(model.provinceId)
+        .then((res: any) => {
+          this.lstDistrictId = res;
+        })
+        .then((x) => {
+          this.employeeInfo.districtId = model.districtId;
+        });
+      this.getWard(model.districtId)
+        .then((res: any) => {
+          this.lstWardId = res;
+        })
+        .then((x) => {
+          this.employeeInfo.wardId = model.wardId;
+        });
+    }
+    if (model && model.curProvinceId) {
+      this.getDistrict(model.curProvinceId)
+        .then((res: any) => {
+          this.lstCurDistrictId = res;
+        })
+        .then((x) => {
+          this.employeeInfo.curDistrictId = model.curDistrictId;
+        });
+      this.getWard(model.curDistrictId)
+        .then((res: any) => {
+          this.lstCurWardId = res;
+        })
+        .then((x) => {
+          this.employeeInfo.curWardId = model.curWardId;
+        });
+    }
+    if (model && model.bankId) {
+      this.getBankBranch(model.bankId)
+        .then((res: any) => {
+          this.lstBankBranchId = res;
+        })
+        .then((x) => {
+          this.employeeInfo.bankBranch = model.bankBranch;
+        });
+      
+    }
+    // if (model && model.genderId) {
+    //   this.getBankBranch(model.genderId)
+    //     .then((res: any) => {
+    //       this.lstGenderId = res;
+    //     })
+    //     .then((x) => {
+    //       this.employeeInfo.bankBranch = model.bankBranch;
+    //     });
+      
+    // }
+    
+    
+  }
+  getById() {
+    return new Promise((resolve) => {
+      this.profileEmployeeService.getEmployeeInfo().subscribe((res:any)=>{
+        if(res.status==200){
+          // this.employeeInfo = res.body.result;
+          resolve(res);
+        }
+      })
+    });
+  }
   getGender() {
+
+
     return new Promise((resolve) => {
       
       this.otherListService.genderList.subscribe((res:any)=>{
 
-
-          
-          this.lstGenderId = res;
-          console.log("lstGenderId: ", this.lstGenderId )
+          // this.lstGenderId = res;
+          console.log("giới tính: ", res)
+          resolve(res);
         
       })
     });
@@ -323,9 +421,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.empSituationList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstEmpSituation = res.body.result;
-        }
+
+          // this.lstEmpSituation = res;
+          resolve(res);
       })
     });
   }
@@ -333,9 +431,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.nationList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstNativeId = res.body.result;
-        }
+        
+          // this.lstNativeId = res;
+          resolve(res);
       })
     });
   }
@@ -343,9 +441,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.nationalityList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstNationalityId = res.body.result;
-        }
+        
+          // this.lstNationalityId = res;
+          resolve(res);
       })
     });
   }
@@ -353,9 +451,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.religionList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstReligionId = res.body.result;
-        }
+        
+          // this.lstReligionId = res;
+          resolve(res);
       })
     });
   }
@@ -363,9 +461,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.familyStatusList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstMaritalStatusId = res.body.result;
-        }
+        
+          // this.lstMaritalStatusId = res;
+          resolve(res);
       })
     });
   }
@@ -373,9 +471,9 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.statusEmpList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstWorkStatusId = res.body.result;
-        }
+        
+          // this.lstWorkStatusId = res;
+          resolve(res);
       })
     });
   }
@@ -384,9 +482,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.provinceList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstProvinceId = res.body.result;
-        }
+        
+          // this.lstProvinceId = res;
+          // this.lstCurProvinceId = res;
+          resolve(res);
       })
     });
   }
@@ -395,9 +494,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.trainingFormIdList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstTrainingFormId = res.body.result;
-        }
+       
+          // this.lstTrainingFormId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -406,9 +506,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.learningLevelList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstLearningLevelId = res.body.result;
-        }
+        
+          // this.lstLearningLevelId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -417,9 +518,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.bankIdList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstBankId = res.body.result;
-        }
+        
+          // this.lstBankId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -428,9 +530,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.residentList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstResident = res.body.result;
-        }
+        
+          // this.lstResident = res;
+          resolve(res);
+        
       })
     });
   }
@@ -440,9 +543,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.religionList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstReligionId = res.body.result;
-        }
+        
+          // this.lstReligionId = res;
+        
+          resolve(res);
       })
     });
   }
@@ -450,9 +554,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.placeIdList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstPlaceId = res.body.result;
-        }
+        
+          // this.lstPlaceId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -461,9 +566,10 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
       this.otherListService.paperIdList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstPaperId = res.body.result;
-        }
+        
+          // this.lstPaperId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -476,9 +582,10 @@ export class EmployeeComponent implements OnInit {
       //     resolve(res.data);
       //   });
       this.otherListService.companyIdList.subscribe((res:any)=>{
-        if(res.status==200){
-          this.lstCompanyId = res.body.result;
-        }
+        
+          // this.lstCompanyId = res;
+          resolve(res);
+        
       })
     });
   }
@@ -486,27 +593,28 @@ export class EmployeeComponent implements OnInit {
     
     if (e.e) {
       this.employeeInfo.districtId = undefined;
-      console.log("vafo tuwf changeprovince")
+
       this.lstDistrictId = [];
       this.employeeInfo.wardId = undefined;
       this.lstWardId = [];
-      
-      this.getDistrict(e.itemData.id).then((res: any) => {
+
+      this.getDistrict(e.itemData.key).then((res: any) => {
         
-        this.lstDistrictId = res;
+        this.lstDistrictId = res.body.data;
       });
     }
   }
   changeCurProvince(e: any) {
     
     if (e.e) {
-      console.log("vafo tuwf changeCurProvince")
+      
       this.employeeInfo.curDistrictId = undefined;
       this.lstCurDistrictId = [];
       this.employeeInfo.curWardId = undefined;
       this.lstCurWardId = [];
-      this.getDistrict(e.itemData.id).then((res: any) => {
-        this.lstCurDistrictId = res;
+      this.getDistrict(e.itemData.key).then((res: any) => {
+        this.lstCurDistrictId = res.body.data;
+        console.log("đang trong changcurProvince: ", this.lstCurDistrictId)
       });
     }
   }
@@ -515,7 +623,8 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.wardId = undefined;
       this.lstWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
-        this.lstWardId = res;
+        console.log("huyện: ", res.body.data)
+        this.lstWardId = res.body.data;
       });
     }
   }
@@ -524,14 +633,14 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.curWardId = undefined;
       this.lstCurWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
-        this.lstCurWardId = res;
+        this.lstCurWardId =res.body.data;
       });
     }
   }
   changeBank(e: any) {
     if (e.e) {
       this.lstBankBranchId = [];
-      this.getBankBranch(e.itemData.id).then((res: any) => {
+      this.getBankBranch(e.itemData.key).then((res: any) => {
         this.lstBankBranchId = res;
       });
     }
@@ -544,7 +653,8 @@ export class EmployeeComponent implements OnInit {
       if (id) {
         
         this.commomHttpService.commonGetRequest('laythongtin', 'hr/bank/GetListBankBranch?bankId=' + id).subscribe((res: any) => {
-          this.lstDistrictId = res.data
+          // this.lstDistrictId = res.data
+          resolve(res);
         });
         
         } else {
@@ -558,7 +668,10 @@ export class EmployeeComponent implements OnInit {
         
         
         this.commomHttpService.commonGetRequest('laythongtin', 'hr/province/getListDistrict?provinceId=' + id).subscribe((res: any) => {
-          this.lstDistrictId = res.body.data
+          // this.lstDistrictId = res.body.data;
+          resolve(res);
+         
+
        });
       } else {
         resolve(false);
@@ -567,11 +680,12 @@ export class EmployeeComponent implements OnInit {
   }
   
   getWard(id: any) {
-    console.log(" sao vao luon day vay", id)
+
     return new Promise((resolve) => {
       
       this.commomHttpService.commonGetRequest('laythongtin', 'hr/province/getListWard?districtid=' + id).subscribe((res: any) => {
-        this.lstWardId = res.body.data
+        resolve(res);
+        
      });
     });
   }
@@ -579,7 +693,8 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
         this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
-          this.lstCertificate = res.body.data;
+          // this.lstCertificate = res;
+          resolve(res);
        });
     });
   }
@@ -587,7 +702,8 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
         this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/GetListTrainingForm').subscribe((res: any) => {
-          this.lstFormTrain = res.body.data;
+          // this.lstFormTrain = res;
+          resolve(res);
        });
     });
   }
@@ -595,7 +711,8 @@ export class EmployeeComponent implements OnInit {
     return new Promise((resolve) => {
       
         this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/SPECIALIZED_TRAIN').subscribe((res: any) => {
-          this.lstSpecialized = res.body.data;
+          // this.lstSpecialized = res;
+          resolve(res);
        });
     });
   }
@@ -605,23 +722,64 @@ export class EmployeeComponent implements OnInit {
     // this.modalService.open("confirm-back-modal1");
    // this.modalService.open("confirm-delete-modal1");
   }
+  convertModel(param: any) {
+    let model = _.cloneDeep(param);
+
+    // model.birthDate = model.birthDate
+    //   ? moment(model.birthDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.idDate = model.idDate
+    //   ? moment(model.idDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.joinDate = model.joinDate
+    //   ? moment(model.joinDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.terEffectDate = model.terEffectDate
+    //   ? moment(model.terEffectDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.passDate = model.passDate
+    //   ? moment(model.passDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.passExpire = model.passExpire
+    //   ? moment(model.passExpire).format("YYYY-MM-DD")
+    //   : null;
+    // model.visaDate = model.visaDate
+    //   ? moment(model.visaDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.visaExpire = model.visaExpire
+    //   ? moment(model.visaExpire).format("YYYY-MM-DD")
+    //   : null;
+    // model.workPermitDate = model.workPermitDate
+    //   ? moment(model.workPermitDate).format("YYYY-MM-DD")
+    //   : null;
+    // model.workPermitExpire = model.workPermitExpire
+    //   ? moment(model.workPermitExpire).format("YYYY-MM-DD")
+    //   : null;
+
+    return model;
+  }
   saveForm() {
-    if (!this.editForm.valid) {
-      alert(" form chưa hợp lệ")
-      return;
-    }
-    let param = this.employeeInfo
-    return new Promise((resolve) => {
+    // console.log("this.editForm.valid: ", this.editForm)
+
+    // this.editForm.markAllAsTouched()
+    // if (!this.editForm.valid) {
+    //   alert(" form chưa hợp lệ")
+    //   return;
+    // }
+    let param = this.convertModel(this.employeeInfo);
+
+    console.log("param: ", param)
+  //   return new Promise((resolve) => {
       
-      this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation','').subscribe((res: any) => {
-        if (res.statusCode == 400) {
-          alert("lỗi")
-        } else {
-          alert("thành công")
-          // this.router.navigate(["/cms/profile/business/staffprofile"]);
-        }
-     });
-  });
+  //     this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation','').subscribe((res: any) => {
+  //       if (res.statusCode == 400) {
+  //         alert("lỗi")
+  //       } else {
+  //         alert("thành công")
+  //         // this.router.navigate(["/cms/profile/business/staffprofile"]);
+  //       }
+  //    });
+  // });
     
   } 
   
