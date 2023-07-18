@@ -72,8 +72,6 @@ export class EmployeeComponent implements OnInit {
   lstSpecialized: any = [];
   lstCompanyId: any = [];
   data: any;
-  public headerText: any = [{ text: 'HTML' }, { text: 'C Sharp(C#)' }, { text: 'Java' }, { text: 'VB.Net' },
-  { text: 'Xamarin' }, { text: 'ASP.NET' }, { text: 'ASP.NET MVC' }, { text: 'JavaScript' }];
 
   public fields: FieldSettingsModel = { value: "key", text: "value" };
   public fields1: FieldSettingsModel = { value: "id", text: "name" };
