@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from './services/message.service';
 import { AuthService } from './services/auth.service';
 import { User } from './model/user';
-
+import { setCulture } from '@syncfusion/ej2-base';
+setCulture('en')
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
