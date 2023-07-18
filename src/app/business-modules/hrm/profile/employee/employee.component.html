@@ -41,9 +41,9 @@
 
                         <div class="col-sm-12">
                           <form name="editForm" [formGroup]="editForm" novalidate>
-                            <ejs-tab id="element">
+                            <ejs-tab #tabDefault id="tabDefault" (selected)="changeTab($event)">
                               <e-tabitems>
-                                <e-tabitem>
+                                <e-tabitem id="profile">
                                   <ng-template #headerText>
                                     <div> Sơ yếu lý lịch </div>
                                   </ng-template>
@@ -393,7 +393,7 @@
                                     </div>
                                   </ng-template>
                                 </e-tabitem>
-                                <e-tabitem>
+                                <e-tabitem id="info">
                                   <ng-template #headerText>
                                     <div> Thông tin phụ </div>
                                   </ng-template>
@@ -672,9 +672,9 @@
                                                 [allowFiltering]='true'
                                                 (filtering)='onFiltering($event,lstTrainingFormId)'>
                                               </ejs-dropdownlist>
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['education'].get('trainingFormId')!.hasError('') && !editForm.controls['education'].get('trainingFormId')!.untouched">
-                                                Bắt buộc chọn</span>
+                                                Bắt buộc chọn</span> -->
                                             </div>
                                           </div>
                                           <!--Trình độ học vấn  -->
@@ -687,9 +687,9 @@
                                                 [allowFiltering]='true'
                                                 (filtering)='onFiltering($event,lstLearningLevelId)'>
                                               </ejs-dropdownlist>
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['education'].get('learningLevelId')!.hasError('') && !editForm.controls['education'].get('learningLevelId')!.untouched">
-                                                Bắt buộc chọn</span>
+                                                Bắt buộc chọn</span> -->
                                             </div>
                                           </div>
                                           <!-- Điểm số -->
@@ -699,9 +699,9 @@
                                               <input name="languageMark" class="form-control"
                                                 formControlName="languageMark"
                                                 [(ngModel)]="employeeInfo.languageMark" />
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['education'].get('languageMark')!.hasError('') && !editForm.controls['education'].get('languageMark')!.untouched">
-                                                Bắt buộc nhập </span>
+                                                Bắt buộc nhập </span> -->
                                             </div>
                                           </div>
                                           <!-- Ngoại ngữ-->
@@ -914,218 +914,223 @@
                                   </ng-template>
                                   <ng-template #content>
                                     <div class=" " id="syll1" curentTab='qtdttd'>
-                                      <div class="row">
-                                        <label class="bold-label">THÔNG TIN ĐÀO TẠO TRƯỚC ĐÂY</label>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="">Năm đào tạo</label>
-                                            <input type="number" class="form-control" formControlName="yearGra"
-                                              [(ngModel)]="trainingbefore.yearGra">
-                                          </div>
+                                      <div class="group-box" formGroupName="trainingbefore">
+                                        <div class="row">
+                                          <label class="bold-label">THÔNG TIN ĐÀO TẠO TRƯỚC ĐÂY</label>
                                         </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="ngayhachtoan">Từ tháng</label>
-                                            <ejs-datepicker id="fromDate" format="dd/MM/yyyy"
-                                              [(ngModel)]="trainingbefore.fromDate" (keydown)="changeDate('fromDate')"
-                                              (blur)="changeDate('fromDate')" formControlName="fromDate"
-                                              placeholder=".../.../...">
-                                            </ejs-datepicker>
-                                            <!-- <span class="input-error"
+                                        <div class="row">
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Năm đào tạo</label>
+                                              <input type="number" class="form-control" formControlName="yearGra"
+                                                [(ngModel)]="trainingbefore.yearGra">
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="ngayhachtoan">Từ tháng</label>
+                                              <ejs-datepicker id="fromDate" format="dd/MM/yyyy"
+                                                [(ngModel)]="trainingbefore.fromDate" (keydown)="changeDate('fromDate')"
+                                                (blur)="changeDate('fromDate')" formControlName="fromDate"
+                                                placeholder=".../.../...">
+                                              </ejs-datepicker>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('fromDate')!.hasError('incorrect') && !editForm.get('fromDate')!.untouched">
                                                   Sai định dạng
                                                 </span> -->
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="ngayhachtoan">Đến tháng</label>
-                                            <ejs-datepicker id="toDate" format="dd/MM/yyyy"
-                                              [(ngModel)]="trainingbefore.toDate" (keydown)="changeDate('toDate')"
-                                              (blur)="changeDate('toDate')" formControlName="toDate"
-                                              placeholder=".../.../...">
-                                            </ejs-datepicker>
-                                            <!-- <span class="input-error"
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="ngayhachtoan">Đến tháng</label>
+                                              <ejs-datepicker id="toDate" format="dd/MM/yyyy"
+                                                [(ngModel)]="trainingbefore.toDate" (keydown)="changeDate('toDate')"
+                                                (blur)="changeDate('toDate')" formControlName="toDate"
+                                                placeholder=".../.../...">
+                                              </ejs-datepicker>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('toDate')!.hasError('incorrect') && !editForm.get('toDate')!.untouched">
                                                   Sai định dạng
                                                 </span> -->
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
 
-                                      <div class="row">
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="">Tên tổ chức đào tạo</label>
-                                            <input type="text" class="form-control" formControlName="nameSchools"
-                                              [(ngModel)]="trainingbefore.nameSchools">
+                                        <div class="row">
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Tên tổ chức đào tạo</label>
+                                              <input type="text" class="form-control" formControlName="nameSchools"
+                                                [(ngModel)]="trainingbefore.nameSchools">
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="certificateTypeId">Loại bằng cấp/chứng chỉ</label>
-                                            <ejs-dropdownlist id='certificateTypeId' [dataSource]='lstCertificate'
-                                              formControlName="certificateTypeId" [showClearButton]="true"
-                                              [(ngModel)]="trainingbefore.certificateTypeId" [fields]='fields'
-                                              [allowFiltering]='true' (filtering)='onFiltering($event,lstCertificate)'>
-                                            </ejs-dropdownlist>
-                                            <!-- <span class="input-error"
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="certificateTypeId">Loại bằng cấp/chứng chỉ</label>
+                                              <ejs-dropdownlist id='certificateTypeId' [dataSource]='lstCertificate'
+                                                formControlName="certificateTypeId" [showClearButton]="true"
+                                                [(ngModel)]="trainingbefore.certificateTypeId" [fields]='fields'
+                                                [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstCertificate)'>
+                                              </ejs-dropdownlist>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('certificateTypeId')!.hasError('required') && !editForm.get('certificateTypeId')!.untouched">
                                                   Bắt buộc chọn
                                                 </span> -->
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="formTrainId">Hình thức đào tạo</label>
-                                            <ejs-dropdownlist id='formTrainId' [dataSource]='lstFormTrain'
-                                              formControlName="formTrainId" [showClearButton]="true"
-                                              [(ngModel)]="trainingbefore.formTrainId" [fields]='fields'
-                                              [allowFiltering]='true' (filtering)='onFiltering($event,lstFormTrain)'>
-                                            </ejs-dropdownlist>
-                                            <!-- <span class="input-error"
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="formTrainId">Hình thức đào tạo</label>
+                                              <ejs-dropdownlist id='formTrainId' [dataSource]='lstFormTrain'
+                                                formControlName="formTrainId" [showClearButton]="true"
+                                                [(ngModel)]="trainingbefore.formTrainId" [fields]='fields'
+                                                [allowFiltering]='true' (filtering)='onFiltering($event,lstFormTrain)'>
+                                              </ejs-dropdownlist>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('formTrainId')!.hasError('required') && !editForm.get('formTrainId')!.untouched">
                                                   Bắt buộc chọn
                                                 </span> -->
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
 
-                                      <div class="row">
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="specializedTrainId">Chuyên ngành đào tạo</label>
-                                            <ejs-dropdownlist id='specializedTrainId' [dataSource]='lstSpecialized'
-                                              formControlName="specializedTrainId" [showClearButton]="true"
-                                              [(ngModel)]="trainingbefore.specializedTrainId" [fields]='fields'
-                                              [allowFiltering]='true' (filtering)='onFiltering($event,lstSpecialized)'>
-                                            </ejs-dropdownlist>
-                                            <!-- <span class="input-error"
+                                        <div class="row">
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="specializedTrainId">Chuyên ngành đào tạo</label>
+                                              <ejs-dropdownlist id='specializedTrainId' [dataSource]='lstSpecialized'
+                                                formControlName="specializedTrainId" [showClearButton]="true"
+                                                [(ngModel)]="trainingbefore.specializedTrainId" [fields]='fields'
+                                                [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstSpecialized)'>
+                                              </ejs-dropdownlist>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('specializedTrainId')!.hasError('required') && !editForm.get('specializedTrainId')!.untouched">
                                                   Bắt buộc chọn
                                                 </span> -->
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Kết quả đào tạo</label>
+                                              <input type="text" class="form-control" formControlName="resultTrain"
+                                                [(ngModel)]="trainingbefore.resultTrain">
+                                            </div>
                                           </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="">Kết quả đào tạo</label>
-                                            <input type="text" class="form-control" formControlName="resultTrain"
-                                              [(ngModel)]="trainingbefore.resultTrain">
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
+                                        <div class="row">
 
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="ngayhachtoan">Ngày hiệu lực chứng chỉ</label>
-                                            <ejs-datepicker id="effectiveDateFrom" format="dd/MM/yyyy"
-                                              [(ngModel)]="trainingbefore.effectiveDateFrom"
-                                              (keydown)="changeDate('effectiveDateFrom')"
-                                              (blur)="changeDate('effectiveDateFrom')"
-                                              formControlName="effectiveDateFrom" placeholder=".../.../...">
-                                            </ejs-datepicker>
-                                            <!-- <span class="input-error"
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="ngayhachtoan">Ngày hiệu lực chứng chỉ</label>
+                                              <ejs-datepicker id="effectiveDateFrom" format="dd/MM/yyyy"
+                                                [(ngModel)]="trainingbefore.effectiveDateFrom"
+                                                (keydown)="changeDate('effectiveDateFrom')"
+                                                (blur)="changeDate('effectiveDateFrom')"
+                                                formControlName="effectiveDateFrom" placeholder=".../.../...">
+                                              </ejs-datepicker>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('effectiveDateFrom')!.hasError('incorrect') && !editForm.get('effectiveDateFrom')!.untouched">
                                                   Sai định dạng
                                                 </span> -->
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                          <div class="form-group ">
-                                            <label class="" for="ngayhachtoan">Ngày hết hiệu lực chứng chỉ</label>
-                                            <ejs-datepicker id="effectiveDateTo" format="dd/MM/yyyy"
-                                              [(ngModel)]="trainingbefore.effectiveDateTo"
-                                              (keydown)="changeDate('effectiveDateTo')"
-                                              (blur)="changeDate('effectiveDateTo')" formControlName="effectiveDateTo"
-                                              placeholder=".../.../...">
-                                            </ejs-datepicker>
-                                            <!-- <span class="input-error"
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="" for="ngayhachtoan">Ngày hết hiệu lực chứng chỉ</label>
+                                              <ejs-datepicker id="effectiveDateTo" format="dd/MM/yyyy"
+                                                [(ngModel)]="trainingbefore.effectiveDateTo"
+                                                (keydown)="changeDate('effectiveDateTo')"
+                                                (blur)="changeDate('effectiveDateTo')" formControlName="effectiveDateTo"
+                                                placeholder=".../.../...">
+                                              </ejs-datepicker>
+                                              <!-- <span class="input-error"
                                                   *ngIf="editForm.get('effectiveDateTo')!.hasError('incorrect') && !editForm.get('effectiveDateTo')!.untouched">
                                                   Sai định dạng
                                                 </span> -->
-                                          </div>
-                                        </div>
-                                      </div>
-
-
-                                      <div class="row">
-
-
-                                        <div class="col-sm-12 mb-3">
-                                          <div class="form-group ">
-                                            <label class="">Ghi chú</label>
-                                            <input type="text" class="form-control" formControlName="note"
-                                              [(ngModel)]="trainingbefore.note">
+                                            </div>
                                           </div>
                                         </div>
 
-                                      </div>
-                                      <div class="list-grid mt-3">
-                                        <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data | async'
-                                          [allowExcelExport]='true' rowHeight='35' headerHeight='40'
-                                          [allowPaging]='true' [enableHover]='true' [allowSorting]='true'
-                                          allowResizing='true' [allowSelection]='true' [showColumnChooser]='true'
-                                          [allowFiltering]='true'>
-                                          <e-columns>
-                                            <e-column type='checkbox' [showInColumnChooser]='false'
-                                              [allowFiltering]='false' [allowSorting]='false' width='40'
-                                              textAlign="Center" [allowEditing]="false">
-                                            </e-column>
-                                            <e-column field='id' [showInColumnChooser]='false' [visible]='false'
-                                              headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
-                                            </e-column>
 
-                                            <!--  -->
-                                            <e-column field='employeeCode' textAlign="Center" headerText="Mã NV"
-                                              headerTextAlign="Center" clipMode='EllipsisWithTooltip'
-                                              width='120'></e-column>
-                                            <e-column field='employeeName' textAlign="Left" headerText="Họ và tên"
-                                              clipMode='EllipsisWithTooltip'></e-column>
+                                        <div class="row">
 
-                                            <e-column field='yearGra' textAlign="Center" headerText="Năm đào tạo"
-                                              clipMode='EllipsisWithTooltip' width='120'>
-                                            </e-column>
-                                            <e-column field='nameSchools' textAlign="Left" headerText="Đơn vị đào tạo"
-                                              clipMode='EllipsisWithTooltip'>
-                                            </e-column>
-                                            <e-column field='fromDate' headerTextAlign="Center" type="date"
-                                              [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
-                                              headerText="Từ tháng" clipMode='EllipsisWithTooltip'
-                                              width="126"></e-column>
-                                            <e-column field='toDate' headerTextAlign="Center" type="date"
-                                              [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
-                                              headerText="Đến tháng" clipMode='EllipsisWithTooltip'
-                                              width="126"></e-column>
-                                            <e-column field='certificateTypeName' textAlign="Left"
-                                              headerText="Loại bằng cấp/chứng chỉ" clipMode='EllipsisWithTooltip'
-                                              width="190">
-                                            </e-column>
-                                            <e-column field='formTrainName' textAlign="Left"
-                                              headerText="Hình thức đào tạo" clipMode='EllipsisWithTooltip' width="215">
-                                            </e-column>
-                                            <e-column field='specializedTrainName' textAlign="Left"
-                                              headerText="Chuyên ngành đào tạo" clipMode='EllipsisWithTooltip'
-                                              width="215">
-                                            </e-column>
-                                            <e-column field='resultTrain' textAlign="Left" headerText="Kết quả đào tạo"
-                                              clipMode='EllipsisWithTooltip' width="215">
-                                            </e-column>
-                                            <e-column field='effectiveDateFrom' headerTextAlign="Center" type="date"
-                                              [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
-                                              headerText="Ngày hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
-                                              width="126"></e-column>
-                                            <e-column field='effectiveDateTo' headerTextAlign="Center" type="date"
-                                              [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
-                                              headerText="Ngày hết hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
-                                              width="126"></e-column>
-                                            <e-column field='note' textAlign="Left" headerText="Ghi chú"
-                                              clipMode='EllipsisWithTooltip' width="215">
-                                            </e-column>
-                                          </e-columns>
-                                        </ejs-grid>
+
+                                          <div class="col-sm-12 mb-3">
+                                            <div class="form-group ">
+                                              <label class="">Ghi chú</label>
+                                              <input type="text" class="form-control" formControlName="note"
+                                                [(ngModel)]="trainingbefore.note">
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                        <div class="list-grid mt-3">
+                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data | async'
+                                            [allowExcelExport]='true' rowHeight='35' headerHeight='40'
+                                            [allowPaging]='true' [enableHover]='true' [allowSorting]='true'
+                                            allowResizing='true' [allowSelection]='true' [showColumnChooser]='true'
+                                            [allowFiltering]='true'>
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+
+                                              <!--  -->
+                                              <e-column field='employeeCode' textAlign="Center" headerText="Mã NV"
+                                                headerTextAlign="Center" clipMode='EllipsisWithTooltip'
+                                                width='120'></e-column>
+                                              <e-column field='employeeName' textAlign="Left" headerText="Họ và tên"
+                                                clipMode='EllipsisWithTooltip'></e-column>
+
+                                              <e-column field='yearGra' textAlign="Center" headerText="Năm đào tạo"
+                                                clipMode='EllipsisWithTooltip' width='120'>
+                                              </e-column>
+                                              <e-column field='nameSchools' textAlign="Left" headerText="Đơn vị đào tạo"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='fromDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Từ tháng" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='toDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Đến tháng" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='certificateTypeName' textAlign="Left"
+                                                headerText="Loại bằng cấp/chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="190">
+                                              </e-column>
+                                              <e-column field='formTrainName' textAlign="Left"
+                                                headerText="Hình thức đào tạo" clipMode='EllipsisWithTooltip'
+                                                width="215">
+                                              </e-column>
+                                              <e-column field='specializedTrainName' textAlign="Left"
+                                                headerText="Chuyên ngành đào tạo" clipMode='EllipsisWithTooltip'
+                                                width="215">
+                                              </e-column>
+                                              <e-column field='resultTrain' textAlign="Left"
+                                                headerText="Kết quả đào tạo" clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              <e-column field='effectiveDateFrom' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='effectiveDateTo' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hết hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='note' textAlign="Left" headerText="Ghi chú"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
                                       </div>
                                     </div>
                                   </ng-template>
@@ -1136,6 +1141,7 @@
                                   </ng-template>
                                   <ng-template #content>
                                     <div class=" " id="syll1" curentTab='qtcttd'>
+                                      <div class="group-box" formGroupName="workingbefore">
                                       <div class="row">
                                         <label class="bold-label">THÔNG TIN CÔNG TÁC TRƯỚC ĐÂY</label>
                                       </div>
@@ -1333,6 +1339,7 @@
                                           </e-columns>
                                         </ejs-grid>
                                       </div>
+                                    </div>
                                     </div>
                                   </ng-template>
                                 </e-tabitem>

@@ -58,6 +58,9 @@ export interface IServerModel {
   getlstCompanyIdUrl?: string,
   getDistrictsByIdUrl?: string,
   getWardsByIdUrl?: string,
+  getCertificateUrl?: string,
+  getFormTrainUrl?: string,
+  getSpecializedUrl?: string
 }
 
 export const V2Hrm2022: IServerModel = {
@@ -110,6 +113,9 @@ export const V2Hrm2022: IServerModel = {
   getContractListUrl: 'client/profile/getcontractinfo',
   getWorkingListUrl: 'client/profile/getworkinginfo',
   getInschangeListUrl: 'client/profile/getinschangeinfo',
+  getCertificateUrl: 'hr/otherlist/CERTIFICATE_TYPE',
+  getFormTrainUrl: 'hr/otherlist/GetListTrainingForm',
+  getSpecializedUrl: 'hr/otherlist/SPECIALIZED_TRAIN',
 }
 
 

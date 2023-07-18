@@ -99,6 +99,20 @@ export class OtherListService {
     value: string
   }[]>([])
 
+  certificateList = new BehaviorSubject<{
+    key: number,
+    value: string
+  }[]>([])
+
+  formTrainList = new BehaviorSubject<{
+    key: number,
+    value: string
+  }[]>([])
+
+  specializedList = new BehaviorSubject<{
+    key: number,
+    value: string
+  }[]>([])
   constructor(private commonHttpRequestService: CommonHttpRequestService, private authService: AuthService) {
     this.commonHttpRequestService.commonGetRequest('getGenderList', this.authService.serverModel.getGendersUrl!)
       .subscribe(x => {
@@ -368,6 +382,54 @@ export class OtherListService {
             value: g.name
           }))
           this.empSituationList.next(newList);
+        }
+      })
+
+      this.commonHttpRequestService.commonGetRequest('getCertificate', this.authService.serverModel.getCertificateUrl!)
+      .subscribe(x => {
+
+        if (x.ok && x.status === 200) {
+          const newList: {
+            key: number,
+            value: string
+          }[] = [];
+          x.body.data.map((g: any) => newList.push({
+            key: g.id,
+            value: g.name
+          }))
+          this.certificateList.next(newList);
+        }
+      })
+
+      this.commonHttpRequestService.commonGetRequest('getFormTrain', this.authService.serverModel.getFormTrainUrl!)
+      .subscribe(x => {
+
+        if (x.ok && x.status === 200) {
+          const newList: {
+            key: number,
+            value: string
+          }[] = [];
+          x.body.data.map((g: any) => newList.push({
+            key: g.id,
+            value: g.name
+          }))
+          this.formTrainList.next(newList);
+        }
+      })
+
+      this.commonHttpRequestService.commonGetRequest('getSpecialized', this.authService.serverModel.getSpecializedUrl!)
+      .subscribe(x => {
+
+        if (x.ok && x.status === 200) {
+          const newList: {
+            key: number,
+            value: string
+          }[] = [];
+          x.body.data.map((g: any) => newList.push({
+            key: g.id,
+            value: g.name
+          }))
+          this.specializedList.next(newList);
         }
       })
   }

@@ -1,37 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeInfo, Situation } from 'src/app/model/employeeInfo';
 import { ProfileEmployeeService } from 'src/app/services/profile-employee.service';
 import { OtherListService } from 'src/app/services/other-list.service';
-import { Query, Predicate } from "@syncfusion/ej2-data";
-import { FieldSettingsModel } from "@syncfusion/ej2-dropdowns";
-import { L10n, setCulture } from "@syncfusion/ej2-base";
-import { Configs } from "src/app/common/configs";
+import { Query, Predicate } from '@syncfusion/ej2-data';
+import { FieldSettingsModel } from '@syncfusion/ej2-dropdowns';
+import { L10n, setCulture } from '@syncfusion/ej2-base';
+import { Configs } from 'src/app/common/configs';
 import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl 
-} from "@angular/forms";
+  FormControl,
+} from '@angular/forms';
+import {
+  FilterService,
+  VirtualScrollService,
+  GridComponent,
+} from "@syncfusion/ej2-angular-grids";
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
 import { TrainingBefore } from 'src/app/model/trainingbefore';
 import { WorkingBefore } from 'src/app/model/workingbefore';
 import { Subject } from 'rxjs';
+import {
+  SelectEventArgs,
+  SelectingEventArgs,
+} from '@syncfusion/ej2-navigations';
+import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 
 // import { Consts } from "src/app/common/const";
-const $ = require("jquery");
- const _ = require("lodash");
+const $ = require('jquery');
+const _ = require('lodash');
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent implements OnInit {
+  @ViewChild('tabDefault') tabDefault!: TabComponent;
+  @ViewChild("overviewgrid", { static: false })
+  public gridInstance!: GridComponent;
   editForm!: FormGroup;
-   employeeInfo:EmployeeInfo = new EmployeeInfo();
-   situation: Situation = new Situation();
-   trainingbefore: TrainingBefore = new TrainingBefore();
-   workingbefore: WorkingBefore = new WorkingBefore();
+  employeeInfo: EmployeeInfo = new EmployeeInfo();
+  situation: Situation = new Situation();
+  trainingbefore: TrainingBefore = new TrainingBefore();
+  workingbefore: WorkingBefore = new WorkingBefore();
   // employeeInfo = NEW EmployeeInfo();
   tab: any;
   private _unsubscribeAll: Subject<any>;
@@ -52,7 +65,7 @@ export class EmployeeComponent implements OnInit {
   lstCurProvinceId: any = [];
   lstCurDistrictId: any = [];
   lstCurWardId: any = [];
-  lstContractId: any = []; 
+  lstContractId: any = [];
   lstLastWorkingId: any = [];
   lstObjectSalaryId: any = [];
   lstMaritalStatusId: any = [];
@@ -71,19 +84,19 @@ export class EmployeeComponent implements OnInit {
   lstFormTrain: any = [];
   lstSpecialized: any = [];
   lstCompanyId: any = [];
+
   data: any;
 
-  public fields: FieldSettingsModel = { value: "key", text: "value" };
-  public fields1: FieldSettingsModel = { value: "id", text: "name" };
-  public curentTab:string='profile';
+  public fields: FieldSettingsModel = { value: 'key', text: 'value' };
+  public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
+  public curentTab: string = 'profile';
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
     private commomHttpService: CommonHttpRequestService,
-    private globals:Globals,
-    private _formBuilder: FormBuilder,
-
-  ) { 
+    private globals: Globals,
+    private _formBuilder: FormBuilder
+  ) {
     this.editForm = this._formBuilder.group({
       currentinfor: this._formBuilder.group({
         code: [
@@ -91,122 +104,142 @@ export class EmployeeComponent implements OnInit {
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
         firstName: [
-          "",
+          '',
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
         lastName: [
-          "",
+          '',
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
         taxCode: [[]], //Mã sô thuế
-        salTotal: ["", []],
-        insRegionId: ["",[Validators.required]],
-        placeId: ["",[]]
+        salTotal: ['', []],
+        insRegionId: ['', [Validators.required]],
+        placeId: ['', []],
       }),
       infor: this._formBuilder.group({
-        birthDate: ["", []],
-        genderId: [""],
-        birthPlace: ["", []],
-        idNo: ["", []], //CMND
-        idDate: [""], //Ngày cấp
-        idPlace: ["", []], //Nơi cấp
-        passPlace: ["", []],
-        nationalityId: ["", []], //Quốc tịch
-        nativeId: ["", []], //Dân tộc
-        religionId: ["", []], //Tôn giáo
-        maritalStatusId: ["", []], //Tình trạng hôn nhân
-        residentId: [""],
-        
-        
+        birthDate: ['', []],
+        genderId: [''],
+        birthPlace: ['', []],
+        idNo: ['', []], //CMND
+        idDate: [''], //Ngày cấp
+        idPlace: ['', []], //Nơi cấp
+        passPlace: ['', []],
+        nationalityId: ['', []], //Quốc tịch
+        nativeId: ['', []], //Dân tộc
+        religionId: ['', []], //Tôn giáo
+        maritalStatusId: ['', []], //Tình trạng hôn nhân
+        residentId: [''],
       }),
       address: this._formBuilder.group({
-        address: ["", []],
-        provinceId: ["", []],
-        districtId: ["", []],
-        wardId: ["", []],
-        directManagerId: ["", []],
-        curAddress: [""],
-        joinDate: ["", []],
-        workStatusId: ["", []],
+        address: ['', []],
+        provinceId: ['', []],
+        districtId: ['', []],
+        wardId: ['', []],
+        directManagerId: ['', []],
+        curAddress: [''],
+        joinDate: ['', []],
+        workStatusId: ['', []],
       }),
       curAddress: this._formBuilder.group({
-        curAddress: ["", []],
-        curProvinceId: ["", []],
-        curDistrictId: ["", []],
-        curWardId: ["", []],
+        curAddress: ['', []],
+        curProvinceId: ['', []],
+        curDistrictId: ['', []],
+        curWardId: ['', []],
       }),
       contact: this._formBuilder.group({
-        mobilePhone: ["", []],
-        email: ["", []],
-        workEmail: ["", []],
-        contactPer: ["", []], //Người liên hệ khi cần
-        contactPerPhone: ["", []],
+        mobilePhone: ['', []],
+        email: ['', []],
+        workEmail: ['', []],
+        contactPer: ['', []], //Người liên hệ khi cần
+        contactPerPhone: ['', []],
       }),
       addinfo: this._formBuilder.group({
-        passNo: ["", []], //Hộ chiếu
-        passDate: ["", []], //Ngày cấp
-        passExpire: ["", []],
-        passPlace: ["", []],
-        visaNo: ["", []],
-        visaDate: ["", []],
-        visaExpire: ["", []],
-        visaPlace: ["", []],
-        workPermit: ["", []], //Giấy phép lao động
-        workPermitDate: ["", []],
-        workPermitExpire: ["", []],
-        workPermitPlace: ["", []],
-        workNo: ["", []],
-        workDate: ["", []],
-        workScope: ["", []],
-        workPlace: ["", []],
+        passNo: ['', []], //Hộ chiếu
+        passDate: ['', []], //Ngày cấp
+        passExpire: ['', []],
+        passPlace: ['', []],
+        visaNo: ['', []],
+        visaDate: ['', []],
+        visaExpire: ['', []],
+        visaPlace: ['', []],
+        workPermit: ['', []], //Giấy phép lao động
+        workPermitDate: ['', []],
+        workPermitExpire: ['', []],
+        workPermitPlace: ['', []],
+        workNo: ['', []],
+        workDate: ['', []],
+        workScope: ['', []],
+        workPlace: ['', []],
       }),
       education: this._formBuilder.group({
-        schoolId: ["", []],
-        qualificationId: ["", []], //Trình độ chuyên môn
-        trainingFormId: ["", []], //Hình thức đào tạo
-        learningLevelId: ["", []], //trình độ học vấn
-        languageMark: ["", []], //điểm số
-        language: ["", []], //ngoại ngữ
+        schoolId: ['', []],
+        qualificationId: ['', []], //Trình độ chuyên môn
+        trainingFormId: ['', []], //Hình thức đào tạo
+        learningLevelId: ['', []], //trình độ học vấn
+        languageMark: ['', []], //điểm số
+        language: ['', []], //ngoại ngữ
       }),
       situation: this._formBuilder.group({
-        name: ["", []],
-        birth: ["", []],
-        no: ["", []], // CMND
-        taxNo: ["", []], // CMND
-        familyNo: ["", []], // CMND
-        familyName: ["", []], // CMND
-        address: ["", []], // CMND
-        relationshipId: ["", []],
-        dateStart: ["", []],
-        dateEnd: ["", []],
+        name: ['', []],
+        birth: ['', []],
+        no: ['', []], // CMND
+        taxNo: ['', []], // CMND
+        familyNo: ['', []], // CMND
+        familyName: ['', []], // CMND
+        address: ['', []], // CMND
+        relationshipId: ['', []],
+        dateStart: ['', []],
+        dateEnd: ['', []],
+      }),
+      trainingbefore: this._formBuilder.group({
+        yearGra: ['',[]], 
+        nameSchools: ['',[]],  
+        fromDate: ['', []], 
+        toDate: ['', []],  
+        certificateTypeId: ['',[]],   
+        formTrainId: [''], 
+        specializedTrainId: [''], 
+        resultTrain: [''], 
+        note: [''],
+        effectiveDateFrom: ['', []], 
+        effectiveDateTo: ['', []], 
+      }),
+      workingbefore: this._formBuilder.group({
+        companyName: ["",[]], 
+        orgName: ["",[]],  
+        joinDate: ["", []], 
+        endDate: ["", []],  
+        companyAddress: ["",[]],   
+        telephone: [""], 
+        salary: [""], 
+        titleName: [""], 
+        levelName: [""], 
+        reference: [""], 
+        remark: [""], 
+        workDetail: [""], 
+        terReason: [""],
+        companyId: ["",[]],
       }),
     });
     this._unsubscribeAll = new Subject();
     this.loadData();
-   
-    
   }
 
-  ngOnInit() {
-
-  
-
+  ngOnInit() {}
+  changeTab(e: SelectEventArgs) {
+    this.tabDefault.selectedItem;
   }
-  changeTab(e: any) {
-    this.curentTab = e;
-  }
+
   public onFiltering(e: any, a: any) {
     e.preventDefaultAction = true;
-    const predicate = new Predicate("name", "contains", e.text, true, true);
+    const predicate = new Predicate('name', 'contains', e.text, true, true);
     this.query = new Query();
-    this.query = e.text !== "" ? this.query.where(predicate) : this.query;
+    this.query = e.text !== '' ? this.query.where(predicate) : this.query;
     e.updateData(a, this.query);
-
-    
   }
   changeDate = (model: any) => {
     setTimeout(() => {
-      const idDate = "#" + model + "_input";
+      const idDate = '#' + model + '_input';
       const value = $(idDate).val();
       //get form group of control
       let form: any;
@@ -216,7 +249,7 @@ export class EmployeeComponent implements OnInit {
         }
       }
       var patt = new RegExp(
-        "q|w|e|r|t|y|u|i|o|p|a|s|d|f|g|h|j|k|l|z|x|c|v|b|n|m"
+        'q|w|e|r|t|y|u|i|o|p|a|s|d|f|g|h|j|k|l|z|x|c|v|b|n|m'
       );
       if (value.length === 0) {
         form.setErrors({ required: true });
@@ -232,16 +265,16 @@ export class EmployeeComponent implements OnInit {
       }
       if (
         value &&
-        ((value.length === 8 && value.indexOf("/") === -1) ||
-          (value.length === 6 && value.indexOf("/") === -1) ||
-          (value.length === 10 && value.indexOf("/") > -1))
+        ((value.length === 8 && value.indexOf('/') === -1) ||
+          (value.length === 6 && value.indexOf('/') === -1) ||
+          (value.length === 10 && value.indexOf('/') > -1))
       ) {
-        if (value.indexOf("-") === -1) {
+        if (value.indexOf('-') === -1) {
           const returnDate = this.globals.replaceDate(value);
           // (this.model as any)[model] = returnDate;
           if (returnDate && returnDate.length > 0) {
             $(idDate).val(returnDate);
-            const dateParts: any = returnDate.split("/");
+            const dateParts: any = returnDate.split('/');
             (this.employeeInfo as any)[model] = new Date(
               +dateParts[2],
               dateParts[1] - 1,
@@ -255,116 +288,117 @@ export class EmployeeComponent implements OnInit {
   };
 
   loadData() {
-    Promise.all([
-      this.getById(),
-      
-      
-    ]).then((res: any) => {
-
-      this.otherListService.nationList.subscribe((res:any)=>{
+    Promise.all([this.getById()]).then((res: any) => {
+      this.otherListService.nationList.subscribe((res: any) => {
         this.lstNativeId = res;
-      })
+      });
 
-      this.otherListService.nationalityList.subscribe((res:any)=>{
+      this.otherListService.nationalityList.subscribe((res: any) => {
         this.lstNationalityId = res;
-      })
+      });
 
-
-      this.otherListService.religionList.subscribe((res:any)=>{
+      this.otherListService.religionList.subscribe((res: any) => {
         this.lstReligionId = res;
-      })
-      this.otherListService.statusEmpList.subscribe((res:any)=>{
+      });
+      this.otherListService.statusEmpList.subscribe((res: any) => {
         this.lstWorkStatusId = res;
-      })
-      this.otherListService.provinceList.subscribe((res:any)=>{
+      });
+      this.otherListService.provinceList.subscribe((res: any) => {
         this.lstProvinceId = res;
-      })
-      this.otherListService.provinceList.subscribe((res:any)=>{
+      });
+      this.otherListService.provinceList.subscribe((res: any) => {
         this.lstCurProvinceId = res;
-      })
-      
-      this.otherListService.familyStatusList.subscribe((res:any)=>{
+      });
+
+      this.otherListService.familyStatusList.subscribe((res: any) => {
         this.lstMaritalStatusId = res;
-      })
-      this.otherListService.empSituationList.subscribe((res:any)=>{
+      });
+      this.otherListService.empSituationList.subscribe((res: any) => {
         this.lstEmpSituation = res;
-      })
-      this.otherListService.trainingFormIdList.subscribe((res:any)=>{
+      });
+      this.otherListService.trainingFormIdList.subscribe((res: any) => {
         this.lstTrainingFormId = res;
-      })
-      this.otherListService.learningLevelList.subscribe((res:any)=>{
+      });
+      this.otherListService.learningLevelList.subscribe((res: any) => {
         this.lstLearningLevelId = res;
-      })
-      this.otherListService.bankIdList.subscribe((res:any)=>{
+      });
+      this.otherListService.bankIdList.subscribe((res: any) => {
         this.lstBankId = res;
-      })
-      this.otherListService.residentList.subscribe((res:any)=>{
+      });
+      this.otherListService.residentList.subscribe((res: any) => {
         this.lstResident = res;
-      })
-      this.otherListService.insRegionIdList.subscribe((res:any)=>{
+      });
+      this.otherListService.insRegionIdList.subscribe((res: any) => {
         this.lstInsRegionId = res;
-      })
-      this.otherListService.paperIdList.subscribe((res:any)=>{
+      });
+      this.otherListService.paperIdList.subscribe((res: any) => {
         this.lstPaperId = res;
-      })
-      
-      this.otherListService.placeIdList.subscribe((res:any)=>{
-        
+      });
+
+      this.otherListService.placeIdList.subscribe((res: any) => {
         this.lstPlaceId = res;
-        
+      });
+      // this.commomHttpService
+      //   .commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE')
+      //   .subscribe((res: any) => {
+      //     // this.lstCertificate = res;
+      //     this.lstCertificate = res;
+      //   });
+      this.otherListService.companyIdList.subscribe((res: any) => {
+        this.lstCompanyId = res;
+      });
 
-      })
-      this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
-        // this.lstCertificate = res;
-        this.lstCertificate = res
-      })
-      this.otherListService.companyIdList.subscribe((res:any)=>{
-      this.lstCompanyId = res;
-      })
-
-     
-      this.otherListService.genderList.subscribe((res:any)=>{
+      this.otherListService.genderList.subscribe((res: any) => {
         this.lstGenderId = res;
-      })
-      this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result, ["districtId", "wardId"], ["curDistrictId", "curWardId"],["bankBranch"]));
+      });
+      this.otherListService.certificateList.subscribe((res: any) => {
+        this.lstCertificate = res;
+      });
+
+      this.otherListService.formTrainList.subscribe((res: any) => {
+        this.lstFormTrain = res;
+      });
+
+      this.otherListService.specializedList.subscribe((res: any) => {
+        this.lstSpecialized = res;
+      });
+      this.employeeInfo = _.cloneDeep(
+        _.omit(
+          res[0].body.result,
+          ['districtId', 'wardId'],
+          ['curDistrictId', 'curWardId'],
+          ['bankBranch']
+        )
+      );
       this.loadDatalazy(res[0].body.result);
-      
+      this.getListSituation();
+      console.log(this.getListSituation,this.getListSituation)
       // this.getListSituation();
       // this.getListPaper();
-      
     });
-    
-    ;
   }
   loadDatalazy(model: EmployeeInfo) {
-    
-    if (model && model.provinceId ) {
-      
+    if (model && model.provinceId) {
       this.getDistrict(model.provinceId)
         .then((res: any) => {
           this.lstDistrictId = res.body.data;
-          
         })
         .then((x) => {
-          this.employeeInfo.districtId=model.districtId
+          this.employeeInfo.districtId = model.districtId;
         });
-        
+
       this.getWard(model.districtId)
         .then((res: any) => {
           this.lstWardId = res.body.data;
-
         })
         .then((x) => {
           this.employeeInfo.wardId = model.wardId;
-          
         });
     }
     if (model && model.curProvinceId) {
       this.getDistrict(model.curProvinceId)
         .then((res: any) => {
           this.lstCurDistrictId = res.body.data;
-          
-
         })
         .then((x) => {
           this.employeeInfo.curDistrictId = model.curDistrictId;
@@ -385,20 +419,25 @@ export class EmployeeComponent implements OnInit {
         .then((x) => {
           this.employeeInfo.bankBranch = model.bankBranch;
         });
-      
     }
+  }
+  getListSituation() {
     
-    
-    
+      this.commomHttpService
+        .commonGetRequest('laythongtin', 'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id)
+        .subscribe((res: any) => {
+          this.data = res.body.data;
+          console.log(res)
+        });
   }
   getById() {
     return new Promise((resolve) => {
-      this.profileEmployeeService.getEmployeeInfo().subscribe((res:any)=>{
-        if(res.status==200){
+      this.profileEmployeeService.getEmployeeInfo().subscribe((res: any) => {
+        if (res.status == 200) {
           // this.employeeInfo = res.body.result;
           resolve(res);
         }
-      })
+      });
     });
   }
   getGender() {
@@ -406,158 +445,124 @@ export class EmployeeComponent implements OnInit {
   }
   getEmpSituation() {
     return new Promise((resolve) => {
-      
-      this.otherListService.empSituationList.subscribe((res:any)=>{
-
-          // this.lstEmpSituation = res;
-          resolve(res);
-      })
+      this.otherListService.empSituationList.subscribe((res: any) => {
+        // this.lstEmpSituation = res;
+        resolve(res);
+      });
     });
   }
   getNation() {
     return new Promise((resolve) => {
-      
-      this.otherListService.nationList.subscribe((res:any)=>{
-        
-          // this.lstNativeId = res;
-          resolve(res);
-      })
+      this.otherListService.nationList.subscribe((res: any) => {
+        // this.lstNativeId = res;
+        resolve(res);
+      });
     });
   }
   getNationality() {
     return new Promise((resolve) => {
-      
-      this.otherListService.nationalityList.subscribe((res:any)=>{
-        
-          // this.lstNationalityId = res;
-          resolve(res);
-      })
+      this.otherListService.nationalityList.subscribe((res: any) => {
+        // this.lstNationalityId = res;
+        resolve(res);
+      });
     });
   }
   getReligion() {
     return new Promise((resolve) => {
-      
-      this.otherListService.religionList.subscribe((res:any)=>{
-        
-          // this.lstReligionId = res;
-          resolve(res);
-      })
+      this.otherListService.religionList.subscribe((res: any) => {
+        // this.lstReligionId = res;
+        resolve(res);
+      });
     });
   }
   getListFamilyStatus() {
     return new Promise((resolve) => {
-      
-      this.otherListService.familyStatusList.subscribe((res:any)=>{
-        
-          // this.lstMaritalStatusId = res;
-          resolve(res);
-      })
+      this.otherListService.familyStatusList.subscribe((res: any) => {
+        // this.lstMaritalStatusId = res;
+        resolve(res);
+      });
     });
   }
   getListStatusEmp() {
     return new Promise((resolve) => {
-      
-      this.otherListService.statusEmpList.subscribe((res:any)=>{
-        
-          // this.lstWorkStatusId = res;
-          resolve(res);
-      })
+      this.otherListService.statusEmpList.subscribe((res: any) => {
+        // this.lstWorkStatusId = res;
+        resolve(res);
+      });
     });
   }
- 
+
   getProvince() {
     return new Promise((resolve) => {
-      
-      this.otherListService.provinceList.subscribe((res:any)=>{
-        
-          // this.lstProvinceId = res;
-          // this.lstCurProvinceId = res;
-          resolve(res);
-      })
+      this.otherListService.provinceList.subscribe((res: any) => {
+        // this.lstProvinceId = res;
+        // this.lstCurProvinceId = res;
+        resolve(res);
+      });
     });
   }
   getlstTrainingFormId() {
     //hình thức đào tạo
     return new Promise((resolve) => {
-      
-      this.otherListService.trainingFormIdList.subscribe((res:any)=>{
-       
-          // this.lstTrainingFormId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.trainingFormIdList.subscribe((res: any) => {
+        // this.lstTrainingFormId = res;
+        resolve(res);
+      });
     });
   }
   GetListLearningLevel() {
     //trình độ học vấn
     return new Promise((resolve) => {
-      
-      this.otherListService.learningLevelList.subscribe((res:any)=>{
-        
-          // this.lstLearningLevelId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.learningLevelList.subscribe((res: any) => {
+        // this.lstLearningLevelId = res;
+        resolve(res);
+      });
     });
   }
   getlstBankId() {
     //hình thức đào tạo
     return new Promise((resolve) => {
-      
-      this.otherListService.bankIdList.subscribe((res:any)=>{
-        
-          // this.lstBankId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.bankIdList.subscribe((res: any) => {
+        // this.lstBankId = res;
+        resolve(res);
+      });
     });
   }
   getlstResident() {
     //đối tượng thường trú
     return new Promise((resolve) => {
-      
-      this.otherListService.residentList.subscribe((res:any)=>{
-        
-          // this.lstResident = res;
-          resolve(res);
-        
-      })
+      this.otherListService.residentList.subscribe((res: any) => {
+        // this.lstResident = res;
+        resolve(res);
+      });
     });
   }
- 
+
   getlstInsRegionId() {
     //vùng bảo hiểm
     return new Promise((resolve) => {
-      
-      this.otherListService.religionList.subscribe((res:any)=>{
-        
-          // this.lstReligionId = res;
-        
-          resolve(res);
-      })
+      this.otherListService.religionList.subscribe((res: any) => {
+        // this.lstReligionId = res;
+
+        resolve(res);
+      });
     });
   }
   getlstPlaceId() {
     return new Promise((resolve) => {
-      
-      this.otherListService.placeIdList.subscribe((res:any)=>{
-        
-          // this.lstPlaceId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.placeIdList.subscribe((res: any) => {
+        // this.lstPlaceId = res;
+        resolve(res);
+      });
     });
   }
   getlstPaperId() {
     //đối tượng thường trú
     return new Promise((resolve) => {
-      
-      this.otherListService.paperIdList.subscribe((res:any)=>{
-        
-          // this.lstPaperId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.paperIdList.subscribe((res: any) => {
+        // this.lstPaperId = res;
+        resolve(res);
+      });
     });
   }
   getlstCompanyId() {
@@ -568,16 +573,13 @@ export class EmployeeComponent implements OnInit {
       //   .subscribe((res: any) => {
       //     resolve(res.data);
       //   });
-      this.otherListService.companyIdList.subscribe((res:any)=>{
-        
-          // this.lstCompanyId = res;
-          resolve(res);
-        
-      })
+      this.otherListService.companyIdList.subscribe((res: any) => {
+        // this.lstCompanyId = res;
+        resolve(res);
+      });
     });
   }
   changeProvince(e: any) {
-    
     if (e.e) {
       this.employeeInfo.districtId = undefined;
 
@@ -586,22 +588,18 @@ export class EmployeeComponent implements OnInit {
       this.lstWardId = [];
 
       this.getDistrict(e.itemData.key).then((res: any) => {
-        
         this.lstDistrictId = res.body.data;
       });
     }
   }
   changeCurProvince(e: any) {
-    
     if (e.e) {
-      
       this.employeeInfo.curDistrictId = undefined;
       this.lstCurDistrictId = [];
       this.employeeInfo.curWardId = undefined;
       this.lstCurWardId = [];
       this.getDistrict(e.itemData.key).then((res: any) => {
         this.lstCurDistrictId = res.body.data;
-       
       });
     }
   }
@@ -610,7 +608,6 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.wardId = undefined;
       this.lstWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
-        
         this.lstWardId = res.body.data;
       });
     }
@@ -620,7 +617,7 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.curWardId = undefined;
       this.lstCurWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
-        this.lstCurWardId =res.body.data;
+        this.lstCurWardId = res.body.data;
       });
     }
   }
@@ -633,81 +630,91 @@ export class EmployeeComponent implements OnInit {
     }
   }
   changeName() {
-    this.employeeInfo.fullname = this.employeeInfo.firstName + " " + this.employeeInfo.lastName;
+    this.employeeInfo.fullname =
+      this.employeeInfo.firstName + ' ' + this.employeeInfo.lastName;
   }
   getBankBranch(id: number) {
     return new Promise((resolve) => {
       if (id) {
-        
-        this.commomHttpService.commonGetRequest('laythongtin', 'hr/bank/GetListBankBranch?bankId=' + id).subscribe((res: any) => {
-          // this.lstDistrictId = res.data
-          resolve(res);
-        });
-        
-        } else {
-          resolve(false);
-        }
-    });
-  }
-  getDistrict(id: number) {
-    return new Promise((resolve) => {
-      if (id) {
-        
-        
-        this.commomHttpService.commonGetRequest('laythongtin', 'hr/province/getListDistrict?provinceId=' + id).subscribe((res: any) => {
-          // this.lstDistrictId = res.body.data;
-          resolve(res);
-         
-
-       });
+        this.commomHttpService
+          .commonGetRequest(
+            'laythongtin',
+            'hr/bank/GetListBankBranch?bankId=' + id
+          )
+          .subscribe((res: any) => {
+            // this.lstDistrictId = res.data
+            resolve(res);
+          });
       } else {
         resolve(false);
       }
     });
   }
-  
-  getWard(id: any) {
-
+  getDistrict(id: number) {
     return new Promise((resolve) => {
-      
-      this.commomHttpService.commonGetRequest('laythongtin', 'hr/province/getListWard?districtid=' + id).subscribe((res: any) => {
-        resolve(res);
-        
-     });
+      if (id) {
+        this.commomHttpService
+          .commonGetRequest(
+            'laythongtin',
+            'hr/province/getListDistrict?provinceId=' + id
+          )
+          .subscribe((res: any) => {
+            // this.lstDistrictId = res.body.data;
+            resolve(res);
+          });
+      } else {
+        resolve(false);
+      }
+    });
+  }
+
+  getWard(id: any) {
+    return new Promise((resolve) => {
+      this.commomHttpService
+        .commonGetRequest(
+          'laythongtin',
+          'hr/province/getListWard?districtid=' + id
+        )
+        .subscribe((res: any) => {
+          resolve(res);
+        });
     });
   }
   getlstCertificate() {
     return new Promise((resolve) => {
-      
-        this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
+      this.commomHttpService
+        .commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE')
+        .subscribe((res: any) => {
           // this.lstCertificate = res;
           resolve(res);
-       });
+        });
     });
   }
   getlstFormTrain() {
     return new Promise((resolve) => {
-      
-        this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/GetListTrainingForm').subscribe((res: any) => {
+      this.commomHttpService
+        .commonGetRequest('laythongtin', 'hr/otherlist/GetListTrainingForm')
+        .subscribe((res: any) => {
           // this.lstFormTrain = res;
           resolve(res);
-       });
+        });
     });
   }
   getlstSpecialized() {
     return new Promise((resolve) => {
-      
-        this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/SPECIALIZED_TRAIN').subscribe((res: any) => {
+      this.commomHttpService
+        .commonGetRequest('laythongtin', 'hr/otherlist/SPECIALIZED_TRAIN')
+        .subscribe((res: any) => {
           // this.lstSpecialized = res;
           resolve(res);
-       });
+        });
     });
   }
-  
+
   RemoveRelation(id: any) {
     this.removeId = id;
     // this.modalService.open("confirm-back-modal1");
-   // this.modalService.open("confirm-delete-modal1");
+    // this.modalService.open("confirm-delete-modal1");
   }
   convertModel(param: any) {
     let model = _.cloneDeep(param);
@@ -754,22 +761,75 @@ export class EmployeeComponent implements OnInit {
     //   alert(" form chưa hợp lệ")
     //   return;
     // }
-    let param = this.convertModel(this.employeeInfo);
+     console.log(this.tabDefault.selectedItem);
 
-    console.log("param: ", param)
-    return new Promise((resolve) => {
-      
-      this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation',param).subscribe((res: any) => {
-        if (res.statusCode == 400) {
-          alert("lỗi")
-        } else {
-          alert("thành công")
-          // this.router.navigate(["/cms/profile/business/staffprofile"]);
-        }
-     });
-  });
+    if ((this.tabDefault.selectedItem == 3)) {
+      let param = this.convertModel(this.situation);
+      console.log("param: ", param)
+      return new Promise((resolve) => {
+        this.commomHttpService
+          .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)
+          .subscribe((res: any) => {
+            if (res.statusCode == 400) {
+              alert('lỗi');
+            } else {
+              this.editForm.controls["situation"].reset();
+              this.getListSituation();
+              alert('thành công');
+              // this.router.navigate(["/cms/profile/business/staffprofile"]);
+            }
+          });
+      });
+    }
+    else if ((this.tabDefault.selectedItem == 4)) {
+      let param = this.convertModel(this.trainingbefore);
+      console.log("param: ", param)
+      return new Promise((resolve) => {
+        this.commomHttpService
+          .commonPostRequest('INSERT', 'portal/employee/AddTrainingBeforeEdit', param)
+          .subscribe((res: any) => {
+            if (res.statusCode == 400) {
+              alert('lỗi');
+            } else {
+              alert('thành công');
+              // this.router.navigate(["/cms/profile/business/staffprofile"]);
+            }
+          });
+      });
+    }
+    else if ((this.tabDefault.selectedItem == 5)) {
+      let param = this.convertModel(this.workingbefore);
+      console.log("param: ", param)
+      return new Promise((resolve) => {
+        this.commomHttpService
+          .commonPostRequest('INSERT', 'portal/employee/AddWorkingBeforeEdit', param)
+          .subscribe((res: any) => {
+            if (res.statusCode == 400) {
+              alert('lỗi');
+            } else {
+              alert('thành công');
+              // this.router.navigate(["/cms/profile/business/staffprofile"]);
+            }
+          });
+      });
+    }
+    else{
+      return;
+    }
     
-  } 
-  
-  
+    // let param = this.convertModel(this.employeeInfo);
+
+    // return new Promise((resolve) => {
+    //   this.commomHttpService
+    //     .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
+    //     .subscribe((res: any) => {
+    //       if (res.statusCode == 400) {
+    //         alert('lỗi');
+    //       } else {
+    //         alert('thành công');
+    //         // this.router.navigate(["/cms/profile/business/staffprofile"]);
+    //       }
+    //     });
+    // });
+  }
 }
