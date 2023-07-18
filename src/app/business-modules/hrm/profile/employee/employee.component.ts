@@ -115,7 +115,7 @@ export class EmployeeComponent implements OnInit {
         nativeId: ["", []], //Dân tộc
         religionId: ["", []], //Tôn giáo
         maritalStatusId: ["", []], //Tình trạng hôn nhân
-        resident: [""],
+        residentId: [""],
         
         
       }),
@@ -159,6 +159,14 @@ export class EmployeeComponent implements OnInit {
         workDate: ["", []],
         workScope: ["", []],
         workPlace: ["", []],
+      }),
+      education: this._formBuilder.group({
+        schoolId: ["", []],
+        qualificationId: ["", []], //Trình độ chuyên môn
+        trainingFormId: ["", []], //Hình thức đào tạo
+        learningLevelId: ["", []], //trình độ học vấn
+        languageMark: ["", []], //điểm số
+        language: ["", []], //ngoại ngữ
       }),
       situation: this._formBuilder.group({
         name: ["", []],
