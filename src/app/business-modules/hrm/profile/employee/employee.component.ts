@@ -144,7 +144,36 @@ export class EmployeeComponent implements OnInit {
         contactPer: ["", []], //Người liên hệ khi cần
         contactPerPhone: ["", []],
       }),
-      
+      addinfo: this._formBuilder.group({
+        passNo: ["", []], //Hộ chiếu
+        passDate: ["", []], //Ngày cấp
+        passExpire: ["", []],
+        passPlace: ["", []],
+        visaNo: ["", []],
+        visaDate: ["", []],
+        visaExpire: ["", []],
+        visaPlace: ["", []],
+        workPermit: ["", []], //Giấy phép lao động
+        workPermitDate: ["", []],
+        workPermitExpire: ["", []],
+        workPermitPlace: ["", []],
+        workNo: ["", []],
+        workDate: ["", []],
+        workScope: ["", []],
+        workPlace: ["", []],
+      }),
+      situation: this._formBuilder.group({
+        name: ["", []],
+        birth: ["", []],
+        no: ["", []], // CMND
+        taxNo: ["", []], // CMND
+        familyNo: ["", []], // CMND
+        familyName: ["", []], // CMND
+        address: ["", []], // CMND
+        relationshipId: ["", []],
+        dateStart: ["", []],
+        dateEnd: ["", []],
+      }),
     });
     this._unsubscribeAll = new Subject();
     this.loadData();
@@ -722,17 +751,17 @@ export class EmployeeComponent implements OnInit {
     let param = this.convertModel(this.employeeInfo);
 
     console.log("param: ", param)
-  //   return new Promise((resolve) => {
+    return new Promise((resolve) => {
       
-  //     this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation','').subscribe((res: any) => {
-  //       if (res.statusCode == 400) {
-  //         alert("lỗi")
-  //       } else {
-  //         alert("thành công")
-  //         // this.router.navigate(["/cms/profile/business/staffprofile"]);
-  //       }
-  //    });
-  // });
+      this.commomHttpService.commonPostRequest('INSERT', 'portal/employee/EditInfomation',param).subscribe((res: any) => {
+        if (res.statusCode == 400) {
+          alert("lỗi")
+        } else {
+          alert("thành công")
+          // this.router.navigate(["/cms/profile/business/staffprofile"]);
+        }
+     });
+  });
     
   } 
   
