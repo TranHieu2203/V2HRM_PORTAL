@@ -276,7 +276,7 @@ export class EmployeeComponent implements OnInit {
       this.otherListService.placeIdList.subscribe((res:any)=>{
         
         this.lstPlaceId = res;
-        console.log(this.lstPlaceId, this.lstPlaceId)
+        
 
       })
       this.commomHttpService.commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE').subscribe((res: any) => {
@@ -291,10 +291,9 @@ export class EmployeeComponent implements OnInit {
       this.otherListService.genderList.subscribe((res:any)=>{
         this.lstGenderId = res;
       })
-      this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result));
-
-      console.log(res[0].body.result )
+      this.employeeInfo = _.cloneDeep(_.omit(res[0].body.result, ["districtId", "wardId"], ["curDistrictId", "curWardId"],["bankBranch"]));
       this.loadDatalazy(res[0].body.result);
+      
       // this.getListSituation();
       // this.getListPaper();
       
@@ -303,34 +302,41 @@ export class EmployeeComponent implements OnInit {
     ;
   }
   loadDatalazy(model: EmployeeInfo) {
+    
     if (model && model.provinceId ) {
       
       this.getDistrict(model.provinceId)
         .then((res: any) => {
-          this.lstDistrictId = res;
+          this.lstDistrictId = res.body.data;
+          
         })
         .then((x) => {
-          this.employeeInfo.districtId = model.districtId;
+          this.employeeInfo.districtId=model.districtId
         });
+        
       this.getWard(model.districtId)
         .then((res: any) => {
-          this.lstWardId = res;
+          this.lstWardId = res.body.data;
+
         })
         .then((x) => {
           this.employeeInfo.wardId = model.wardId;
+          
         });
     }
     if (model && model.curProvinceId) {
       this.getDistrict(model.curProvinceId)
         .then((res: any) => {
-          this.lstCurDistrictId = res;
+          this.lstCurDistrictId = res.body.data;
+          
+
         })
         .then((x) => {
           this.employeeInfo.curDistrictId = model.curDistrictId;
         });
       this.getWard(model.curDistrictId)
         .then((res: any) => {
-          this.lstCurWardId = res;
+          this.lstCurWardId = res.body.data;
         })
         .then((x) => {
           this.employeeInfo.curWardId = model.curWardId;
@@ -339,23 +345,14 @@ export class EmployeeComponent implements OnInit {
     if (model && model.bankId) {
       this.getBankBranch(model.bankId)
         .then((res: any) => {
-          this.lstBankBranchId = res;
+          this.lstBankBranchId = res.body.data;
         })
         .then((x) => {
           this.employeeInfo.bankBranch = model.bankBranch;
         });
       
     }
-    // if (model && model.genderId) {
-    //   this.getBankBranch(model.genderId)
-    //     .then((res: any) => {
-    //       this.lstGenderId = res;
-    //     })
-    //     .then((x) => {
-    //       this.employeeInfo.bankBranch = model.bankBranch;
-    //     });
-      
-    // }
+    
     
     
   }
@@ -569,7 +566,7 @@ export class EmployeeComponent implements OnInit {
       this.lstCurWardId = [];
       this.getDistrict(e.itemData.key).then((res: any) => {
         this.lstCurDistrictId = res.body.data;
-        console.log("đang trong changcurProvince: ", this.lstCurDistrictId)
+       
       });
     }
   }
@@ -578,7 +575,7 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.wardId = undefined;
       this.lstWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
-        console.log("huyện: ", res.body.data)
+        
         this.lstWardId = res.body.data;
       });
     }

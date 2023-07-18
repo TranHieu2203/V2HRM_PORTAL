@@ -263,7 +263,7 @@
                                     <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Quận/Huyện</label>
-                                        <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId' name="districtId" formControlName="districtId"
+                                        <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId'  formControlName="districtId" name="districtId" 
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.districtId"
                                           [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstDistrictId)'
@@ -275,7 +275,7 @@
                                     <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
-                                        <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' name="wardId" formControlName="wardId" [showClearButton]="true"
+                                        <ejs-dropdownlist id='wardId' [dataSource]='lstWardId'  formControlName="wardId" [showClearButton]="true"
                                           [(ngModel)]="employeeInfo.wardId" [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstWardId)'>
                                         </ejs-dropdownlist>
