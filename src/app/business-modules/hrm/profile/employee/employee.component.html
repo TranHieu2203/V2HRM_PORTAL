@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="group-box" formGroupName="currentinfor">
                                   <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Họ và tên đệm</label>
                                         <input type="text" class="form-control" name="firstName"
@@ -83,7 +83,7 @@
                                           (ngModelChange)="changeName()">
                                       </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Tên</label>
                                         <input type="text" class="form-control" name="lastName"
@@ -95,14 +95,14 @@
                                       </div>
                                     </div>
                                     <!-- Mã số thuế -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Mã số thuế cá nhân</label>
                                         <input class="form-control" name="taxCode" formControlName="taxCode" type="text"
                                           [(ngModel)]="employeeInfo.taxCode">
                                       </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Nơi làm viêc</label>
                                         <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' name="placeId" formControlName="placeId"
@@ -119,7 +119,7 @@
                                 <div class="group-box" formGroupName="infor">
                                   <div class="row">
                                     <!--Ngày sinh  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Ngày sinh</label>
                                         <ejs-datepicker id="birthDate" name="birthDate" formControlName="birthDate"
@@ -136,7 +136,7 @@
                                       </div>
                                     </div>
                                     <!-- Nơi sinh -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Nơi sinh</label>
                                         <input type="text" class="form-control" [(ngModel)]="employeeInfo.birthPlace" name="birthPlace" formControlName="birthPlace">
@@ -144,7 +144,7 @@
                                     </div>
 
                                     <!--Giới tính  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Giới tính</label>
                                         <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' name="genderId" formControlName="genderId"
@@ -159,7 +159,7 @@
                                   </div>
                                   <div class="row">
                                     <!-- CMNN/TCC -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Số CMND/Căn cước</label>
                                         <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNo" name="idNo" formControlName="idNo"
@@ -167,7 +167,7 @@
                                       </div>
                                     </div>
                                     <!--Ngày cấp  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Ngày cấp</label>
                                         <ejs-datepicker id="idDate" format="dd/MM/yyyy" name="idDate" formControlName="idDate"
@@ -176,7 +176,7 @@
                                       </div>
                                     </div>
                                     <!-- Nơi cấp-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Nơi cấp</label>
                                         <input class="form-control" type="text" class="form-control" name="idPlace" formControlName="idPlace"
@@ -186,7 +186,7 @@
                                   </div>
                                   <div class="row">
                                     <!--Quốc tịch  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Quốc tịch</label>
                                         <ejs-dropdownlist id='nationalityId' [dataSource]='lstNationalityId' name="nationalityId" formControlName="nationalityId"
@@ -197,7 +197,7 @@
                                       </div>
                                     </div>
                                     <!--Dân tộc  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Dân tộc</label>
                                         <ejs-dropdownlist id='nativeId' [dataSource]='lstNativeId'
@@ -207,7 +207,7 @@
                                       </div>
                                     </div>
                                     <!--Tôn giáo  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Tôn giáo</label>
                                         <ejs-dropdownlist id='religionId' [dataSource]='lstReligionId' name="religionId" formControlName="religionId"
@@ -219,7 +219,7 @@
                                     </div>
 
                                     <!--Tình trạng hôn nhân  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Tình trạng hôn nhân</label>
                                         <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId' name="maritalStatusId" formControlName="maritalStatusId"
@@ -230,7 +230,7 @@
                                       </div>
                                     </div>
                                     <!--Thưởng trú tại việt nam -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Đối tượng cư trú</label>
                                         <ejs-dropdownlist id='resident' [dataSource]='lstResident' name="residentId" formControlName="residentId"
@@ -248,7 +248,7 @@
                                   </div>
                                   <div class="row">
                                     <!--Tỉnh/TP  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Tỉnh/TP</label>
                                         <ejs-dropdownlist id='provinceId' [dataSource]='lstProvinceId' name="provinceId" formControlName="provinceId"
@@ -260,7 +260,7 @@
                                       </div>
                                     </div>
                                     <!--Quận huyện  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Quận/Huyện</label>
                                         <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId' name="districtId" formControlName="districtId"
@@ -272,7 +272,7 @@
                                       </div>
                                     </div>
                                     <!--Xã/Phường  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
                                         <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' name="wardId" formControlName="wardId" [showClearButton]="true"
@@ -297,7 +297,7 @@
                                   </div>
                                   <div class="row">
                                     <!--Tỉnh/TP  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Tỉnh/TP</label>
                                         <ejs-dropdownlist id='curProvinceId' [dataSource]='lstCurProvinceId' name="curProvinceId" formControlName="curProvinceId"
@@ -309,7 +309,7 @@
                                       </div>
                                     </div>
                                     <!--Quận huyện  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Quận/Huyện</label>
                                         <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId' name="curDistrictId" formControlName="curDistrictId"
@@ -321,7 +321,7 @@
                                       </div>
                                     </div>
                                     <!--Xã/Phường  -->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
                                         <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId' name="curWardId" formControlName="curWardId"
@@ -345,7 +345,7 @@
                                   </div>
                                   <div class="row">
                                     <!-- Điện thoại di động-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Điện thoại cá nhân</label>
                                         <input type="text" class="form-control" name="mobilePhone" formControlName="mobilePhone" [(ngModel)]="employeeInfo.mobilePhone"
@@ -353,7 +353,7 @@
                                       </div>
                                     </div>
                                     <!-- Email cá nhân-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Email cá nhân</label>
                                         <input type="text" class="form-control" name="email"
@@ -364,7 +364,7 @@
 
 
                                     <!-- Email công ty-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Email công ty</label>
                                         <input type="text" class="form-control" [(ngModel)]="employeeInfo.workEmail" name="workEmail" formControlName="workEmail">
@@ -373,7 +373,7 @@
                                   </div>
                                   <div class="row">
                                     <!-- Người liên hệ khi cần-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Người liên hệ khi cần</label>
                                         <input type="text" class="form-control" [(ngModel)]="employeeInfo.contactPer" name="contactPer" formControlName="contactPer">
@@ -381,7 +381,7 @@
                                       </div>
                                     </div>
                                     <!-- Số điện thoại người liên hệ-->
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                       <div class="form-group ">
                                         <label class="">Số điện thoại người liên hệ</label>
                                         <input type="text" class="form-control"
