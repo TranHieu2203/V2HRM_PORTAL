@@ -394,6 +394,7 @@
                               </div>
 
                               <div class=" " id="syll1" *ngIf="curentTab=='hc'">
+                                <div class="group-box" formGroupName="addinfo">
                                 <div class="row">
                                   <label class="bold-label">THÔNG TIN HỘ CHIẾU</label>
                                 </div>
@@ -429,7 +430,7 @@
                                         (blur)="changeDate('passExpire')" formControlName="passExpire"
                                         placeholder=".../.../...">
                                       </ejs-datepicker>
- <!-- Hiếu ăn cứt -->
+
                                       <span class="input-error"
                                         *ngIf="editForm.controls['addinfo'].get('passExpire')!.hasError('incorrect') && !editForm.controls['addinfo'].get('passExpire')!.untouched">
                                         Sai định dạng</span>
@@ -622,6 +623,7 @@
                                         [(ngModel)]="employeeInfo.workPlace">
                                     </div>
                                   </div>
+                                </div>
                                 </div>
                               </div>
                               <!-- TRÌNH ĐỘ VĂN HÓA -->
