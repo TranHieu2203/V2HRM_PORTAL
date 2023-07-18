@@ -139,7 +139,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Nơi sinh</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.birthPlace">
+                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.birthPlace" name="birthPlace" formControlName="birthPlace">
                                       </div>
                                     </div>
 
@@ -162,7 +162,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Số CMND/Căn cước</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNo"
+                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNo" name="idNo" formControlName="idNo"
                                           maxlength="12">
                                       </div>
                                     </div>
@@ -179,7 +179,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Nơi cấp</label>
-                                        <input class="form-control" type="text" class="form-control"
+                                        <input class="form-control" type="text" class="form-control" name="idPlace" formControlName="idPlace"
                                           [(ngModel)]="employeeInfo.idPlace">
                                       </div>
                                     </div>
@@ -263,7 +263,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Quận/Huyện</label>
-                                        <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId'
+                                        <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId' name="districtId" formControlName="districtId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.districtId"
                                           [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstDistrictId)'
@@ -275,7 +275,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
-                                        <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' [showClearButton]="true"
+                                        <ejs-dropdownlist id='wardId' [dataSource]='lstWardId' name="wardId" formControlName="wardId" [showClearButton]="true"
                                           [(ngModel)]="employeeInfo.wardId" [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstWardId)'>
                                         </ejs-dropdownlist>
@@ -286,7 +286,7 @@
                                     <div class="col-sm-12">
                                       <div class="form-group ">
                                         <label class="">Số nhà, đường phố, thôn xóm</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.address">
+                                        <input type="text" class="form-control" name="address" formControlName="address" [(ngModel)]="employeeInfo.address">
                                       </div>
                                     </div>
                                   </div>
@@ -300,7 +300,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Tỉnh/TP</label>
-                                        <ejs-dropdownlist id='curProvinceId' [dataSource]='lstCurProvinceId'
+                                        <ejs-dropdownlist id='curProvinceId' [dataSource]='lstCurProvinceId' name="curProvinceId" formControlName="curProvinceId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.curProvinceId"
                                           [fields]='fields' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstCurProvinceId)'
@@ -312,7 +312,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Quận/Huyện</label>
-                                        <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId'
+                                        <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId' name="curDistrictId" formControlName="curDistrictId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.curDistrictId"
                                           [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstCurDistrictId)'
@@ -324,7 +324,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Xã/Phường</label>
-                                        <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId'
+                                        <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId' name="curWardId" formControlName="curWardId"
                                           [showClearButton]="true" [(ngModel)]="employeeInfo.curWardId"
                                           [fields]='fields1' [allowFiltering]='true'
                                           (filtering)='onFiltering($event,lstCurWardId)'>
@@ -334,7 +334,7 @@
                                     <div class="col-sm-12">
                                       <div class="form-group ">
                                         <label class="">Số nhà, đường phố, thôn xóm</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.curAddress">
+                                        <input type="text" class="form-control" name="curAddress" formControlName="curAddress" [(ngModel)]="employeeInfo.curAddress">
                                       </div>
                                     </div>
                                   </div>
@@ -367,7 +367,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Email công ty</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.workEmail">
+                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.workEmail" name="workEmail" formControlName="workEmail">
                                       </div>
                                     </div>
                                   </div>
@@ -376,7 +376,7 @@
                                     <div class="col-sm-3">
                                       <div class="form-group ">
                                         <label class="">Người liên hệ khi cần</label>
-                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.contactPer">
+                                        <input type="text" class="form-control" [(ngModel)]="employeeInfo.contactPer" name="contactPer" formControlName="contactPer">
 
                                       </div>
                                     </div>
@@ -385,7 +385,7 @@
                                       <div class="form-group ">
                                         <label class="">Số điện thoại người liên hệ</label>
                                         <input type="text" class="form-control"
-                                          [(ngModel)]="employeeInfo.contactPerPhone">
+                                          [(ngModel)]="employeeInfo.contactPerPhone" name="contactPerPhone" formControlName="contactPerPhone">
 
                                       </div>
                                     </div>
@@ -402,7 +402,7 @@
                                   <div class="col-sm-4">
                                     <div class="form-group ">
                                       <label class="">Số hộ chiếu</label>
-                                      <input type="text" formControlName="passNo" class="form-control"
+                                      <input type="text" name="passNo" formControlName="passNo" class="form-control"  
                                         [(ngModel)]="employeeInfo.passNo">
                                     </div>
                                   </div>
