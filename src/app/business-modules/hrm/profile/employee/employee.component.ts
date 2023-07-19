@@ -731,36 +731,55 @@ export class EmployeeComponent implements OnInit {
 
   RemoveRelation(id: any) {
     this.removeId = id;
-
-    this.DeleteSituation(this.removeId);
-    this.getListSituation();
+    if(this.situation.status ==1){
+      this.DeleteSituation(this.removeId);
+      this.getListSituation();
+    }
+    else{
+      alert("Bản ghi đã phê duyệt, không được xóa")
+    }
+    
+    
     // this.modalService.open("confirm-back-modal1");
     // this.modalService.open("confirm-delete-modal1");
   }
   RemoveRelation1(id: any) {
     this.removeId = id;
-
-    this.DeleteTrainingBeforeEdit(this.removeId);
+    if(this.situation.status ==1){
+      this.DeleteTrainingBeforeEdit(this.removeId);
+    }
+    else{
+      alert("Bản ghi đã phê duyệt, không được xóa")
+    }
+    
     this.getListTrainingBefore();
     // this.modalService.open("confirm-back-modal1");
     // this.modalService.open("confirm-delete-modal1");
   }
   RemoveRelation2(id: any) {
     this.removeId = id;
-
-    this.DeleteWorkingBeforeEdit(this.removeId);
+    if(this.situation.status ==1){
+      this.DeleteWorkingBeforeEdit(this.removeId);
+    }
+    else{
+      alert("Bản ghi đã phê duyệt, không được xóa")
+    }
+    
     this.getListWorkingBefore();
     // this.modalService.open("confirm-back-modal1");
     // this.modalService.open("confirm-delete-modal1");
   }
   DeleteSituation(id: any) {
-    this.commomHttpService
+    return new Promise((resolve) => {
+      this.commomHttpService
       .commonPostRequest(
         'laythongtin',
         'hr/Employee/RemoveRelationEdit?id=',
         id
       )
       .subscribe((res: any) => {});
+    });
+    
   }
 
   DeleteTrainingBeforeEdit(id: any) {

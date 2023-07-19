@@ -104,6 +104,7 @@ export class EmployeeInfo {
     birth?: any;
     dateStart?: any;
     dateEnd?: any;
+    status?:number;
   }
   
   export class PosPage {

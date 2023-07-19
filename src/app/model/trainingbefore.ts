@@ -18,5 +18,6 @@ export class TrainingBefore {
   effectiveDateFrom?: Date | null; 
   effectiveDateTo?: Date | null; 
   note?: string | null;
+  status?:number;
   
 }

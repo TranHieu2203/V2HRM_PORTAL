@@ -18,4 +18,5 @@ export class WorkingBefore {
   remark?: string | null;
   workDetail?: string | null;
   terReason?: string | null;
+  status?:number;
 }
