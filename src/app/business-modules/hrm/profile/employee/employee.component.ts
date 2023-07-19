@@ -86,7 +86,8 @@ export class EmployeeComponent implements OnInit {
   lstCompanyId: any = [];
 
   data: any;
-
+  data1: any;
+  data2: any;
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
@@ -372,9 +373,9 @@ export class EmployeeComponent implements OnInit {
       );
       this.loadDatalazy(res[0].body.result);
       this.getListSituation();
-      console.log(this.getListSituation,this.getListSituation)
-      // this.getListSituation();
-      // this.getListPaper();
+      this.getListTrainingBefore();
+      this.getListWorkingBefore();
+      
     });
   }
   loadDatalazy(model: EmployeeInfo) {
@@ -427,9 +428,27 @@ export class EmployeeComponent implements OnInit {
         .commonGetRequest('laythongtin', 'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id)
         .subscribe((res: any) => {
           this.data = res.body.data;
-          console.log(res)
+          
         });
   }
+  getListTrainingBefore() {
+    
+    this.commomHttpService
+      .commonGetRequest('laythongtin', 'hr/Employee/ListTrainingBeforeEdit?empId=' + this.employeeInfo.id)
+      .subscribe((res: any) => {
+        this.data1 = res.body.data;
+        console.log("this.data1",this.data1)
+      });
+}
+getListWorkingBefore() {
+    
+  this.commomHttpService
+    .commonGetRequest('laythongtin', 'hr/Employee/ListWorkingBeforeEdit?empId=' + this.employeeInfo.id)
+    .subscribe((res: any) => {
+      this.data2 = res.body.data;
+
+    });
+}
   getById() {
     return new Promise((resolve) => {
       this.profileEmployeeService.getEmployeeInfo().subscribe((res: any) => {
@@ -761,11 +780,11 @@ export class EmployeeComponent implements OnInit {
     //   alert(" form chưa hợp lệ")
     //   return;
     // }
-     console.log(this.tabDefault.selectedItem);
+     
 
     if ((this.tabDefault.selectedItem == 3)) {
       let param = this.convertModel(this.situation);
-      console.log("param: ", param)
+      
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)

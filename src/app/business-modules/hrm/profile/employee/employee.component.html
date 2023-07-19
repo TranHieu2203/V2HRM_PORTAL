@@ -845,8 +845,12 @@
                                         </div> -->
                                           <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data' rowHeight='37'
                                             headerHeight='42' height='100%' allowResizing='true' [allowSelection]='true'
-                                            allowTextWrap='true' [enableHover]="false">
+                                            allowTextWrap='true' [enableHover]="false" [showColumnChooser]='true'>
                                             <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                              [allowFiltering]='false' [allowSorting]='false' width='40'
+                                              textAlign="Center" [allowEditing]="false">
+                                              </e-column>
                                               <e-column field='id' [visible]='false' headerText='ID'
                                                 [isPrimaryKey]='true' [allowEditing]="false">
                                               </e-column>
@@ -1067,12 +1071,11 @@
 
                                         </div>
                                         <div class="list-grid mt-3">
-                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data | async'
-                                            [allowExcelExport]='true' rowHeight='35' headerHeight='40'
-                                            [allowPaging]='true' [enableHover]='true' [allowSorting]='true'
-                                            allowResizing='true' [allowSelection]='true' [showColumnChooser]='true'
-                                            [allowFiltering]='true'>
-                                            <e-columns>
+                                          <ejs-grid #overviewgrid1 id='overviewgrid1' [dataSource]='data1' rowHeight='37'
+                                          headerHeight='42' height='100%' allowResizing='true' 
+                                          [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                          >
+                                          <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
                                                 textAlign="Center" [allowEditing]="false">
@@ -1291,12 +1294,11 @@
                                         </div>
                                       </div>
                                       <div class="list-grid mt-3">
-                                        <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data | async'
-                                          [allowExcelExport]='true' rowHeight='35' headerHeight='40'
-                                          [allowPaging]='true' [enableHover]='true' [allowSorting]='true'
-                                          allowResizing='true' [allowSelection]='true' [showColumnChooser]='true'
-                                          [allowFiltering]='true'>
-                                          <e-columns>
+                                        <ejs-grid #overviewgrid2 id='overviewgrid2' [dataSource]='data2' rowHeight='37'
+                                        headerHeight='42' height='100%' allowResizing='true' 
+                                        [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                        >
+                                        <e-columns>
                                             <e-column type='checkbox' [showInColumnChooser]='false'
                                               [allowFiltering]='false' [allowSorting]='false' width='40'
                                               textAlign="Center" [allowEditing]="false">
