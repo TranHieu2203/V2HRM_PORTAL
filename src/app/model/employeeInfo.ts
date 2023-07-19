@@ -90,7 +90,10 @@ export class EmployeeInfo {
     insRegionName?: string
   }
   export class Situation {
-    relationshipId?: number;
+    
+    id?: number;
+    relationshipId?: number = 0;
+    relationshipName?: number;
     employeeId?: number;
     name?: string;
     no?: string;

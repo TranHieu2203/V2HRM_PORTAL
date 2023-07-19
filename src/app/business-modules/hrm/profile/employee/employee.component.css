@@ -1,3 +1,20 @@
 .bold-label {
     font-weight: bold;
   }
+  /* CSS để định dạng nút "Xóa" */
+.row-status .status-not-effect span {
+  cursor: pointer;
+  color: red; /* Thêm màu đỏ cho nút */
+}
+
+/* CSS khi trỏ vào nút "Xóa" */
+.row-status .status-not-effect span:hover {
+  color: darkred; /* Màu sắc khi trỏ vào nút */
+}
+.input-error {
+  color: red;
+}
+.red-asterisk {
+  color: red;
+  margin-left: 4px; /* (Tuỳ chọn) Để thêm khoảng cách giữa văn bản và dấu hoa thị */
+}

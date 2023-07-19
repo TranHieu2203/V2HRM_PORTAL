@@ -1,11 +1,12 @@
 export class WorkingBefore {
+  
   id?: number | null;
   employeeId?: number | null; //mã nhân viên
   employeeName?: string | null; //mã nhân viên
   employeeCode?: string | null;
   orgName?: string | null;
   companyName?: string | null;
-  companyId?: number|null;
+  companyId?: number=0;
   joinDate?: Date | null; 
   endDate?: Date | null; 
   companyAddress?: string | null;

@@ -16,7 +16,8 @@ import {
   FilterService,
   VirtualScrollService,
   GridComponent,
-} from "@syncfusion/ej2-angular-grids";
+} from '@syncfusion/ej2-angular-grids';
+import { ToolbarItem } from "src/app/common/ToolbarItem";
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
 import { TrainingBefore } from 'src/app/model/trainingbefore';
@@ -26,6 +27,7 @@ import {
   SelectEventArgs,
   SelectingEventArgs,
 } from '@syncfusion/ej2-navigations';
+
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 
 // import { Consts } from "src/app/common/const";
@@ -38,7 +40,7 @@ const _ = require('lodash');
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild('tabDefault') tabDefault!: TabComponent;
-  @ViewChild("overviewgrid", { static: false })
+  @ViewChild('overviewgrid', { static: false })
   public gridInstance!: GridComponent;
   editForm!: FormGroup;
   employeeInfo: EmployeeInfo = new EmployeeInfo();
@@ -100,126 +102,120 @@ export class EmployeeComponent implements OnInit {
   ) {
     this.editForm = this._formBuilder.group({
       currentinfor: this._formBuilder.group({
-        code: [
-          { value: null, disabled: false },
-          [Validators.required, this.globals.noWhitespaceValidator],
-        ],
+        
         firstName: [
-          '',
+          "",
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
         lastName: [
-          '',
+          "",
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
         taxCode: [[]], //Mã sô thuế
-        salTotal: ['', []],
-        insRegionId: ['', [Validators.required]],
-        placeId: ['', []],
+        placeId: ["", []],
       }),
       infor: this._formBuilder.group({
-        birthDate: ['', []],
-        genderId: [''],
-        birthPlace: ['', []],
-        idNo: ['', []], //CMND
-        idDate: [''], //Ngày cấp
-        idPlace: ['', []], //Nơi cấp
-        passPlace: ['', []],
-        nationalityId: ['', []], //Quốc tịch
-        nativeId: ['', []], //Dân tộc
-        religionId: ['', []], //Tôn giáo
-        maritalStatusId: ['', []], //Tình trạng hôn nhân
-        residentId: [''],
+        birthDate: ["", []],
+        genderId: [""],
+        birthPlace: ["", []],
+        idNo: ["", []], //CMND
+        idDate: [""], //Ngày cấp
+        idPlace: ["", []], //Nơi cấp
+        passPlace: ["", []],
+        nationalityId: ["", []], //Quốc tịch
+        nativeId: ["", []], //Dân tộc
+        religionId: ["", []], //Tôn giáo
+        maritalStatusId: ["", []], //Tình trạng hôn nhân
+        residentId: [""],
       }),
       address: this._formBuilder.group({
-        address: ['', []],
-        provinceId: ['', []],
-        districtId: ['', []],
-        wardId: ['', []],
-        directManagerId: ['', []],
-        curAddress: [''],
-        joinDate: ['', []],
-        workStatusId: ['', []],
+        address: ["", []],
+        provinceId: ["", []],
+        districtId: ["", []],
+        wardId: ["", []],
+        directManagerId: ["", []],
+        curAddress: [""],
+        joinDate: ["", []],
       }),
       curAddress: this._formBuilder.group({
-        curAddress: ['', []],
-        curProvinceId: ['', []],
-        curDistrictId: ['', []],
-        curWardId: ['', []],
+        curAddress: ["", []],
+        curProvinceId: ["", []],
+        curDistrictId: ["", []],
+        curWardId: ["", []],
       }),
       contact: this._formBuilder.group({
-        mobilePhone: ['', []],
-        email: ['', []],
-        workEmail: ['', []],
-        contactPer: ['', []], //Người liên hệ khi cần
-        contactPerPhone: ['', []],
+        mobilePhone: ["", []],
+        email: ["", []],
+        workEmail: ["", []],
+        contactPer: ["", []], //Người liên hệ khi cần
+        contactPerPhone: ["", []],
       }),
       addinfo: this._formBuilder.group({
-        passNo: ['', []], //Hộ chiếu
-        passDate: ['', []], //Ngày cấp
-        passExpire: ['', []],
-        passPlace: ['', []],
-        visaNo: ['', []],
-        visaDate: ['', []],
-        visaExpire: ['', []],
-        visaPlace: ['', []],
-        workPermit: ['', []], //Giấy phép lao động
-        workPermitDate: ['', []],
-        workPermitExpire: ['', []],
-        workPermitPlace: ['', []],
-        workNo: ['', []],
-        workDate: ['', []],
-        workScope: ['', []],
-        workPlace: ['', []],
+        passNo: ["", []], //Hộ chiếu
+        passDate: ["", []], //Ngày cấp
+        passExpire: ["", []],
+        passPlace: ["", []],
+        visaNo: ["", []],
+        visaDate: ["", []],
+        visaExpire: ["", []],
+        visaPlace: ["", []],
+        workPermit: ["", []], //Giấy phép lao động
+        workPermitDate: ["", []],
+        workPermitExpire: ["", []],
+        workPermitPlace: ["", []],
+        workNo: ["", []],
+        workDate: ["", []],
+        workScope: ["", []],
+        workPlace: ["", []],
       }),
       education: this._formBuilder.group({
-        schoolId: ['', []],
-        qualificationId: ['', []], //Trình độ chuyên môn
-        trainingFormId: ['', []], //Hình thức đào tạo
-        learningLevelId: ['', []], //trình độ học vấn
-        languageMark: ['', []], //điểm số
-        language: ['', []], //ngoại ngữ
+        schoolId: ["", []],
+        qualificationId: ["", []], //Trình độ chuyên môn
+        trainingFormId: ["", []], //Hình thức đào tạo
+        learningLevelId: ["", []], //trình độ học vấn
+        languageMark: ["", []], //điểm số
+        language: ["", []], //ngoại ngữ
       }),
       situation: this._formBuilder.group({
-        name: ['', []],
-        birth: ['', []],
-        no: ['', []], // CMND
-        taxNo: ['', []], // CMND
-        familyNo: ['', []], // CMND
-        familyName: ['', []], // CMND
-        address: ['', []], // CMND
-        relationshipId: ['', []],
-        dateStart: ['', []],
-        dateEnd: ['', []],
+        name: ["", []],
+        birth: ["", []],
+        no: ["", []], // CMND
+        taxNo: ["", []], // CMND
+        familyNo: ["", []], // CMND
+        familyName: ["", []], // CMND
+        address: ["", []], // CMND
+        relationshipId: ["", []],
+        dateStart: ["", []],
+        dateEnd: ["", []],
       }),
       trainingbefore: this._formBuilder.group({
-        yearGra: ['',[]], 
-        nameSchools: ['',[]],  
-        fromDate: ['', []], 
-        toDate: ['', []],  
-        certificateTypeId: ['',[]],   
-        formTrainId: [''], 
-        specializedTrainId: [''], 
-        resultTrain: [''], 
-        note: [''],
-        effectiveDateFrom: ['', []], 
-        effectiveDateTo: ['', []], 
+        yearGra: ["", []],
+        nameSchools: ["", []],
+        fromDate: ["", []],
+        toDate: ["", []],
+        certificateTypeId: ["", []],
+        formTrainId: [""],
+        specializedTrainId: [""],
+        resultTrain: [""],
+        note: [""],
+        effectiveDateFrom: ["", []],
+        effectiveDateTo: ["", []],
       }),
       workingbefore: this._formBuilder.group({
-        companyName: ["",[]], 
-        orgName: ["",[]],  
-        joinDate: ["", []], 
-        endDate: ["", []],  
-        companyAddress: ["",[]],   
-        telephone: [""], 
-        salary: [""], 
-        titleName: [""], 
-        levelName: [""], 
-        reference: [""], 
-        remark: [""], 
-        workDetail: [""], 
+        companyName: ["", []],
+        orgName: ["", []],
+        joinDate: ["", []],
+        endDate: ["", []],
+        companyAddress: ["", []],
+        telephone: [""],
+        salary: [""],
+        titleName: [""],
+        levelName: [""],
+        reference: [""],
+        remark: [""],
+        workDetail: [""],
         terReason: [""],
-        companyId: ["",[]],
+        companyId: ["", []],
       }),
     });
     this._unsubscribeAll = new Subject();
@@ -233,7 +229,7 @@ export class EmployeeComponent implements OnInit {
 
   public onFiltering(e: any, a: any) {
     e.preventDefaultAction = true;
-    const predicate = new Predicate('name', 'contains', e.text, true, true);
+    const predicate = new Predicate('value', 'contains', e.text, true, true);
     this.query = new Query();
     this.query = e.text !== '' ? this.query.where(predicate) : this.query;
     e.updateData(a, this.query);
@@ -375,7 +371,6 @@ export class EmployeeComponent implements OnInit {
       this.getListSituation();
       this.getListTrainingBefore();
       this.getListWorkingBefore();
-      
     });
   }
   loadDatalazy(model: EmployeeInfo) {
@@ -423,32 +418,36 @@ export class EmployeeComponent implements OnInit {
     }
   }
   getListSituation() {
-    
-      this.commomHttpService
-        .commonGetRequest('laythongtin', 'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id)
-        .subscribe((res: any) => {
-          this.data = res.body.data;
-          
-        });
-  }
-  getListTrainingBefore() {
-    
     this.commomHttpService
-      .commonGetRequest('laythongtin', 'hr/Employee/ListTrainingBeforeEdit?empId=' + this.employeeInfo.id)
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id
+      )
+      .subscribe((res: any) => {
+        this.data = res.body.data;
+      });
+  }
+
+  getListTrainingBefore() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListTrainingBeforeEdit?empId=' + this.employeeInfo.id
+      )
       .subscribe((res: any) => {
         this.data1 = res.body.data;
-        console.log("this.data1",this.data1)
       });
-}
-getListWorkingBefore() {
-    
-  this.commomHttpService
-    .commonGetRequest('laythongtin', 'hr/Employee/ListWorkingBeforeEdit?empId=' + this.employeeInfo.id)
-    .subscribe((res: any) => {
-      this.data2 = res.body.data;
-
-    });
-}
+  }
+  getListWorkingBefore() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListWorkingBeforeEdit?empId=' + this.employeeInfo.id
+      )
+      .subscribe((res: any) => {
+        this.data2 = res.body.data;
+      });
+  }
   getById() {
     return new Promise((resolve) => {
       this.profileEmployeeService.getEmployeeInfo().subscribe((res: any) => {
@@ -732,8 +731,55 @@ getListWorkingBefore() {
 
   RemoveRelation(id: any) {
     this.removeId = id;
+
+    this.DeleteSituation(this.removeId);
+    this.getListSituation();
     // this.modalService.open("confirm-back-modal1");
     // this.modalService.open("confirm-delete-modal1");
+  }
+  RemoveRelation1(id: any) {
+    this.removeId = id;
+
+    this.DeleteTrainingBeforeEdit(this.removeId);
+    this.getListTrainingBefore();
+    // this.modalService.open("confirm-back-modal1");
+    // this.modalService.open("confirm-delete-modal1");
+  }
+  RemoveRelation2(id: any) {
+    this.removeId = id;
+
+    this.DeleteWorkingBeforeEdit(this.removeId);
+    this.getListWorkingBefore();
+    // this.modalService.open("confirm-back-modal1");
+    // this.modalService.open("confirm-delete-modal1");
+  }
+  DeleteSituation(id: any) {
+    this.commomHttpService
+      .commonPostRequest(
+        'laythongtin',
+        'hr/Employee/RemoveRelationEdit?id=',
+        id
+      )
+      .subscribe((res: any) => {});
+  }
+
+  DeleteTrainingBeforeEdit(id: any) {
+    this.commomHttpService
+      .commonPostRequest(
+        'laythongtin',
+        'hr/Employee/RemoveTrainingBeforeEdit?id=',
+        id
+      )
+      .subscribe((res: any) => {});
+  }
+  DeleteWorkingBeforeEdit(id: any) {
+    this.commomHttpService
+      .commonPostRequest(
+        'laythongtin',
+        'hr/Employee/RemoveTrainingBeforeEdit?id=',
+        id
+      )
+      .subscribe((res: any) => {});
   }
   convertModel(param: any) {
     let model = _.cloneDeep(param);
@@ -772,19 +818,50 @@ getListWorkingBefore() {
 
     return model;
   }
+  rowSelecting(e: any) {
+    this.situation = e.data;
+    console.log("Lần: ",this.situation)
+  }
+  rowDeselected(e:any)
+  {
+    this.situation = new Situation();
+    
+    this.situation.id = 0;
+
+    console.log("this.situation",this.situation)
+    
+  }
+  rowSelecting1(e: any) {
+    this.trainingbefore = e.data;
+    
+  }
+  rowDeselected1(e:any)
+  {
+    this.trainingbefore = new TrainingBefore();
+    this.trainingbefore.id = 0;
+    
+  }
+  rowSelecting2(e: any) {
+    this.workingbefore = e.data;
+  }
+  rowDeselected2(e:any)
+  {
+    this.workingbefore = new WorkingBefore();
+    this.workingbefore.id = 0;
+    
+  }
   saveForm() {
-    // console.log("this.editForm.valid: ", this.editForm)
+    console.log(this.editForm)
+    if (!this.editForm.valid) {
+      alert('Form chưa hợp lệ !');
+      // this.notification.warning("Form chưa hợp lệ !");
+      this.editForm.markAllAsTouched();
+      return;
+    }
 
-    // this.editForm.markAllAsTouched()
-    // if (!this.editForm.valid) {
-    //   alert(" form chưa hợp lệ")
-    //   return;
-    // }
-     
-
-    if ((this.tabDefault.selectedItem == 3)) {
+    if (this.tabDefault.selectedItem == 3) {
       let param = this.convertModel(this.situation);
-      
+
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)
@@ -792,63 +869,74 @@ getListWorkingBefore() {
             if (res.statusCode == 400) {
               alert('lỗi');
             } else {
-              this.editForm.controls["situation"].reset();
+              this.editForm.controls['situation'].reset();
               this.getListSituation();
               alert('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
       });
-    }
-    else if ((this.tabDefault.selectedItem == 4)) {
+    } else if (this.tabDefault.selectedItem == 4) {
       let param = this.convertModel(this.trainingbefore);
-      console.log("param: ", param)
+      console.log('param: ', param);
       return new Promise((resolve) => {
         this.commomHttpService
-          .commonPostRequest('INSERT', 'portal/employee/AddTrainingBeforeEdit', param)
+          .commonPostRequest(
+            'INSERT',
+            'portal/employee/AddTrainingBeforeEdit',
+            param
+          )
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
               alert('lỗi');
             } else {
+              this.editForm.controls['trainingbefore'].reset();
+              this.getListTrainingBefore();
               alert('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
       });
-    }
-    else if ((this.tabDefault.selectedItem == 5)) {
+    } else if (this.tabDefault.selectedItem == 5) {
       let param = this.convertModel(this.workingbefore);
-      console.log("param: ", param)
+      console.log('param: ', param);
       return new Promise((resolve) => {
         this.commomHttpService
-          .commonPostRequest('INSERT', 'portal/employee/AddWorkingBeforeEdit', param)
+          .commonPostRequest(
+            'INSERT',
+            'portal/employee/AddWorkingBeforeEdit',
+            param
+          )
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
               alert('lỗi');
             } else {
+              this.editForm.controls['workingbefore'].reset();
+              this.getListWorkingBefore();
               alert('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
       });
+    } else {
+      let param = this.convertModel(this.employeeInfo);
+      return new Promise((resolve) => {
+        this.commomHttpService
+          .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
+          .subscribe((res: any) => {
+            if (res.statusCode == 400) {
+              alert('lỗi');
+              return;
+            } else {
+              alert('thành công');
+              return;
+            }
+          });
+      });
     }
-    else{
-      return;
-    }
-    
+
     // let param = this.convertModel(this.employeeInfo);
 
-    // return new Promise((resolve) => {
-    //   this.commomHttpService
-    //     .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
-    //     .subscribe((res: any) => {
-    //       if (res.statusCode == 400) {
-    //         alert('lỗi');
-    //       } else {
-    //         alert('thành công');
-    //         // this.router.navigate(["/cms/profile/business/staffprofile"]);
-    //       }
-    //     });
-    // });
+    
   }
 }
