@@ -64,7 +64,7 @@
                                               <input type="text" class="form-control" name="firstName"
                                                 formControlName="firstName" [(ngModel)]="employeeInfo.firstName"
                                                 (ngModelChange)="changeName()">
-                                                <span class="input-error"
+                                              <span class="input-error"
                                                 *ngIf="editForm.controls['currentinfor'].get('firstName')!.hasError('required') && !editForm.controls['currentinfor'].get('firstName')!.untouched">
                                                 Bắt buộc nhập</span>
                                             </div>
@@ -76,8 +76,8 @@
                                                 formControlName="lastName" [(ngModel)]="employeeInfo.lastName"
                                                 (ngModelChange)="changeName()">
                                               <span class="input-error"
-                                                  *ngIf="editForm.controls['currentinfor'].get('lastName')!.hasError('required') && !editForm.controls['currentinfor'].get('lastName')!.untouched">
-                                                  Bắt buộc nhập </span>
+                                                *ngIf="editForm.controls['currentinfor'].get('lastName')!.hasError('required') && !editForm.controls['currentinfor'].get('lastName')!.untouched">
+                                                Bắt buộc nhập </span>
                                             </div>
                                           </div>
                                           <!-- Mã số thuế -->
@@ -115,11 +115,11 @@
                                                 (blur)="changeDate('birthDate')" placeholder=".../.../...">
                                               </ejs-datepicker>
                                               <span class="input-error"
-                                                  *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('') && !editForm.controls['infor'].get('birthDate')!.untouched">
-                                                  Bắt buộc chọn</span>
+                                                *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('') && !editForm.controls['infor'].get('birthDate')!.untouched">
+                                                Bắt buộc chọn</span>
                                               <span class="input-error"
-                                                  *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('incorrect') && !editForm.controls['infor'].get('birthDate')!.untouched">
-                                                  Sai định dạng</span>
+                                                *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('incorrect') && !editForm.controls['infor'].get('birthDate')!.untouched">
+                                                Sai định dạng</span>
                                             </div>
                                           </div>
                                           <!-- Nơi sinh -->
@@ -142,8 +142,8 @@
                                                 [allowFiltering]='true' (filtering)='onFiltering($event,lstGenderId)'>
                                               </ejs-dropdownlist>
                                               <span class="input-error"
-                                                  *ngIf="editForm.controls['infor'].get('genderId')!.hasError('') && !editForm.controls['infor'].get('genderId')!.untouched">
-                                                  Bắt buộc chọn</span>
+                                                *ngIf="editForm.controls['infor'].get('genderId')!.hasError('') && !editForm.controls['infor'].get('genderId')!.untouched">
+                                                Bắt buộc chọn</span>
                                             </div>
                                           </div>
                                         </div>
@@ -285,13 +285,14 @@
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
-                                            <button class="btn-coppy" title="Sao chép địa chỉ thường trú" (click)="coppyAddress()">
+                                            <button class="btn-coppy" title="Sao chép địa chỉ thường trú"
+                                              (click)="coppyAddress()">
                                               <i class="fas fa-copy" aria-hidden="true"></i>
                                             </button>
                                             <label class="label-coppy">Sao chép địa chỉ thường trú</label>
                                           </div>
                                         </div>
-                                        
+
 
                                       </div>
                                       <div class="group-box" formGroupName="curAddress">
@@ -657,7 +658,7 @@
                                         <label class="bold-label">THÔNG TIN TRÌNH ĐỘ VĂN HÓA</label>
                                       </div>
                                       <div class="group-box" formGroupName="education" style="margin-top: 10px;">
-                                        
+
                                         <div class="row">
                                           <!--Trường  -->
                                           <div class="col-sm-4">
@@ -745,7 +746,7 @@
                                         <label class="bold-label">THÔNG TIN GIA CẢNH</label>
                                       </div>
                                       <div class="group-box" formGroupName="situation" style="margin-top: 10px;">
-                                        
+
                                         <div class="row">
                                           <!-- Tên -->
                                           <div class="col-sm-4">
@@ -861,7 +862,8 @@
                                           <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data' rowHeight='37'
                                             headerHeight='42' height='100%' allowResizing='true' [allowSelection]='true'
                                             allowTextWrap='true' [enableHover]="false" [showColumnChooser]='true'
-                                            (rowSelecting)="rowSelecting($event!)" (rowDeselected)="rowDeselected($event)">
+                                            (rowSelecting)="rowSelecting($event!)"
+                                            (rowDeselected)="rowDeselected($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -938,7 +940,7 @@
                                         <label class="bold-label">THÔNG TIN ĐÀO TẠO TRƯỚC ĐÂY</label>
                                       </div>
                                       <div class="group-box" formGroupName="trainingbefore" style="margin-top: 10px;">
-                                        
+
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
@@ -980,15 +982,17 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tên tổ chức đào tạo <span class="red-asterisk">*</span></label>
+                                              <label class="">Tên tổ chức đào tạo <span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" formControlName="nameSchools"
                                                 [(ngModel)]="trainingbefore.nameSchools">
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="certificateTypeId">Loại bằng cấp/chứng chỉ <span class="red-asterisk">*</span></label>
-                                              
+                                              <label class="" for="certificateTypeId">Loại bằng cấp/chứng chỉ <span
+                                                  class="red-asterisk">*</span></label>
+
                                               <ejs-dropdownlist id='certificateTypeId' [dataSource]='lstCertificate'
                                                 formControlName="certificateTypeId" [showClearButton]="true"
                                                 [(ngModel)]="trainingbefore.certificateTypeId" [fields]='fields'
@@ -1003,7 +1007,8 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="formTrainId">Hình thức đào tạo <span class="red-asterisk">*</span></label>
+                                              <label class="" for="formTrainId">Hình thức đào tạo <span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='formTrainId' [dataSource]='lstFormTrain'
                                                 formControlName="formTrainId" [showClearButton]="true"
                                                 [(ngModel)]="trainingbefore.formTrainId" [fields]='fields'
@@ -1020,7 +1025,8 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="specializedTrainId">Chuyên ngành đào tạo <span class="red-asterisk">*</span></label>
+                                              <label class="" for="specializedTrainId">Chuyên ngành đào tạo <span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='specializedTrainId' [dataSource]='lstSpecialized'
                                                 formControlName="specializedTrainId" [showClearButton]="true"
                                                 [(ngModel)]="trainingbefore.specializedTrainId" [fields]='fields'
@@ -1093,8 +1099,7 @@
                                             rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
                                             [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
                                             [showColumnChooser]='true' (rowSelecting)="rowSelecting1($event!)"
-                                            (rowDeselected)="rowDeselected1($event)"
-                                            >
+                                            (rowDeselected)="rowDeselected1($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -1172,7 +1177,7 @@
                                       </div>
                                       <div class="group-box" formGroupName="workingbefore" style="margin-top: 10px;">
 
-                                       
+
                                         <div class="row">
 
                                           <div class="col-sm-4">
@@ -1356,7 +1361,8 @@
                                               <e-column field='levelName' textAlign="Left" headerText="Cấp bậc"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              <e-column field='statusName' textAlign="Center" headerText="Trạng thái" clipMode='EllipsisWithTooltip' width="100">
+                                              <e-column field='statusName' textAlign="Center" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
                                                     <div class="status-not-effect text-center">

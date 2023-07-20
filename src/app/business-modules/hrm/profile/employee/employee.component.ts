@@ -914,7 +914,7 @@ export class EmployeeComponent implements OnInit {
               this.getListWorkingBefore();
               alert('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
-            }
+            } 
           });
       });
     } else {
