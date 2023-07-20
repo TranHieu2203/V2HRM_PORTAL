@@ -42,3 +42,13 @@
 .custom-container {
   margin-top: 20px; /* Khoảng cách giữa <ng-template> và "THÔNG TIN CÁ NHÂN" */
 }
+/* Tùy chỉnh kiểu dáng cho nút Lưu */
+.custom-button {
+  border-radius: 25px; /* Để làm cho nút hình tròn */
+  padding: 10px 25px; /* Kích thước nút */
+}
+
+/* Tùy chỉnh kiểu dáng cho biểu tượng */
+.custom-button i {
+  font-size: 18px; /* Kích thước biểu tượng */
+}
