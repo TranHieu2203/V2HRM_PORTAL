@@ -18,3 +18,8 @@
   color: red;
   margin-left: 4px; /* (Tuỳ chọn) Để thêm khoảng cách giữa văn bản và dấu hoa thị */
 }
+/* Điều chỉnh kích thước chữ cho phần mã nhân viên và họ tên */
+#code,
+#fullname {
+  font-size: 15px; /* Điều chỉnh kích thước chữ tùy ý */
+}
