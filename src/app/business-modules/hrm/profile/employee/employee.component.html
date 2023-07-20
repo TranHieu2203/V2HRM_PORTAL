@@ -52,11 +52,11 @@
                                     <div> Sơ yếu lý lịch </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll" curentTab='profile'>
+                                    <div class="custom-container" id="syll" curentTab='profile'>
                                       <div class="row">
                                         <label class="bold-label">THÔNG TIN CÁ NHÂN</label>
                                       </div>
-                                      <div class="group-box" formGroupName="currentinfor">
+                                      <div class="group-box" formGroupName="currentinfor" style="margin-top: 10px;">
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
@@ -277,8 +277,6 @@
                                               </ejs-dropdownlist>
                                             </div>
                                           </div>
-
-
                                           <div class="col-sm-12">
                                             <div class="form-group ">
                                               <label class="">Số nhà, đường phố, thôn xóm</label>
@@ -286,7 +284,15 @@
                                                 formControlName="address" [(ngModel)]="employeeInfo.address">
                                             </div>
                                           </div>
+                                          <div class="col-sm-4">
+                                            <button class="btn-coppy" title="Sao chép địa chỉ thường trú" (click)="coppyAddress()">
+                                              <i class="fas fa-copy" aria-hidden="true"></i>
+                                            </button>
+                                            <label class="label-coppy">Sao chép địa chỉ thường trú</label>
+                                          </div>
                                         </div>
+                                        
+
                                       </div>
                                       <div class="group-box" formGroupName="curAddress">
                                         <div class="row">
@@ -405,11 +411,11 @@
                                     <div> Thông tin phụ </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll1" curentTab='hc'>
-                                      <div class="group-box" formGroupName="addinfo">
-                                        <div class="row">
-                                          <label class="bold-label">THÔNG TIN HỘ CHIẾU</label>
-                                        </div>
+                                    <div class="custom-container" id="syll1" curentTab='hc'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN HỘ CHIẾU</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="addinfo" style="margin-top: 10px;">
                                         <div class="row">
                                           <!-- Hộ chiếu-->
                                           <div class="col-sm-4">
@@ -646,11 +652,12 @@
                                     <div> Trình độ văn hóa </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll1" curentTab='tdvh'>
-                                      <div class="group-box" formGroupName="education">
-                                        <div class="row">
-                                          <label class="bold-label">THÔNG TIN TRÌNH ĐỘ VĂN HÓA</label>
-                                        </div>
+                                    <div class="custom-container" id="syll1" curentTab='tdvh'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN TRÌNH ĐỘ VĂN HÓA</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="education" style="margin-top: 10px;">
+                                        
                                         <div class="row">
                                           <!--Trường  -->
                                           <div class="col-sm-4">
@@ -733,11 +740,12 @@
                                     <div> Gia cảnh </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll1" curentTab='gc'>
-                                      <div class="group-box" formGroupName="situation">
-                                        <div class="row">
-                                          <label class="bold-label">THÔNG TIN GIA CẢNH</label>
-                                        </div>
+                                    <div class="custom-container" id="syll1" curentTab='gc'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN GIA CẢNH</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="situation" style="margin-top: 10px;">
+                                        
                                         <div class="row">
                                           <!-- Tên -->
                                           <div class="col-sm-4">
@@ -925,11 +933,12 @@
                                     <div> Quá trình đào tạo trước đây </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll1" curentTab='qtdttd'>
-                                      <div class="group-box" formGroupName="trainingbefore">
-                                        <div class="row">
-                                          <label class="bold-label">THÔNG TIN ĐÀO TẠO TRƯỚC ĐÂY</label>
-                                        </div>
+                                    <div class="custom-container" id="syll1" curentTab='qtdttd'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN ĐÀO TẠO TRƯỚC ĐÂY</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="trainingbefore" style="margin-top: 10px;">
+                                        
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
@@ -1157,11 +1166,13 @@
                                     <div> Quá trình công tác trước đây </div>
                                   </ng-template>
                                   <ng-template #content>
-                                    <div class=" " id="syll1" curentTab='qtcttd'>
-                                      <div class="group-box" formGroupName="workingbefore">
-                                        <div class="row">
-                                          <label class="bold-label">THÔNG TIN CÔNG TÁC TRƯỚC ĐÂY</label>
-                                        </div>
+                                    <div class="custom-container" id="syll1" curentTab='qtcttd'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN CÔNG TÁC TRƯỚC ĐÂY</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="workingbefore" style="margin-top: 10px;">
+
+                                       
                                         <div class="row">
 
                                           <div class="col-sm-4">

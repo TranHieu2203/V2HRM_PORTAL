@@ -23,3 +23,22 @@
 #fullname {
   font-size: 15px; /* Điều chỉnh kích thước chữ tùy ý */
 }
+/* Tùy chỉnh kiểu dáng cho nút sao chép */
+.btn-coppy {
+  background-color: #007bff; /* Màu nền xanh dương */
+  color: #fff; /* Màu chữ trắng */
+  border: none; /* Loại bỏ viền */
+  padding: 3px 15px; /* Kích thước nút */
+  cursor: pointer;
+  border-radius: 3px; /* Góc bo viền */
+  font-size: 12px; /* Kích thước chữ */
+}
+
+.btn-coppy:hover {
+  background-color: #0056b3; /* Màu nền xanh dương khi di chuột vào */
+}
+
+/* Điều chỉnh khoảng cách giữa <ng-template> và "THÔNG TIN CÁ NHÂN" */
+.custom-container {
+  margin-top: 20px; /* Khoảng cách giữa <ng-template> và "THÔNG TIN CÁ NHÂN" */
+}

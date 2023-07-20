@@ -936,4 +936,18 @@ export class EmployeeComponent implements OnInit {
 
     // let param = this.convertModel(this.employeeInfo);
   }
+  coppyAddress() {
+    if (this.employeeInfo.provinceId != null) {
+      this.employeeInfo.curProvinceId = this.employeeInfo.provinceId;
+      this.getDistrict(this.employeeInfo.curProvinceId).then((res: any) => {
+        this.lstCurDistrictId = res.body.data;
+        this.employeeInfo.curDistrictId = this.employeeInfo.districtId;
+        this.getWard(this.employeeInfo.curDistrictId).then((res: any) => {
+          this.lstCurWardId = res.body.data;
+          this.employeeInfo.curWardId = this.employeeInfo.wardId;
+        });
+      });
+      this.employeeInfo.curAddress = this.employeeInfo.address;
+    }
+  }
 }
