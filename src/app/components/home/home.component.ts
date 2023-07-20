@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RandomAvatarService } from 'src/app/services/random-avatar.service';
 import { RandomImageService } from 'src/app/services/random-image.service';
-
+import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { fromEvent, Observable } from 'rxjs';
 import { HeaderService } from 'src/app/services/header.service';
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('testerLeft') testerLeft!: ElementRef;
   @ViewChild('testerRight') testerRight!: ElementRef;
   @ViewChild('postCreator') postCreator!: ElementRef;
-
+  data:any;
   resizer$!: Observable<any>;
 
   constructor(
@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private headerService: HeaderService,
     private randomAvatarService: RandomAvatarService, 
     private randomImageService: RandomImageService,
+    private commomHttpService: CommonHttpRequestService,
     ) {
     this.randomAvatarSrc1 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc2 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
@@ -55,6 +56,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.postimage3 = "/assets/images/demo/3.png";
     this.postimage4 = "/assets/images/demo/4.png";
     this.postimage5 = "/assets/images/demo/5.png";
+    this.getData();
+
   }
 
   ngAfterViewInit(): void {
@@ -87,6 +90,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.headerService.searchLeft$.next(rec.left + paddingLeft);
     this.headerService.searchWidth$.next(rec1.width);
     
+  }
+  getData() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/BlogInternal/GetAll' 
+      )
+      .subscribe((res: any) => {
+        this.data = res.body.data;
+        console.log(res)
+      });
   }
 
 }
