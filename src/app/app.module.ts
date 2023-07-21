@@ -60,6 +60,7 @@ import { RequestCache, RequestCacheWithMap } from './services/request-cache.serv
 import { TotalOverviewComponent } from './components/total-overview/total-overview.component';
 import { Globals } from './common/globals';
 import { TranslateModule } from '@ngx-translate/core';
+import { StringHtmlPipe } from './pipe/string-html.pipe';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ModulesComponent,
     AccountComponent,
     TotalOverviewComponent,
+    StringHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,7 @@ import { TranslateModule } from '@ngx-translate/core';
     }),
     TranslateModule.forRoot(),
   ],
-  exports: [],
+  exports: [StringHtmlPipe],
   providers: [
     Globals,
     AuthService,

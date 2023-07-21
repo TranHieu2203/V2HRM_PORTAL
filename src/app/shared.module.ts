@@ -7,6 +7,7 @@ import { DataTablesModule } from "angular-datatables";
 import { PagetitleComponent } from './components/pagetitle/pagetitle.component';
 import { LoadComponent } from './components/load/load.component';
 import { TooltipComponent } from './libraries/tooltip/tooltip.component';
+import { StringHtmlPipe } from './pipe/string-html.pipe';
 
 @NgModule({
   declarations: [

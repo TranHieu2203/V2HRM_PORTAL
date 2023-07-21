@@ -6,6 +6,10 @@ import { RandomImageService } from 'src/app/services/random-image.service';
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { fromEvent, Observable } from 'rxjs';
 import { HeaderService } from 'src/app/services/header.service';
+import { Globals } from "src/app/common/globals";
+import { Home } from 'src/app/model/home';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-home',
@@ -22,7 +26,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('postCreator') postCreator!: ElementRef;
   data:any;
   resizer$!: Observable<any>;
-
+  model: Home = new Home();
   constructor(
     private authService: AuthService, 
     private router: Router, 
@@ -30,12 +34,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private randomAvatarService: RandomAvatarService, 
     private randomImageService: RandomImageService,
     private commomHttpService: CommonHttpRequestService,
+    private globals: Globals,
+    private _sanitizer: DomSanitizer
     ) {
     this.randomAvatarSrc1 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc2 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc3 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc4 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc5 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
+    
   }
 
   postimage1?: string;
@@ -78,8 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   setTesters() {
     const el = this.middleColumn.nativeElement;
     const rec = el.getBoundingClientRect();
-    console.log("rec", rec)
-    console.log("el.style", el.style)
+
     // this.testerLeft.nativeElement.style.width = `${rec.left}px`;
     const el1 = this.postCreator.nativeElement
     const rec1 = el1.getBoundingClientRect();
@@ -95,12 +101,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/BlogInternal/GetAll' 
+        'hr/BlogInternal/ListHome' 
       )
       .subscribe((res: any) => {
         this.data = res.body.data;
-        console.log(res)
+        for (const item of this.data) {
+          item.avater = this.randomAvatarSrc1;
+          if(item.createDate != null && item.updateDate == null){
+            item.updateDate = this.formatDate(item.createDate.toString())
+          }
+          else{
+            item.updateDate = this.formatDate(item.updateDate.toString())
+          }
+          
+          item.imgUrl = this.globals.apiUrlFileManager.toString().replace("api/","") + item.imgUrl;
+          
+        }
+        
       });
+      
+        
+  }
+ formatDate(dateString: string): string {
+    const dateObject = new Date(dateString);
+    const hours = String(dateObject.getHours()).padStart(2, '0');
+    const minutes = String(dateObject.getMinutes()).padStart(2, '0');
+    const day = String(dateObject.getDate()).padStart(2, '0');
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Lưu ý: Tháng trong JavaScript bắt đầu từ 0
+    const year = dateObject.getFullYear();
+  
+    return `${hours}:${minutes} ${day}/${month}/${year}`;
   }
 
 }

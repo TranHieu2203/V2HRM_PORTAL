@@ -11,143 +11,58 @@
                     <div #postCreator>
                         <!-- <app-createpost></app-createpost> -->
                     </div>
-                    <app-postview [id]="'32'" [postimage]="postimage1" [avater]="randomAvatarSrc1" user="COM"
-                        time="22 min ago"
-                        des="TƯNG BỪNG MỪNG TUỔI MỚI VỚI CHUỖI SỰ KIỆN VMO11 @all 
-                        📢VMO gọi, bạn đã sẵn sàng trả lời? Năm 2022, chúng ta đã cùng nhau trải qua “Một thập kỷ chuyển mình” đầy ấn tượng.
-                        Chào tuổi 11, VMO muốn cùng 1200 thành viên viết tiếp hành trình chinh phục năm châu. 
-                        Hãy cùng chờ đón chuỗi sự kiện VMO11 với chủ đề “Global Expansion”: 
-                        ⭐Tiếp sức mạnh cùng Giải E-sport VMO Power Up
-                        ⭐Tăng tốc độ cùng Giải Chạy VMO Speed Up
-                        ⭐Về đích cùng nhau tại sự kiện bí ẩn sẽ được giải mã trong tháng 8
-                        VMO11 vẫn còn rất nhiều bí mật sẽ dần được bật mí. 
-                        Cùng chờ đón những điều bất ngờ sẽ được gợi mở trong từng sự kiện nhé! 💖
-                        #VMO11 #GlobalExpansion #VMOPowerUp #VMOSpeedUp">
-                    </app-postview>
-                    <app-postview [id]="'31'" postvideo="" [postimage]="postimage2" [avater]="randomAvatarSrc2"
-                        user="David Goria" time="22 min ago"
-                        des="VMOER SẴN SÀNG THỰC HIỆN KHAI BÁO TIMESHEET @all
-                        Từ ngày 01/07/2023 - 31/08/2023, giai đoạn 1 của Quy định khai báo timesheet trên VMO Jira 
-                         sẽ chính thức được triển khai thực hiện. Sau giai đoạn này, phòng Nhân sự và 
-                         SEPG sẽ đánh giá hiệu quả và điều chỉnh chính sách cho phù hợp (nếu cần).
-                        Để hỗ trợ nhân sự thực hiện quy định đúng thời gian, đúng quy cách, các bạn
-                         có thể đặt câu hỏi [TẠI ĐÂY](https://vmo.link/WfcxjNW) để được hỗ trợ và giải đáp các thắc mắc kịp thời.
+                 
+                    <ng-container *ngFor="let post of data">
+                        {{post.updateBy}}
+                        <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                            <div class="card-body p-0 d-flex">
+                                <figure class="avatar me-3"><img [src]="post.avater" alt="avater" class="shadow-sm rounded-circle w45" />
+                                </figure>
+                                <h4 class="fw-700 text-grey-900 font-xssss mt-1"> {{post.createBy}} <span
+                                        class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"> {{post.updateDate}}</span></h4>
                         
-                        📌Thông tin chi tiết:
+                            </div>
+                            <!-- Dùng khi có video -->
+                            <div *ngIf="post.postimage" class="card-body p-0 mb-3 rounded-3 overflow-hidden uttam-die">
+                                <a routerLink="/defaultvideo" class="video-btn">
+                                    <video autoplay loop class="float-right w-100">
+                                        <source [src]="post.postimage" type="video/mp4" />
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="card-body p-0 me-lg-5">
+                                <p class="fw-500 text-black-500 lh-26 font-xsss w-100 mb-2">
+                                    <span [innerHTML]="post.content | stringHtml"></span>
+                                </div>
                         
-                        - Link truy cập: https://myvmo.vmo.group/login (Sử dụng account Jira VMO để đăng nhập)
-                        - Chi tiết hướng dẫn sử dụng ứng dụng MyVMO vui lòng xem: https://vmo.link/FBhyLuM
-                        - Tóm tắt ngắn gọn Quy định khai báo timesheet: https://vmo.link/VMO-Timesheet
-                        - Link đọc đầy đủ Quy định (trên ERP): https://vmo.link/QD.VMO.HR_TIMESHEET
+                            <div *ngIf="post.imgUrl" class="card-body d-block p-0 mb-3">
+                                <div class="row ps-2 pe-2">
+                                    <div class="col-sm-12 p-1"><img [src]="post.imgUrl" class="rounded-3 w-100" alt="post" /></div>
+                                </div>
+                            </div>
                         
-                        Cùng nhau nâng cao hiệu suất công việc bằng cách khai báo timesheet mỗi ngày nhé!💪💪💪
-                        
-                        ">
-                    </app-postview>
-                    <app-postview [id]="'33'" postvideo="" [postimage]="postimage3" [avater]="randomAvatarSrc3"
-                        user="Anthony Daugloi" time="2 hour ago"
-                        des="CHÍNH SÁCH ĐỘC QUYỀN DÀNH CHO CÁN BỘ NHÂN VIÊN CỦA VMO HOLDINGS TRONG THÁNG 7 🌟
+                            <div class="card-body d-flex p-0">
+                                <div class="emoji-bttn pointer d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"
+                                    ><i
+                                        class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i
+                                        class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>100 Like</div>
+                                <div [class]="'emoji-wrap pointer'">
+                                    <ul class="emojis list-inline mb-0">
+                                        <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
+                                        <li class="emoji list-inline-item"><i class="em em-angry"></i></li>
+                                        <li class="emoji list-inline-item"><i class="em em-anguished"></i> </li>
+                                        <li class="emoji list-inline-item"><i class="em em-astonished"></i> </li>
+                                        <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
+                                        <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
+                                        <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
+                                        <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
+                                    </ul>
+                                </div>
+                          
+                            </div>
+                        </div>
 
-                        ===
-                        
-                        LẦN ĐẦU TIÊN,  VMO Academy tuyển sinh “Khóa học Project Manager Thực chiến - Làm chủ Quản lý dự án chỉ trong 2 tháng”.
-                        
-                        - Mô phỏng các case study thực chiến: học viên được trải nghiệm chân thật nhất, được tham gia vào quá trình phát triển từ số 0
-                        - Chương trình đào tạo theo chuẩn PMBOK 6: Sau đào tạo học viên sẽ được trang bị kiến thức có thể thi chứng chỉ PMP.
-                        - Rèn luyện các kỹ năng mềm: kỹ năng lãnh đạo, quản lý đội nhóm hiệu quả
-                        - Nâng cao tư duy phát triển sản phẩm: Có tư duy đúng đắn lấy người dùng làm trung tâm để xây dựng sản phẩm
-                        - Thời gian đào tạo linh hoạt: Online kết hợp offline, phù hợp cho các bạn đi làm
-                        
-                        Đặc biệt, học viên đăng ký sẽ được Test đầu vào - Phân tích năng lực cá nhân HOÀN TOÀN MIỄN PHÍ - do các chuyên gia PM hàng đầu của VMO Academy
-                        
-                        2, Lịch dự kiến khai giảng: 24/07/2023
-                        
-                        3, Học phí CHỈ CÒN 5.580.000/người dành riêng cho VMOers. (Học phí gốc 9.300.000 người/VNĐ/khóa)
-                        
-                        Ưu đãi dành riêng đối với cán bộ nhân viên VMOers khi đăng ký hôm nay đến ngày 20/07/2023:
-                        
-                        ✔️Có thể tặng, chuyển nhượng chính sách. Tặng ngay tiền mặt 200.000 VNĐ/Học viên được tặng/chuyển nhượng thành công.
-                        
-                        ✔️Giảm thêm 200.000VNĐ/học viên cho nhóm 3 học viên nhập học trở lên.
-                        
-                        👉 Đăng ký ngay tại: https://vma.vmogroup.com/pmthucchien
-                        
-                        👉 Tham khảo lộ trình học tại đây: https://vmo.link/lotrinhkhoapm 
-                        
-                        👉 Liên hệ tư vấn Mr. Minh: (+84) 96 336 1397
-                        
-                        ">
-                    </app-postview>
-                    <app-postview [id]="'35'" postvideo="" [postimage]="postimage4" [avater]="randomAvatarSrc4"
-                        user="Victor Exrixon" time="3 hour ago"
-                        des="CHÚC MỪNG 3 NĂM THÀNH LẬP TRUNG T M PHẦN MỀM SỐ 10 @all 
-
-                        🎉28/06/2023 là ngày đặc biệt ghi dấu mốc tròn 3 năm thành lập trung tâm phần mềm số 10. Với ngọn lửa thiện chiến và tinh thần làm việc chuyên nghiệp, tập thể DU10 đã cùng nhau vượt qua khó khăn thử thách. Hiện nay, DU10 đã có hơn 90 nhân sự với số lượng dự án ngày càng tăng, không chỉ mở rộng công nghệ sử dụng mà thu hút được nhiều khách hàng mới. Thành công này có được là nhờ việc đầu tư, thúc đẩy văn hóa học tập cho các thành viên DU10 cùng nhau phát triển.
-                        🔥Tin rằng, với ngọn lửa nhiệt huyết và tinh thần luôn hướng về mục tiêu chung của VMO, DU10 sẽ tiếp thêm sức mạnh cùng các trung tâm, phòng ban xây dựng VMO trở thành môi trường làm việc, phát triển lý tưởng và có vị thế trên toàn cầu.
-                        Chúc mừng 3 năm thành lập trung tâm phần mềm số 10 💖💖💖
-                        ">
-                    </app-postview>
-                    <!-- <app-friendsilder></app-friendsilder> -->
-                    <app-postview [id]="'36'" postvideo="" [postimage]="postimage5" [avater]="randomAvatarSrc5"
-                        user="Victor Exrixon" time="12 hour ago"
-                        des="KHAI GIẢNG KHÓA HỌC TIẾNG ANH BUSINESS SKILL 100% GIẢNG VIÊN NƯỚC NGOÀI
-
-                        ===
-                        
-                        VMO Academy thông báo KHAI GIẢNG khóa Tiếng Anh BUSINESS SKILL 01 - 100% Giảng viên Nước ngoài.
-                        
-                        Cụ thể:
-                        
-                        1. Thời gian:
-                        
-                        - Lịch học: 18:00 – 19:30, Thứ 2 & Thứ 4 hàng tuần
-                        - Địa điểm học: Phòng họp 1, Tầng 5, Tòa nhà IDMC Duy Tân (số 21 Duy Tân)
-                        - Lịch khai giảng & Học buổi 1: 18:00, thứ 5 ngày 29/06/2023.
-                        
-                        2. Số lượng học viên: 10 học viên
-                        
-                        3. Thời lượng học: 2 buổi/tuần (8 tuần)
-                        
-                        4. Học phí: 3.150.000VNĐ/NGƯỜI/KHÓA dành riêng cho CBNV VMOders
-                        
-                        5. Chi tiết nội dung các khóa học: [https://vmo.link/KAGIHEU](https://vmo.link/KAGIHEU)
-                        
-                        ===
-                        
-                        Khóa học BUSINESS SKILL tại VMO Academy giúp bạn:
-                        
-                        ⁉️ TỰ TIN khi giao tiếp hoặc làm việc với đối tác nước ngoài.
-                        
-                        ⁉️ TỰ TIN chinh phục tiếng Anh với quỹ thời gian và chi phí hạn chế.
-                        
-                        ⁉️ PHÁT TRIỂN sự nghiệp, NÂNG CAO năng lực bản thân.
-                        
-                        Đến với BUSINESS SKILL các bạn học viên sẽ được:
-                        
-                        👉Test đầu vào, phân tích năng lực miễn phí, sắp xếp lớp học phù hợp theo trình độ cá nhân
-                        
-                        👉Giảng dạy và đào tạo bởi 100% giảng viên nước ngoài
-                        
-                        👉Thực hành ngay trong quá trình học, trợ giảng hỗ trợ 1-1
-                        
-                        👉Giao tiếp và thuyết trình sử dụng thiết bị VR mô phỏng tình huống thực tế
-                        
-                        👉Thời gian đào tạo ngắn trong 8 tuần, tối ưu kiến thức cho nhân sự đi làm trong ngành IT
-                        
-                        👉Cơ sở học tập ngay tại văn phòng của VMO, tiết kiệm thời gian di chuyển
-                        
-                        Đăng ký để được tư vấn thêm: [https://vmo.link/VmXrEEC](https://vmo.link/VmXrEEC)
-                        
-                        —
-                        
-                        Thông tin hỗ trợ/giải đáp - VMO ACADEMY:
-                        
-                        - Địa chỉ: Tầng 5, Tòa nhà IDMC, 21 Duy Tân, Cầu Giấy, Hà Nội
-                        - Email: [info-academy@vmogroup.com](mailto:info-academy@vmogroup.com)
-                        - Chat: [thaovt@vmogroup.com](mailto:thaovt@vmogroup.com)
-                        
-                        ">
-                    </app-postview>
+                      </ng-container>
                 </div>
             </div>
         </div>
