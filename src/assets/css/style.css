@@ -18329,3 +18329,7 @@ select.sort {
 .react-player__shadow {
   background: rgba(43, 51, 63, .7) !important;
 }
+
+.e-popup.e-ddl{
+  display: block!important;
+}
