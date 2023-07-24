@@ -10,6 +10,8 @@ import { KanbanAllModule } from '@syncfusion/ej2-angular-kanban';
 import { GridModule, PagerModule } from '@syncfusion/ej2-angular-grids';
 import { TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
 import { SwitchModule } from '@syncfusion/ej2-angular-buttons';
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+
 import { 
     PageService, 
     SortService, 
@@ -38,6 +40,7 @@ import {
         DropDownListAllModule, 
         NumericTextBoxAllModule, 
         TextBoxAllModule, 
+        ToastModule
         //RouterModule // this module is mandatory if some SharedModule components use routing
     ],
     exports: [

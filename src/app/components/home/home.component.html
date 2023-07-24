@@ -2,19 +2,19 @@
     <div class="middle-sidebar-bottom">
         <div class="middle-sidebar-left">
             <div class="row feed-body">
-                <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
+                <div #middleColumn class="col-xl-9 col-xxl-9 col-lg-9">
 
                     <div #testerLeft class="tester-left"></div>
                     <div #testerRight class="tester-right"></div>
 
-                   <app-total-overview></app-total-overview>
+                   <!-- <app-total-overview></app-total-overview> -->
                     <div #postCreator>
                         <!-- <app-createpost></app-createpost> -->
                     </div>
                  
                     <ng-container *ngFor="let post of data">
                         {{post.updateBy}}
-                        <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                        <div class="card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
                             <div class="card-body p-0 d-flex">
                                 <figure class="avatar me-3"><img [src]="post.avater" alt="avater" class="shadow-sm rounded-circle w45" />
                                 </figure>
@@ -64,7 +64,91 @@
 
                       </ng-container>
                 </div>
+                <div class="col-xl-3 col-xxl-3 col-lg-3">
+                    <nav id="right-bar-content" [class]="'scroll-bar'">
+                        <div [class]="'nav-wrap mt-2 right-scroll-bar bg-transparent-card '">
+                            <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl mb-10 ">
+                    
+                                <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
+                                    <h4 class="font-xssss text-grey-700 text-uppercase fw-700 ls-3">Nhân sự xuất sắc trong tháng</h4>
+                                    <hr />
+                                    <div class="flex-v-around h240">
+                                        <div class="flex-center w-100">
+                                            <img class="br50per pointer" src="../../../assets/images/Ellipse 1.png">
+                                        </div>
+                                        <div>
+                                            <div class="flex-center w-100 bold17 pointer">Nguyễn Diệu Hoa</div>
+                                            <div class="flex-center w-100 gray14 pointer">VDX</div>
+                                        </div>
+                                        <div class="flex-center text-center w-100">
+                                            <div class="star5">
+                                                <span>
+                                                    <i class="star filled">
+                    
+                                                    </i></span><span>
+                                                    <i class="star filled">
+                    
+                                                    </i></span>
+                                                <span>
+                                                    <i class="star filled">
+                    
+                                                    </i>
+                                                </span>
+                                                <span>
+                                                    <i class="star filled">
+                    
+                                                    </i>
+                                                </span>
+                                                <span>
+                                                    <i class="star filled">
+                    
+                                                    </i>
+                                                </span><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                    
+                            </div>
+                    
+                            <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl mb-10">
+                                <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
+                                    <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Danh sách Onboard</h4>
+                                    <hr />
+                                    <ul class="list-group list-group-flush">
+                                        <li *ngFor="let value of chatMembers"
+                                            class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
+                                            <figure class="avatar float-left mb-0 me-2">
+                                                <img [src]="value.imageUrl" alt="avater" class="w35 avatar-rounder" />
+                                            </figure>
+                                            <span>
+                                                <div class="fw-700 mb-0 mt-0">
+                                                    <span
+                                                        class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.name}}</span>
+                                                </div>
+                                                <div class="fw-500 mb-0 mt-0">
+                                                    <span
+                                                        class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.org}}</span>
+                                                </div>
+                                            </span>
+                    
+                                            <span [class]="value.status + ' ms-auto btn-round-xss'"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                    
+                            </div>
+                    
+                    
+                    
+                        </div>
+                    </nav>
+                </div>
+             
             </div>
         </div>
     </div>
+    
 </div>
+

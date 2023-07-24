@@ -555,7 +555,8 @@
 }
 
 .color-theme-blue {
-  --theme-color: #05f;
+  /* --theme-color: #05f; */
+  --them-color:#8e8e93;
   --theme-color-rgb: 33, 150, 243;
   --theme-color-shade: #09f;
   --theme-color-tint: #1E74FD;
@@ -1534,7 +1535,7 @@
   border-radius: 10px !important;
 }
 
-.rounded-xxl {
+.rounded-xxxl {
   border-radius: 15px !important;
 }
 

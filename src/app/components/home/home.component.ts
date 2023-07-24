@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   data:any;
   resizer$!: Observable<any>;
   model: Home = new Home();
+  chatMembers: any[] = [];
+  topMembers: any[] = [];
+
   constructor(
     private authService: AuthService, 
     private router: Router, 
@@ -64,7 +67,75 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.postimage4 = "/assets/images/demo/4.png";
     this.postimage5 = "/assets/images/demo/5.png";
     this.getData();
+    this.chatMembers = [
+      {
+        imageUrl:"https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
+        name:"Phan Tuấn Anh",
+        org:"VDX"
+      },
+      {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Tống Thanh Sơn",
+        org:"DU10"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Lê Quỳnh Chi",
+        org:"VAI"
+      }, 
+      {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Trần Phan Linh",
+        org:"DU13"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Nguyễn Việt Hải",
+        org:"R&D"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Phan Lệ Chi",
+        org:"IT"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Đặng Xuân Hồng",
+        org:"Takumi"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Nguyễn Văn Nam",
+        org:"BA"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Trần Văn Đức",
+        org:"DU13"
+      }, 
+    ]
 
+    this.topMembers = [
+      {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Phan Tuấn Anh",
+      },
+      {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Tống Thanh Sơn",
+        org:"DU10"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Lê Quỳnh Chi",
+        org:"VAI"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Phạm Thanh Lam",
+        org:"DU18"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Trần Tuấn Anh",
+        org:"DU13"
+      },  {
+        imageUrl:this.randomAvatarService.get(),
+        name:"Phan Đức Bảo",
+        org:"DU13"
+      },
+    ]
   }
 
   ngAfterViewInit(): void {

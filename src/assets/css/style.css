@@ -555,7 +555,8 @@
 }
 
 .color-theme-blue {
-  --theme-color: #05f;
+  /* --theme-color: #05f; */
+  --theme-color:#8e8e93;
   --theme-color-rgb: 33, 150, 243;
   --theme-color-shade: #09f;
   --theme-color-tint: #1E74FD;
@@ -1534,7 +1535,7 @@
   border-radius: 10px !important;
 }
 
-.rounded-xxl {
+.rounded-xxxl {
   border-radius: 15px !important;
 }
 
@@ -1554,7 +1555,9 @@
 .theme-dark {
   /* background-color: #132977; */
 }
-
+.e-input {
+  color: #515184;
+}
 .theme-dark .middle-sidebar-header,
 .theme-dark .middle-sidebar-right-content,
 .theme-dark .nav-header,
@@ -1621,14 +1624,24 @@
 }
 
 .theme-dark .form-control {
-  background-color: #333 !important;
+  background-color:#293145 !important;
+  
   border-color: var(--theme-color);
 }
 
 .theme-dark .form-control::placeholder {
   color: #eee !important;
 }
-
+.theme-dark .e-input-group.e-control-wrapper.e-ddl .e-input[readonly],
+.e-float-input.e-control-wrapper.e-ddl input[readonly] {
+  color: #eee;
+}
+body.theme-dark .e-input-group.e-control-wrapper input.e-input{
+  color: #eee!important;
+}
+body.theme-dark .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text, .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-icon{
+  color: #eee!important;
+}
 .theme-dark .form-control:-ms-input-placeholder {
   color: #eee !important;
 }
@@ -1676,7 +1689,7 @@
 }
 
 .theme-dark .form-group .form-control select {
-  background-color: #333 !important;
+  background-color: #293145 !important;
   color: #eee !important;
 }
 
@@ -2123,6 +2136,7 @@ th {
 
 label {
   display: inline-block;
+  font-size: 14px;
 }
 
 button {
@@ -14410,7 +14424,7 @@ strong,
     flex-grow: 1;
     padding-top: 90px;
     padding-left: 280px;
-    padding-right: 290px;
+    padding-right: 10px;
     -webkit-transition: all 0.25s;
     -o-transition: all 0.25s;
     transition: all 0.25s;
@@ -14571,7 +14585,7 @@ strong,
 
 .main-content .middle-sidebar-bottom {
   width: 100%;
-  padding: 20px 0px 10px 10px !important;
+  padding: 4px 10px 0px 0px !important;
 }
 
 @media (min-width: 1200px) {
@@ -14589,12 +14603,12 @@ strong,
   }
 }
 
-@media (max-width: 991.98px) {
+/* @media (max-width: 991.98px) {
   .main-content .middle-sidebar-bottom {
     width: 100%;
     padding: 76px 15px 20px !important;
   }
-}
+} */
 
 .main-content .middle-sidebar-bottom .middle-sidebar-left {
   width: 100%;
@@ -16389,7 +16403,7 @@ body:not(.theme-full) .main-content .middle-sidebar-bottom.header-padding {
   height: 50px;
   font-size: 14px;
   display: inline-block;
-  border: 2px #eee solid;
+  border: 0.5px #eee solid;
 }
 
 .form-control:focus {
@@ -18058,7 +18072,7 @@ select.sort {
     padding-right: 0;
     margin-right: auto;
     margin-left: auto;
-    max-width: 960px;
+    max-width: 1200px;
   }
 }
 
@@ -18067,7 +18081,7 @@ select.sort {
     padding-right: 0;
     margin-right: auto;
     margin-left: auto;
-    max-width: 960px;
+    max-width: 1200px;
   }
 
   .vh-lg-100 {
