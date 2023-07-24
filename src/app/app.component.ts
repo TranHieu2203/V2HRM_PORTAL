@@ -5,6 +5,7 @@ import { MessageService } from './services/message.service';
 import { AuthService } from './services/auth.service';
 import { User } from './model/user';
 import { setCulture } from '@syncfusion/ej2-base';
+import { SpinnerService } from './services/spinne.service';
 setCulture('en')
 @Component({
   selector: 'app-root',
@@ -33,7 +34,9 @@ export class AppComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public spinnerService: SpinnerService
+
   ) {
 
     this.authService.user.subscribe(x => this.user = x);

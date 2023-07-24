@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 import {
     HttpInterceptor, HttpHandler, HttpRequest, HttpResponse
 } from '@angular/common/http';
+import { SpinnerService } from '../services/spinne.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -23,6 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
    
     constructor(
         private authService: AuthService,
+        private spinnerService: SpinnerService
     ) {
     }
     private addTokenHeader(request: HttpRequest<any>, token: string) {
@@ -69,7 +71,8 @@ export class TokenInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
       ): Observable<HttpEvent<any>> {
-    
+        this.spinnerService.show();
+
         const token: string = localStorage.getItem("token")!;
         request = this.addTokenHeader(request,token);
         return next.handle(request)
@@ -77,14 +80,18 @@ export class TokenInterceptor implements HttpInterceptor {
         .pipe(
           map((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
+              this.spinnerService.hide();
              }
             return event;
           }),
           catchError((err: HttpErrorResponse) => {
             if (err  && !request.url.includes('authen/applogin') && err.status === 401) {
+              this.spinnerService.count--;
+
               return this.handle401Error(request, next);
             }
             const error = err!.error!.message || err!.statusText;
+            this.spinnerService.hide();
             return throwError(error);
           })
         );
