@@ -20,7 +20,9 @@
 }
 /* Điều chỉnh kích thước chữ cho phần mã nhân viên và họ tên */
 #code,
-#fullname {
+#fullname,
+#orgName,
+#positionName {
   font-size: 15px; /* Điều chỉnh kích thước chữ tùy ý */
 }
 /* Tùy chỉnh kiểu dáng cho nút sao chép */
