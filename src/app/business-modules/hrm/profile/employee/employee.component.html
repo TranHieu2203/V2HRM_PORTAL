@@ -33,6 +33,16 @@
                             <p class="form-control-static" id="fullname"><strong>{{employeeInfo.fullname}}</strong></p>
                           </div>
                         </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label class="font-weight-bold" for="orgName">Bộ phận:</label>
+                            <p class="form-control-static" id="orgName"> <strong>{{employeeInfo.orgName}}</strong></p>
+                          </div>
+                          <div class="form-group">
+                            <label for="positionName">Vị trí công việc</label>
+                            <p class="form-control-static" id="positionName"><strong>{{employeeInfo.positionName}}</strong></p>
+                          </div>
+                        </div>
                         <!-- <div class="col-sm-4">
                           <div class="form-group">
                             <label for="fullname">Họ tên:</label>
@@ -80,6 +90,20 @@
                                                 Bắt buộc nhập </span>
                                             </div>
                                           </div>
+                                          <!-- <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Bộ phận <span class="red-asterisk">*</span></label>
+                                              <input type="text" class="form-control" name="orgName"
+                                                formControlName="orgName" [(ngModel)]="employeeInfo.orgName" readonly>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Vị trí công việc <span class="red-asterisk">*</span></label>
+                                              <input type="text" class="form-control" name="positionName"
+                                                formControlName="positionName" [(ngModel)]="employeeInfo.positionName" readonly>
+                                            </div>
+                                          </div> -->
                                           <!-- Mã số thuế -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
