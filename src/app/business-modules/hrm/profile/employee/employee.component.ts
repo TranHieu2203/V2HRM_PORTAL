@@ -112,6 +112,8 @@ export class EmployeeComponent implements OnInit {
         ],
         taxCode: [[]], //Mã sô thuế
         placeId: ['', []],
+        orgName: ['',[]],
+        positionName: ['',[]]
       }),
       infor: this._formBuilder.group({
         birthDate: ['', []],
