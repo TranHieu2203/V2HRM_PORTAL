@@ -105,6 +105,7 @@ export class EmployeeInfo {
     dateStart?: any;
     dateEnd?: any;
     status?:number;
+    idFamily?: number;
   }
   
   export class PosPage {

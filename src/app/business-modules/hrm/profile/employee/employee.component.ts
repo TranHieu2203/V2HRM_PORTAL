@@ -90,6 +90,7 @@ export class EmployeeComponent implements OnInit {
   data: any;
   data1: any;
   data2: any;
+  data3: any;
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
@@ -370,6 +371,7 @@ export class EmployeeComponent implements OnInit {
       );
       this.loadDatalazy(res[0].body.result);
       this.getListSituation();
+      this.getListSituationProfile();
       this.getListTrainingBefore();
       this.getListWorkingBefore();
     });
@@ -426,6 +428,17 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.data = res.body.data;
+        this.gridInstance.refresh();
+      });
+  }
+  getListSituationProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListSituation?empId=' + this.employeeInfo.id
+      )
+      .subscribe((res: any) => {
+        this.data3 = res.body.data;
         this.gridInstance.refresh();
       });
   }
@@ -852,6 +865,16 @@ export class EmployeeComponent implements OnInit {
     this.workingbefore = new WorkingBefore();
     this.workingbefore.id = 0;
   }
+  rowSelecting3(e: any) {
+    this.situation = e.data;
+    this.situation.idFamily = this.situation.id
+    this.situation.id = undefined;
+  }
+  rowDeselected3(e: any) {
+    this.situation = new Situation();
+    this.situation.idFamily = undefined;
+    this.situation.id = 0;
+  }
   saveForm() {
     if (!this.editForm.valid) {
       alert('Form chưa hợp lệ !');
@@ -862,7 +885,10 @@ export class EmployeeComponent implements OnInit {
 
     if (this.tabDefault.selectedItem == 3) {
       let param = this.convertModel(this.situation);
-
+      if(param.status == 2 || param.status == 3){
+        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        return;
+      }
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)

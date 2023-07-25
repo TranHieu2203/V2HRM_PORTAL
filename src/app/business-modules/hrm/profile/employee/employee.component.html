@@ -879,10 +879,7 @@
                                           </div>
                                         </div>
                                         <div class="group-box mt-3">
-                                          <!-- <div class="card-head">
-                                          <div class="icon-info info-icon"></div>
-                                          <label class="title">Danh sách</label>
-                                        </div> -->
+                                          <label>Thông tin gia cảnh thêm mới</label>
                                           <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data' rowHeight='37'
                                             headerHeight='42' height='100%' allowResizing='true' [allowSelection]='true'
                                             allowTextWrap='true' [enableHover]="false" [showColumnChooser]='true'
@@ -935,7 +932,24 @@
                                                 headerText="Ngày kết thúc" clipMode='EllipsisWithTooltip'
                                                 [allowFiltering]='false'>
                                               </e-column>
-                                              <e-column field='statusName' textAlign="Center" headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center"
+                                                headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                                <ng-template #template let-data>
+                                                  <div class="row-status full-width">
+                                                    <div class="status-effect text-center" *ngIf="data.status == 1">
+                                                      <span>Chờ phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 2">
+                                                      <span>Đã phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 3">
+                                                      <span>Từ chối</span>
+                                                    </div>
+                                                  </div>
+                                                </ng-template>
+                                              </e-column>
+                                              <e-column field='statusName' textAlign="Center" headerText="Xóa"
                                                 clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -946,6 +960,75 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+
+                                        </div>
+                                        <div class="group-box mt-3">
+                                          <label>Thông tin gia cảnh hiện tại</label>
+                                          <ejs-grid #overviewgrid4 id='overviewgrid4' [dataSource]='data3'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                            [showColumnChooser]='true' (rowSelecting)="rowSelecting3($event!)"
+                                            (rowDeselected)="rowDeselected3($event)">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [visible]='false' headerText='ID'
+                                                [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='name' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Tên" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='relationshipName' textAlign="Left"
+                                                headerTextAlign="Center" width="120" headerText="Mối quan hệ"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='birth' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày sinh" clipMode='EllipsisWithTooltip'
+                                                [allowFiltering]='false'>
+                                              </e-column>
+                                              <e-column field='no' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Số CMND" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='taxNo' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Mã số thuế" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='familyNo' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Số sổ hộ khẩu" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='familyName' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Tên chủ hộ" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='address' textAlign="Left" headerTextAlign="Center"
+                                                headerText="Địa chỉ" clipMode='EllipsisWithTooltip' width="150">
+                                              </e-column>
+                                              <e-column field='relationshipId' [visible]='false'>
+                                              </e-column>
+                                              <e-column field='dateStart' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày bắt đầu" clipMode='EllipsisWithTooltip'
+                                                [allowFiltering]='false'>
+                                              </e-column>
+                                              <e-column field='dateEnd' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày kết thúc" clipMode='EllipsisWithTooltip'
+                                                [allowFiltering]='false'>
+                                              </e-column>
+                                              <!-- <e-column field='statusName' textAlign="Center" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip' width="100">
+                                                <ng-template #template let-data>
+                                                  <div class="row-status full-width">
+                                                    <div class="status-not-effect text-center">
+                                                      <span style="cursor:pointer;"
+                                                        (click)="RemoveRelation(data.id)">Xóa</span>
+                                                    </div>
+                                                  </div>
+                                                </ng-template>
+                                              </e-column> -->
                                             </e-columns>
                                           </ejs-grid>
 
