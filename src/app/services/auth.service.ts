@@ -76,9 +76,13 @@ export class AuthService {
       loginRequest,
     ).pipe(map((user: any | null) => {
       console.log(user)
-      localStorage.setItem('user', JSON.stringify(user.body.data));
-      this.userSubject.next(user);
+      if(user.body.statusCode==="200")
+      {
+        localStorage.setItem('user', JSON.stringify(user.body.data));
+        this.userSubject.next(user);
+      }
       return user;
+
   }))
   }
 

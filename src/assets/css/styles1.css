@@ -390,11 +390,6 @@ textarea {
   background: linear-gradient(135deg, #293145, #586179) !important;
 }
 
-.notification {
-  text-decoration: none;
-  position: relative;
-  display: inline-block;
-}
 
 .with-notification .badge-above {
   position: absolute;

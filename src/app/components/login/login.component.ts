@@ -6,6 +6,7 @@ import { Subscription, first } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { RandomImageService } from 'src/app/services/random-image.service';
 import { V2Hrm2022 } from 'src/app/services/common-http-request.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private randomImageService: RandomImageService,
     private router: Router,
     private formBuilder: FormBuilder,
+    protected _notification: NotificationService
   ) {
 
     let remember: boolean = true;
@@ -100,9 +102,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     })
     .pipe(first())
     .subscribe({
-        next: () => {
-            // get return url from query parameters or default to home page
+        next: (res:any) => {
+          if(res.body.statusCode==="200"){
+            this._notification.success("Thông báo","Đăng nhập thành công")
             this.router.navigateByUrl('');
+            return;
+          }else{
+            this._notification.warning("Thông báo","Sai mật khẩu....")
+            return;
+          }
+            // get return url from query parameters or default to home page
+            //this.router.navigateByUrl('');
         },
         error: error => {
             this.loading = false;

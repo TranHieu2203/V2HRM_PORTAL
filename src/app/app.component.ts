@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { User } from './model/user';
 import { setCulture } from '@syncfusion/ej2-base';
 import { SpinnerService } from './services/spinne.service';
+import { NotificationService } from './services/notification.service';
 setCulture('en')
 @Component({
   selector: 'app-root',
@@ -35,15 +36,14 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     public authService: AuthService,
     private messageService: MessageService,
-    public spinnerService: SpinnerService
-
+    public spinnerService: SpinnerService,
+    protected _notification: NotificationService
   ) {
 
     this.authService.user.subscribe(x => this.user = x);
    }
 
   ngOnInit() {
-
     if (isDevMode()) {
       console.log('Development!');
       this.messageService.add(`${new Date().toLocaleString()}: Your application is running in Development mode!`);

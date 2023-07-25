@@ -1,0 +1,17 @@
+<div class="notifications">
+	<div *ngFor="let notification of notifications" class="notification" [ngClass]="className(notification)">
+		<ng-container *ngTemplateOutlet="notificationTpl;context:{notification:notification}"></ng-container>
+	</div>
+</div>
+
+<ng-template #notificationTpl let-notification="notification">
+
+	<div class="title" fxLayout="row" fxLayoutAlign="space-between center" style="display: flex;">
+		<div>{{notification.title}}</div>
+    <i style="right: 10px;position: absolute;padding-top: 5px; cursor: pointer;" class="fa fa-times"  (click)="close(notification)"></i>
+
+	</div>
+
+	<div class="message">{{notification.message}}</div>
+
+</ng-template>

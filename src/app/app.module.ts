@@ -61,6 +61,8 @@ import { TotalOverviewComponent } from './components/total-overview/total-overvi
 import { Globals } from './common/globals';
 import { TranslateModule } from '@ngx-translate/core';
 import { StringHtmlPipe } from './pipe/string-html.pipe';
+import { NotificationService } from './services/notification.service';
+import { NotificationListComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,8 @@ import { StringHtmlPipe } from './pipe/string-html.pipe';
     ModulesComponent,
     AccountComponent,
     TotalOverviewComponent,
-    StringHtmlPipe
+    StringHtmlPipe,
+    NotificationListComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +132,7 @@ import { StringHtmlPipe } from './pipe/string-html.pipe';
     { provide: RequestCache, useClass: RequestCacheWithMap },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     httpInterceptorProviders,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
