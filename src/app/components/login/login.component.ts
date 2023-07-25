@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.server = this.authService.serverModel.modelName;
     this.randomImageServiceSubscription = this.randomImageService.get().subscribe(x => this.backgroundImage = x.src);
 
- 
+    localStorage.clear();
     
     // this.authServiceLogoutSubscription = this.authService.logout(false).subscribe(() => {
     //   this.authService.authenticated$.next(false);
