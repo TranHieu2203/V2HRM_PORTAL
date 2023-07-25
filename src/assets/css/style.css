@@ -1642,6 +1642,22 @@ body.theme-dark .e-input-group.e-control-wrapper input.e-input{
 body.theme-dark .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text, .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-icon{
   color: #eee!important;
 }
+body.theme-dark .e-grid .e-gridheader {
+  background-color:#1a2236 !important;
+  color: #eee!important;
+
+}
+body.theme-dark .e-grid .e-table .e-headercell{
+  background-color:#1a2236 !important;
+
+}
+body.theme-dark .e-grid .e-table {
+  background-color: #293145!important;
+}
+body.theme-dark .e-grid .e-content{
+  background-color: #293145!important;
+
+}
 .theme-dark .form-control:-ms-input-placeholder {
   color: #eee !important;
 }
@@ -1657,10 +1673,10 @@ body.theme-dark .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text, .e-ta
 .theme-dark .dropdown-menu-settings:after {
   border-color: transparent transparent #1a2236 transparent;
 }
-
+/* 
 .theme-dark .bg-transparent-card {
   background: #293145 !important;
-}
+} */
 
 .theme-dark .notification-dropdown,
 .theme-dark .dropdown-menu-settings,

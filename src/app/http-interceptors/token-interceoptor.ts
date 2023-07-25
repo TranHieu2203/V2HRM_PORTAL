@@ -43,10 +43,11 @@ export class TokenInterceptor implements HttpInterceptor {
         if (!this.isRefreshing) {
           this.isRefreshing = true;
           this.refreshTokenSubject.next(null);
-          const token = localStorage.getItem("token")!;
+          const token = localStorage.getItem("user")!;
           if (token){
             return this.authService.refreshToken(token).pipe(
               switchMap((res: any) => {
+                console.log("res",res)
                 this.isRefreshing = false;
                 localStorage.setItem("token",res.data.token);
                 // this.tokenService.saveToken(token.accessToken);

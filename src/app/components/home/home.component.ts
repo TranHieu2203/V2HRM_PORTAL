@@ -24,28 +24,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('testerLeft') testerLeft!: ElementRef;
   @ViewChild('testerRight') testerRight!: ElementRef;
   @ViewChild('postCreator') postCreator!: ElementRef;
-  data:any;
+  data: any;
   resizer$!: Observable<any>;
   model: Home = new Home();
   chatMembers: any[] = [];
   topMembers: any[] = [];
-
+  survey: any[] = [];
   constructor(
-    private authService: AuthService, 
-    private router: Router, 
+    private authService: AuthService,
+    private router: Router,
     private headerService: HeaderService,
-    private randomAvatarService: RandomAvatarService, 
+    private randomAvatarService: RandomAvatarService,
     private randomImageService: RandomImageService,
     private commomHttpService: CommonHttpRequestService,
     private globals: Globals,
     private _sanitizer: DomSanitizer
-    ) {
+  ) {
     this.randomAvatarSrc1 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc2 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc3 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc4 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc5 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
-    
+
   }
 
   postimage1?: string;
@@ -69,72 +69,78 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getData();
     this.chatMembers = [
       {
-        imageUrl:"https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
-        name:"Phan Tuấn Anh",
-        org:"VDX"
+        imageUrl: "https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
+        name: "Phan Tuấn Anh",
+        org: "VDX"
       },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Tống Thanh Sơn",
-        org:"DU10"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Lê Quỳnh Chi",
-        org:"VAI"
-      }, 
+        imageUrl: this.randomAvatarService.get(),
+        name: "Tống Thanh Sơn",
+        org: "DU10"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Lê Quỳnh Chi",
+        org: "VAI"
+      },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Phan Linh",
-        org:"DU13"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Nguyễn Việt Hải",
-        org:"R&D"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Lệ Chi",
-        org:"IT"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Đặng Xuân Hồng",
-        org:"Takumi"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Nguyễn Văn Nam",
-        org:"BA"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Văn Đức",
-        org:"DU13"
-      }, 
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Phan Linh",
+        org: "DU13"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Nguyễn Việt Hải",
+        org: "R&D"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Lệ Chi",
+        org: "IT"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Đặng Xuân Hồng",
+        org: "Takumi"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Nguyễn Văn Nam",
+        org: "BA"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Văn Đức",
+        org: "DU13"
+      },
     ]
 
     this.topMembers = [
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Tuấn Anh",
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Tuấn Anh",
       },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Tống Thanh Sơn",
-        org:"DU10"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Lê Quỳnh Chi",
-        org:"VAI"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phạm Thanh Lam",
-        org:"DU18"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Tuấn Anh",
-        org:"DU13"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Đức Bảo",
-        org:"DU13"
+        imageUrl: this.randomAvatarService.get(),
+        name: "Tống Thanh Sơn",
+        org: "DU10"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Lê Quỳnh Chi",
+        org: "VAI"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phạm Thanh Lam",
+        org: "DU18"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Tuấn Anh",
+        org: "DU13"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Đức Bảo",
+        org: "DU13"
       },
+    ]
+
+    this.survey = [
+      { name: "Đồ chơi", check: true, total: 121 },
+      { name: "Tổ chức dã ngoại", check: false, total: 425 },
+      { name: "Sách thiếu nhi", check: false, total: 571 },
     ]
   }
 
@@ -166,41 +172,41 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.headerService.searchLeft$.next(rec.left + paddingLeft);
     this.headerService.searchWidth$.next(rec1.width);
-    
+
   }
   getData() {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/BlogInternal/ListHome' 
+        'hr/BlogInternal/ListHome'
       )
       .subscribe((res: any) => {
         this.data = res.body.data;
         for (const item of this.data) {
           item.avater = this.randomAvatarSrc1;
-          if(item.createDate != null && item.updateDate == null){
+          if (item.createDate != null && item.updateDate == null) {
             item.updateDate = this.formatDate(item.createDate.toString())
           }
-          else{
+          else {
             item.updateDate = this.formatDate(item.updateDate.toString())
           }
-          
-          item.imgUrl = this.globals.apiUrlFileManager.toString().replace("api/","") + item.imgUrl;
-          
+
+          item.imgUrl = this.globals.apiUrlFileManager.toString().replace("api/", "") + item.imgUrl;
+
         }
-        
+
       });
-      
-        
+
+
   }
- formatDate(dateString: string): string {
+  formatDate(dateString: string): string {
     const dateObject = new Date(dateString);
     const hours = String(dateObject.getHours()).padStart(2, '0');
     const minutes = String(dateObject.getMinutes()).padStart(2, '0');
     const day = String(dateObject.getDate()).padStart(2, '0');
     const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Lưu ý: Tháng trong JavaScript bắt đầu từ 0
     const year = dateObject.getFullYear();
-  
+
     return `${hours}:${minutes} ${day}/${month}/${year}`;
   }
 
