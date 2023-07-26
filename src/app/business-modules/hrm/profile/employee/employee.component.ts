@@ -23,6 +23,7 @@ import { Globals } from 'src/app/common/globals';
 import { TrainingBefore } from 'src/app/model/trainingbefore';
 import { WorkingBefore } from 'src/app/model/workingbefore';
 import { Subject } from 'rxjs';
+import * as moment from 'moment';
 import {
   SelectEventArgs,
   SelectingEventArgs,
@@ -809,38 +810,42 @@ export class EmployeeComponent implements OnInit {
   convertModel(param: any) {
     let model = _.cloneDeep(param);
 
-    // model.birthDate = model.birthDate
-    //   ? moment(model.birthDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.idDate = model.idDate
-    //   ? moment(model.idDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.joinDate = model.joinDate
-    //   ? moment(model.joinDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.terEffectDate = model.terEffectDate
-    //   ? moment(model.terEffectDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.passDate = model.passDate
-    //   ? moment(model.passDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.passExpire = model.passExpire
-    //   ? moment(model.passExpire).format("YYYY-MM-DD")
-    //   : null;
-    // model.visaDate = model.visaDate
-    //   ? moment(model.visaDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.visaExpire = model.visaExpire
-    //   ? moment(model.visaExpire).format("YYYY-MM-DD")
-    //   : null;
-    // model.workPermitDate = model.workPermitDate
-    //   ? moment(model.workPermitDate).format("YYYY-MM-DD")
-    //   : null;
-    // model.workPermitExpire = model.workPermitExpire
-    //   ? moment(model.workPermitExpire).format("YYYY-MM-DD")
-
-    //   : null;
-
+    model.birthDate = model.birthDate
+      ? moment(model.birthDate).format('YYYY-MM-DD')
+      : null;
+    model.idDate = model.idDate
+      ? moment(model.idDate).format('YYYY-MM-DD')
+      : null;
+    model.joinDate = model.joinDate
+      ? moment(model.joinDate).format('YYYY-MM-DD')
+      : null;
+    model.terEffectDate = model.terEffectDate
+      ? moment(model.terEffectDate).format('YYYY-MM-DD')
+      : null;
+    model.passDate = model.passDate
+      ? moment(model.passDate).format('YYYY-MM-DD')
+      : null;
+    model.passExpire = model.passExpire
+      ? moment(model.passExpire).format('YYYY-MM-DD')
+      : null;
+    model.visaDate = model.visaDate
+      ? moment(model.visaDate).format('YYYY-MM-DD')
+      : null;
+    model.visaExpire = model.visaExpire
+      ? moment(model.visaExpire).format('YYYY-MM-DD')
+      : null;
+    model.workPermitDate = model.workPermitDate
+      ? moment(model.workPermitDate).format('YYYY-MM-DD')
+      : null;
+    model.workPermitExpire = model.workPermitExpire
+      ? moment(model.workPermitExpire).format('YYYY-MM-DD')
+      : null;
+    model.contractDateEffect = model.contractDateEffect
+      ? moment(model.contractDateEffect).format('YYYY-MM-DD')
+      : null;
+    model.workDate = model.workDate
+      ? moment(model.workDate).format('YYYY-MM-DD')
+      : null;
     return model;
   }
   rowSelecting(e: any) {
@@ -867,7 +872,7 @@ export class EmployeeComponent implements OnInit {
   }
   rowSelecting3(e: any) {
     this.situation = e.data;
-    this.situation.idFamily = this.situation.id
+    this.situation.idFamily = this.situation.id;
     this.situation.id = undefined;
   }
   rowDeselected3(e: any) {
@@ -885,7 +890,7 @@ export class EmployeeComponent implements OnInit {
 
     if (this.tabDefault.selectedItem == 3) {
       let param = this.convertModel(this.situation);
-      if(param.status == 2 || param.status == 3){
+      if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
       }
@@ -905,7 +910,10 @@ export class EmployeeComponent implements OnInit {
       });
     } else if (this.tabDefault.selectedItem == 4) {
       let param = this.convertModel(this.trainingbefore);
-
+      if (param.status == 2 || param.status == 3) {
+        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        return;
+      }
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest(
@@ -926,7 +934,10 @@ export class EmployeeComponent implements OnInit {
       });
     } else if (this.tabDefault.selectedItem == 5) {
       let param = this.convertModel(this.workingbefore);
-
+      if (param.status == 2 || param.status == 3) {
+        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        return;
+      }
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest(
@@ -942,11 +953,12 @@ export class EmployeeComponent implements OnInit {
               this.getListWorkingBefore();
               alert('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
-            } 
+            }
           });
       });
     } else {
       let param = this.convertModel(this.employeeInfo);
+      console.log('param: ', param);
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
