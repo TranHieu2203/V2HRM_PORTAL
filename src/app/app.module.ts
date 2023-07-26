@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 
@@ -59,10 +59,14 @@ import { MessageService } from './services/message.service';
 import { RequestCache, RequestCacheWithMap } from './services/request-cache.service';
 import { TotalOverviewComponent } from './components/total-overview/total-overview.component';
 import { Globals } from './common/globals';
-import { TranslateModule } from '@ngx-translate/core';
 import { StringHtmlPipe } from './pipe/string-html.pipe';
 import { NotificationService } from './services/notification.service';
 import { NotificationListComponent } from './components/notification/notification.component';
+
+
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 @NgModule({
   declarations: [
@@ -119,7 +123,13 @@ import { NotificationListComponent } from './components/notification/notificatio
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',
     }),
-    TranslateModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient]
+            }
+        })
   ],
   exports: [StringHtmlPipe],
   providers: [
@@ -145,4 +155,10 @@ export class AppModule {
     //console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
     // console.log('Routes: ', router.config, replacer, 2);
   }
+}
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

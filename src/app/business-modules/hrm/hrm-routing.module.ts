@@ -7,30 +7,14 @@ import { EmployeeComponent } from './profile/employee/employee.component';
 
 export const hrmRoutes: Routes = [
   {
-    path: '',
-    component: EmployeeComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-    },
-    children: [
-      {
-        path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-         
-          {
-            path: 'profile',
-            loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
-            canLoad: [AuthGuard],
-                  },
-          {
-            path: '',
-            redirectTo: 'employee',
-            pathMatch: 'full',
-          },
-        ]
-      }
-    ]
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'attendance',
+    loadChildren: () => import('./attendace/attendance.module').then(m => m.AttendanceModule),
+    canLoad: [AuthGuard],
   },
 
 ];

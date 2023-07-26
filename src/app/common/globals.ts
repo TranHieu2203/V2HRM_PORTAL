@@ -26,7 +26,7 @@ export const NORMAL_COLOR_LIST: string[] = [
 import { ToolbarItem } from "../model/toolbarItem";
 @Injectable()
 export class Globals {
-
+  
   RequestOptions = {
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -50,7 +50,6 @@ export class Globals {
   urlPermission: any[] = [];
   // Language
   currentLang = localStorage.getItem("lang");
-
   // Store Code + Pathname
   storeCode: string = window.location.host
     .replace(/^www\./, "")

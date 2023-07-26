@@ -36,29 +36,13 @@ const routes: Routes = [
     loadChildren: () => import('./business-modules/account/account.module').then(m => m.AccountModule),
     canLoad: [AuthGuard],
   },
-  
-  {
-    path: 'hrm-center',
-    loadChildren: () => import('./business-modules/hrm/hrm.module').then(m => m.HrmModule),
-    data: { preload: true },
-    canLoad: [AuthGuard],
-  },
   {
     path: 'crm-center',
     loadChildren: () => import('./business-modules/crm/crm.module').then(m => m.CrmModule),
     data: { preload: true },
     canLoad: [AuthGuard],
   },
-  {
-    path: 'smart-table',
-    component: SmartTableComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'mcc-demo',
-    component: MccDemoComponent,
-    canActivate: [AuthGuard],
-  },
+  
   {
     path: '',
     redirectTo: 'home',
