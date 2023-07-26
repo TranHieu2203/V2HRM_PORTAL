@@ -87,7 +87,7 @@ export class AuthService {
   }
 
   getAuthorizationToken(): string {
-    return JSON.parse(localStorage.getItem('user')!).token;
+    return JSON.parse(localStorage.getItem('user')!)!.token!;
   }
 
   

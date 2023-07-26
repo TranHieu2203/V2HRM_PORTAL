@@ -7,7 +7,11 @@ import { AuthService } from '../../services/auth.service';
 import { RandomImageService } from 'src/app/services/random-image.service';
 import { V2Hrm2022 } from 'src/app/services/common-http-request.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationLoaderService } from 'src/app/common/translation-loader.service';
 
+import { locale as english } from "src/assets/i18n/en";
+import { locale as vietnam } from "src/assets/i18n/vi";
 
 @Component({
   selector: 'app-login',
@@ -36,10 +40,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private randomImageService: RandomImageService,
     private router: Router,
     private formBuilder: FormBuilder,
-    protected _notification: NotificationService
+    protected notification: NotificationService,
+    protected tlaTranslationLoaderService: TranslationLoaderService,
+    protected translate: TranslateService,
   ) {
-
-    let remember: boolean = true;
+    tlaTranslationLoaderService.loadTranslations(vietnam, english);
+    translate.setDefaultLang('vi');
+    translate.use('vi');
+      let remember: boolean = true;
 
     if (localStorage) {
       const lsRemember = localStorage.getItem('remember');
@@ -104,15 +112,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     .subscribe({
         next: (res:any) => {
           if(res.body.statusCode==="200"){
-            this._notification.success("Thông báo","Đăng nhập thành công")
+            this.notification.success("Thông báo","[Đăng nhập thành công]")
             this.router.navigateByUrl('');
             return;
           }else{
-            this._notification.warning("Thông báo","Sai mật khẩu....")
+            this.notification.warning("Thông báo","Sai mật khẩu....")
             return;
           }
-            // get return url from query parameters or default to home page
-            //this.router.navigateByUrl('');
         },
         error: error => {
             this.loading = false;

@@ -9,6 +9,7 @@ import { HeaderService } from 'src/app/services/header.service';
 import { Globals } from "src/app/common/globals";
 import { Home } from 'src/app/model/home';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -38,14 +39,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private randomImageService: RandomImageService,
     private commomHttpService: CommonHttpRequestService,
     private globals: Globals,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    protected translate: TranslateService,
+
   ) {
     this.randomAvatarSrc1 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc2 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc3 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc4 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
     this.randomAvatarSrc5 = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
-
+    translate.setDefaultLang('vi');
+    translate.use('vi');
+    this.translate.get("[Tên đăng nhập]").subscribe((d:any)=>{
+      console.log(d)
+    })
   }
 
   postimage1?: string;

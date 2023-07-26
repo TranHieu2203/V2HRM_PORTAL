@@ -7,6 +7,10 @@ import { User } from './model/user';
 import { setCulture } from '@syncfusion/ej2-base';
 import { SpinnerService } from './services/spinne.service';
 import { NotificationService } from './services/notification.service';
+import { TranslateService } from '@ngx-translate/core';
+import { locale as english } from "src/assets/i18n/en";
+import { locale as vietnam } from "src/assets/i18n/vi";
+
 setCulture('en')
 @Component({
   selector: 'app-root',
@@ -37,11 +41,19 @@ export class AppComponent implements OnInit {
     public authService: AuthService,
     private messageService: MessageService,
     public spinnerService: SpinnerService,
-    protected _notification: NotificationService
+    protected _notification: NotificationService,
+    protected translate: TranslateService
   ) {
+    // Add languages
+    this.translate.addLangs(["vi", "en"]);
+
+    // Set the default language
+    this.translate.setDefaultLang("vi");
+
+    translate.use('vi');
 
     this.authService.user.subscribe(x => this.user = x);
-   }
+  }
 
   ngOnInit() {
     if (isDevMode()) {
