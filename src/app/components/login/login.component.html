@@ -41,24 +41,30 @@
                             </div>
                         </div>
                         <div class='form-check text-left mb-3'>
-                            <input #remember type='checkbox' name="remember" formControlName="remember"
-                                class='form-check-input mt-2' id='exampleCheck5' />
-                            <label class='form-check-label font-xsss text-grey-500 '>Ghi nhớ đăng nhập</label>
-                            <a class='float-right remember'>Quên mật khẩu?</a>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input #remember type='checkbox' name="remember" formControlName="remember"
+                                    class='form-check-input mt-2' id='exampleCheck5' /><label class='form-check-label font-xsss text-grey-500 '>Ghi nhớ đăng nhập</label>
+                                </div>
+                                <div class="col-sm-6" >
+                                 
+                                    <select #lang class="form-control" (change)="switchLang(lang.value)" [(ngModel)]="model.lang"  formControlName="lang" >
+                                        <option *ngFor="let c of languagesList"  [value]="c.id">{{c.name}}</option>
+                                    </select>
+                                    <!-- <ejs-dropdownlist id='moduleId' [disabled]="false" [(ngModel)]="model.lang" [dataSource]='languagesList' [fields]='fields' formControlName="lang" width="100%"
+                                    (change)="switchLang($event)">
+                                  </ejs-dropdownlist> -->
+                          
+                                </div>
+                            </div>
+                         
+                            <!--  -->
                         </div>
                         <div *ngIf="!loading" className='col-sm-12 p-0 text-left'>
                             <button #button type='submit' (submit)="signIn()"
                                 class='form-control text-center style2-input h-50 text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng nhập</button>
                         </div>
                     </form>
-                    <select (change)="onServerChanged($event)" class="form-control" style="display: none">
-                        <option value="0" [selected]="server==='Oracle_localhost'">V2Hrm2022</option>
-                        <option value="1" [selected]="server==='Oracle_localhost'">Oracle_localhost</option>
-                        <option value="2" [selected]="server==='V2Hrm2021_server'">V2Hrm2021_server</option>
-                        <option value="3" [selected]="server==='V2Hrm2021_localhost'">V2Hrm2021_localhost</option>
-                        <option value="4" [selected]="server==='MiukaFoto'">MiukaFoto</option>
-                        <option value="5" [selected]="server==='MiukaFoto_localhost'">MiukaFoto_localhost</option>
-                    </select>
                     <app-load *ngIf="loading"></app-load>
                 </div>
             </div>
