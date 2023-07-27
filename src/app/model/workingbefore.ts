@@ -1,6 +1,6 @@
 export class WorkingBefore {
   
-  id?: number | null;
+  id?: number ;
   employeeId?: number | null; //mã nhân viên
   employeeName?: string | null; //mã nhân viên
   employeeCode?: string | null;
@@ -19,4 +19,5 @@ export class WorkingBefore {
   workDetail?: string | null;
   terReason?: string | null;
   status?:number;
+  idWorking?:number;
 }

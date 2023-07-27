@@ -879,12 +879,12 @@
                                           </div>
                                         </div>
                                         <div class="group-box mt-3">
-                                          <label>Thông tin gia cảnh thêm mới</label>
-                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='data' rowHeight='37'
+                                          <label><b>Thông tin gia cảnh thêm mới</b></label>
+                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='dataFamilyEdit' rowHeight='37'
                                             headerHeight='42' height='100%' allowResizing='true' [allowSelection]='true'
                                             allowTextWrap='true' [enableHover]="false" [showColumnChooser]='true'
-                                            (rowSelecting)="rowSelecting($event!)"
-                                            (rowDeselected)="rowDeselected($event)">
+                                            (rowSelecting)="rowSelectingFamilyEdit($event!)"
+                                            (rowDeselected)="rowDeselectedFamilyEdit($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -965,12 +965,12 @@
 
                                         </div>
                                         <div class="group-box mt-3">
-                                          <label>Thông tin gia cảnh hiện tại</label>
-                                          <ejs-grid #overviewgrid4 id='overviewgrid4' [dataSource]='data3'
+                                          <label><b>Thông tin gia cảnh hiện tại</b></label>
+                                          <ejs-grid #overviewgrid4 id='overviewgrid4' [dataSource]='dataFamily'
                                             rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
                                             [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
-                                            [showColumnChooser]='true' (rowSelecting)="rowSelecting3($event!)"
-                                            (rowDeselected)="rowDeselected3($event)">
+                                            [showColumnChooser]='true' (rowSelecting)="rowSelectingFamily($event!)"
+                                            (rowDeselected)="rowDeselectedFamily($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -1202,11 +1202,12 @@
 
                                         </div>
                                         <div class="list-grid mt-3">
-                                          <ejs-grid #overviewgrid1 id='overviewgrid1' [dataSource]='data1'
+                                          <label><b>Thông tin đào tạo trước đây thêm mới</b></label>
+                                          <ejs-grid #overviewgrid1 id='overviewgrid1' [dataSource]='dataTrainingEdit'
                                             rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
                                             [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
-                                            [showColumnChooser]='true' (rowSelecting)="rowSelecting1($event!)"
-                                            (rowDeselected)="rowDeselected1($event)">
+                                            [showColumnChooser]='true' (rowSelecting)="rowSelectingTrainingEdit($event!)"
+                                            (rowDeselected)="rowDeselectedTrainingEdit($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -1255,7 +1256,24 @@
                                               <e-column field='note' textAlign="Left" headerText="Ghi chú"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              <e-column field='statusName' textAlign="Center" headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center"
+                                                headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                                <ng-template #template let-data>
+                                                  <div class="row-status full-width">
+                                                    <div class="status-effect text-center" *ngIf="data.status == 1">
+                                                      <span>Chờ phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 2">
+                                                      <span>Đã phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 3">
+                                                      <span>Từ chối</span>
+                                                    </div>
+                                                  </div>
+                                                </ng-template>
+                                              </e-column>
+                                              <e-column field='statusName' textAlign="Center" headerText="Xóa"
                                                 clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -1266,6 +1284,65 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+                                        <div class="list-grid mt-3">
+                                          <label><b>Thông tin đào tạo trước đây hiện tại</b></label>
+                                          <ejs-grid #overviewgrid1 id='overviewgrid1' [dataSource]='dataTraining'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                            [showColumnChooser]='true' (rowSelecting)="rowSelectingTraining($event!)"
+                                            (rowDeselected)="rowDeselectedTraining($event)">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='yearGra' textAlign="Center" headerText="Năm đào tạo"
+                                                clipMode='EllipsisWithTooltip' width='120'>
+                                              </e-column>
+                                              <e-column field='nameSchools' textAlign="Left" headerText="Đơn vị đào tạo"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='fromDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Từ tháng" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='toDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Đến tháng" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='certificateTypeName' textAlign="Left"
+                                                headerText="Loại bằng cấp/chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="190">
+                                              </e-column>
+                                              <e-column field='formTrainName' textAlign="Left"
+                                                headerText="Hình thức đào tạo" clipMode='EllipsisWithTooltip'
+                                                width="215">
+                                              </e-column>
+                                              <e-column field='specializedTrainName' textAlign="Left"
+                                                headerText="Chuyên ngành đào tạo" clipMode='EllipsisWithTooltip'
+                                                width="215">
+                                              </e-column>
+                                              <e-column field='resultTrain' textAlign="Left"
+                                                headerText="Kết quả đào tạo" clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              <e-column field='effectiveDateFrom' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='effectiveDateTo' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hết hiệu lực chứng chỉ" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='note' textAlign="Left" headerText="Ghi chú"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
@@ -1431,11 +1508,12 @@
                                           </div>
                                         </div>
                                         <div class="list-grid mt-3">
-                                          <ejs-grid #overviewgrid2 id='overviewgrid2' [dataSource]='data2'
+                                          <label><b>Thông tin công tác trước đây thêm mới</b></label>
+                                          <ejs-grid #overviewgrid2 id='overviewgrid2' [dataSource]='dataWorkingBeforeEdit'
                                             rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
                                             [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
-                                            (rowSelecting)="rowSelecting2($event!)"
-                                            (rowDeselected)="rowDeselected2($event)">
+                                            (rowSelecting)="rowSelectingWorkingBeforeEdit($event!)"
+                                            (rowDeselected)="rowDeselectedWorkingBeforeEdit($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
                                                 [allowFiltering]='false' [allowSorting]='false' width='40'
@@ -1478,6 +1556,49 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+                                        <div class="list-grid mt-3">
+                                          <label><b>Thông tin công tác trước đây hiện tại</b></label>
+                                          <ejs-grid #overviewgrid2 id='overviewgrid2' [dataSource]='dataWorkingBefore'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                            (rowSelecting)="rowSelectingWorkingBefore($event!)"
+                                            (rowDeselected)="rowDeselectedWorkingBefore($event)">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+
+                                              <e-column field='companyName' textAlign="Left" headerText="Tên công ty"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='joinDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày vào làm việc" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='endDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày nghỉ việc" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='telephone' textAlign="Left" headerText="SĐT công ty"
+                                                clipMode='EllipsisWithTooltip' width="190">
+                                              </e-column>
+                                              <e-column field='titleName' textAlign="Left" headerText="Chức danh"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              <e-column field='levelName' textAlign="Left" headerText="Cấp bậc"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
