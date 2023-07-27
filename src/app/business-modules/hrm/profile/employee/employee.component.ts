@@ -899,11 +899,11 @@ export class EmployeeComponent implements OnInit {
   }
   rowSelectingTraining(e: any) {
     this.trainingbefore = e.data;
-    this.trainingbefore.idTraining = this.situation.id;
+    this.trainingbefore.idTraining = this.trainingbefore.id;
     this.trainingbefore.id = undefined;
   }
   rowDeselectedTraining(e: any) {
-    this.trainingbefore = new Situation();
+    this.trainingbefore = new TrainingBefore();
     this.trainingbefore.idTraining = undefined;
     this.trainingbefore.id = 0;
   }
@@ -917,11 +917,11 @@ export class EmployeeComponent implements OnInit {
 
   rowSelectingWorkingBefore(e: any) {
     this.workingbefore = e.data;
-    this.workingbefore.idWorking = this.situation.id;
+    this.workingbefore.idWorking = this.workingbefore.id;
     this.workingbefore.id = undefined;
   }
   rowDeselectedWorkingBefore(e: any) {
-    this.workingbefore = new Situation();
+    this.workingbefore = new WorkingBefore();
     this.workingbefore.idWorking = undefined;
     this.workingbefore.id = 0;
   }

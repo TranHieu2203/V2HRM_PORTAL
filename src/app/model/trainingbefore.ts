@@ -1,6 +1,6 @@
 export class TrainingBefore {
   
-  id?: number | null;
+  id?: number;
   employeeId?: number | null; //mã nhân viên
   employeeName?: string | null; //mã nhân viên
   employeeCode?: string | null;
