@@ -28,6 +28,10 @@ import {
 
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 import { WeekService, MonthService, WorkWeekService, EventSettingsModel } from '@syncfusion/ej2-angular-schedule';
+import { SearchModel } from 'src/app/model/searchmodel';
+import { TranslateService } from '@ngx-translate/core';
+import { locale as english } from "src/assets/i18n/en";
+import { locale as vietnam } from "src/assets/i18n/vi";
 
 // import { Consts } from "src/app/common/const";
 const $ = require('jquery');
@@ -40,20 +44,97 @@ const _ = require('lodash');
 export class DetailComponent implements OnInit {
   public selectedDate: Date = new Date(2018, 1, 15);
   public showWeekend: boolean = false;
+  searchFrom!: FormGroup;
+  model!:SearchModel;
+  languages: any;
 
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
     private commomHttpService: CommonHttpRequestService,
     private globals: Globals,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    protected translate: TranslateService
+
   ) {
-  
+    this.searchFrom = this._formBuilder.group({
+      fromDate: ["", [Validators.required]], 
+      toDate: ["", [Validators.required]]
+    });
+    this.languages = this.globals.currentLang;
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.translate.use(this.languages);
+   }
 
-
+  getListData = (): void => {
+  }
+  changeDate = (model: any) => {
+    setTimeout(() => {
+      const idDate = "#" + model + "_input";
+      const value = $(idDate).val();
+      var patt = new RegExp(
+        "q|w|e|r|t|y|u|i|o|p|a|s|d|f|g|h|j|k|l|z|x|c|v|b|n|m"
+      );
+      var patt1 = new RegExp(
+        /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.]/
+      );
+      // check nhập sai năm
+      if(value && value.indexOf("/") != -1)
+      {
+        let valueArray = value.split("/");
+        if(valueArray.length != 3)
+        {
+          this.searchFrom.get(model)!.setErrors({ incorrect: true });
+          return;
+        }
+        if(valueArray[0].length != 2 || valueArray[1].length != 2 || valueArray[2].length != 4)
+        {
+          this.searchFrom.get(model)!.setErrors({ incorrect: true });
+          return;
+        }
+      }
+      let FindSpace = value.indexOf(" ");
+      if (FindSpace != -1) {
+        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        return;
+      } else 
+      if (value.length === 0) {
+        this.searchFrom.get(model)!.setErrors({ required: true });
+        return;
+      } else if (value.length > 0 && (patt.test(value.toLowerCase()) === true || patt1.test(value.toLowerCase()) === true)) {
+        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        return;
+      } else if (value.length > 10) {
+        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        return;
+      } else {
+        this.searchFrom.get(model)!.setErrors(null);
+      }
+      if (
+        value &&
+        ((value.length === 8 && value.indexOf("/") === -1) ||
+          (value.length === 6 && value.indexOf("/") === -1) ||
+          (value.length === 10 && value.indexOf("/") > -1))
+      ) {
+        if (value.indexOf("-") === -1) {
+          const returnDate = this.globals.replaceDate(value);
+          // (this.model as any)[model] = returnDate;
+          if (returnDate && returnDate.length > 0) {
+            $(idDate).val(returnDate);
+            const dateParts: any = returnDate.split("/");
+            (this.model as any)[model] = new Date(
+              +dateParts[2],
+              dateParts[1] - 1,
+              +dateParts[0]
+            );
+            this.searchFrom.get(model)!.clearValidators();
+          }
+        }
+      }
+    }, 200);
+  };
   convertModel(param: any) {
     let model = _.cloneDeep(param);
 
