@@ -88,10 +88,12 @@ export class EmployeeComponent implements OnInit {
   lstSpecialized: any = [];
   lstCompanyId: any = [];
 
-  data: any;
-  data1: any;
-  data2: any;
-  data3: any;
+  dataFamilyEdit: any;
+  dataTraining: any;
+  dataTrainingEdit: any;
+  dataWorkingBeforeEdit: any;
+  dataWorkingBefore: any;
+  dataFamily: any;
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
@@ -374,7 +376,9 @@ export class EmployeeComponent implements OnInit {
       this.getListSituation();
       this.getListSituationProfile();
       this.getListTrainingBefore();
+      this.getListTrainingBeforeProfile();
       this.getListWorkingBefore();
+      this.getListWorkingBeforeProfile();
     });
   }
   loadDatalazy(model: EmployeeInfo) {
@@ -428,7 +432,7 @@ export class EmployeeComponent implements OnInit {
         'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id
       )
       .subscribe((res: any) => {
-        this.data = res.body.data;
+        this.dataFamilyEdit = res.body.data;
         this.gridInstance.refresh();
       });
   }
@@ -439,7 +443,7 @@ export class EmployeeComponent implements OnInit {
         'hr/Employee/ListSituation?empId=' + this.employeeInfo.id
       )
       .subscribe((res: any) => {
-        this.data3 = res.body.data;
+        this.dataFamily = res.body.data;
         this.gridInstance.refresh();
       });
   }
@@ -451,7 +455,17 @@ export class EmployeeComponent implements OnInit {
         'hr/Employee/ListTrainingBeforeEdit?empId=' + this.employeeInfo.id
       )
       .subscribe((res: any) => {
-        this.data1 = res.body.data;
+        this.dataTrainingEdit = res.body.data;
+      });
+  }
+  getListTrainingBeforeProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListTrainingBefore?empId=' + this.employeeInfo.id
+      )
+      .subscribe((res: any) => {
+        this.dataTraining = res.body.data;
       });
   }
   getListWorkingBefore() {
@@ -461,7 +475,17 @@ export class EmployeeComponent implements OnInit {
         'hr/Employee/ListWorkingBeforeEdit?empId=' + this.employeeInfo.id
       )
       .subscribe((res: any) => {
-        this.data2 = res.body.data;
+        this.dataWorkingBeforeEdit = res.body.data;
+      });
+  }
+  getListWorkingBeforeProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        'hr/Employee/ListWorkingBefore?empId=' + this.employeeInfo.id
+      )
+      .subscribe((res: any) => {
+        this.dataWorkingBefore = res.body.data;
       });
   }
   getById() {
@@ -848,38 +872,60 @@ export class EmployeeComponent implements OnInit {
       : null;
     return model;
   }
-  rowSelecting(e: any) {
+  rowSelectingFamilyEdit(e: any) {
     this.situation = e.data;
   }
-  rowDeselected(e: any) {
+  rowDeselectedFamilyEdit(e: any) {
     this.situation = new Situation();
 
     this.situation.id = 0;
   }
-  rowSelecting1(e: any) {
-    this.trainingbefore = e.data;
-  }
-  rowDeselected1(e: any) {
-    this.trainingbefore = new TrainingBefore();
-    this.trainingbefore.id = 0;
-  }
-  rowSelecting2(e: any) {
-    this.workingbefore = e.data;
-  }
-  rowDeselected2(e: any) {
-    this.workingbefore = new WorkingBefore();
-    this.workingbefore.id = 0;
-  }
-  rowSelecting3(e: any) {
+  rowSelectingFamily(e: any) {
     this.situation = e.data;
     this.situation.idFamily = this.situation.id;
     this.situation.id = undefined;
   }
-  rowDeselected3(e: any) {
+  rowDeselectedFamily(e: any) {
     this.situation = new Situation();
     this.situation.idFamily = undefined;
     this.situation.id = 0;
   }
+  rowSelectingTrainingEdit(e: any) {
+    this.trainingbefore = e.data;
+  }
+  rowDeselectedTrainingEdit(e: any) {
+    this.trainingbefore = new TrainingBefore();
+    this.trainingbefore.id = 0;
+  }
+  rowSelectingTraining(e: any) {
+    this.trainingbefore = e.data;
+    this.trainingbefore.idTraining = this.situation.id;
+    this.trainingbefore.id = undefined;
+  }
+  rowDeselectedTraining(e: any) {
+    this.trainingbefore = new Situation();
+    this.trainingbefore.idTraining = undefined;
+    this.trainingbefore.id = 0;
+  }
+  rowSelectingWorkingBeforeEdit(e: any) {
+    this.workingbefore = e.data;
+  }
+  rowDeselectedWorkingBeforeEdit(e: any) {
+    this.workingbefore = new WorkingBefore();
+    this.workingbefore.id = 0;
+  }
+
+  rowSelectingWorkingBefore(e: any) {
+    this.workingbefore = e.data;
+    this.workingbefore.idWorking = this.situation.id;
+    this.workingbefore.id = undefined;
+  }
+  rowDeselectedWorkingBefore(e: any) {
+    this.workingbefore = new Situation();
+    this.workingbefore.idWorking = undefined;
+    this.workingbefore.id = 0;
+  }
+  
   saveForm() {
     if (!this.editForm.valid) {
       alert('Form chưa hợp lệ !');
