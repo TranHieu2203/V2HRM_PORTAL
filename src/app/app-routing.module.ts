@@ -32,18 +32,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'account-center',
-    loadChildren: () => import('./business-modules/account/account.module').then(m => m.AccountModule),
-    canLoad: [AuthGuard],
-  },
-  {
-    path: 'crm-center',
-    loadChildren: () => import('./business-modules/crm/crm.module').then(m => m.CrmModule),
-    data: { preload: true },
-    canLoad: [AuthGuard],
-  },
-  
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
