@@ -5,7 +5,13 @@
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
-
+.btn:hover {
+  color: white!important;
+}
+.e-dlg-overlay{
+  z-index: -1!important;
+}
+.mr-5{margin-right: 5px!important;}
 .checkboxes>label {
   flex: 0 0 max-content;
   margin: 0.5rem;

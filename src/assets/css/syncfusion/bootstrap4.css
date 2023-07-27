@@ -40464,8 +40464,8 @@ textarea.e-de-cmt-textarea {
   float: left;
   height: inherit;
   overflow: hidden;
-  width: -webkit-min-content;
-  width: min-content;
+  min-width: -webkit-min-content;
+  min-width: min-content;
 }
 
 .e-grid .e-movablecontent {

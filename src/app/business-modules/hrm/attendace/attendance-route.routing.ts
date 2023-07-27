@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './detail/detail.component';
+import { DetailComponent } from './explaint/detail.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [

@@ -1,3 +1,4 @@
+import { ExplaintService } from './explaint.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeInfo, Situation } from 'src/app/model/employeeInfo';
 import { ProfileEmployeeService } from 'src/app/services/profile-employee.service';
@@ -32,8 +33,8 @@ import { SearchModel } from 'src/app/model/searchmodel';
 import { TranslateService } from '@ngx-translate/core';
 import { locale as english } from "src/assets/i18n/en";
 import { locale as vietnam } from "src/assets/i18n/vi";
-
-// import { Consts } from "src/app/common/const";
+import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
+import {TimeExplainModel} from '../../../../model/timeexplain'
 const $ = require('jquery');
 const _ = require('lodash');
 @Component({
@@ -42,33 +43,57 @@ const _ = require('lodash');
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
+
+  @ViewChild('defaultDialog')
+  public defaultDialog!: DialogComponent;
+
+
   public selectedDate: Date = new Date(2018, 1, 15);
   public showWeekend: boolean = false;
-  searchFrom!: FormGroup;
-  model!:SearchModel;
+  editForm!: FormGroup;
+  searchModel!:SearchModel;
   languages: any;
+  editModel!:TimeExplainModel;
+  data!:any;
+  editHeaderText="";
+  public animationSettings: Object = { effect: 'Zoom', duration: 400, delay: 0 };
+  public positionDialog: object={ Y: 20 };
 
   constructor(
+    public configs:Configs,
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
     private commomHttpService: CommonHttpRequestService,
     private globals: Globals,
     private _formBuilder: FormBuilder,
-    protected translate: TranslateService
+    protected translate: TranslateService,
+    protected explaintService: ExplaintService,
 
   ) {
-    this.searchFrom = this._formBuilder.group({
-      fromDate: ["", [Validators.required]], 
-      toDate: ["", [Validators.required]]
+    this.editForm = this._formBuilder.group({
+      workingDay: [""], 
+      valTime1: [""], 
+      valTime4: [""]
     });
     this.languages = this.globals.currentLang;
+    console.log("this.configs.height()",this.configs.height())
   }
 
   ngOnInit() {
     this.translate.use(this.languages);
+    this.explaintService.getTimeExplaint().subscribe((res:any)=>{
+      console.log("res",res)
+      this.data = res.body.data
+    })
    }
 
   getListData = (): void => {
+  }
+  showDialog(data:any){
+    this.editModel = _.cloneDeep(data);
+    this.editHeaderText="Giải trình công ngày " + this.editModel.WORKINGDAY
+    this.defaultDialog.show();
+    console.log("this.editModel",data)
   }
   changeDate = (model: any) => {
     setTimeout(() => {
@@ -86,31 +111,31 @@ export class DetailComponent implements OnInit {
         let valueArray = value.split("/");
         if(valueArray.length != 3)
         {
-          this.searchFrom.get(model)!.setErrors({ incorrect: true });
+          this.editForm.get(model)!.setErrors({ incorrect: true });
           return;
         }
         if(valueArray[0].length != 2 || valueArray[1].length != 2 || valueArray[2].length != 4)
         {
-          this.searchFrom.get(model)!.setErrors({ incorrect: true });
+          this.editForm.get(model)!.setErrors({ incorrect: true });
           return;
         }
       }
       let FindSpace = value.indexOf(" ");
       if (FindSpace != -1) {
-        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        this.editForm.get(model)!.setErrors({ incorrect: true });
         return;
       } else 
       if (value.length === 0) {
-        this.searchFrom.get(model)!.setErrors({ required: true });
+        this.editForm.get(model)!.setErrors({ required: true });
         return;
       } else if (value.length > 0 && (patt.test(value.toLowerCase()) === true || patt1.test(value.toLowerCase()) === true)) {
-        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        this.editForm.get(model)!.setErrors({ incorrect: true });
         return;
       } else if (value.length > 10) {
-        this.searchFrom.get(model)!.setErrors({ incorrect: true });
+        this.editForm.get(model)!.setErrors({ incorrect: true });
         return;
       } else {
-        this.searchFrom.get(model)!.setErrors(null);
+        this.editForm.get(model)!.setErrors(null);
       }
       if (
         value &&
@@ -124,12 +149,12 @@ export class DetailComponent implements OnInit {
           if (returnDate && returnDate.length > 0) {
             $(idDate).val(returnDate);
             const dateParts: any = returnDate.split("/");
-            (this.model as any)[model] = new Date(
+            (this.editModel as any)[model] = new Date(
               +dateParts[2],
               dateParts[1] - 1,
               +dateParts[0]
             );
-            this.searchFrom.get(model)!.clearValidators();
+            this.editForm.get(model)!.clearValidators();
           }
         }
       }

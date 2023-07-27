@@ -7,24 +7,28 @@ export class Configs {
   // Language
   currentLang = localStorage.getItem("lang")! || "en";
   height = (): number => {
+    let windownHeight = window.innerHeight;
     let groupFilter = $(".group-filter").outerHeight(); // from phia tren grid cong voi padding
     let gridheader = $(".e-gridheader").outerHeight(); // phần header của lưới
     let gridpager = $(".e-gridpager").outerHeight(); // phần footer của lưới
     let groupdroparea = $(".e-groupdroparea").outerHeight(); // Phần filtter
     let summaryrow = $(".e-summaryrow").outerHeight(); // Phần filtter
+
     groupFilter = groupFilter ? groupFilter : 0;
     gridheader = gridheader ? gridheader : 0;
     gridpager = gridpager ? gridpager : 0;
     groupdroparea = groupdroparea ? groupdroparea : 0;
     summaryrow = summaryrow ? summaryrow : 0;
-    const heightAppContent = $(".app-content").innerHeight() + 54;
+    const heightAppContent = $("body").innerHeight();
+
+    console.log("heightAppContent",heightAppContent)
     return (
-      heightAppContent -
+      windownHeight - 122 -
       gridpager -
       groupFilter -
       gridheader -
       groupdroparea -
-      summaryrow
+      summaryrow 
     );
   };
   heightTimeSheet = (): number => {

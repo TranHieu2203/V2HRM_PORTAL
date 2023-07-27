@@ -495,9 +495,6 @@ select {
   padding-left: 12px !important;
 }
 
-.btn {
-  min-width: 200px !important;
-}
 
 .errorMessage {
   color: brown;
@@ -510,7 +507,7 @@ html{
   background-color: #1a2236 !important;
 }
 
-.card{
+.app-content{
   min-height: calc(100vh - 122px);
   ;
 }

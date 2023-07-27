@@ -66,6 +66,7 @@ import { NotificationListComponent } from './components/notification/notificatio
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { Configs } from './common/configs';
 
 
 @NgModule({
@@ -142,7 +143,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     { provide: RequestCache, useClass: RequestCacheWithMap },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     httpInterceptorProviders,
-    NotificationService
+    NotificationService,
+    Configs,
+
   ],
   bootstrap: [AppComponent]
 })

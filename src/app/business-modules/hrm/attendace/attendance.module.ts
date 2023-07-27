@@ -10,9 +10,12 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { BrowserModule } from '@angular/platform-browser';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { TabModule } from '@syncfusion/ej2-angular-navigations';
-import { DetailComponent } from './detail/detail.component';
+import { DetailComponent } from './explaint/detail.component';
 import { ScheduleModule, View } from '@syncfusion/ej2-angular-schedule';
 import { WeekService, MonthService} from '@syncfusion/ej2-angular-schedule';
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { TextBoxModule } from '@syncfusion/ej2-angular-inputs';
+import { FreezeService, SelectionService, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   imports: [
@@ -26,12 +29,15 @@ import { WeekService, MonthService} from '@syncfusion/ej2-angular-schedule';
     NumericTextBoxModule,
     TabModule,
     GridModule,
-    ScheduleModule
+    ScheduleModule,
+    DialogModule,
+    TextBoxModule
   ],
   
   declarations: [DetailComponent],
   providers: [WeekService,
-    MonthService]
+    MonthService,
+     FreezeService, SelectionService, EditService, ToolbarService]
 
 })
 export class AttendanceModule { }
