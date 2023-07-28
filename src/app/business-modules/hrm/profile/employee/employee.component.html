@@ -949,6 +949,9 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                              <e-column field='reason' textAlign="Left" headerText="Lý do"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
                                               <e-column field='statusName' textAlign="Center" headerText="Xóa"
                                                 clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
@@ -1273,6 +1276,9 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                              <e-column field='reason' textAlign="Left" headerText="Lý do"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
                                               <e-column field='statusName' textAlign="Center" headerText="Xóa"
                                                 clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
@@ -1546,7 +1552,27 @@
                                               <e-column field='levelName' textAlign="Left" headerText="Cấp bậc"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              <e-column field='statusName' textAlign="Center" headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center"
+                                                headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                                <ng-template #template let-data>
+                                                  <div class="row-status full-width">
+                                                    <div class="status-effect text-center" *ngIf="data.status == 1">
+                                                      <span>Chờ phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 2">
+                                                      <span>Đã phê duyệt</span>
+                                                    </div>
+                                                    <div class="status-not-effect text-center" *ngIf="data.status == 3">
+                                                      <span>Từ chối</span>
+                                                    </div>
+                                                  </div>
+                                                </ng-template>
+                                              </e-column>
+                                              <e-column field='reason' textAlign="Left" headerText="Lý do"
+                                                clipMode='EllipsisWithTooltip' width="215">
+                                              </e-column>
+                                              <e-column field='statusName' textAlign="Center" headerText="Xóa"
                                                 clipMode='EllipsisWithTooltip' width="100">
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -1556,6 +1582,7 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
+                                              
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
