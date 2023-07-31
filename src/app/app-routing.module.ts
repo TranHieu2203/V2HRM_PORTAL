@@ -32,6 +32,11 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
+    path: 'hr-process',
+    loadChildren: () => import('./business-modules/hr-process/hr-process.module').then(m => m.HrProcessModule),
+    canLoad: [AuthGuard],
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
@@ -40,7 +45,7 @@ const routes: Routes = [
     path: '**',
     component: PageNotFoundComponent,
   }
-  
+
 ];
 
 @NgModule({

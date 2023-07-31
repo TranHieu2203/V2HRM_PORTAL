@@ -34,7 +34,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { locale as english } from "src/assets/i18n/en";
 import { locale as vietnam } from "src/assets/i18n/vi";
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
-import {TimeExplainModel} from '../../../../model/timeexplain'
+import { TimeExplainModel } from '../../../../model/timeexplain'
 const $ = require('jquery');
 const _ = require('lodash');
 @Component({
@@ -51,16 +51,17 @@ export class DetailComponent implements OnInit {
   public selectedDate: Date = new Date(2018, 1, 15);
   public showWeekend: boolean = false;
   editForm!: FormGroup;
-  searchModel!:SearchModel;
+  searchModel!: SearchModel;
   languages: any;
-  editModel!:TimeExplainModel;
-  data!:any;
-  editHeaderText="";
+  editModel!: TimeExplainModel;
+  data!: any;
+  editHeaderText = "";
   public animationSettings: Object = { effect: 'Zoom', duration: 400, delay: 0 };
-  public positionDialog: object={ Y: 20 };
+  public positionDialog: object = { Y: 20 };
+  public loadingIndicator?: any;
 
   constructor(
-    public configs:Configs,
+    public configs: Configs,
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
     private commomHttpService: CommonHttpRequestService,
@@ -71,29 +72,30 @@ export class DetailComponent implements OnInit {
 
   ) {
     this.editForm = this._formBuilder.group({
-      workingDay: [""], 
-      valTime1: [""], 
+      workingDay: [""],
+      valTime1: [""],
       valTime4: [""]
     });
     this.languages = this.globals.currentLang;
-    console.log("this.configs.height()",this.configs.height())
+    console.log("this.configs.height()", this.configs.height())
   }
 
   ngOnInit() {
+    this.loadingIndicator = { indicatorType: 'Shimmer' };
     this.translate.use(this.languages);
-    this.explaintService.getTimeExplaint().subscribe((res:any)=>{
-      console.log("res",res)
+    this.explaintService.getTimeExplaint().subscribe((res: any) => {
+      console.log("res", res)
       this.data = res.body.data
     })
-   }
+  }
 
   getListData = (): void => {
   }
-  showDialog(data:any){
+  showDialog(data: any) {
     this.editModel = _.cloneDeep(data);
-    this.editHeaderText="Giải trình công ngày " + this.editModel.WORKINGDAY
+    this.editHeaderText = "Giải trình công ngày " + this.editModel.WORKINGDAY
     this.defaultDialog.show();
-    console.log("this.editModel",data)
+    console.log("this.editModel", data)
   }
   changeDate = (model: any) => {
     setTimeout(() => {
@@ -106,16 +108,13 @@ export class DetailComponent implements OnInit {
         /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.]/
       );
       // check nhập sai năm
-      if(value && value.indexOf("/") != -1)
-      {
+      if (value && value.indexOf("/") != -1) {
         let valueArray = value.split("/");
-        if(valueArray.length != 3)
-        {
+        if (valueArray.length != 3) {
           this.editForm.get(model)!.setErrors({ incorrect: true });
           return;
         }
-        if(valueArray[0].length != 2 || valueArray[1].length != 2 || valueArray[2].length != 4)
-        {
+        if (valueArray[0].length != 2 || valueArray[1].length != 2 || valueArray[2].length != 4) {
           this.editForm.get(model)!.setErrors({ incorrect: true });
           return;
         }
@@ -124,19 +123,19 @@ export class DetailComponent implements OnInit {
       if (FindSpace != -1) {
         this.editForm.get(model)!.setErrors({ incorrect: true });
         return;
-      } else 
-      if (value.length === 0) {
-        this.editForm.get(model)!.setErrors({ required: true });
-        return;
-      } else if (value.length > 0 && (patt.test(value.toLowerCase()) === true || patt1.test(value.toLowerCase()) === true)) {
-        this.editForm.get(model)!.setErrors({ incorrect: true });
-        return;
-      } else if (value.length > 10) {
-        this.editForm.get(model)!.setErrors({ incorrect: true });
-        return;
-      } else {
-        this.editForm.get(model)!.setErrors(null);
-      }
+      } else
+        if (value.length === 0) {
+          this.editForm.get(model)!.setErrors({ required: true });
+          return;
+        } else if (value.length > 0 && (patt.test(value.toLowerCase()) === true || patt1.test(value.toLowerCase()) === true)) {
+          this.editForm.get(model)!.setErrors({ incorrect: true });
+          return;
+        } else if (value.length > 10) {
+          this.editForm.get(model)!.setErrors({ incorrect: true });
+          return;
+        } else {
+          this.editForm.get(model)!.setErrors(null);
+        }
       if (
         value &&
         ((value.length === 8 && value.indexOf("/") === -1) ||
