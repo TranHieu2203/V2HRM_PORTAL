@@ -87,13 +87,18 @@ export class EmployeeComponent implements OnInit {
   lstFormTrain: any = [];
   lstSpecialized: any = [];
   lstCompanyId: any = [];
-
+ 
   dataFamilyEdit: any;
   dataTraining: any;
   dataTrainingEdit: any;
   dataWorkingBeforeEdit: any;
   dataWorkingBefore: any;
+  dataDecision:any;
   dataFamily: any;
+  dataContract: any;
+  dataCommend: any;
+  dataDiscipline: any;
+  dataInsChange: any;
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
@@ -173,6 +178,11 @@ export class EmployeeComponent implements OnInit {
         workScope: ['', []],
         workPlace: ['', []],
       }),
+      user: this._formBuilder.group({
+        bankId: ["", []],
+        bankBranch: ["", []],
+        bankNo: ["", []],
+      }),
       education: this._formBuilder.group({
         schoolId: ['', []],
         qualificationId: ['', []], //Trình độ chuyên môn
@@ -231,6 +241,7 @@ export class EmployeeComponent implements OnInit {
   changeTab(e: SelectEventArgs) {
     this.tabDefault.selectedItem;
   }
+
 
   public onFiltering(e: any, a: any) {
     e.preventDefaultAction = true;
@@ -364,6 +375,9 @@ export class EmployeeComponent implements OnInit {
       this.otherListService.specializedList.subscribe((res: any) => {
         this.lstSpecialized = res;
       });
+      this.otherListService.bankIdList.subscribe((res: any) => {
+        this.lstBankId = res;
+      });
       this.employeeInfo = _.cloneDeep(
         _.omit(
           res[0].body.result,
@@ -379,6 +393,11 @@ export class EmployeeComponent implements OnInit {
       this.getListTrainingBeforeProfile();
       this.getListWorkingBefore();
       this.getListWorkingBeforeProfile();
+      this.getListDecisionProfile();
+      this.getListContractProfile();
+      this.getListCommendProfile();
+      this.getListDisciplineProfile();
+      this.getListInsChangeProfile();
     });
   }
   loadDatalazy(model: EmployeeInfo) {
@@ -424,12 +443,22 @@ export class EmployeeComponent implements OnInit {
           this.employeeInfo.bankBranch = model.bankBranch;
         });
     }
+    if (model && model.bankId) {
+      this.getBankBranch(model.bankId)
+        .then((res: any) => {
+          this.lstBankBranchId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.bankBranch = model.bankBranch;
+        });
+      
+    }
   }
   getListSituation() {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListSituationEdit?empId=' + this.employeeInfo.id
+        'hr/Employee/ListSituationEdit'
       )
       .subscribe((res: any) => {
         this.dataFamilyEdit = res.body.data;
@@ -440,7 +469,7 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListSituation?empId=' + this.employeeInfo.id
+        'hr/Employee/ListSituation'
       )
       .subscribe((res: any) => {
         this.dataFamily = res.body.data;
@@ -452,7 +481,7 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListTrainingBeforeEdit?empId=' + this.employeeInfo.id
+        'hr/Employee/ListTrainingBeforeEdit'
       )
       .subscribe((res: any) => {
         this.dataTrainingEdit = res.body.data;
@@ -462,7 +491,7 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListTrainingBefore?empId=' + this.employeeInfo.id
+        'hr/Employee/ListTrainingBefore'
       )
       .subscribe((res: any) => {
         this.dataTraining = res.body.data;
@@ -472,7 +501,7 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListWorkingBeforeEdit?empId=' + this.employeeInfo.id
+        'hr/Employee/ListWorkingBeforeEdit' 
       )
       .subscribe((res: any) => {
         this.dataWorkingBeforeEdit = res.body.data;
@@ -482,10 +511,65 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListWorkingBefore?empId=' + this.employeeInfo.id
+        'hr/Employee/ListWorkingBefore'
       )
       .subscribe((res: any) => {
         this.dataWorkingBefore = res.body.data;
+      });
+  }
+  getListDecisionProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        "hr/working/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
+      )
+      .subscribe((res: any) => {
+         this.dataDecision = res.body.data;
+        
+      });
+  }
+  getListContractProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        "hr/contract/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
+      )
+      .subscribe((res: any) => {
+         this.dataContract = res.body.data;
+        
+      });
+  }
+  getListCommendProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        "hr/commend/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
+      )
+      .subscribe((res: any) => {
+         this.dataCommend = res.body.data;
+        
+      });
+  }
+  getListDisciplineProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        "hr/discipline/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
+      )
+      .subscribe((res: any) => {
+         this.dataDiscipline = res.body.data;
+        
+      });
+  }
+  getListInsChangeProfile() {
+    this.commomHttpService
+      .commonGetRequest(
+        'laythongtin',
+        "hr/inschange/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
+      )
+      .subscribe((res: any) => {
+         this.dataInsChange = res.body.data;
+        
       });
   }
   getById() {
@@ -683,7 +767,7 @@ export class EmployeeComponent implements OnInit {
     if (e.e) {
       this.lstBankBranchId = [];
       this.getBankBranch(e.itemData.key).then((res: any) => {
-        this.lstBankBranchId = res;
+         this.lstBankBranchId = res.body.data;
       });
     }
   }
@@ -934,7 +1018,7 @@ export class EmployeeComponent implements OnInit {
       return;
     }
 
-    if (this.tabDefault.selectedItem == 3) {
+    if (this.tabDefault.selectedItem == 4) {
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -954,7 +1038,7 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
-    } else if (this.tabDefault.selectedItem == 4) {
+    } else if (this.tabDefault.selectedItem == 5) {
       let param = this.convertModel(this.trainingbefore);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -978,7 +1062,7 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
-    } else if (this.tabDefault.selectedItem == 5) {
+    } else if (this.tabDefault.selectedItem == 6) {
       let param = this.convertModel(this.workingbefore);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1035,5 +1119,9 @@ export class EmployeeComponent implements OnInit {
       });
       this.employeeInfo.curAddress = this.employeeInfo.address;
     }
+  }
+  changeTab1(param:any) {
+    this.curentTab = param;
+    console.log("vào đây k:", this.curentTab)
   }
 }

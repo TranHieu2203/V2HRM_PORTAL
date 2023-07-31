@@ -40,7 +40,9 @@
                           </div>
                           <div class="form-group">
                             <label for="positionName">Vị trí công việc</label>
-                            <p class="form-control-static" id="positionName"><strong>{{employeeInfo.positionName}}</strong></p>
+                            <p class="form-control-static" id="positionName">
+                              <strong>{{employeeInfo.positionName}}</strong>
+                            </p>
                           </div>
                         </div>
                         <!-- <div class="col-sm-4">
@@ -133,7 +135,7 @@
                                           <div class="col-sm-4">
                                             <div class="form-group ">
                                               <label class="">Ngày sinh</label>
-                                              <ejs-datepicker id="birthDate" name="birthDate" 
+                                              <ejs-datepicker id="birthDate" name="birthDate"
                                                 formControlName="birthDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="employeeInfo.birthDate" (keydown)="changeDate('birthDate')"
                                                 (blur)="changeDate('birthDate')" placeholder=".../.../...">
@@ -762,6 +764,54 @@
                                 </e-tabitem>
                                 <e-tabitem>
                                   <ng-template #headerText>
+                                    <div> Tài khoản </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='tdvh'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN TÀI KHOẢN</label>
+                                      </div>
+                                      <div class="group-box" formGroupName="user" style="margin-top: 10px;">
+
+                                        <div class="row">
+                                          <!--Trường  -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group">
+                                              <label class="">Số tài khoản</label>
+                                              <input class="form-control" type="text" formControlName="bankNo"
+                                                [(ngModel)]="employeeInfo.bankNo">
+                                              
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group">
+                                              <label class="">Ngân hàng</label>
+                                              <ejs-dropdownlist id='bankId' [dataSource]='lstBankId' formControlName="bankId"
+                                                [showClearButton]="true" [(ngModel)]="employeeInfo.bankId" [fields]='fields' [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstBankId)' (change)='changeBank($event!)'>
+                                              </ejs-dropdownlist>
+                                            </div>
+                                          </div>
+                                          <!--HÌnh thức đào tạo  -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group">
+                                              <label class="">Chi nhánh ngân hàng</label>
+                                              <ejs-dropdownlist id='bankBranch' [dataSource]='lstBankBranchId' formControlName="bankBranch"
+                                                [showClearButton]="true" [(ngModel)]="employeeInfo.bankBranch" [fields]='fields1' [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstBankBranchId)'>
+                                              </ejs-dropdownlist>
+                                              
+                                            </div>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
                                     <div> Gia cảnh </div>
                                   </ng-template>
                                   <ng-template #content>
@@ -880,10 +930,10 @@
                                         </div>
                                         <div class="group-box mt-3">
                                           <label><b>Thông tin gia cảnh thêm mới</b></label>
-                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='dataFamilyEdit' rowHeight='37'
-                                            headerHeight='42' height='100%' allowResizing='true' [allowSelection]='true'
-                                            allowTextWrap='true' [enableHover]="false" [showColumnChooser]='true'
-                                            (rowSelecting)="rowSelectingFamilyEdit($event!)"
+                                          <ejs-grid #overviewgrid id='overviewgrid' [dataSource]='dataFamilyEdit'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                            [showColumnChooser]='true' (rowSelecting)="rowSelectingFamilyEdit($event!)"
                                             (rowDeselected)="rowDeselectedFamilyEdit($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
@@ -932,8 +982,7 @@
                                                 headerText="Ngày kết thúc" clipMode='EllipsisWithTooltip'
                                                 [allowFiltering]='false'>
                                               </e-column>
-                                              <e-column field='status' textAlign="Center"
-                                                headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center" headerText="Trạng thái"
                                                 clipMode='EllipsisWithTooltip'>
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -1209,7 +1258,8 @@
                                           <ejs-grid #overviewgrid1 id='overviewgrid1' [dataSource]='dataTrainingEdit'
                                             rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
                                             [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
-                                            [showColumnChooser]='true' (rowSelecting)="rowSelectingTrainingEdit($event!)"
+                                            [showColumnChooser]='true'
+                                            (rowSelecting)="rowSelectingTrainingEdit($event!)"
                                             (rowDeselected)="rowDeselectedTrainingEdit($event)">
                                             <e-columns>
                                               <e-column type='checkbox' [showInColumnChooser]='false'
@@ -1259,8 +1309,7 @@
                                               <e-column field='note' textAlign="Left" headerText="Ghi chú"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              <e-column field='status' textAlign="Center"
-                                                headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center" headerText="Trạng thái"
                                                 clipMode='EllipsisWithTooltip'>
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -1348,7 +1397,7 @@
                                               <e-column field='note' textAlign="Left" headerText="Ghi chú"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              
+
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
@@ -1515,9 +1564,10 @@
                                         </div>
                                         <div class="list-grid mt-3">
                                           <label><b>Thông tin công tác trước đây thêm mới</b></label>
-                                          <ejs-grid #overviewgrid2 id='overviewgrid2' [dataSource]='dataWorkingBeforeEdit'
-                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
-                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false"
+                                          <ejs-grid #overviewgrid2 id='overviewgrid2'
+                                            [dataSource]='dataWorkingBeforeEdit' rowHeight='37' headerHeight='42'
+                                            height='100%' allowResizing='true' [allowSelection]='true'
+                                            allowTextWrap='true' [enableHover]="false"
                                             (rowSelecting)="rowSelectingWorkingBeforeEdit($event!)"
                                             (rowDeselected)="rowDeselectedWorkingBeforeEdit($event)">
                                             <e-columns>
@@ -1552,8 +1602,7 @@
                                               <e-column field='levelName' textAlign="Left" headerText="Cấp bậc"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              <e-column field='status' textAlign="Center"
-                                                headerText="Trạng thái"
+                                              <e-column field='status' textAlign="Center" headerText="Trạng thái"
                                                 clipMode='EllipsisWithTooltip'>
                                                 <ng-template #template let-data>
                                                   <div class="row-status full-width">
@@ -1582,7 +1631,7 @@
                                                   </div>
                                                 </ng-template>
                                               </e-column>
-                                              
+
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
@@ -1625,10 +1674,330 @@
                                               <e-column field='levelName' textAlign="Left" headerText="Cấp bậc"
                                                 clipMode='EllipsisWithTooltip' width="215">
                                               </e-column>
-                                              
+
                                             </e-columns>
                                           </ejs-grid>
                                         </div>
+                                      </div>
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
+                                    <div> Quyết định thay đổi </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='qdtd'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN QUYẾT ĐỊNH THAY ĐỔI</label>
+                                      </div>
+                                      <div class="group-box" style="margin-top: 10px;">
+                                        <div class="list-grid mt-3">
+                                          <!-- <label><b>Thông tin công tác trước đây thêm mới</b></label> -->
+                                          <ejs-grid #overviewgrid5 id='overviewgrid5' [dataSource]='dataDecision'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='positionName' textAlign="Left" headerText="Chức danh"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='decisionNo' textAlign="Left" headerText="Số quyết định"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='effectDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hiệu lực" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='signDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày ký" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='signerName' textAlign="Left" headerText="Người ký"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='statusName' textAlign="Left" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
+                                    <div> Hợp đồng </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='tthd'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN HỢP ĐỒNG</label>
+                                      </div>
+                                      <div class="group-box" style="margin-top: 10px;">
+                                        <div class="list-grid mt-3">
+                                          <!-- <label><b>Thông tin công tác trước đây thêm mới</b></label> -->
+                                          <ejs-grid #overviewgrid6 id='overviewgrid6' [dataSource]='dataContract'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='contractNo' textAlign="Left" headerText="Số hợp đồng"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='contractTypeName' textAlign="Left"
+                                                headerText="Loại hợp đồng" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='startDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày bắt đầu" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='expireDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày kết thúc" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='signDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày ký" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='signerName' textAlign="Left" headerText="Người ký"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='signerPosition' textAlign="Left"
+                                                headerText="Chức danh người ký" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='statusName' textAlign="Left" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
+                                    <div> Khen thưởng </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='ttkt'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN KHEN THƯỞNG</label>
+                                      </div>
+                                      <div class="group-box" style="margin-top: 10px;">
+                                        <div class="list-grid mt-3">
+                                          <!-- <label><b>Thông tin công tác trước đây thêm mới</b></label> -->
+                                          <ejs-grid #overviewgrid7 id='overviewgrid7' [dataSource]='dataCommend'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='no' textAlign="Left" headerText="Số quyết định"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='commendObjName' textAlign="Left"
+                                                headerText="Loại khen thưởng" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='effectDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hiệu lực" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='commendType' textAlign="Left" headerText="Hình thức"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='money' headerTextAlign="Center" textAlign="Right"
+                                                textAlignHeader="Left" headerText="Số tiền" format="N0"
+                                                clipMode='EllipsisWithTooltip' width="120"></e-column>
+                                              <e-column field='sourceCostName' textAlign="Left" headerText="Nguồn chi"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='isTax' headerTextAlign="Center" textAlign="Center"
+                                                headerText="Tính thuế" clipMode='EllipsisWithTooltip' width="90">
+                                                <ng-template #template let-data>
+                                                  <ejs-checkbox [ngModel]="data.isTax">
+                                                  </ejs-checkbox>
+                                                </ng-template>
+                                              </e-column>
+                                              <e-column field='statusName' textAlign="Left" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
+                                    <div> Kỷ luật </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='ttkl'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN KỶ LUẬT</label>
+                                      </div>
+                                      <div class="group-box" style="margin-top: 10px;">
+                                        <div class="list-grid mt-3">
+                                          <!-- <label><b>Thông tin công tác trước đây thêm mới</b></label> -->
+                                          <ejs-grid #overviewgrid8 id='overviewgrid8' [dataSource]='dataDiscipline'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='no' textAlign="Left" headerText="Số quyết định"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='disciplineObjName' textAlign="Left"
+                                                headerText="Loại kỷ luật" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='effectDate' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'dd/MM/yyyy' }" textAlign="Center"
+                                                headerText="Ngày hiệu lực" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+                                              <e-column field='disciplineType' textAlign="Left" headerText="Hình thức"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='money' headerTextAlign="Center" textAlign="Right"
+                                                textAlignHeader="Left" headerText="Số tiền phạt" format="N0"
+                                                clipMode='EllipsisWithTooltip' width="120"></e-column>
+
+                                              <e-column field='isSalary' headerTextAlign="Center" textAlign="Center"
+                                                headerText="Trừ vào kỳ lương" clipMode='EllipsisWithTooltip'
+                                                width="140">
+                                                <ng-template #template let-data>
+                                                  <ejs-checkbox [ngModel]="data.isSalary">
+                                                  </ejs-checkbox>
+                                                </ng-template>
+                                              </e-column>
+                                              <e-column field='periodSalaryTaxName' headerTextAlign="Center"
+                                                textAlign="Left" headerText="Kỳ lương tính thuế"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='reason' headerTextAlign="Center" textAlign="Left"
+                                                headerText="Lý do kỷ luật" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='statusId' textAlign="Center" headerText="Trạng thái"
+                                                clipMode='EllipsisWithTooltip' width='110'>
+                                                <ng-template #template let-data>
+                                                  <div class="row-status full-width">
+                                                    <div class="text-center status-warning"
+                                                      *ngIf="dataDiscipline.statusId == 1 ">
+                                                      <span>Chờ duyệt</span>
+                                                    </div>
+                                                    <div class="text-center status-effect"
+                                                      *ngIf="dataDiscipline.statusId == 2">
+                                                      <span>Đã duyệt</span>
+                                                    </div>
+                                                    <div class="text-center status-not-effect"
+                                                      *ngIf="dataDiscipline.statusId == 3">
+                                                      <span>Từ chối</span>
+                                                    </div>
+                                                  </div>
+                                                </ng-template>
+                                              </e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </ng-template>
+                                </e-tabitem>
+                                <e-tabitem>
+                                  <ng-template #headerText>
+                                    <div> Biến động bảo hiểm </div>
+                                  </ng-template>
+                                  <ng-template #content>
+                                    <div class="custom-container" id="syll1" curentTab='ttbdbh'>
+                                      <div class="row">
+                                        <label class="bold-label">THÔNG TIN BIẾN ĐỘNG BẢO HIỂM</label>
+                                      </div>
+                                      <div class="group-box" style="margin-top: 10px;">
+                                        <div class="list-grid mt-3">
+                                          <!-- <label><b>Thông tin công tác trước đây thêm mới</b></label> -->
+                                          <ejs-grid #overviewgrid9 id='overviewgrid9' [dataSource]='dataInsChange'
+                                            rowHeight='37' headerHeight='42' height='100%' allowResizing='true'
+                                            [allowSelection]='true' allowTextWrap='true' [enableHover]="false">
+                                            <e-columns>
+                                              <e-column type='checkbox' [showInColumnChooser]='false'
+                                                [allowFiltering]='false' [allowSorting]='false' width='40'
+                                                textAlign="Center" [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='id' [showInColumnChooser]='false' [visible]='false'
+                                                headerText='ID' [isPrimaryKey]='true' [allowEditing]="false">
+                                              </e-column>
+                                              <e-column field='orgName' textAlign="Left" headerText="Phòng ban"
+                                                clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+                                              <e-column field='changeTypeName' textAlign="Left"
+                                                headerText="Loại biến động" clipMode='EllipsisWithTooltip'>
+                                              </e-column>
+
+                                              <e-column field='changeMonth' headerTextAlign="Center" type="date"
+                                                [format]="{ type: 'date', format: 'MM/yyyy' }" textAlign="Center"
+                                                headerText="Tháng biến động" clipMode='EllipsisWithTooltip'
+                                                width="126"></e-column>
+
+                                              <e-column field='salaryOld' headerTextAlign="Center" textAlign="Right"
+                                                textAlignHeader="Left" headerText="Hệ số kỳ trước" format="N0"
+                                                clipMode='EllipsisWithTooltip' width="120"></e-column>
+                                              <e-column field='salaryNew' headerTextAlign="Center" textAlign="Right"
+                                                textAlignHeader="Left" headerText="Hệ số kỳ này" format="N0"
+                                                clipMode='EllipsisWithTooltip' width="120"></e-column>
+                                            </e-columns>
+                                          </ejs-grid>
+                                        </div>
+
                                       </div>
                                     </div>
                                   </ng-template>
@@ -1637,9 +2006,11 @@
                             </ejs-tab>
                             <div class="mt-3"></div>
 
-                            <div class="text-center">
+                            <div class="text-center"
+                              *ngIf="this.tabDefault.selectedItem !== 7 && this.tabDefault.selectedItem !== 8 && this.tabDefault.selectedItem !== 9 && this.tabDefault.selectedItem !== 10 && this.tabDefault.selectedItem !== 11">
+
                               <div type="button" class="btn btn-primary custom-button" (click)="saveForm()">
-                                <i class="fa fa-save mr-2 text-white" aria-hidden="true"></i> 
+                                <i class="fa fa-save mr-2 text-white" aria-hidden="true"></i>
                                 Lưu
                               </div>
                             </div>
