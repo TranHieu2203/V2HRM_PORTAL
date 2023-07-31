@@ -1,0 +1,29 @@
+<div class="pt-2">
+  <ejs-accordion>
+    <e-accordionitems>
+      <e-accordionitem expanded='true'>
+        <ng-template #header>
+          <div>B. Cấp quản lý trực tiếp đánh giá</div>
+        </ng-template>
+        <ng-template #content>
+          <ejs-grid height='267px'>
+            <e-columns>
+              <e-column field="stt" headerText="STT" textAlign="Right" isPrimaryKey="true" width="100"
+                [edit]="false"></e-column>
+              <e-column field="stt" headerText="Yếu tố đánh giá kết quả công việc" textAlign="Right" isPrimaryKey="true"
+                width="100" [edit]="false"></e-column>
+              <e-column field="stt" headerText="Phần đánh giá" textAlign="Right" isPrimaryKey="true" width="100"
+                [edit]="false"></e-column>
+              <e-column field="stt" headerText="Điểm số" textAlign="Right" isPrimaryKey="true" width="100"
+                [edit]="false"></e-column>
+            </e-columns>
+
+          </ejs-grid>
+          Kết quả đánh giá tổng quát: Xếp loại
+        </ng-template>
+      </e-accordionitem>
+
+    </e-accordionitems>
+  </ejs-accordion>
+
+</div>
