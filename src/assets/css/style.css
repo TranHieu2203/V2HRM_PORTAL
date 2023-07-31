@@ -1654,9 +1654,35 @@ body.theme-dark .e-grid .e-table .e-headercell{
 body.theme-dark .e-grid .e-table {
   background-color: #293145!important;
 }
+body.theme-dark .e-dlg-header-content{
+  background-color:#1a2236 !important;
+}
+body.theme-dark .e-dlg-header{
+  color: #eee!important;
+
+}
+body.theme-dark .e-dlg-content{
+  background-color: #293145!important;
+  color: #eee!important;
+
+}
 body.theme-dark .e-grid .e-content{
   background-color: #293145!important;
 
+}
+body.theme-dark .e-pager{
+  background-color: #293145!important;
+}
+body.theme-dark .e-movablechild{
+  background-color: #293145!important;
+}
+
+
+body.theme-dark .e-pagerconstant{
+  color: #eee!important;
+}
+body.theme-dark .e-parentmsgbar{
+  color: #eee!important;
 }
 .theme-dark .form-control:-ms-input-placeholder {
   color: #eee !important;

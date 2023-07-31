@@ -6,6 +6,8 @@ const $ = require("jquery");
 export class Configs {
   // Language
   currentLang = localStorage.getItem("lang")! || "en";
+  loadingIndicator = {indicatorType: 'Shimmer'};
+
   height = (): number => {
     let windownHeight = window.innerHeight;
     let groupFilter = $(".group-filter").outerHeight(); // from phia tren grid cong voi padding
@@ -111,7 +113,7 @@ export class Configs {
   filter = { type: "CheckBox" };
   pageSettings: Object = {
     pageSizes: [10, 20, 50, 200, 2000],
-    pageSize: 200,
+    pageSize: 10,
     pageCount: 4,
   };
   treeGridPageSettings: Object = { pageSize: 20, pageCount: 4 };

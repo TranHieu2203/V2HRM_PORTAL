@@ -15,7 +15,7 @@ import { ScheduleModule, View } from '@syncfusion/ej2-angular-schedule';
 import { WeekService, MonthService} from '@syncfusion/ej2-angular-schedule';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
 import { TextBoxModule } from '@syncfusion/ej2-angular-inputs';
-import { FreezeService, SelectionService, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
+import { FreezeService, SelectionService, EditService, ToolbarService,PageService, SortService, FilterService } from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   imports: [
@@ -37,7 +37,7 @@ import { FreezeService, SelectionService, EditService, ToolbarService } from '@s
   declarations: [DetailComponent],
   providers: [WeekService,
     MonthService,
-     FreezeService, SelectionService, EditService, ToolbarService]
+     FreezeService, SelectionService, EditService, ToolbarService,PageService, SortService, FilterService]
 
 })
 export class AttendanceModule { }
