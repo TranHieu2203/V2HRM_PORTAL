@@ -766,8 +766,8 @@ export class EmployeeComponent implements OnInit {
   changeBank(e: any) {
     if (e.e) {
       this.lstBankBranchId = [];
-      this.getBankBranch(e.itemData.id).then((res: any) => {
-        this.lstBankBranchId = res.body.data;
+      this.getBankBranch(e.itemData.key).then((res: any) => {
+         this.lstBankBranchId = res.body.data;
       });
     }
   }
