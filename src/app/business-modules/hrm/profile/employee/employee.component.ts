@@ -87,7 +87,7 @@ export class EmployeeComponent implements OnInit {
   lstFormTrain: any = [];
   lstSpecialized: any = [];
   lstCompanyId: any = [];
-
+ 
   dataFamilyEdit: any;
   dataTraining: any;
   dataTrainingEdit: any;
@@ -177,6 +177,11 @@ export class EmployeeComponent implements OnInit {
         workDate: ['', []],
         workScope: ['', []],
         workPlace: ['', []],
+      }),
+      user: this._formBuilder.group({
+        bankId: ["", []],
+        bankBranch: ["", []],
+        bankNo: ["", []],
       }),
       education: this._formBuilder.group({
         schoolId: ['', []],
@@ -370,6 +375,9 @@ export class EmployeeComponent implements OnInit {
       this.otherListService.specializedList.subscribe((res: any) => {
         this.lstSpecialized = res;
       });
+      this.otherListService.bankIdList.subscribe((res: any) => {
+        this.lstBankId = res;
+      });
       this.employeeInfo = _.cloneDeep(
         _.omit(
           res[0].body.result,
@@ -434,6 +442,16 @@ export class EmployeeComponent implements OnInit {
         .then((x) => {
           this.employeeInfo.bankBranch = model.bankBranch;
         });
+    }
+    if (model && model.bankId) {
+      this.getBankBranch(model.bankId)
+        .then((res: any) => {
+          this.lstBankBranchId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.bankBranch = model.bankBranch;
+        });
+      
     }
   }
   getListSituation() {
@@ -748,8 +766,8 @@ export class EmployeeComponent implements OnInit {
   changeBank(e: any) {
     if (e.e) {
       this.lstBankBranchId = [];
-      this.getBankBranch(e.itemData.key).then((res: any) => {
-        this.lstBankBranchId = res;
+      this.getBankBranch(e.itemData.id).then((res: any) => {
+        this.lstBankBranchId = res.body.data;
       });
     }
   }
@@ -1000,7 +1018,7 @@ export class EmployeeComponent implements OnInit {
       return;
     }
 
-    if (this.tabDefault.selectedItem == 3) {
+    if (this.tabDefault.selectedItem == 4) {
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1020,7 +1038,7 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
-    } else if (this.tabDefault.selectedItem == 4) {
+    } else if (this.tabDefault.selectedItem == 5) {
       let param = this.convertModel(this.trainingbefore);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1044,7 +1062,7 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
-    } else if (this.tabDefault.selectedItem == 5) {
+    } else if (this.tabDefault.selectedItem == 6) {
       let param = this.convertModel(this.workingbefore);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
