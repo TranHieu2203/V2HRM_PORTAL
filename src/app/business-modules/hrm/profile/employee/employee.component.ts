@@ -1017,7 +1017,7 @@ export class EmployeeComponent implements OnInit {
       this.editForm.markAllAsTouched();
       return;
     }
-
+    // Lưu gia cảnh
     if (this.tabDefault.selectedItem == 4) {
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
@@ -1038,6 +1038,8 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
+
+      // Lưu quá trình đào tạo trước đây
     } else if (this.tabDefault.selectedItem == 5) {
       let param = this.convertModel(this.trainingbefore);
       if (param.status == 2 || param.status == 3) {
@@ -1062,6 +1064,8 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
+
+      // Lưu quá trình công tác trước đây
     } else if (this.tabDefault.selectedItem == 6) {
       let param = this.convertModel(this.workingbefore);
       if (param.status == 2 || param.status == 3) {
@@ -1086,9 +1090,11 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
+
+      // lưu thông tin sơ yếu lý lịch, thông tin phụ, trình độ văn hóa, tài khoản
     } else {
       let param = this.convertModel(this.employeeInfo);
-      console.log('param: ', param);
+      
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
@@ -1122,6 +1128,6 @@ export class EmployeeComponent implements OnInit {
   }
   changeTab1(param:any) {
     this.curentTab = param;
-    console.log("vào đây k:", this.curentTab)
+    
   }
 }
