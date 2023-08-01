@@ -3,53 +3,23 @@
     <div class="middle-sidebar-left">
       <div class="row feed-body">
         <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
-          <div
-            class="app-content card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3"
-          >
+          <div class="app-content card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
             <div class="">
               <h3 class="form-header">Bảng công tháng</h3>
               <div class="form-search"></div>
-              <ejs-grid
-                #overviewgrid4
-                id="overviewgrid4"
-                [dataSource]="data"
-                [height]="configs.height() - 100"
-                [allowPaging]="true"
-                rowHeight="37"
-                headerHeight="42"
-                allowResizing="true"
-                [allowSelection]="true"
-                allowTextWrap="true"
-                [enableHover]="false"
-                [showColumnChooser]="true"
-                [pageSettings]="configs.pageSettings"
-                [frozenColumns]="2"
-                ,
-              >
+              <ejs-grid #overviewgrid4 id="overviewgrid4" [dataSource]="data" [height]="configs.height() - 100"
+                [allowPaging]="true" rowHeight="37" headerHeight="42" allowResizing="true" [allowSelection]="true"
+                allowTextWrap="true" [enableHover]="false" [showColumnChooser]="true"
+                [pageSettings]="configs.pageSettings" [frozenColumns]="2">
                 <e-columns>
-                  <e-column
-                    field=""
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Giải trình"
-                    clipMode="EllipsisWithTooltip"
-                    width="150"
-                  >
+                  <e-column field="" textAlign="Left" headerTextAlign="Center" headerText="Giải trình"
+                    clipMode="EllipsisWithTooltip" width="150">
                     <ng-template #template let-data>
                       <div class="row-status full-width">
-                        <div
-                          class="text-center status-warning"
-                          *ngIf="data.STATUS_PORTAL_ID == 1"
-                        >
-                          <div
-                            class="btn btn-outline-danger btn-sm"
-                            (click)="showDialog(data)"
-                          >
+                        <div class="text-center status-warning" *ngIf="data.STATUS_PORTAL_ID == 1">
+                          <div class="btn btn-outline-danger btn-sm" (click)="showDialog(data)">
                             <span>
-                              <i
-                                class="fa fa-pencil-square-o"
-                                aria-hidden="true"
-                              ></i>
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               Giải trình
                             </span>
                           </div>
@@ -57,93 +27,41 @@
                       </div>
                     </ng-template>
                   </e-column>
-                  <e-column
-                    field="WORKINGDAY"
-                    textAlign="Right"
-                    headerTextAlign="Center"
-                    headerText="Ngày"
-                    clipMode="EllipsisWithTooltip"
-                    width="150"
-                  >
+                  <e-column field="WORKINGDAY" textAlign="Right" headerTextAlign="Center" headerText="Ngày"
+                    clipMode="EllipsisWithTooltip" width="150">
                   </e-column>
-                  <e-column
-                    field="VALTIME1"
-                    textAlign="Right"
-                    headerTextAlign="Center"
-                    headerText="Giờ vào"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="VALTIME1" textAlign="Right" headerTextAlign="Center" headerText="Giờ vào"
+                    clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="VALTIME4"
-                    textAlign="Right"
-                    headerTextAlign="Center"
-                    headerText="Giờ ra"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="VALTIME4" textAlign="Right" headerTextAlign="Center" headerText="Giờ ra"
+                    clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="WORKINGHOUR"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Giờ làm việc"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="WORKINGHOUR" textAlign="Left" headerTextAlign="Center" headerText="Giờ làm việc"
+                    clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="IS_XINNGHI"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Xin nghỉ"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="IS_XINNGHI" textAlign="Left" headerTextAlign="Center" headerText="Xin nghỉ"
+                    clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="STATUS_REGISTER_OFF"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Trạng thái ngày nghỉ"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="STATUS_REGISTER_OFF" textAlign="Left" headerTextAlign="Center"
+                    headerText="Trạng thái ngày nghỉ" clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="CAN_GIAI_TRINH"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Cần giải trình"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="CAN_GIAI_TRINH" textAlign="Left" headerTextAlign="Center" headerText="Cần giải trình"
+                    clipMode="EllipsisWithTooltip">
                   </e-column>
 
-                  <e-column
-                    field="DAY_COUNT"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Ngày công hưởng lương"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="DAY_COUNT" textAlign="Left" headerTextAlign="Center"
+                    headerText="Ngày công hưởng lương" clipMode="EllipsisWithTooltip">
                   </e-column>
-                  <e-column
-                    field="STATUS_PORTAL"
-                    textAlign="Left"
-                    headerTextAlign="Center"
-                    headerText="Trạng thái giải trình"
-                    clipMode="EllipsisWithTooltip"
-                  >
+                  <e-column field="STATUS_PORTAL" textAlign="Left" headerTextAlign="Center"
+                    headerText="Trạng thái giải trình" clipMode="EllipsisWithTooltip">
                     <ng-template #template let-data>
                       <div class="row-status full-width">
-                        <div
-                          class="text-center text-danger"
-                          *ngIf="data.STATUS_PORTAL_ID === 1"
-                        >
+                        <div class="text-center text-danger" *ngIf="data.STATUS_PORTAL_ID === 1">
                           <span>
                             {{ data.STATUS_PORTAL }}
                           </span>
                         </div>
-                        <div
-                          class="text-center text-warning"
-                          *ngIf="data.STATUS_PORTAL_ID === 2"
-                        >
+                        <div class="text-center text-warning" *ngIf="data.STATUS_PORTAL_ID === 2">
                           <span>
                             {{ data.STATUS_PORTAL }}
                           </span>
@@ -154,38 +72,23 @@
                 </e-columns>
               </ejs-grid>
 
-              <ejs-dialog
-                id="animationDialog"
-                [isModal]="true"
-                #defaultDialog
-                [visible]="false"
-                [position]="positionDialog"
-                [header]="editHeaderText"
-                [animationSettings]="animationSettings"
-                [showCloseIcon]="true"
-                [width]="800"
-              >
+              <ejs-dialog id="animationDialog" [isModal]="true" #defaultDialog [visible]="false"
+                [position]="positionDialog" [header]="editHeaderText" [animationSettings]="animationSettings"
+                [showCloseIcon]="true" [width]="800">
                 <ng-template #content>
                   <div class="dialogContent">
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label class=""
-                            >Lý do giải trình:
+                          <label class="">Lý do giải trình:
                             <!-- {{ editModel.CAN_GIAI_TRINH }} -->
                           </label>
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label
-                            ><input
-                              type="checkbox"
-                              class="mr-5"
-                              name="checkbox"
-                              value="value"
-                            />Có lý do công việc</label
-                          >
+                          <label><input type="checkbox" class="mr-5" name="checkbox" value="value" />Có lý do công
+                            việc</label>
                         </div>
                       </div>
                       <div class="col-sm-12">

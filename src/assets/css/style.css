@@ -1676,7 +1676,12 @@ body.theme-dark .e-pager{
 body.theme-dark .e-movablechild{
   background-color: #293145!important;
 }
+body.theme-dark .e-rte-content{
+  
+  background-color: #293145!important;
+  color: #eee!important;
 
+}
 
 body.theme-dark .e-pagerconstant{
   color: #eee!important;

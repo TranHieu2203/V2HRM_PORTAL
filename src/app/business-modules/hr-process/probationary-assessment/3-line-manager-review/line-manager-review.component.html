@@ -1,0 +1,104 @@
+<div class="pt-2">
+  <!-- help: https://ej2.syncfusion.com/angular/documentation/accordion/getting-started/ -->
+  <ejs-accordion>
+    <e-accordionitems>
+      <e-accordionitem expanded='true'>
+        <ng-template #header>
+          <label><b>B: Cấp quản lý/GDTT nhận xét, đánh giá</b></label>
+        </ng-template>
+        <ng-template #content>
+          <div class="pt-2">
+            <label> 1: Đánh giá chung
+            </label>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <label>Mặt tích cực</label>
+                <!-- help: https://ej2.syncfusion.com/angular/documentation/textbox/multiline/ -->
+                <ejs-textbox id="textarea" #default row="5" placeholder=""  floatLabelType="Auto"  [multiline]="true"
+                   required></ejs-textbox>
+              </div>
+              <div class="col-sm-4">
+                <label>Mặt hạn chế</label>
+                <ejs-textbox id="textarea" #default row="5" placeholder=""  floatLabelType="Auto"  [multiline]="true"
+                   required></ejs-textbox>
+
+              </div>
+              <div class="col-sm-4">
+                <label>Triển vọng</label>
+                <ejs-textbox id="textarea" #default row="5" placeholder=""  floatLabelType="Auto"  [multiline]="true"
+                   required></ejs-textbox>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <label> 2: Đề xuất</label>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Loại hợp đồng</label>
+                  <!-- help: https://ej2.syncfusion.com/angular/documentation/drop-down-list/getting-started/#adding-dropdownlist-component -->
+                  <ejs-dropdownlist id='games' #sample [dataSource]='' [value]='' [fields]="{ text: '', value: '' }"
+                    placeholder='Loại hợp đồng' popupHeight='220px'></ejs-dropdownlist>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Thời hạn</label>
+                  <!-- help: https://ej2.syncfusion.com/angular/documentation/drop-down-list/getting-started/#adding-dropdownlist-component -->
+                  <ejs-dropdownlist id='games' #sample [dataSource]='' [value]='' [fields]="{ text: '', value: '' }"
+                    placeholder='Thời hạn' popupHeight='220px'></ejs-dropdownlist>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Mức lương</label>
+                  <ejs-numerictextbox format="n" placeholder="Mức lương"></ejs-numerictextbox>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Mức lương thử việc</label>
+                  <ejs-numerictextbox format="n" placeholder="Mức lương thử việc"></ejs-numerictextbox>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Mức lương chính thức</label>
+                  <ejs-numerictextbox format="n" placeholder="Mức lương chính thức"></ejs-numerictextbox>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label>Trợ cấp/phụ cấp(nếu có)</label>
+                  <ejs-numerictextbox format="n" placeholder="Trợ cấp/phụ cấp"></ejs-numerictextbox>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Lý do thay đổi lương</label>
+                  <ejs-textbox id="textarea" #default rows="2" placeholder="" floatLabelType="Auto" [multiline]="true" required></ejs-textbox>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Yêu cầu khác</label>
+                  <ejs-textbox id="textarea" #default rows="2" placeholder="" floatLabelType="Auto" [multiline]="true" required></ejs-textbox>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ng-template>
+      </e-accordionitem>
+
+    </e-accordionitems>
+  </ejs-accordion>
+</div>

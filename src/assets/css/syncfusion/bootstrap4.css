@@ -6337,7 +6337,7 @@ textarea.e-input::-webkit-input-placeholder {
 
 .e-popup.e-popup-open {
   display: block;
-  z-index: 0 !important;
+  z-index: 0;
 }
 
 .e-popup.e-popup-close {
@@ -47123,8 +47123,13 @@ ejs-filemanager {
   position: relative;
   text-align: inherit;
   z-index: 2;
-}
+  padding-top: 50px;
 
+}
+.e-rte-content{
+  height: 100%!important;
+  overflow: auto!important;
+}
 @media screen and (min-width: 992px) {
   .e-richtexteditor .e-rte-content .e-content,
   .e-richtexteditor .e-source-content .e-content {

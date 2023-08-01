@@ -1,15 +1,18 @@
 <div class="main-content">
   <div class="middle-sidebar-bottom">
-    <div class="middle-sidebar-left">
-      <div class="row feed-body">
-        <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
-          <div class="app-content card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
-            <p>
-              <profile-info></profile-info>
-              <employee-report [statusId]="0"> </employee-report>
-            </p>
+    <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
+      <!--profile info-->
+
+      <div class="app-content w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
+        <profile-info></profile-info>
+
+        <div *ngFor="let step of selectedDosing.steps; index as i" class="step" [attr.step]="i">
+          <div class="pt-2">
+            <ng-template [ngComponentOutlet]="step.component"></ng-template>
+
           </div>
         </div>
+
       </div>
     </div>
   </div>

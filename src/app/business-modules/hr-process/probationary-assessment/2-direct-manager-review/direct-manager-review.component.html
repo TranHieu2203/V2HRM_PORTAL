@@ -3,7 +3,7 @@
     <e-accordionitems>
       <e-accordionitem expanded='true'>
         <ng-template #header>
-          <div>B. Cấp quản lý trực tiếp đánh giá</div>
+          <label><b>B. Cấp quản lý trực tiếp đánh giá</b></label>
         </ng-template>
         <ng-template #content>
           <ejs-grid height='267px'>
@@ -19,8 +19,61 @@
             </e-columns>
 
           </ejs-grid>
-          Kết quả đánh giá tổng quát: Xếp loại
+          <label> Kết quả đánh giá tổng quát: Xếp loại</label>
+
+          <label>B. Quản lý trực tiếp đánh giá</label>
+
+          <div>
+            <label class=""><b>- Những đóng góp xuất sắc của nhân viên</b></label>
+            <!-- help: https://ej2.syncfusion.com/angular/documentation/rich-text-editor/getting-started/#running-the-application -->
+            <div class="pt-2">
+              <ejs-richtexteditor id='defaultRTE' height="200px">
+                <ng-template #valueTemplate>
+                  <p></p>
+                </ng-template>
+              </ejs-richtexteditor>
+            </div>
+
+            <div class="row pt-2">
+              <label><b>Những lĩnh vực mà nhân viên cần phấn đấu thêm hoặc đào tạo</b></label>
+              <div class="col-sm-6">
+                <!-- help: https://ej2.syncfusion.com/angular/documentation/rich-text-editor/getting-started/#running-the-application -->
+                <label>Đào tạo kỹ năng làm việc</label>
+
+                <div class="pt-2">
+                  <ejs-richtexteditor >
+                    <ng-template #valueTemplate>
+                      <p></p>
+                    </ng-template>
+                  </ejs-richtexteditor>
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+                <label>Đào tạo kỹ năng chung</label>
+
+                <div class="pt-2">
+                  <ejs-richtexteditor >
+                    <ng-template #valueTemplate>
+                      <p></p>
+                    </ng-template>
+                  </ejs-richtexteditor>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2">
+              <label>Ý kiến của anh/chị về tiềm năng của nhân viên; định hướng nghề nghiệp hoặc ý kiến khác</label>
+
+              <ejs-richtexteditor id='defaultRTE' height="200px">
+                <ng-template #valueTemplate>
+                  <p></p>
+                </ng-template>
+              </ejs-richtexteditor>
+            </div>
+          </div>
         </ng-template>
+
+
       </e-accordionitem>
 
     </e-accordionitems>

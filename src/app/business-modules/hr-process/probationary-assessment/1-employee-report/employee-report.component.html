@@ -1,0 +1,31 @@
+<div class="pt-2">
+  <ejs-accordion>
+    <e-accordionitems>
+      <e-accordionitem expanded="true">
+        <ng-template #header>
+          <label><b>A. Nhân viên báo cáo kết quả công việc</b></label>
+
+        </ng-template>
+        <ng-template #content>
+          <div>
+            <ejs-grid [dataSource]="data" [editSettings]="editSettings" [toolbar]="toolbar" height="273px">
+              <e-columns>
+                <e-column field="stt" headerText="STT" textAlign="Right" isPrimaryKey="true" width="100"
+                  [edit]="false"></e-column>
+                <e-column field="works" headerText="Nội dung" editType="dropdownedit" [edit]="countryParams"
+                  width="150"></e-column>
+                <e-column field="status" headerText="Trạng thái" editType="dropdownedit" [edit]="stateParams"
+                  width="150"></e-column>
+              </e-columns>
+            </ejs-grid>
+            <div class="form-group">
+              <label>Đề xuất của CBNV</label>
+              <ejs-textbox id="textarea" #default rows="3" floatLabelType="Auto" [multiline]="true"
+                required></ejs-textbox>
+            </div>
+          </div>
+        </ng-template>
+      </e-accordionitem>
+    </e-accordionitems>
+  </ejs-accordion>
+</div>

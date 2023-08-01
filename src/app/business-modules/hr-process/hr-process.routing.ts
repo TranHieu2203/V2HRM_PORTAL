@@ -4,7 +4,7 @@ import { ProbationaryAssessmentComponent } from './probationary-assessment/proba
 
 const routes: Routes = [
   {
-    path: 'probatirary-assesment',
+    path: 'p-a',
     component: ProbationaryAssessmentComponent,
     canLoad: [AuthGuard],
   },
