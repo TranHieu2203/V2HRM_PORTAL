@@ -42,11 +42,11 @@ export interface IServerModel {
   updateEmployeeAddressUrl?: string,
   updateEmployeeCurAddressUrl?: string,
   updateEmployeeContactInfoUrl?: string,
-  getEmpsituationUrl?:string,
+  getEmpsituationUrl?: string,
   getNationUrl?: string,
   getNationalityUrl?: string,
   getReligionUrl?: string,
-  getListFamilyStatusUrl?:string,
+  getListFamilyStatusUrl?: string,
   getListStatusEmpUrl?: string,
   getlstTrainingFormIdUrl?: string,
   GetListLearningLevelUrl?: string,
@@ -63,7 +63,11 @@ export interface IServerModel {
   getSpecializedUrl?: string,
 
   // attendance
-  getTimeExplaint?:string
+  getTimeExplaint?: string
+
+
+  //hrProcess
+  getProcessType?: string
 }
 
 export const V2Hrm2022: IServerModel = {
@@ -121,7 +125,11 @@ export const V2Hrm2022: IServerModel = {
   getSpecializedUrl: 'hr/otherlist/SPECIALIZED_TRAIN',
 
   // attendance
-  getTimeExplaint:"at-portal/timeexplain"
+  getTimeExplaint: "at-portal/timeexplain",
+
+
+  // hrProcess
+  getProcessType: "hr-process/approveprocess/getall"
 }
 
 
@@ -131,7 +139,7 @@ export const V2Hrm2022: IServerModel = {
 export class CommonHttpRequestService {
 
   private handleError: HandleError;
-  private apiUrl!:string;
+  private apiUrl!: string;
   constructor(
     private http: HttpClient,
     @Inject(Globals) private globals: Globals,
@@ -139,7 +147,7 @@ export class CommonHttpRequestService {
   ) {
     this.handleError = httpErrorHandler.createHandleError('CommonHttpRequestService');
     this.apiUrl = globals.apiURL.toString();
-    console.log("this.apiUrl",this.apiUrl)
+    console.log("this.apiUrl", this.apiUrl)
   }
 
   commonPostRequest(name: string, url: string, payload: any): Observable<any> {

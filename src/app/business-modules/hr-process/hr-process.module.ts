@@ -9,6 +9,12 @@ import { DirectManagerReviewModule } from './probationary-assessment/2-direct-ma
 import { LineManagerReviewModule } from './probationary-assessment/3-line-manager-review/line-manager-review.module';
 import { HrReviewModule } from './probationary-assessment/4-hr-review/4-hr-review.module';
 import { BodReviewModule } from './probationary-assessment/5-bod-review/5-bod-review.module';
+import { MainComponent } from './main/main.component';
+import { SyncfusionModule } from 'src/app/syncfusion.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @NgModule({
 
@@ -22,13 +28,31 @@ import { BodReviewModule } from './probationary-assessment/5-bod-review/5-bod-re
     DirectManagerReviewModule,
     LineManagerReviewModule,
     HrReviewModule,
-    BodReviewModule
-
+    BodReviewModule,
+    SyncfusionModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
-    ProbationaryAssessmentComponent
+    ProbationaryAssessmentComponent,
+    MainComponent
   ],
   exports: [
+  ],
+  providers: [
+    AuthService
+
   ]
 })
 export class HrProcessModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}

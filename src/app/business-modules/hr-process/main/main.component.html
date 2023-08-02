@@ -1,0 +1,95 @@
+<div class="main-content">
+  <div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left">
+      <div class="row feed-body">
+        <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
+          <div class="app-content card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
+            <div class="form-search">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="">{{'Loại quy trình'|translate}}</label>
+                    <ejs-dropdownlist id='games' #sample [dataSource]='processTypes' [value]=''
+                      [fields]="{ text: 'value', value: 'key' }" [placeholder]="'Loại quy trình'|translate"
+                      popupHeight='220px'></ejs-dropdownlist>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="">{{'Từ ngày'|translate}}</label>
+                    <ejs-datepicker format='dd-MM-yyyy' [placeholder]="'Từ ngày'|translate"  [value]=></ejs-datepicker>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="">{{'Đến ngày'|translate}}</label>
+                    <ejs-datepicker format='dd-MM-yyyy' [placeholder]="'Đến ngày'|translate"  [value]=></ejs-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="">{{'Trạng thái'|translate}}</label>
+                    <ejs-dropdownlist id='games' #sample [dataSource]='' [value]='' [fields]="{ text: '', value: '' }"
+                      [placeholder]="'Trạng thái'|translate" popupHeight='220px'></ejs-dropdownlist>
+                    <div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for=""></label>
+                    <div class="btn btn-outline-warning mt-4"><i class="feather-search"></i>{{'Lọc dữ liệu'|translate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for=""></label>
+                    <div class="btn btn-outline-primary mt-4 pull-right"><i class="feather-plus-circle"></i>{{'Tạo
+                      mới'|translate}}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-grid">
+              <!-- help: https://ej2.syncfusion.com/angular/documentation/grid/grouping/ -->
+              <ejs-grid [dataSource]='' [allowGrouping]='true' [height]="configs.height() - 230" [allowPaging]="true"
+                rowHeight="37" headerHeight="42" allowResizing="true" [allowSelection]="true" allowTextWrap="true"
+                [enableHover]="false" [showColumnChooser]="true" [pageSettings]="configs.pageSettings"
+                [locale]='configs.currentLang'>
+                <e-columns>
+                  <e-column type='checkbox' [showInColumnChooser]='false' [allowFiltering]='false'
+                    [allowSorting]='false' width='40' textAlign="Center" [allowEditing]="false">
+                  </e-column>
+                  <e-column field='id' [showInColumnChooser]='false' [visible]='false' headerText='ID'
+                    [isPrimaryKey]='true' [allowEditing]="false">
+                  </e-column>
+                  <e-column field="WORKINGDAY" textAlign="Right" headerTextAlign="Center" headerText="Loại quy trình"
+                    clipMode="EllipsisWithTooltip" width="150">
+                    <!-- <ng-template #headerTemplate let-data>
+                      <div>
+                        <span type="button" class="btn btn-outline-primary">
+                          <i class="feather-plus-circle"></i>
+                        </span>
+                        Loại quy trình
+                      </div>
+                    </ng-template> -->
+
+                  </e-column>
+                  <e-column field="WORKINGDAY" textAlign="Right" headerTextAlign="Center" headerText="Ngày tạo"
+                    clipMode="EllipsisWithTooltip" width="150">
+                  </e-column>
+                  <e-column field="WORKINGDAY" textAlign="Right" headerTextAlign="Center" headerText="Trạng thái"
+                    clipMode="EllipsisWithTooltip" width="150">
+                  </e-column>
+                </e-columns>
+              </ejs-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

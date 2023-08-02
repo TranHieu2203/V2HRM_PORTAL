@@ -57,7 +57,7 @@
         </div>
 
         <app-darkbutton></app-darkbutton>
-        <a class="p-0 ms-3 menu-icon" id="infoMenu" data-bs-toggle="dropdown" aria-expanded="false" >
+        <a class="p-0 ms-3 menu-icon" id="infoMenu" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="flex-center w50 h50">
                 <img [src]="avatar" alt="user" class="w50 rounded-circle" />
             </div>
@@ -78,38 +78,35 @@
                     <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
                     <ul class="mb-3 top-content1">
                         <li class="logo d-none d-xl-block d-lg-block"></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/home" class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/home" class="nav-content-bttn open-font"><i
                                     class="feather-grid btn-space-md bg-blue-gradiant1 me-2"></i><span>Dashboard</span></a>
                         </li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/hrm/profile/employee"
-                                class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/hrm/profile/employee" class="nav-content-bttn open-font"><i
                                     class="feather-user btn-space-md bg-red-gradiant1 me-2"></i><span>Thông tin của
                                     tôi</span></a>
                         </li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/mcc-demo"
-                                class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/mcc-demo" class="nav-content-bttn open-font element-disable"><i
                                     class="feather-users btn-space-md bg-gold-gradiant1 me-2"></i><span>Đội ngũ của
                                     tôi</span></a></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/hrm/attendance/dtl"
-                                class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/hrm/attendance/dtl" class="nav-content-bttn open-font"><i
                                     class="feather-clock btn-space-md bg-mini-gradiant1 me-2"></i><span>Chấm
                                     công</span></a></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/register"
-                                class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/register" class="nav-content-bttn open-font element-disable"><i
                                     class="feather-edit btn-space-md bg-primary-gradiant1 me-2"></i><span>Đăng ký
                                 </span></a></li>
-                        <!-- <li (click)="handleCloseHeader()"><a routerLink="/benefit" class="nav-content-bttn open-font"><i
-                                    class="feather-gift btn-space-md bg-primary-gradiant1 me-2"></i><span>Phúc lợi
+                        <li><a routerLink="/hr-process" class="nav-content-bttn open-font"><i
+                                    class="feather-sliders btn-space-md bg-primary-gradiant1 me-2"></i><span>Quy trình
+                                    nhân sự
                                 </span></a></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/carreer-path"
+                        <!--<li><a routerLink="/carreer-path"
                                 class="nav-content-bttn open-font"><i
                                     class="feather-trending-up btn-space-md bg-primary-gradiant1 me-2"></i><span>Quản lý
                                     công việc
                                 </span></a></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/course" class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/course" class="nav-content-bttn open-font"><i
                                     class="feather-award btn-space-md bg-primary-gradiant1 me-2"></i><span>Khóa học
                                 </span></a></li>
-                        <li (click)="handleCloseHeader()"><a routerLink="/performance"
+                        <li><a routerLink="/performance"
                                 class="nav-content-bttn open-font"><i
                                     class="feather-bar-chart btn-space-md bg-primary-gradiant1 me-2"></i><span>Đánh giá
                                 </span></a></li> -->
@@ -150,9 +147,8 @@
                     <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
                     <ul class="mb-3 top-content1">
                         <li class="logo d-none d-xl-block d-lg-block"></li>
-                       
-                        <li (click)="logout()"><a 
-                                class="nav-content-bttn open-font"><i
+
+                        <li (click)="logout()"><a class="nav-content-bttn open-font"><i
                                     class="feather-log-out btn-space-md bg-primary-gradiant1 me-2"></i><span>Logout
                                 </span></a></li>
 
@@ -164,7 +160,7 @@
         </div>
     </nav>
 
-  
+
 
     <!-- <div [class]="'app-header-search' + searchClass">
         <form class="search-form">

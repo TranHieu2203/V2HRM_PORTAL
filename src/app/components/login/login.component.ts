@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private formBuilder: FormBuilder,
     protected notification: NotificationService,
-    protected tlaTranslationLoaderService: TranslationLoaderService,
+    protected translationLoaderService: TranslationLoaderService,
     protected translate: TranslateService,
     private globals: Globals,
 
@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.tlaTranslationLoaderService.loadTranslations(vietnam, english);
+    this.translationLoaderService.loadTranslations(vietnam, english);
     this.server = this.authService.serverModel.modelName;
     this.randomImageServiceSubscription = this.randomImageService.get().subscribe(x => this.backgroundImage = x.src);
   }
@@ -136,6 +136,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           if (res.body.statusCode === "200") {
             this.notification.success("Thông báo", "[Đăng nhập thành công]")
             this.router.navigateByUrl('');
+            //window.location.assign('')
             return;
           } else {
             this.notification.warning("Thông báo", "Sai mật khẩu....")

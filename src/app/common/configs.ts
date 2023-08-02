@@ -6,7 +6,7 @@ const $ = require("jquery");
 export class Configs {
   // Language
   currentLang = localStorage.getItem("lang")! || "en";
-  loadingIndicator = {indicatorType: 'Shimmer'};
+  loadingIndicator = { indicatorType: 'Shimmer' };
 
   height = (): number => {
     let windownHeight = window.innerHeight;
@@ -23,14 +23,13 @@ export class Configs {
     summaryrow = summaryrow ? summaryrow : 0;
     const heightAppContent = $("body").innerHeight();
 
-    console.log("heightAppContent",heightAppContent)
     return (
       windownHeight - 122 -
       gridpager -
       groupFilter -
       gridheader -
       groupdroparea -
-      summaryrow 
+      summaryrow
     );
   };
   heightTimeSheet = (): number => {
@@ -120,7 +119,8 @@ export class Configs {
   selectionSettings = {
     type: "Multiple",
     checkboxOnly: false,
-    checkboxMode: 'ResetOnRowClick'    };
+    checkboxMode: 'ResetOnRowClick'
+  };
 
   selectionSettingsNotCheck = {
     persistSelection: true,
@@ -203,9 +203,9 @@ export class Configs {
         NotIn: 'NotIn',
         Remove: 'Loại bỏ',
         ValidationMessage: 'ValidationMessage',
-        And:"Và",
-        Or:"Hoặc"
-    }
+        And: "Và",
+        Or: "Hoặc"
+      }
     },
     en: {
       grid: {
@@ -223,17 +223,17 @@ export class Configs {
         SelectAll: "Chọn tất cả",
         Search: "Tìm kiếm",
         ChooseDate: "Chọn ngày",
-        NoResult: "Không có dữ liệu phù hợp.",
-        Matchs: "Không có dữ liệu phù hợp.",
+        NoResult: "No record found.",
+        Matchs: "No record found.",
       },
       listbox: {
-        noRecordsTemplate: "Không có dữ liệu phù hợp.",
+        noRecordsTemplate: "No record found.",
         selectAllText: "Chọn tất cả",
         unSelectAllText: "Bỏ chọn tất cả",
-        NoResult: "Không có dữ liệu phù hợp.",
+        NoResult: "No record found.",
       },
       dropdowns: {
-        noRecordsTemplate: "Không có dữ liệu phù hợp.",
+        noRecordsTemplate: "No record found.",
         actionFailureTemplate: "Không tải được dữ liệu.",
       },
       pager: {
@@ -270,10 +270,10 @@ export class Configs {
         NotIn: 'NotIn',
         Remove: 'Loại bỏ',
         ValidationMessage: 'ValidationMessage',
-        AND:"Và",
-        OR:"Hoặc"
+        AND: "Và",
+        OR: "Hoặc"
 
-    }
+      }
     },
   };
 
@@ -304,7 +304,7 @@ export class Configs {
         NotIn: 'NotIn',
         Remove: 'Loại bỏ',
         ValidationMessage: 'ValidationMessage',
-    }
+      }
 
     },
     en: {

@@ -4,7 +4,12 @@
 @use 'src/app/style-variables.scss';
 
 // @import '../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
-
+.element-disable{
+  pointer-events: none;
+}
+.form-grid{
+  padding-top: 20px;
+}
 .checkboxes {
   display: flex;
   flex-wrap: wrap;
