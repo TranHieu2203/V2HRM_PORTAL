@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { L10n } from '@syncfusion/ej2-base';
 import { Configs } from 'src/app/common/configs';
@@ -7,6 +7,7 @@ import { TranslationLoaderService } from 'src/app/common/translation-loader.serv
 import { locale as english } from "src/assets/i18n/en";
 import { locale as vietnam } from "src/assets/i18n/vi";
 import { ProcessTypeService } from '../_services/process-type.service';
+import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
 
 @Component({
   selector: 'app-main',
@@ -15,8 +16,14 @@ import { ProcessTypeService } from '../_services/process-type.service';
 })
 export class MainComponent implements OnInit {
   languages!: any;
-
   processTypes: any;
+  public dialogHeader!: string;
+  public animationSettings: Object = { effect: 'Zoom' };
+
+  @ViewChild('defaultDialog')
+  public defaultDialog!: DialogComponent;
+
+
   constructor(
     protected globals: Globals,
     public configs: Configs,

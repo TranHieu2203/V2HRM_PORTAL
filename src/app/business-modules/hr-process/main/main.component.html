@@ -47,8 +47,8 @@
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label for=""></label>
-                    <div class="btn btn-outline-primary mt-4 pull-right"><i class="feather-plus-circle"></i>{{'Tạo
-                      mới'|translate}}
+                    <div (click)="this.defaultDialog.show()" class="btn btn-outline-primary mt-4 pull-right"><i
+                        class="feather-plus-circle"></i>{{'Tạo mới'|translate}}
                     </div>
 
                   </div>
@@ -89,6 +89,37 @@
                 </e-columns>
               </ejs-grid>
             </div>
+
+
+            <!-- Dialog  -->
+            <!-- help: https://ej2.syncfusion.com/angular/documentation/dialog/getting-started/#positioning -->
+            <div class="control-section">
+              <ejs-dialog id="animationDialog" [header]='dialogHeader' [isModal]='true' #defaultDialog [visible]='false'
+                [animationSettings]='animationSettings' [showCloseIcon]='true' target='.app-content' [width]="700">
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <ejs-dropdownlist id='games' #sample [dataSource]='processTypes' [value]=''
+                        [fields]="{ text: 'value', value: 'key' }" [placeholder]="'Loại quy trình'|translate"
+                        popupHeight='220px'></ejs-dropdownlist>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="btn btn-outline-primary pull-right">
+                      <i class="feather-save"></i> Xác nhận
+                    </div>
+                  </div>
+                </div>
+
+
+              </ejs-dialog>
+            </div>
+
           </div>
         </div>
       </div>
