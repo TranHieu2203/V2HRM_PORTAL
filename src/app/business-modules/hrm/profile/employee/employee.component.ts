@@ -65,6 +65,9 @@ export class EmployeeComponent implements OnInit {
   lstProvinceId: any = [];
   lstDistrictId: any = [];
   lstWardId: any = [];
+  lsthomeProvinceId: any = [];
+  lsthomeDistrictId: any = [];
+  lsthomeWardId: any = [];
   lstCurProvinceId: any = [];
   lstCurDistrictId: any = [];
   lstCurWardId: any = [];
@@ -99,6 +102,7 @@ export class EmployeeComponent implements OnInit {
   dataCommend: any;
   dataDiscipline: any;
   dataInsChange: any;
+  lstExperienceId: any =[];
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
@@ -137,6 +141,14 @@ export class EmployeeComponent implements OnInit {
         religionId: ['', []], //Tôn giáo
         maritalStatusId: ['', []], //Tình trạng hôn nhân
         residentId: [''],
+        experienceId: []
+      }),
+      homeAddress: this._formBuilder.group({
+        homeAddress: ['', []],
+        homeProvinceId: ['', []],
+        homeDistrictId: ['', []],
+        homeWardId: ['', []],
+        
       }),
       address: this._formBuilder.group({
         address: ['', []],
@@ -318,11 +330,11 @@ export class EmployeeComponent implements OnInit {
       });
       this.otherListService.provinceList.subscribe((res: any) => {
         this.lstProvinceId = res;
-      });
-      this.otherListService.provinceList.subscribe((res: any) => {
         this.lstCurProvinceId = res;
+        this.lsthomeProvinceId = res;
       });
-
+      
+      
       this.otherListService.familyStatusList.subscribe((res: any) => {
         this.lstMaritalStatusId = res;
       });
@@ -350,6 +362,9 @@ export class EmployeeComponent implements OnInit {
 
       this.otherListService.placeIdList.subscribe((res: any) => {
         this.lstPlaceId = res;
+      });
+      this.otherListService.experienceList.subscribe((res: any) => {
+        this.lstExperienceId = res;
       });
       // this.commomHttpService
       //   .commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE')
@@ -383,6 +398,7 @@ export class EmployeeComponent implements OnInit {
           res[0].body.result,
           ['districtId', 'wardId'],
           ['curDistrictId', 'curWardId'],
+          ['homeDistrictId', 'homeWardId'],
           ['bankBranch']
         )
       );
@@ -401,6 +417,23 @@ export class EmployeeComponent implements OnInit {
     });
   }
   loadDatalazy(model: EmployeeInfo) {
+    if (model && model.homeProvinceId) {
+      this.getDistrict(model.homeProvinceId)
+        .then((res: any) => {
+          this.lsthomeDistrictId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.homeDistrictId = model.homeDistrictId;
+        });
+
+      this.getWard(model.homeDistrictId)
+        .then((res: any) => {
+          this.lsthomeWardId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.homeWardId = model.homeWardId;
+        });
+    }
     if (model && model.provinceId) {
       this.getDistrict(model.provinceId)
         .then((res: any) => {
@@ -734,6 +767,19 @@ export class EmployeeComponent implements OnInit {
       });
     }
   }
+  changehomeProvince(e: any) {
+    if (e.e) {
+      this.employeeInfo.homeDistrictId = undefined;
+
+      this.lsthomeDistrictId = [];
+      this.employeeInfo.homeWardId = undefined;
+      this.lsthomeWardId = [];
+
+      this.getDistrict(e.itemData.key).then((res: any) => {
+        this.lsthomeDistrictId = res.body.data;
+      });
+    }
+  }
   changeCurProvince(e: any) {
     if (e.e) {
       this.employeeInfo.curDistrictId = undefined;
@@ -751,6 +797,15 @@ export class EmployeeComponent implements OnInit {
       this.lstWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
         this.lstWardId = res.body.data;
+      });
+    }
+  }
+  changehomeDistrict(e: any) {
+    if (e.e) {
+      this.employeeInfo.homeWardId = undefined;
+      this.lsthomeWardId = [];
+      this.getWard(e.itemData.id).then((res: any) => {
+        this.lsthomeWardId = res.body.data;
       });
     }
   }

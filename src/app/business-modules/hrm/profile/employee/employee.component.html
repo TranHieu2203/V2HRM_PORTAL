@@ -261,7 +261,80 @@
                                               </ejs-dropdownlist>
                                             </div>
                                           </div>
+
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Kinh nghiệm</label>
+                                              <ejs-dropdownlist id='experienceId' [dataSource]='lstExperienceId'
+                                                name="experienceId" formControlName="experienceId"
+                                                [showClearButton]="true" [(ngModel)]="employeeInfo.experienceId"
+                                                [fields]='fields' [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstExperienceId)'>
+                                              </ejs-dropdownlist>
+                                            </div>
+                                          </div>
+
                                         </div>
+                                      </div>
+                                      <div class="group-box" formGroupName="homeAddress">
+                                        <div class="row">
+                                          <label class="bold-label">QUÊ QUÁN</label>
+                                        </div>
+                                        <div class="row">
+                                          <!--Tỉnh/TP  -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Tỉnh/TP</label>
+                                              <ejs-dropdownlist id='homeProvinceId' [dataSource]='lsthomeProvinceId'
+                                                name="homeProvinceId" formControlName="homeProvinceId"
+                                                [showClearButton]="true" [(ngModel)]="employeeInfo.homeProvinceId"
+                                                [fields]='fields' [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lsthomeProvinceId)'
+                                                (change)="changehomeProvince($event!)">
+                                              </ejs-dropdownlist>
+                                            </div>
+                                          </div>
+                                          <!--Quận huyện  -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Quận/Huyện</label>
+                                              <ejs-dropdownlist id='homeDistrictId' [dataSource]='lsthomeDistrictId'
+                                                formControlName="homeDistrictId" name="homeDistrictId"
+                                                [showClearButton]="true" [(ngModel)]="employeeInfo.homeDistrictId"
+                                                [fields]='fields1' [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lsthomeDistrictId)'
+                                                (change)="changehomeDistrict($event!)">
+                                              </ejs-dropdownlist>
+                                            </div>
+                                          </div>
+                                          <!--Xã/Phường  -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Xã/Phường</label>
+                                              <ejs-dropdownlist id='homeWardId' [dataSource]='lsthomeWardId'
+                                                formControlName="homeWardId" [showClearButton]="true"
+                                                [(ngModel)]="employeeInfo.homeWardId" [fields]='fields1'
+                                                [allowFiltering]='true' (filtering)='onFiltering($event,lsthomeWardId)'>
+                                              </ejs-dropdownlist>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-12">
+                                            <div class="form-group ">
+                                              <label class="">Số nhà, đường phố, thôn xóm</label>
+                                              <input type="text" class="form-control" name="homeAddress"
+                                                formControlName="homeAddress" [(ngModel)]="employeeInfo.homeAddress">
+                                            </div>
+                                          </div>
+                                          <!-- <div class="col-sm-4">
+                                            <button class="btn-coppy" title="Sao chép địa chỉ thường trú"
+                                              (click)="coppyAddress()">
+                                              <i class="fas fa-copy" aria-hidden="true"></i>
+                                            </button>
+                                            <label class="label-coppy">Sao chép địa chỉ thường trú</label>
+                                          </div> -->
+                                        </div>
+
+
                                       </div>
                                       <div class="group-box" formGroupName="address">
                                         <div class="row">
@@ -780,15 +853,17 @@
                                               <label class="">Số tài khoản</label>
                                               <input class="form-control" type="text" formControlName="bankNo"
                                                 [(ngModel)]="employeeInfo.bankNo">
-                                              
+
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group">
                                               <label class="">Ngân hàng</label>
-                                              <ejs-dropdownlist id='bankId' [dataSource]='lstBankId' formControlName="bankId"
-                                                [showClearButton]="true" [(ngModel)]="employeeInfo.bankId" [fields]='fields' [allowFiltering]='true'
-                                                (filtering)='onFiltering($event,lstBankId)' (change)='changeBank($event!)'>
+                                              <ejs-dropdownlist id='bankId' [dataSource]='lstBankId'
+                                                formControlName="bankId" [showClearButton]="true"
+                                                [(ngModel)]="employeeInfo.bankId" [fields]='fields'
+                                                [allowFiltering]='true' (filtering)='onFiltering($event,lstBankId)'
+                                                (change)='changeBank($event!)'>
                                               </ejs-dropdownlist>
                                             </div>
                                           </div>
@@ -796,14 +871,16 @@
                                           <div class="col-sm-4">
                                             <div class="form-group">
                                               <label class="">Chi nhánh ngân hàng</label>
-                                              <ejs-dropdownlist id='bankBranch' [dataSource]='lstBankBranchId' formControlName="bankBranch"
-                                                [showClearButton]="true" [(ngModel)]="employeeInfo.bankBranch" [fields]='fields1' [allowFiltering]='true'
+                                              <ejs-dropdownlist id='bankBranch' [dataSource]='lstBankBranchId'
+                                                formControlName="bankBranch" [showClearButton]="true"
+                                                [(ngModel)]="employeeInfo.bankBranch" [fields]='fields1'
+                                                [allowFiltering]='true'
                                                 (filtering)='onFiltering($event,lstBankBranchId)'>
                                               </ejs-dropdownlist>
-                                              
+
                                             </div>
                                           </div>
-                                          
+
                                         </div>
                                       </div>
 

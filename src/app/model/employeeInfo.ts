@@ -88,6 +88,11 @@ export class EmployeeInfo {
     workPlace?: any
     insRegionId?: number
     insRegionName?: string
+    homeAddress?: string; //Địa chỉ
+    homeProvinceId?: number;
+    homeDistrictId?: number;
+    homeWardId?: number;
+    experienceId?: number;
   }
   export class Situation {
     

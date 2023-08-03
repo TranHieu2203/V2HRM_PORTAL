@@ -74,6 +74,11 @@ export class OtherListService {
     value: string
   }[]>([])
 
+  experienceList = new BehaviorSubject<{
+    key: number,
+    value: string
+  }[]>([])
+
   insRegionIdList = new BehaviorSubject<{
     key: number,
     value: string
@@ -307,6 +312,21 @@ export class OtherListService {
             value: g.name
           }))
           this.residentList.next(newList);
+        }
+      })
+
+      this.commonHttpRequestService.commonGetRequest('getlstExperience', this.authService.serverModel.getlstExperienceUrl!)
+      .subscribe(x => {
+        if (x.ok && x.status === 200) {
+          const newList: {
+            key: number,
+            value: string
+          }[] = [];
+          x.body.data.map((g: any) => newList.push({
+            key: g.id,
+            value: g.name
+          }))
+          this.experienceList.next(newList);
         }
       })
 
