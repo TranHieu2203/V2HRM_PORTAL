@@ -65,6 +65,9 @@ export class EmployeeComponent implements OnInit {
   lstProvinceId: any = [];
   lstDistrictId: any = [];
   lstWardId: any = [];
+  lsthomeProvinceId: any = [];
+  lsthomeDistrictId: any = [];
+  lsthomeWardId: any = [];
   lstCurProvinceId: any = [];
   lstCurDistrictId: any = [];
   lstCurWardId: any = [];
@@ -99,9 +102,12 @@ export class EmployeeComponent implements OnInit {
   dataCommend: any;
   dataDiscipline: any;
   dataInsChange: any;
+  lstExperienceId: any = [];
   public fields: FieldSettingsModel = { value: 'key', text: 'value' };
   public fields1: FieldSettingsModel = { value: 'id', text: 'name' };
   public curentTab: string = 'profile';
+  public checkWorkingBefore: number = 0;
+  public checkTrainingBefore: number = 0;
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
@@ -119,46 +125,51 @@ export class EmployeeComponent implements OnInit {
           '',
           [Validators.required, this.globals.noWhitespaceValidator],
         ],
-        taxCode: [[]], //Mã sô thuế
-        placeId: ['', []],
+        taxCode: ['', [Validators.required, this.globals.noWhitespaceValidator]], //Mã sô thuế
+        placeId: ['', [Validators.required]],
         // orgName: ['',[]],
         // positionName: ['',[]]
       }),
       infor: this._formBuilder.group({
-        birthDate: ['', []],
-        genderId: [''],
-        birthPlace: ['', []],
-        idNo: ['', []], //CMND
-        idDate: [''], //Ngày cấp
-        idPlace: ['', []], //Nơi cấp
-        passPlace: ['', []],
-        nationalityId: ['', []], //Quốc tịch
-        nativeId: ['', []], //Dân tộc
-        religionId: ['', []], //Tôn giáo
-        maritalStatusId: ['', []], //Tình trạng hôn nhân
-        residentId: [''],
+        birthDate: ['', [Validators.required]],
+        genderId: ['', [Validators.required]],
+        birthPlace: ['', [Validators.required, this.globals.noWhitespaceValidator]],
+        idNo: ['', [Validators.required]], //CMND
+        idDate: ['', [Validators.required]], //Ngày cấp
+        idPlace: ['', [Validators.required]], //Nơi cấp
+
+        nationalityId: ['', [Validators.required]], //Quốc tịch
+        nativeId: ['', [Validators.required]], //Dân tộc
+        religionId: ['', [Validators.required]], //Tôn giáo
+        maritalStatusId: ['', [Validators.required]], //Tình trạng hôn nhân
+        residentId: ['', [Validators.required]],
+        experienceId: ['', [Validators.required]]
+      }),
+      homeAddress: this._formBuilder.group({
+        homeAddress: ['', [Validators.required]],
+        homeProvinceId: ['', [Validators.required]],
+        homeDistrictId: ['', [Validators.required]],
+        homeWardId: ['', [Validators.required]],
+
       }),
       address: this._formBuilder.group({
-        address: ['', []],
-        provinceId: ['', []],
-        districtId: ['', []],
-        wardId: ['', []],
-        directManagerId: ['', []],
-        curAddress: [''],
-        joinDate: ['', []],
+        address: ['', [Validators.required]],
+        provinceId: ['', [Validators.required]],
+        districtId: ['', [Validators.required]],
+        wardId: ['', [Validators.required]],
       }),
       curAddress: this._formBuilder.group({
-        curAddress: ['', []],
-        curProvinceId: ['', []],
-        curDistrictId: ['', []],
-        curWardId: ['', []],
+        curAddress: ['', [Validators.required]],
+        curProvinceId: ['', [Validators.required]],
+        curDistrictId: ['', [Validators.required]],
+        curWardId: ['', [Validators.required]],
       }),
       contact: this._formBuilder.group({
-        mobilePhone: ['', []],
-        email: ['', []],
-        workEmail: ['', []],
-        contactPer: ['', []], //Người liên hệ khi cần
-        contactPerPhone: ['', []],
+        mobilePhone: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+        workEmail: ['', [Validators.required]],
+        contactPer: ['', [Validators.required]], //Người liên hệ khi cần
+        contactPerPhone: ['', [Validators.required]],
       }),
       addinfo: this._formBuilder.group({
         passNo: ['', []], //Hộ chiếu
@@ -184,53 +195,52 @@ export class EmployeeComponent implements OnInit {
         bankNo: ["", []],
       }),
       education: this._formBuilder.group({
-        schoolId: ['', []],
-        qualificationId: ['', []], //Trình độ chuyên môn
-        trainingFormId: ['', []], //Hình thức đào tạo
-        learningLevelId: ['', []], //trình độ học vấn
+        schoolId: ['', [Validators.required]],
+        qualificationId: ['', [Validators.required]], //Trình độ chuyên môn
+        trainingFormId: ['', [Validators.required]], //Hình thức đào tạo
+        learningLevelId: ['', [Validators.required]], //trình độ học vấn
         languageMark: ['', []], //điểm số
         language: ['', []], //ngoại ngữ
       }),
       situation: this._formBuilder.group({
-        name: ['', []],
+        name: ['', [Validators.required]],
         birth: ['', []],
-        no: ['', []], // CMND
-        taxNo: ['', []], // CMND
-        familyNo: ['', []], // CMND
-        familyName: ['', []], // CMND
-        address: ['', []], // CMND
-        relationshipId: ['', []],
+        no: ['', [Validators.required]], // CMND
+        taxNo: ['', [Validators.required]], // CMND
+        familyNo: ['', [Validators.required]], // CMND
+        familyName: ['', [Validators.required]], // CMND
+        address: ['', [Validators.required]], // CMND
+        relationshipId: ['', [Validators.required]],
         dateStart: ['', []],
         dateEnd: ['', []],
       }),
       trainingbefore: this._formBuilder.group({
-        yearGra: ['', []],
-        nameSchools: ['', []],
-        fromDate: ['', []],
-        toDate: ['', []],
-        certificateTypeId: ['', []],
-        formTrainId: [''],
-        specializedTrainId: [''],
-        resultTrain: [''],
-        note: [''],
-        effectiveDateFrom: ['', []],
-        effectiveDateTo: ['', []],
+        yearGra: ['', [Validators.required]],
+        nameSchools: ['', [Validators.required]],
+        fromDate: ['', [Validators.required]],
+        toDate: ['', [Validators.required]],
+        certificateTypeId: ['', [Validators.required]],
+        formTrainId: ['', [Validators.required]],
+        specializedTrainId: ['', [Validators.required]],
+        resultTrain: ['', [Validators.required]],
+        note: ['', [Validators.required]],
+        effectiveDateFrom: ['', [Validators.required]],
+        effectiveDateTo: ['', [Validators.required]],
       }),
       workingbefore: this._formBuilder.group({
-        companyName: ['', []],
-        orgName: ['', []],
-        joinDate: ['', []],
-        endDate: ['', []],
-        companyAddress: ['', []],
-        telephone: [''],
-        salary: [''],
-        titleName: [''],
-        levelName: [''],
-        reference: [''],
-        remark: [''],
-        workDetail: [''],
-        terReason: [''],
-        companyId: ['', []],
+        orgName: ['', [Validators.required]],
+        joinDate: ['', [Validators.required]],
+        endDate: ['', [Validators.required]],
+        companyAddress: ['', [Validators.required]],
+        telephone: ['', [Validators.required]],
+        salary: ['', [Validators.required]],
+        titleName: ['', [Validators.required]],
+        levelName: ['', [Validators.required]],
+        reference: ['', [Validators.required]],
+        remark: ['', [Validators.required]],
+        workDetail: ['', [Validators.required]],
+        terReason: ['', [Validators.required]],
+        companyId: ['', [Validators.required]],
       }),
     });
     this._unsubscribeAll = new Subject();
@@ -318,10 +328,10 @@ export class EmployeeComponent implements OnInit {
       });
       this.otherListService.provinceList.subscribe((res: any) => {
         this.lstProvinceId = res;
-      });
-      this.otherListService.provinceList.subscribe((res: any) => {
         this.lstCurProvinceId = res;
+        this.lsthomeProvinceId = res;
       });
+
 
       this.otherListService.familyStatusList.subscribe((res: any) => {
         this.lstMaritalStatusId = res;
@@ -350,6 +360,9 @@ export class EmployeeComponent implements OnInit {
 
       this.otherListService.placeIdList.subscribe((res: any) => {
         this.lstPlaceId = res;
+      });
+      this.otherListService.experienceList.subscribe((res: any) => {
+        this.lstExperienceId = res;
       });
       // this.commomHttpService
       //   .commonGetRequest('laythongtin', 'hr/otherlist/CERTIFICATE_TYPE')
@@ -383,6 +396,7 @@ export class EmployeeComponent implements OnInit {
           res[0].body.result,
           ['districtId', 'wardId'],
           ['curDistrictId', 'curWardId'],
+          ['homeDistrictId', 'homeWardId'],
           ['bankBranch']
         )
       );
@@ -401,6 +415,23 @@ export class EmployeeComponent implements OnInit {
     });
   }
   loadDatalazy(model: EmployeeInfo) {
+    if (model && model.homeProvinceId) {
+      this.getDistrict(model.homeProvinceId)
+        .then((res: any) => {
+          this.lsthomeDistrictId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.homeDistrictId = model.homeDistrictId;
+        });
+
+      this.getWard(model.homeDistrictId)
+        .then((res: any) => {
+          this.lsthomeWardId = res.body.data;
+        })
+        .then((x) => {
+          this.employeeInfo.homeWardId = model.homeWardId;
+        });
+    }
     if (model && model.provinceId) {
       this.getDistrict(model.provinceId)
         .then((res: any) => {
@@ -485,6 +516,10 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataTrainingEdit = res.body.data;
+        if (this.dataTrainingEdit.length !== 0) {
+          this.checkTrainingBefore = 1;
+
+        }
       });
   }
   getListTrainingBeforeProfile() {
@@ -495,6 +530,10 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataTraining = res.body.data;
+        if (this.dataTraining.length !== 0) {
+          this.checkTrainingBefore = 1;
+
+        }
       });
   }
   getListWorkingBefore() {
@@ -505,7 +544,6 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataWorkingBeforeEdit = res.body.data;
-        console.log(this.dataWorkingBeforeEdit, this.dataWorkingBeforeEdit)
       });
   }
 
@@ -517,6 +555,10 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataWorkingBefore = res.body.data;
+        if (this.dataWorkingBefore.length !== 0) {
+          this.checkWorkingBefore = 1;
+
+        }
       });
   }
   getListDecisionProfile() {
@@ -736,6 +778,19 @@ export class EmployeeComponent implements OnInit {
       });
     }
   }
+  changehomeProvince(e: any) {
+    if (e.e) {
+      this.employeeInfo.homeDistrictId = undefined;
+
+      this.lsthomeDistrictId = [];
+      this.employeeInfo.homeWardId = undefined;
+      this.lsthomeWardId = [];
+
+      this.getDistrict(e.itemData.key).then((res: any) => {
+        this.lsthomeDistrictId = res.body.data;
+      });
+    }
+  }
   changeCurProvince(e: any) {
     if (e.e) {
       this.employeeInfo.curDistrictId = undefined;
@@ -753,6 +808,15 @@ export class EmployeeComponent implements OnInit {
       this.lstWardId = [];
       this.getWard(e.itemData.id).then((res: any) => {
         this.lstWardId = res.body.data;
+      });
+    }
+  }
+  changehomeDistrict(e: any) {
+    if (e.e) {
+      this.employeeInfo.homeWardId = undefined;
+      this.lsthomeWardId = [];
+      this.getWard(e.itemData.id).then((res: any) => {
+        this.lsthomeWardId = res.body.data;
       });
     }
   }
@@ -1013,14 +1077,16 @@ export class EmployeeComponent implements OnInit {
   }
 
   saveForm() {
-    if (!this.editForm.valid) {
-      alert('Form chưa hợp lệ !');
-      // this.notification.warning("Form chưa hợp lệ !");
-      this.editForm.markAllAsTouched();
-      return;
-    }
+
     // Lưu gia cảnh
     if (this.tabDefault.selectedItem == 4) {
+
+      if (!this.editForm.get('situation')?.valid) {
+        alert('Form chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1043,7 +1109,32 @@ export class EmployeeComponent implements OnInit {
 
       // Lưu quá trình đào tạo trước đây
     } else if (this.tabDefault.selectedItem == 5) {
+
+      if (!this.editForm.get('trainingbefore')?.valid) {
+        alert('Form chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
       let param = this.convertModel(this.trainingbefore);
+      if (this.checkTrainingBefore == 0) {
+        let param1 = this.convertModel(this.employeeInfo);
+        if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
+          || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
+          alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          // this.notification.warning("Form chưa hợp lệ !");
+          this.editForm.markAllAsTouched();
+          return;
+        }
+        new Promise((resolve) => {
+          this.commomHttpService
+            .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param1)
+            .subscribe((res: any) => {
+
+            })
+        });
+      }
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
@@ -1069,11 +1160,36 @@ export class EmployeeComponent implements OnInit {
 
       // Lưu quá trình công tác trước đây
     } else if (this.tabDefault.selectedItem == 6) {
+      if (!this.editForm.get('workingbefore')?.valid) {
+        alert('Form chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
       let param = this.convertModel(this.workingbefore);
+      if (this.checkWorkingBefore == 0) {
+        let param1 = this.convertModel(this.employeeInfo);
+        if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
+          || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
+          alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          // this.notification.warning("Form chưa hợp lệ !");
+          this.editForm.markAllAsTouched();
+          return;
+        }
+        new Promise((resolve) => {
+          this.commomHttpService
+            .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param1)
+            .subscribe((res: any) => {
+
+            })
+        });
+      }
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
       }
+
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest(
@@ -1092,6 +1208,7 @@ export class EmployeeComponent implements OnInit {
             }
           });
       });
+
 
       // lưu thông tin sơ yếu lý lịch, thông tin phụ, trình độ văn hóa, tài khoản
     } else {

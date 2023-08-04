@@ -61,6 +61,7 @@ export interface IServerModel {
   getCertificateUrl?: string,
   getFormTrainUrl?: string,
   getSpecializedUrl?: string,
+  getlstExperienceUrl?: string,
 
   // attendance
   getTimeExplaint?: string
@@ -125,6 +126,7 @@ export const V2Hrm2022: IServerModel = {
   getCertificateUrl: 'hr/otherlist/CERTIFICATE_TYPE',
   getFormTrainUrl: 'hr/otherlist/GetListTrainingForm',
   getSpecializedUrl: 'hr/otherlist/SPECIALIZED_TRAIN',
+  getlstExperienceUrl: 'hr/otherlist/GetListExperience',
 
   // attendance
   getTimeExplaint: "at-portal/timeexplain",
