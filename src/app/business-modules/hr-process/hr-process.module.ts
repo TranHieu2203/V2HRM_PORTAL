@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HrProcessRoutes } from './hr-process.routing';
-import { EmployeeReportModule } from './probationary-assessment/1-employee-report/employee-report.module';
-import { ProbationaryAssessmentComponent } from './probationary-assessment/probationary-assessment.component';
 import { ProfileInfoModule } from './profile-info/profile-info.module';
-import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
-import { DirectManagerReviewModule } from './probationary-assessment/2-direct-manager-review/direct-manager-review.module';
+
+//probationary-assessment
+import { EmployeeReportModule as EmployeeReportModulePA } from './probationary-assessment/1-employee-report/employee-report.module';
+import { ProbationaryAssessmentComponent } from './probationary-assessment/probationary-assessment.component';
+import { DirectManagerReviewModule as DirectManagerReviewModulePA } from './probationary-assessment/2-direct-manager-review/direct-manager-review.module';
 import { LineManagerReviewModule } from './probationary-assessment/3-line-manager-review/line-manager-review.module';
 import { HrReviewModule } from './probationary-assessment/4-hr-review/4-hr-review.module';
 import { BodReviewModule } from './probationary-assessment/5-bod-review/5-bod-review.module';
+//capacity-assessment
+import { EmployeeReportModule as EmployeeReportModuleCA } from './capacity-assessment/1-employee-report/employee-report.module'
+import { DirectManagerReview as DirectManagerReviewModuleCA } from './capacity-assessment/2-direct-manager-review/direct-manager-review.module';
+
+
+import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
+
+
 import { MainComponent } from './main/main.component';
 import { SyncfusionModule } from 'src/app/syncfusion.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -16,6 +25,9 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProgressButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { CapacityAssessmentComponent } from './capacity-assessment/capacity-assessment.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
 
@@ -25,26 +37,35 @@ import { ProgressButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
     AccordionModule,
     ProfileInfoModule,
     //probationary-assessment
-    EmployeeReportModule,
-    DirectManagerReviewModule,
+    EmployeeReportModulePA,
+    DirectManagerReviewModulePA,
     LineManagerReviewModule,
     HrReviewModule,
     BodReviewModule,
+    //capacity-assessment
+    EmployeeReportModuleCA,
+    DirectManagerReviewModuleCA,
     SyncfusionModule,
     ProgressButtonModule,
+    MatStepperModule,
+    MatIconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
   ],
   declarations: [
     ProbationaryAssessmentComponent,
-    MainComponent
+    CapacityAssessmentComponent,
+    MainComponent,
+
+
   ],
   exports: [
+
   ],
   providers: [
     AuthService

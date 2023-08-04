@@ -11,15 +11,16 @@ import { GridModule, PagerModule } from '@syncfusion/ej2-angular-grids';
 import { TreeGridModule } from '@syncfusion/ej2-angular-treegrid';
 import { SwitchModule } from '@syncfusion/ej2-angular-buttons';
 import { ToastModule } from '@syncfusion/ej2-angular-notifications';
+import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
 
-import { 
-    PageService, 
-    SortService, 
-    FilterService, 
-    SearchService, 
-    ToolbarService, 
-    FreezeService, 
-    SelectionService, 
+import {
+    PageService,
+    SortService,
+    FilterService,
+    SearchService,
+    ToolbarService,
+    FreezeService,
+    SelectionService,
     ReorderService,
     EditService,
 } from '@syncfusion/ej2-angular-grids';
@@ -32,15 +33,16 @@ import {
         TreeGridModule,
         SwitchModule,
         PagerModule,
-        KanbanAllModule, 
-        DialogModule, 
+        KanbanAllModule,
+        DialogModule,
         ButtonModule,
         CheckBoxAllModule,
-        DatePickerModule, 
-        DropDownListAllModule, 
-        NumericTextBoxAllModule, 
-        TextBoxAllModule, 
-        ToastModule
+        DatePickerModule,
+        DropDownListAllModule,
+        NumericTextBoxAllModule,
+        TextBoxAllModule,
+        ToastModule,
+        AccordionModule
         //RouterModule // this module is mandatory if some SharedModule components use routing
     ],
     exports: [
@@ -49,14 +51,15 @@ import {
         TreeGridModule,
         SwitchModule,
         PagerModule,
-        KanbanAllModule, 
-        DialogModule, 
+        KanbanAllModule,
+        DialogModule,
         ButtonModule,
         CheckBoxAllModule,
-        DatePickerModule, 
-        DropDownListAllModule, 
-        NumericTextBoxAllModule, 
-        TextBoxAllModule, 
+        DatePickerModule,
+        DropDownListAllModule,
+        NumericTextBoxAllModule,
+        TextBoxAllModule,
+        AccordionModule
     ],
     providers: [
         PageService,

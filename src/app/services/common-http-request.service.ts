@@ -68,6 +68,8 @@ export interface IServerModel {
 
   //hrProcess
   getProcessType?: string
+  createHrProcess?: string
+  getCompentencySeltList?: string
 }
 
 export const V2Hrm2022: IServerModel = {
@@ -129,7 +131,9 @@ export const V2Hrm2022: IServerModel = {
 
 
   // hrProcess
-  getProcessType: "hr-process/approveprocess/getall"
+  getProcessType: "hr-process/template/gettemplate",
+  createHrProcess: "hr-process/process/create",
+  getCompentencySeltList: "hr-process/capacity/getcompentencyseltlist"
 }
 
 
@@ -147,7 +151,6 @@ export class CommonHttpRequestService {
   ) {
     this.handleError = httpErrorHandler.createHandleError('CommonHttpRequestService');
     this.apiUrl = globals.apiURL.toString();
-    console.log("this.apiUrl", this.apiUrl)
   }
 
   commonPostRequest(name: string, url: string, payload: any): Observable<any> {

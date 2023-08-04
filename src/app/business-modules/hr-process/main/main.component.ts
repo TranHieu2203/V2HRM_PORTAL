@@ -8,7 +8,9 @@ import { locale as english } from "src/assets/i18n/en";
 import { locale as vietnam } from "src/assets/i18n/vi";
 import { ProcessTypeService } from '../_services/process-type.service';
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
-
+import { DropDownListModule, DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
+import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -23,13 +25,19 @@ export class MainComponent implements OnInit {
   @ViewChild('defaultDialog')
   public defaultDialog!: DialogComponent;
 
+  @ViewChild('saveProcessType')
+  public saveProcessType!: DropDownListComponent;
+
+
 
   constructor(
     protected globals: Globals,
     public configs: Configs,
     protected translationLoaderService: TranslationLoaderService,
     protected _translateService: TranslateService,
-    protected processTypeServices: ProcessTypeService
+    protected processTypeServices: ProcessTypeService,
+    private commonHttpRequestService: CommonHttpRequestService,
+    private authService: AuthService
   ) {
     L10n.load(this.configs.languageGrid);
 
@@ -44,6 +52,19 @@ export class MainComponent implements OnInit {
     this.processTypeServices.processType.subscribe((res: any) => {
       this.processTypes = res;
     })
+
+  }
+
+  saveProcess() {
+
+    var data: any = {
+      SE_PROCESS_TEMPLATE_ID: this.saveProcessType.value
+    }
+
+    this.commonHttpRequestService.commonPostRequest("createHrProcess", this.authService.serverModel.createHrProcess!, data)
+      .subscribe((res: any) => {
+        console.log("res", res)
+      })
 
   }
 

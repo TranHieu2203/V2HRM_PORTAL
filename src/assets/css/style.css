@@ -1647,6 +1647,26 @@ body.theme-dark .e-grid .e-gridheader {
   color: #eee!important;
 
 }
+
+body.theme-dark .e-grid .e-groupdroparea.e-grouped{
+  background-color: #212529;
+
+}
+body.theme-dark .e-grid .e-grouptopleftcell{
+  background-color: #1a2236 !important;
+
+}
+body.theme-dark .e-grid .e-groupcaption{
+  background-color: #212529!important;
+}
+body.theme-dark .e-recordplusexpand
+{
+  background-color: #212529!important;
+}
+body.theme-dark .e-grid .e-indentcell
+{
+  background-color: #212529!important;
+}
 body.theme-dark .e-grid .e-table .e-headercell{
   background-color:#1a2236 !important;
 
@@ -1689,6 +1709,21 @@ body.theme-dark .e-pagerconstant{
 body.theme-dark .e-parentmsgbar{
   color: #eee!important;
 }
+body.theme-dark .mat-step-text-label{
+  color: #eee!important;
+}
+body.theme-dark .mat-vertical-content
+{
+  color: #eee!important;
+}
+
+
+body.theme-dark .mat-stepper-vertical-line::before
+
+{
+  border-left-color: #eee;
+}
+
 .theme-dark .form-control:-ms-input-placeholder {
   color: #eee !important;
 }
@@ -18379,4 +18414,16 @@ select.sort {
 
 .e-popup.e-ddl{
   display: block!important;
+}
+
+.e-grid .e-groupcaption, .e-grid .e-indentcell, .e-grid .e-recordplusexpand, .e-grid .e-recordpluscollapse{
+  font-weight: 700!important;
+}
+input.largerCheckbox {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.mat-stepper-horizontal, .mat-stepper-vertical{
+  background: none;
 }

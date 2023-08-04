@@ -1,4 +1,6 @@
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .miuka-text-logo {
   background: -webkit-linear-gradient(#09f, rgb(0, 69, 207));
   -webkit-background-clip: text;

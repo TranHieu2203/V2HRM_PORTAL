@@ -87,13 +87,13 @@ export class EmployeeComponent implements OnInit {
   lstFormTrain: any = [];
   lstSpecialized: any = [];
   lstCompanyId: any = [];
- 
+
   dataFamilyEdit: any;
   dataTraining: any;
   dataTrainingEdit: any;
   dataWorkingBeforeEdit: any;
   dataWorkingBefore: any;
-  dataDecision:any;
+  dataDecision: any;
   dataFamily: any;
   dataContract: any;
   dataCommend: any;
@@ -237,7 +237,7 @@ export class EmployeeComponent implements OnInit {
     this.loadData();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   changeTab(e: SelectEventArgs) {
     this.tabDefault.selectedItem;
   }
@@ -451,7 +451,7 @@ export class EmployeeComponent implements OnInit {
         .then((x) => {
           this.employeeInfo.bankBranch = model.bankBranch;
         });
-      
+
     }
   }
   getListSituation() {
@@ -501,12 +501,14 @@ export class EmployeeComponent implements OnInit {
     this.commomHttpService
       .commonGetRequest(
         'laythongtin',
-        'hr/Employee/ListWorkingBeforeEdit' 
+        'hr/Employee/ListWorkingBeforeEdit'
       )
       .subscribe((res: any) => {
         this.dataWorkingBeforeEdit = res.body.data;
+        console.log(this.dataWorkingBeforeEdit, this.dataWorkingBeforeEdit)
       });
   }
+
   getListWorkingBeforeProfile() {
     this.commomHttpService
       .commonGetRequest(
@@ -524,8 +526,8 @@ export class EmployeeComponent implements OnInit {
         "hr/working/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
       )
       .subscribe((res: any) => {
-         this.dataDecision = res.body.data;
-        
+        this.dataDecision = res.body.data;
+
       });
   }
   getListContractProfile() {
@@ -535,8 +537,8 @@ export class EmployeeComponent implements OnInit {
         "hr/contract/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
       )
       .subscribe((res: any) => {
-         this.dataContract = res.body.data;
-        
+        this.dataContract = res.body.data;
+
       });
   }
   getListCommendProfile() {
@@ -546,8 +548,8 @@ export class EmployeeComponent implements OnInit {
         "hr/commend/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
       )
       .subscribe((res: any) => {
-         this.dataCommend = res.body.data;
-        
+        this.dataCommend = res.body.data;
+
       });
   }
   getListDisciplineProfile() {
@@ -557,8 +559,8 @@ export class EmployeeComponent implements OnInit {
         "hr/discipline/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
       )
       .subscribe((res: any) => {
-         this.dataDiscipline = res.body.data;
-        
+        this.dataDiscipline = res.body.data;
+
       });
   }
   getListInsChangeProfile() {
@@ -568,8 +570,8 @@ export class EmployeeComponent implements OnInit {
         "hr/inschange/GetAllPortal?PageNo=1&PageSize=500&orgId=1&IsShow=1"
       )
       .subscribe((res: any) => {
-         this.dataInsChange = res.body.data;
-        
+        this.dataInsChange = res.body.data;
+
       });
   }
   getById() {
@@ -767,7 +769,7 @@ export class EmployeeComponent implements OnInit {
     if (e.e) {
       this.lstBankBranchId = [];
       this.getBankBranch(e.itemData.key).then((res: any) => {
-         this.lstBankBranchId = res.body.data;
+        this.lstBankBranchId = res.body.data;
       });
     }
   }
@@ -1009,7 +1011,7 @@ export class EmployeeComponent implements OnInit {
     this.workingbefore.idWorking = undefined;
     this.workingbefore.id = 0;
   }
-  
+
   saveForm() {
     if (!this.editForm.valid) {
       alert('Form chưa hợp lệ !');
@@ -1094,7 +1096,7 @@ export class EmployeeComponent implements OnInit {
       // lưu thông tin sơ yếu lý lịch, thông tin phụ, trình độ văn hóa, tài khoản
     } else {
       let param = this.convertModel(this.employeeInfo);
-      
+
       return new Promise((resolve) => {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
@@ -1126,8 +1128,8 @@ export class EmployeeComponent implements OnInit {
       this.employeeInfo.curAddress = this.employeeInfo.address;
     }
   }
-  changeTab1(param:any) {
+  changeTab1(param: any) {
     this.curentTab = param;
-    
+
   }
 }

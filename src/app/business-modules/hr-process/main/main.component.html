@@ -100,7 +100,7 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-12">
-                      <ejs-dropdownlist id='games' #sample [dataSource]='processTypes' [value]=''
+                      <ejs-dropdownlist id='games' #saveProcessType [dataSource]='processTypes' [value]=''
                         [fields]="{ text: 'value', value: 'key' }" [placeholder]="'Loại quy trình'|translate"
                         popupHeight='220px'></ejs-dropdownlist>
                     </div>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-sm-12">
-                    <div class="btn btn-outline-primary pull-right">
+                    <div class="btn btn-outline-primary pull-right" (click)="saveProcess()">
                       <i class="feather-save"></i> Xác nhận
                     </div>
                   </div>
