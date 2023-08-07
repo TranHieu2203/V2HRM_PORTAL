@@ -64,10 +64,21 @@ import { NotificationService } from './services/notification.service';
 import { NotificationListComponent } from './components/notification/notification.component';
 
 
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Configs } from './common/configs';
 
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  GoogleSigninButtonDirective,
+  GoogleSigninButtonModule,
+  SocialAuthService,
+} from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
+
+const googleClientId = environment.googleClientId;
 
 @NgModule({
   declarations: [
@@ -109,6 +120,8 @@ import { Configs } from './common/configs';
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule, // import HttpClientModule after BrowserModule
@@ -124,13 +137,13 @@ import { Configs } from './common/configs';
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',
     }),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient]
-            }
-        })
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
   ],
   exports: [StringHtmlPipe],
   providers: [
@@ -145,7 +158,20 @@ import { Configs } from './common/configs';
     httpInterceptorProviders,
     NotificationService,
     Configs,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(googleClientId),
 
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+    // GoogleSigninButtonDirective,
   ],
   bootstrap: [AppComponent]
 })

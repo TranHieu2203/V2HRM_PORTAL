@@ -1,5 +1,6 @@
+import { Globals } from './../common/globals';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of, map } from 'rxjs';
+import { Observable, BehaviorSubject, of, map, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { Auth } from '../interfaces/auth';
@@ -10,6 +11,12 @@ import { MessageService } from './message.service';
 import { RandomAvatarService } from './random-avatar.service';
 import { User } from '../model/user';
 
+
+import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
+import { NotificationService } from './notification.service';
+import { TranslateService } from '@ngx-translate/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +24,13 @@ export class AuthService {
 
   serverModel: IServerModel = V2Hrm2022;
 
-  private userSubject!: BehaviorSubject<User | null>;
+  public userSubject!: BehaviorSubject<User | null>;
   public user!: Observable<User | null>;
 
+  private authChangeSub = new Subject<boolean>();
+  public extAuthChangeSub = new Subject<any>();
+  public authChanged = this.authChangeSub.asObservable();
+  public extAuthChanged = this.extAuthChangeSub.asObservable();
 
 
   initialAuth: Auth = {
@@ -45,17 +56,21 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private messenger: MessageService,
     private commonHttpRequestService: CommonHttpRequestService,
-    private randomAvatarService: RandomAvatarService,
+    private externalAuthService: SocialAuthService,
+    private global: Globals
   ) {
-    this.avatar = this.randomAvatarService.get();
     this.avatar = "https://news.vmogroup.com/wp-content/uploads/2023/04/VMO_Logo_Positive.png"
-    
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
-    // this.stylesMap.delete(key);
-    // this.host.removeChild(styleEl);
+
+    this.externalAuthService.authState.subscribe((user) => {
+      this.extAuthChangeSub.next(user);
+
+
+
+    })
+
 
   }
 
@@ -64,34 +79,26 @@ export class AuthService {
   }
 
   logIn(loginRequest: LoginRequest): Observable<any> {
-
-
     this.loading.next(true);
-    
-
-
     return this.commonHttpRequestService.commonPostRequest(
       'logInRequest',
       this.serverModel.loginUrl,
       loginRequest,
-    ).pipe(map((user: any | null) => {
-      console.log(user)
-      if(user.body.statusCode==="200")
-      {
-        localStorage.setItem('user', JSON.stringify(user.body.data));
-        this.userSubject.next(user);
-      }
-      return user;
+    ).pipe(map((data: any | null) => {
+      // if (user.body.statusCode === "200") {
+      //   this.userSubject.next(user);
+      // }
+      return data;
 
-  }))
+    }))
   }
 
   getAuthorizationToken(): string {
-    if(localStorage.getItem('user')!=null) return JSON.parse(localStorage.getItem('user')!)!.token!;
+    if (localStorage.getItem('user') != null) return JSON.parse(localStorage.getItem('user')!)!.token!;
     return "";
   }
 
-  
+
 
   refreshToken(token?: string | undefined | null): Observable<any> {
 
@@ -104,27 +111,33 @@ export class AuthService {
     )
   }
 
-  /*
-  isLoggedIn(): boolean {
-    const checkValue = !!this.auth.data;
-    this.authenticated$.next(checkValue);
-    return checkValue;
+  externalLogin(obj: any): Observable<any> {
+
+    console.log("obj", obj)
+    return this.commonHttpRequestService.commonPostRequest(
+      'externalLogin',
+      this.serverModel.externalLogin,
+      obj,
+    ).pipe(map((data: any | null) => {
+      return data;
+    }))
   }
-  */
-  isAuth():boolean{
+
+  isAuth(): boolean {
     return true;
   }
 
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    
+
     // this.router.navigate(['/']);
-     this.router.navigate(['/account/login']);
+    this.router.navigate(['/account/login']);
   }
 
   public getJsonData(): string {
     return (JSON.stringify(this.auth.data, null, 2));
   }
+
 
 }

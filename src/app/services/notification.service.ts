@@ -12,9 +12,9 @@ export class NotificationService {
   private titleSuccess = "";
   private titleWarning = "";
   private tigneError = "";
-  private timeout=3000;
+  private timeout = 3000;
   constructor(
-    protected translate: TranslateService) { 
+    protected translate: TranslateService) {
     this.translate.setDefaultLang('vi');
     this.translate.use('vi');
   }
@@ -24,20 +24,20 @@ export class NotificationService {
   }
 
   info(title: string, message: string) {
-    this.translate.get(message).subscribe((data)=>{
+    this.translate.get(message).subscribe((data) => {
       this._subject.next(new Notification(this._idx++, NotificationType.info, title, data, this.timeout));
     })
   }
 
   success(title: string, message: string) {
-    this.translate.get(message).subscribe((data)=>{
+    this.translate.get(message).subscribe((data) => {
       this._subject.next(new Notification(this._idx++, NotificationType.success, title, data, this.timeout));
     })
   }
 
-  warning(title: string, message: string) {
-    this.translate.get(message).subscribe((data)=>{
-      this._subject.next(new Notification(this._idx++, NotificationType.warning, title, data, this.timeout));
+  warning(message: string) {
+    this.translate.get(message).subscribe((data) => {
+      this._subject.next(new Notification(this._idx++, NotificationType.warning, "Thông báo", data, this.timeout));
     })
   }
 

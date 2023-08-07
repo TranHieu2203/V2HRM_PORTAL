@@ -2,10 +2,10 @@
     <div class='nav-header bg-transparent shadow-none border-0'>
         <div class='nav-top w-100'>
             <a href='/'><i class="text-success display1-size me-2 ms-0">
-                <img src="../../../assets/images/auth/vmo_logo.png"  alt='VMO' width="300px"  class="login-logo" />
+                    <img src="../../../assets/images/auth/vmo_logo.png" alt='VMO' width="300px" class="login-logo" />
                 </i>
             </a>
-         
+
         </div>
     </div>
     <div class='row'>
@@ -30,39 +30,53 @@
                         </div>
                         <div class='form-group icon-input mb-1'>
                             <p [ngClass]="{ 'text-danger': formControls['password'].errors }">
-                                <input type="password" id="password" formControlName="password"
-                                    autocomplete="false"
+                                <input type="password" id="password" formControlName="password" autocomplete="false"
                                     class="style2-input ps-5 form-control h-50 text-grey-900 font-xsss fw-600"
                                     placeholder="Mật khẩu" />
                                 <i class='font-sm ti-lock text-grey-500 pe-0'></i>
                             </p>
                             <div *ngIf="formControls['password'].errors  && isDirty()" class="help-block">
-                                <div style="color: red;" *ngIf="formControls['password'].errors['required']">Mật khẩu là bắt buộc</div>
+                                <div style="color: red;" *ngIf="formControls['password'].errors['required']">Mật khẩu là
+                                    bắt buộc</div>
                             </div>
                         </div>
                         <div class='form-check text-left mb-3'>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input #remember type='checkbox' name="remember" formControlName="remember"
-                                    class='form-check-input mt-2' id='exampleCheck5' /><label class='form-check-label font-xsss text-grey-500 '>Ghi nhớ đăng nhập</label>
+                                        class='form-check-input mt-2' id='exampleCheck5' /><label
+                                        class='form-check-label font-xsss text-grey-500 '>Ghi nhớ đăng nhập</label>
                                 </div>
-                                <div class="col-sm-6" >
-                                 
-                                    <select #lang class="form-control" (change)="switchLang(lang.value)" [(ngModel)]="model.lang"  formControlName="lang" >
-                                        <option *ngFor="let c of languagesList"  [value]="c.id">{{c.name}}</option>
+                                <div class="col-sm-6">
+
+                                    <select #lang class="form-control" (change)="switchLang(lang.value)"
+                                        [(ngModel)]="model.lang" formControlName="lang">
+                                        <option *ngFor="let c of languagesList" [value]="c.id">{{c.name}}</option>
                                     </select>
                                     <!-- <ejs-dropdownlist id='moduleId' [disabled]="false" [(ngModel)]="model.lang" [dataSource]='languagesList' [fields]='fields' formControlName="lang" width="100%"
                                     (change)="switchLang($event)">
                                   </ejs-dropdownlist> -->
-                          
+
                                 </div>
                             </div>
-                         
+
                             <!--  -->
                         </div>
                         <div *ngIf="!loading" className='col-sm-12 p-0 text-left'>
                             <button #button type='submit' (submit)="signIn()"
-                                class='form-control text-center style2-input h-50 text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng nhập</button>
+                                class='form-control text-center style2-input h-50 text-white fw-600 bg-dark border-0 p-0 login-button'>Đăng
+                                nhập</button>
+                        </div>
+                        <div class="or-container">
+                            <div class="line-separator"></div>
+                            <div class="or-label">or</div>
+                            <div class="line-separator"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <asl-google-signin-button type='standard' text="signin_with"
+                                    size='large'></asl-google-signin-button>
+                            </div>
                         </div>
                     </form>
                     <app-load *ngIf="loading"></app-load>

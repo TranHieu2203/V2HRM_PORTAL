@@ -14,6 +14,7 @@ const headers = new HttpHeaders({
 export interface IServerModel {
   modelName: string,
   loginUrl: string,
+  externalLogin: string,
   refreshTokenUrl: string,
   getEmployeeInfoUrl?: string,
   getAccountInfoUrl?: string,
@@ -76,6 +77,7 @@ export interface IServerModel {
 export const V2Hrm2022: IServerModel = {
   modelName: 'HiSraff2022',
   loginUrl: 'authen/applogin',
+  externalLogin: 'authen/externalLogin',
   refreshTokenUrl: 'authen/refreshtoken',
   getEmployeeInfoUrl: 'client/profile/getemployeeinfo',
   // updateAccountInfoUrl: 'client/profile/updateemployee',
