@@ -135,6 +135,7 @@ export class EmployeeComponent implements OnInit {
         genderId: ['', [Validators.required]],
         birthPlace: ['', [Validators.required, this.globals.noWhitespaceValidator]],
         idNo: ['', [Validators.required]], //CMND
+        idNoOld: ['',[Validators.required]],
         idDate: ['', [Validators.required]], //Ngày cấp
         idPlace: ['', [Validators.required]], //Nơi cấp
 
@@ -201,6 +202,8 @@ export class EmployeeComponent implements OnInit {
         learningLevelId: ['', [Validators.required]], //trình độ học vấn
         languageMark: ['', []], //điểm số
         language: ['', []], //ngoại ngữ
+        year: [""],
+        certificateOther: [""]
       }),
       situation: this._formBuilder.group({
         name: ['', [Validators.required]],
@@ -387,10 +390,15 @@ export class EmployeeComponent implements OnInit {
 
       this.otherListService.specializedList.subscribe((res: any) => {
         this.lstSpecialized = res;
+        this.lstQualificationId = res;
       });
       this.otherListService.bankIdList.subscribe((res: any) => {
         this.lstBankId = res;
       });
+      this.otherListService.schoolList.subscribe((res: any) => {
+        this.lstSchoolId = res;
+      });
+
       this.employeeInfo = _.cloneDeep(
         _.omit(
           res[0].body.result,

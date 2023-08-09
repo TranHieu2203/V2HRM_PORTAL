@@ -217,6 +217,18 @@
                                             </div>
                                           </div>
                                         </div>
+                                        <div class = "row">
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Số CMND/Căn cước cũ</label>
+                                              <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNoOld"
+                                                name="idNoOld" formControlName="idNoOld" maxlength="12">
+                                              <span class="input-error"
+                                                *ngIf="editForm.controls['infor'].get('idNoOld')!.hasError('required') && !editForm.controls['infor'].get('idNoOld')!.untouched">
+                                                Bắt buộc nhập</span>
+                                            </div>
+                                          </div>
+                                        </div>
                                         <div class="row">
                                           <!--Quốc tịch  -->
                                           <div class="col-sm-4">
@@ -647,6 +659,7 @@
                                                 Bắt buộc chọn</span>
                                             </div>
                                           </div>
+                                          
                                         </div>
 
                                         <div class="row">
@@ -842,7 +855,7 @@
 
                                         <div class="row">
                                           <!--Trường  -->
-                                          <div class="col-sm-4">
+                                          <!-- <div class="col-sm-4">
                                             <div class="form-group ">
                                               <label class="">Trường</label>
                                               <input class="form-control" type="text" formControlName="schoolId"
@@ -851,9 +864,23 @@
                                                 *ngIf="editForm.controls['education'].get('schoolId')!.hasError('required') && !editForm.controls['education'].get('schoolId')!.untouched">
                                                 Bắt buộc nhập</span>
                                             </div>
+                                          </div> -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Trường</label>
+                                              <ejs-dropdownlist id='schoolId' [dataSource]='lstSchoolId'
+                                                formControlName="schoolId" [showClearButton]="true"
+                                                [(ngModel)]="employeeInfo.schoolId" [fields]='fields'
+                                                [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstSchoolId)'>
+                                              </ejs-dropdownlist>
+                                              <span class="input-error"
+                                                *ngIf="editForm.controls['education'].get('schoolId')!.hasError('required') && !editForm.controls['education'].get('schoolId')!.untouched">
+                                                Bắt buộc chọn</span>
+                                            </div>
                                           </div>
                                           <!--Trình độ chuyên môn  -->
-                                          <div class="col-sm-4">
+                                          <!-- <div class="col-sm-4">
                                             <div class="form-group ">
                                               <label class="">Chuyên ngành đào tạo</label>
                                               <input class="form-control" type="text" formControlName="qualificationId"
@@ -862,6 +889,20 @@
                                                 *ngIf="editForm.controls['education'].get('qualificationId')!.hasError('required') && !editForm.controls['education'].get('qualificationId')!.untouched">
                                                 Bắt buộc nhập</span>
 
+                                            </div>
+                                          </div> -->
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Chuyên ngành đào tạo</label>
+                                              <ejs-dropdownlist id='qualificationId' [dataSource]='lstQualificationId'
+                                                formControlName="qualificationId" [showClearButton]="true"
+                                                [(ngModel)]="employeeInfo.qualificationId" [fields]='fields'
+                                                [allowFiltering]='true'
+                                                (filtering)='onFiltering($event,lstQualificationId)'>
+                                              </ejs-dropdownlist>
+                                              <span class="input-error"
+                                                *ngIf="editForm.controls['education'].get('qualificationId')!.hasError('required') && !editForm.controls['education'].get('qualificationId')!.untouched">
+                                                Bắt buộc chọn</span>
                                             </div>
                                           </div>
                                           <!--HÌnh thức đào tạo  -->
@@ -910,6 +951,26 @@
                                               <label class="">Ngoại ngữ</label>
                                               <input class="form-control" type="text" formControlName="language"
                                                 [(ngModel)]="employeeInfo.language">
+                                              <span class="e-float-line"></span>
+
+
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Năm</label>
+                                              <input class="form-control" type="text" formControlName="year"
+                                                [(ngModel)]="employeeInfo.year">
+                                              <span class="e-float-line"></span>
+
+
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group ">
+                                              <label class="">Chứng chỉ khác</label>
+                                              <input class="form-control" type="text" formControlName="certificateOther"
+                                                [(ngModel)]="employeeInfo.certificateOther">
                                               <span class="e-float-line"></span>
 
 
