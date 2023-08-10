@@ -23,15 +23,15 @@ export class NotificationService {
     return this._subject.asObservable();
   }
 
-  info(title: string, message: string) {
+  info(message: string) {
     this.translate.get(message).subscribe((data) => {
-      this._subject.next(new Notification(this._idx++, NotificationType.info, title, data, this.timeout));
+      this._subject.next(new Notification(this._idx++, NotificationType.info, "Thông báo", data, this.timeout));
     })
   }
 
-  success(title: string, message: string) {
+  success(message: string) {
     this.translate.get(message).subscribe((data) => {
-      this._subject.next(new Notification(this._idx++, NotificationType.success, title, data, this.timeout));
+      this._subject.next(new Notification(this._idx++, NotificationType.success, "Thông báo", data, this.timeout));
     })
   }
 
@@ -41,8 +41,8 @@ export class NotificationService {
     })
   }
 
-  error(title: string, message: string) {
-    this._subject.next(new Notification(this._idx++, NotificationType.error, title, message, this.timeout));
+  error(message: string) {
+    this._subject.next(new Notification(this._idx++, NotificationType.error, "Thông báo", message, this.timeout));
   }
 
 }

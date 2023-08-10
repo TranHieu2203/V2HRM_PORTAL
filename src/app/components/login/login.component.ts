@@ -93,7 +93,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     // })
     this.authService.extAuthChangeSub.subscribe((res: any) => {
 
-      console.log("res", res)
       let obj = {
         provider: "GOOGLE",
         idToken: res.idToken,
@@ -147,8 +146,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // this.googleAuthSDK();
-
     this.translationLoaderService.loadTranslations(vietnam, english);
     this.server = this.authService.serverModel.modelName;
     this.randomImageServiceSubscription = this.randomImageService.get().subscribe(x => this.backgroundImage = x.src);
@@ -187,7 +184,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           if (res.body.statusCode === "200") {
             localStorage.setItem('user', JSON.stringify(res.body.data));
             this.authService.userSubject.next(res.body.data);
-            this.notification.success("Thông báo", "[Đăng nhập thành công]")
+            this.notification.success("[Đăng nhập thành công]")
             this.router.navigateByUrl('');
             //window.location.assign('')
             return;
@@ -237,7 +234,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 debugger;
                 localStorage.setItem('user', JSON.stringify(res.body.data));
                 this.authService.userSubject.next(res.body.data);
-                this.notification.success("Thông báo", "[Đăng nhập thành công]")
+                this.notification.success("[Đăng nhập thành công]")
                 this.router.navigateByUrl('/home');
                 return;
               } else if (res.body.statusCode == "400") {

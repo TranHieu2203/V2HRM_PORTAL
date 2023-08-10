@@ -4949,13 +4949,13 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
-  color: #000;
+  color: #eee;
   background-color: #1E74FD;
   border-color: #1E74FD;
 }
 
 .btn-primary:hover {
-  color: #000;
+  color: white;
   background-color: #4089fd;
   border-color: #3582fd;
 }
@@ -18426,4 +18426,61 @@ input.largerCheckbox {
 }
 .mat-stepper-horizontal, .mat-stepper-vertical{
   background: none;
+}
+.node-header{
+  line-height: 39px;
+  min-height: 40px;
+  overflow: hidden;
+  padding: 0 16px 0 16px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: #f8f9fa;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.13); 
+  border-radius: 10px 10px 0px 0px;
+}
+.node-header-arrow{
+  float: right;
+}
+
+.node-content{
+  background-color: white;
+  padding:10px;
+  border: 1px solid rgba(0, 0, 0, 0.13); 
+  border-top: none;
+}
+.node-button{
+  border: 1px solid rgba(0, 0, 0, 0.13); 
+  background: #f8f9fa;
+  border-top: none;
+  padding: 10px;
+  border-radius:  0px 0px 10px 10px;
+
+}
+.text-bold{
+  font-weight: bold;
+ 
+}
+
+body.theme-dark .node-header{
+  background: #293145 !important;
+  border-color: #eee;
+}
+body.theme-dark .node-content{
+  background: #293145 !important;
+  border-color: #eee;
+
+}
+body.theme-dark .node-button{
+  background: #293145 !important;
+  border-color: #eee;
+
+}
+body.theme-dark .btn{
+color: #eee!important;
+
+}
+.node-header-toggle{
+  border-radius: 10px!important;
 }

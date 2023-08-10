@@ -1,0 +1,10 @@
+<mat-vertical-stepper #stepper [linear]="true">
+  <div *ngFor="let step of selectedDosing.steps">
+    <mat-step [label]="step.label" [completed]="step.status" [aria-labelledby]="'true'">
+      <ng-template matStepperIcon="home">
+        <mat-icon>home</mat-icon>
+      </ng-template>
+      {{step.employeeName}}
+    </mat-step>
+  </div>
+</mat-vertical-stepper>

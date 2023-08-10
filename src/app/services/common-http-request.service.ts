@@ -70,8 +70,12 @@ export interface IServerModel {
 
   //hrProcess
   getProcessType?: string
+  getHrProcessById?: string
+
   createHrProcess?: string
+
   getCompentencySeltList?: string
+  updateCompentencySeltList?: string
 }
 
 export const V2Hrm2022: IServerModel = {
@@ -136,8 +140,11 @@ export const V2Hrm2022: IServerModel = {
 
   // hrProcess
   getProcessType: "hr-process/template/gettemplate",
+  getHrProcessById: "hr-process/process/getHrProcessById",
   createHrProcess: "hr-process/process/create",
-  getCompentencySeltList: "hr-process/capacity/getcompentencyseltlist"
+
+  getCompentencySeltList: "hr-process/capacity/getcompentencyseltlist",
+  updateCompentencySeltList: "hr-process/capacity/updateCompentencySeltList"
 }
 
 

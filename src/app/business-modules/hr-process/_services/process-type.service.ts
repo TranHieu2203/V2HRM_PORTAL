@@ -30,12 +30,14 @@ export class ProcessTypeService {
         }
       })
   }
-  // getProcessType(): Observable<any> {
-  //   return this.commonHttpRequestService.commonGetRequest(
-  //     'getTimeExplaint',
-  //     this.authService.serverModel.getProcessType!
 
-  //   )
-  // }
+
+  getHrProcessById(id: number = 1): Observable<any> {
+    return this.commonHttpRequestService.commonGetRequest(
+      'GetHrProcessById',
+      this.authService.serverModel.getHrProcessById! + "?id=" + id
+
+    )
+  }
 
 }

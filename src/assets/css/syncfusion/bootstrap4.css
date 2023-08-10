@@ -1094,7 +1094,7 @@
 .e-accordion {
   -webkit-tap-highlight-color: transparent;
   background: #f8f9fa;
-  border: 1px solid rgba(0, 0, 0, 0.13);
+  /* border: 1px solid rgba(0, 0, 0, 0.13); */
   border-radius: 4px;
 }
 

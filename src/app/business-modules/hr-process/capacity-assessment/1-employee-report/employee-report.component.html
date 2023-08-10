@@ -1,58 +1,52 @@
-<div class="pt-2">
-  <ejs-accordion>
-    <e-accordionitems>
-      <e-accordionitem expanded="true">
-        <ng-template #header>
-          <label><b>A. Nhân viên báo cáo kết quả công việc</b></label>
-
+<div class="" (click)=" $event.stopPropagation() ">
+  <div class=" header-button">
+    <div class="btn btn-primary" (click)="updateCompentencySeltList()" *ngIf="validationRank()">
+      <i class="feather-save"></i>
+      {{'[Lưu kết quả tự đánh giá]'|translate}}
+    </div>
+  </div>
+  <ejs-grid #empReportGrid [dataSource]="table" [allowGrouping]='true' [groupSettings]='groupOptions'>
+    <e-columns>
+      <!-- <e-column field="stt" headerText="STT" textAlign="center" isPrimaryKey="true" width="70" [edit]="false">
+        <ng-template #template let-data>
+          {{formatStt(data.index)}}
         </ng-template>
-        <ng-template #content>
-          <div>
-            <ejs-grid [dataSource]="table" [allowGrouping]='true' [groupSettings]='groupOptions'>
-              <e-columns>
-                <!-- <e-column field="stt" headerText="STT" textAlign="center" isPrimaryKey="true" width="70" [edit]="false">
-                  <ng-template #template let-data>
-                    {{formatStt(data.index)}}
-                  </ng-template>
-                </e-column> -->
-                <e-column field="GROUP_NAME" headerText="Nhóm năng lực" width="100"></e-column>
-                <e-column field="NAME" headerText="Năng lực" width="150"></e-column>
-                <e-column field="REMARK" headerText="Định nghĩa" textAlign="Left">
-                  <ng-template #template let-data>
-                    <span style="word-wrap: break-word;white-space: pre-wrap;"
-                      [innerHTML]="viewHtml(data.REMARK)"></span>
-                  </ng-template>
-                </e-column>
-                <e-column field="status" headerText="Rank 5" width="100">
-                  <ng-template #template let-data>
-                    <input type="checkbox" class="largerCheckbox" [(ngModel)]="data.RANK5_CHK" [name]="data.NAME"
-                      (change)="changeRank(data.RANK5,$event)" />
-                  </ng-template>
-                </e-column>
-                <e-column field="status" headerText="Rank 4" width="100"> <ng-template #template let-data>
-                    <input type="checkbox" class="largerCheckbox" [(ngModel)]="data.RANK4_CHK" [name]="data.NAME"
-                      (change)="changeRank(data.RANK4,$event)" />
-                  </ng-template></e-column>
-                <e-column field="status" headerText="Rank 3" width="100"> <ng-template #template let-data>
-                    <input type="checkbox" class="largerCheckbox" [(ngModel)]="data.RANK3_CHK" [name]="data.NAME"
-                      (change)="changeRank(data.RANK3,$event)" />
-                  </ng-template></e-column>
-                <e-column field="status" headerText="Rank 2" width="100"> <ng-template #template let-data>
-                    <input type="checkbox" class="largerCheckbox" [(ngModel)]="data.RANK2_CHK" [name]="data.NAME"
-                      (change)="changeRank(data.RANK2,$event)" />
-                  </ng-template></e-column>
-                <e-column field="status" headerText="Rank 1" width="100"> <ng-template #template let-data>
-                    <input type="checkbox" class="largerCheckbox" [(ngModel)]="data.RANK1_CHK" [name]="data.NAME"
-                      (change)="changeRank(data.RANK1,$event)" />
-                  </ng-template></e-column>
-
-
-              </e-columns>
-            </ejs-grid>
-
-          </div>
+      </e-column> -->
+      <e-column field="GROUP_NAME" headerText="Nhóm năng lực" width="100"></e-column>
+      <e-column field="NAME" headerText="Năng lực" width="150"></e-column>
+      <e-column field="REMARK" headerText="Định nghĩa" textAlign="Left">
+        <ng-template #template let-data>
+          <span style="word-wrap: break-word;white-space: pre-wrap;" [innerHTML]="viewHtml(data.REMARK)"></span>
         </ng-template>
-      </e-accordionitem>
-    </e-accordionitems>
-  </ejs-accordion>
+      </e-column>
+      <e-column field="status" headerText="Rank 5" width="100">
+        <ng-template #template let-data>
+          <input type="checkbox" [name]="data.ID" class="largerCheckbox" [(ngModel)]="data.RANK5_CKH"
+            (change)="changeRank(data,data.RANK5,$event,'RANK5_CKH',data.ID)" />
+        </ng-template>
+      </e-column>
+      <e-column field="status" headerText="Rank 4" width="100">
+        <ng-template #template let-data>
+          <input type="checkbox" [name]="data.ID" class="largerCheckbox" [(ngModel)]="data.RANK4_CKH"
+            (change)="changeRank(data,data.RANK4,$event,'RANK4_CKH',data.ID)" />
+        </ng-template></e-column>
+      <e-column field="status" headerText="Rank 3" width="100">
+        <ng-template #template let-data>
+          <input type="checkbox" [name]="data.ID" class="largerCheckbox" [(ngModel)]="data.RANK3_CKH"
+            (change)="changeRank(data,data.RANK3,$event,'RANK3_CKH',data.ID)" />
+        </ng-template></e-column>
+      <e-column field="status" headerText="Rank 2" width="100">
+        <ng-template #template let-data>
+          <input type="checkbox" [name]="data.ID" class="largerCheckbox" [(ngModel)]="data.RANK2_CKH"
+            (change)="changeRank(data,data.RANK2,$event,'RANK2_CKH',data.ID)" />
+        </ng-template></e-column>
+      <e-column field="status" headerText="Rank 1" width="100">
+        <ng-template #template let-data>
+          <input type="checkbox" [name]="data.ID" class="largerCheckbox" [(ngModel)]="data.RANK1_CKH"
+            (change)="changeRank(data,data.RANK1,$event,'RANK1_CKH',data.ID)" />
+        </ng-template></e-column>
+
+
+    </e-columns>
+  </ejs-grid>
 </div>

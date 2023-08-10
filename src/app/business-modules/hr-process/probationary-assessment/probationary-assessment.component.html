@@ -5,20 +5,28 @@
 
       <div class="app-content w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
         <div class="row">
-          <div class="col-sm-8">
-            <profile-info [HrProcessName]="'Đánh giá thử việc'|translate"></profile-info>
+          <div class="col-sm-10">
+
+            <profile-info [baseInfo]="baseInfo" *ngIf="baseInfo!==undefined"></profile-info>
             <div *ngFor="let step of selectedDosing.steps; index as i" class="step" [attr.step]="i">
               <div class="pt-2">
-                <ng-template [ngComponentOutlet]="step.component"></ng-template>
+
+                <ng-template disable [ngComponentOutlet]="step.component">
+
+                </ng-template>
+                <div class="background-white pb-3">
+                  <hr-process-button id="{{step.component.name}}">
+                  </hr-process-button>
+                </div>
 
               </div>
+              <hr />
             </div>
           </div>
-          <div class="col-sm-4">
-            Process Here
+          <div class="col-sm-2">
+            <process-view [selectedDosing]="selectedDosing"></process-view>
           </div>
         </div>
-
       </div>
     </div>
   </div>

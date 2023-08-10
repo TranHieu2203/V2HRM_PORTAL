@@ -7,10 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  @Input() HrProcessName: string = "";
+  @Input() baseInfo: any;
   constructor() { }
 
   ngOnInit() {
+    console.log("this.baseInfo", this.baseInfo)
   }
 
 }

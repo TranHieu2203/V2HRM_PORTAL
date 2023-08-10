@@ -4,6 +4,9 @@
 @use 'src/app/style-variables.scss';
 
 // @import '../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+.background-white{
+  background: white!important;
+}
 .element-disable{
   pointer-events: none;
 }
@@ -107,3 +110,4 @@ section:not(:last-of-type) {
       height: 50px;
   }
 }
+.e-recordplusexpand{text-align: center;}

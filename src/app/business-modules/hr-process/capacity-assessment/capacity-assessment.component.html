@@ -6,26 +6,36 @@
       <div class="app-content w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
         <div class="row">
           <div class="col-sm-10">
-            <profile-info [HrProcessName]="'Đánh giá năng lực'|translate"></profile-info>
-            <div *ngFor="let step of selectedDosing.steps; index as i" class="step" [attr.step]="i">
+            <profile-info [baseInfo]="baseInfo" *ngIf="baseInfo!==undefined"></profile-info>
+            <div *ngFor="let step of selectedDosing.steps; index as i" class="step" [attr.step]="i"
+              [attr.nodeId]="step.nodeId">
               <div class="pt-2">
-                <ng-template [ngComponentOutlet]="step.component"></ng-template>
 
+                <div class="node-header" [ngClass]="{'node-header-toggle': !step.showTab}" [id]="step.component.name"
+                  (click)="step.showTab=!step.showTab">
+                  <label class="text-bold">
+                    {{ (i + 1) + "-" + step.label}}
+                  </label>
+                  <label class="node-header-arrow">
+                    <i class="btn feather-chevron-down" *ngIf="step.showTab"></i>
+                    <i class="btn feather-chevron-up" *ngIf="!step.showTab"></i>
+                  </label>
+                </div>
+                <div class="node-content" [id]="step.component.name + '_' + step.nodeId" *ngIf="step.showTab">
+                  <ng-container nodeId="step.nodeId" *ngComponentOutlet="step.component;">
+
+                  </ng-container>
+                </div>
+                <div class="node-button" *ngIf="step.showTab">
+                  <hr-process-button id="{{step.component.name}}">
+                  </hr-process-button>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-sm-2">
-            <mat-vertical-stepper #stepper [linear]="true">
-              <div *ngFor="let step of selectedDosing.steps">
-                <mat-step [label]="step.label" [completed]="step.status" [aria-labelledby]="'true'">
-                  <ng-template matStepperIcon="home">
-                    <mat-icon>home</mat-icon>
-                  </ng-template>
-                  Trần Văn Hiếu
-                </mat-step>
-              </div>
-            </mat-vertical-stepper>
-
+            <process-view [selectedDosing]="selectedDosing">
+            </process-view>
           </div>
         </div>
 

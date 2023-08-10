@@ -28,6 +28,8 @@ import { ProgressButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { CapacityAssessmentComponent } from './capacity-assessment/capacity-assessment.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
+import { ProcessViewModule } from './process-view/process-view.module';
+import { HrProcessButtonModule } from './hr-process-button/hr-process-button.module';
 
 @NgModule({
 
@@ -36,6 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
     HrProcessRoutes,
     AccordionModule,
     ProfileInfoModule,
+    ProcessViewModule,
+    HrProcessButtonModule,
     //probationary-assessment
     EmployeeReportModulePA,
     DirectManagerReviewModulePA,
