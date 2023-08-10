@@ -118,6 +118,13 @@ export class OtherListService {
     key: number,
     value: string
   }[]>([])
+
+  schoolList = new BehaviorSubject<{
+    key: number,
+    value: string
+  }[]>([])
+
+  
   constructor(private commonHttpRequestService: CommonHttpRequestService, private authService: AuthService) {
     this.commonHttpRequestService.commonGetRequest('getGenderList', this.authService.serverModel.getGendersUrl!)
       .subscribe(x => {
@@ -452,5 +459,23 @@ export class OtherListService {
           this.specializedList.next(newList);
         }
       })
+
+      this.commonHttpRequestService.commonGetRequest('getSchool', this.authService.serverModel.getSchoolUrl!)
+      .subscribe(x => {
+
+        if (x.ok && x.status === 200) {
+          const newList: {
+            key: number,
+            value: string
+          }[] = [];
+          x.body.data.map((g: any) => newList.push({
+            key: g.id,
+            value: g.name
+          }))
+          this.schoolList.next(newList);
+        }
+      })
+
+      
   }
 }

@@ -66,8 +66,8 @@ export class EmployeeInfo {
     bankId?: any
     bankBranch?: any
     bankNo?: any
-    schoolId?: any
-    qualificationId?: any
+    schoolId?: any;
+    qualificationId?: any;
     trainingFormId?: any
     trainingFormName?: any
     learningLevelId?: any
@@ -93,6 +93,9 @@ export class EmployeeInfo {
     homeDistrictId?: number;
     homeWardId?: number;
     experienceId?: number;
+    year?: number;
+    idNoOld?:string;
+    certificateOther?:string
   }
   export class Situation {
     
