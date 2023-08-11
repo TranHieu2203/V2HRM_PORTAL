@@ -9,38 +9,61 @@
         </div>
     </div>
     <div class='row'>
-        <div class='col-xl-12 vh-100 align-items-center d-flex login-background rounded-3 overflow-hidden'>
+        <div class='col-xl-12 vh-100 align-items-center d-flex login-background rounded-10 overflow-hidden'>
             <div class='shadow-none border-0 ms-auto me-auto login-card'>
-                <div class='card-body rounded-0 text-left bg-white rounded-xxxl'>
+                <div class='card-body rounded-10 text-left lg-bg rounded-xxxl'>
                     <form [formGroup]="authForm" (ngSubmit)="signIn()">
-                        <div class="login-text">
-                            <p>{{'[Cổng thông tin nhân sự]'|translate}}</p>
+
+                        <div class="logo">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <img src="../../../assets/images/auth/vmo_dark 2.png" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <select #lang class="form-control" (change)="switchLang(lang.value)"
+                                        [(ngModel)]="model.lang" formControlName="lang">
+                                        <option *ngFor="let c of languagesList" [value]="c.id">{{c.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class='form-group icon-input mb-3'>
+                        <div class="login-text">
+                            <div class="text-node">
+                                {{'Cổng thông tin nhân sự'}}
+                            </div>
+                            <div class="text-name">
+                                {{'VMO Portal'}}
+                            </div>
+                        </div>
+
+
+                        <div class='form-group icon-input '>
                             <p [ngClass]="{ 'text-danger': loading && formControls['user_name'].errors }">
-                                <i class='font-sm ti-user text-grey-500 pe-0'></i>
+                                <i class='font-sm feather-users text-grey-500 pe-0'></i>
                                 <input #username type="text" id="user_name" formControlName="user_name"
-                                    class="style2-input ps-5 form-control h-50 text-grey-900 font-xsss fw-600"
+                                    class=" ps-5 form-control h-50  mont-font" autocomplete="off"
                                     [placeholder]="'[Tên đăng nhập]'|translate" />
                             </p>
                             <div *ngIf="formControls['user_name'].errors && isDirty()" class="help-block">
-                                <div style="color: red;" *ngIf="formControls['user_name'].errors['required']">
+                                <div class="mont-font" style="color: red;"
+                                    *ngIf="formControls['user_name'].errors['required']">
                                     Tên đăng nhập là bắt buộc</div>
                             </div>
                         </div>
-                        <div class='form-group icon-input mb-1'>
+                        <div class='form-group icon-input '>
                             <p [ngClass]="{ 'text-danger': formControls['password'].errors }">
                                 <input type="password" id="password" formControlName="password" autocomplete="false"
-                                    class="style2-input ps-5 form-control h-50 text-grey-900 font-xsss fw-600"
+                                    class=" ps-5 form-control h-50  mont-font" autocomplete="off"
                                     placeholder="Mật khẩu" />
-                                <i class='font-sm ti-lock text-grey-500 pe-0'></i>
+                                <i class='font-sm feather-lock text-grey-500 pe-0'></i>
                             </p>
                             <div *ngIf="formControls['password'].errors  && isDirty()" class="help-block">
-                                <div style="color: red;" *ngIf="formControls['password'].errors['required']">Mật khẩu là
+                                <div class="mont-font" style="color: red;"
+                                    *ngIf="formControls['password'].errors['required']">Mật khẩu là
                                     bắt buộc</div>
                             </div>
                         </div>
-                        <div class='form-check text-left mb-3'>
+                        <div class='form-check text-left '>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input #remember type='checkbox' name="remember" formControlName="remember"
@@ -49,10 +72,7 @@
                                 </div>
                                 <div class="col-sm-6">
 
-                                    <select #lang class="form-control" (change)="switchLang(lang.value)"
-                                        [(ngModel)]="model.lang" formControlName="lang">
-                                        <option *ngFor="let c of languagesList" [value]="c.id">{{c.name}}</option>
-                                    </select>
+
                                     <!-- <ejs-dropdownlist id='moduleId' [disabled]="false" [(ngModel)]="model.lang" [dataSource]='languagesList' [fields]='fields' formControlName="lang" width="100%"
                                     (change)="switchLang($event)">
                                   </ejs-dropdownlist> -->

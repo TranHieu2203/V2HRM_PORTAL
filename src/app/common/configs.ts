@@ -112,7 +112,7 @@ export class Configs {
   filter = { type: "CheckBox" };
   pageSettings: Object = {
     pageSizes: [10, 20, 50, 200, 2000],
-    pageSize: 10,
+    pageSize: 20,
     pageCount: 4,
   };
   treeGridPageSettings: Object = { pageSize: 20, pageCount: 4 };

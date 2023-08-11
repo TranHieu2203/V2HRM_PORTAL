@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private globals: Globals,
   ) {
 
-
+    window.localStorage.clear()
     let remember: boolean = true;
     this.authForm = this.formBuilder.group({
       user_name: ['', Validators.required],

@@ -7,7 +7,7 @@
                     <div #testerLeft class="tester-left"></div>
                     <div #testerRight class="tester-right"></div>
 
-                   <!-- <app-total-overview></app-total-overview> -->
+                    <!-- <app-total-overview></app-total-overview> -->
                     <div #postCreator>
                         <!-- <app-createpost></app-createpost> -->
                     </div>
@@ -15,11 +15,13 @@
                         {{post.updateBy}}
                         <div class="card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
                             <div class="card-body p-0 d-flex">
-                                <figure class="avatar me-3"><img [src]="post.avater" alt="avater" class="shadow-sm rounded-circle w45" />
+                                <figure class="avatar me-3"><img [src]="post.avater" alt="avater"
+                                        class="shadow-sm rounded-circle w45" />
                                 </figure>
                                 <h4 class="fw-700 text-grey-900 font-xssss mt-1"> {{post.createBy}} <span
-                                        class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"> {{post.updateDate}}</span></h4>
-                        
+                                        class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                                        {{post.updateDate}}</span></h4>
+
                             </div>
                             <!-- Dùng khi có video -->
                             <div *ngIf="post.postimage" class="card-body p-0 mb-3 rounded-3 overflow-hidden uttam-die">
@@ -32,19 +34,24 @@
                             <div class="card-body p-0">
                                 <p class="fw-500 text-black-500 lh-26 font-xsss w-100 mb-2">
                                     <span [innerHTML]="post.content | stringHtml"></span>
-                                </div>
-                        
+                            </div>
+
                             <div *ngIf="post.imgUrl" class="card-body d-block p-0 mb-3">
                                 <div class="row ps-2 pe-2">
-                                    <div class="col-sm-12 p-1"><img [src]="post.imgUrl" class="rounded-3 w-100" alt="post" /></div>
+                                    <div class="col-sm-12 p-1"><img [src]="post.imgUrl" class="rounded-3 w-100"
+                                            alt="post" /></div>
                                 </div>
                             </div>
-                        
+
                             <div class="card-body d-flex p-0">
-                                <div class="emoji-bttn pointer d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"
-                                    ><i
-                                        class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i
-                                        class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>100 Like</div>
+                                <div
+                                    class="emoji-bttn pointer d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2">
+                                    <i
+                                        class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i>
+                                    <i
+                                        class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>100
+                                    Like
+                                </div>
                                 <div [class]="'emoji-wrap pointer'">
                                     <ul class="emojis list-inline mb-0">
                                         <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
@@ -54,25 +61,29 @@
                                         <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
                                         <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
                                         <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
-                                        <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
+                                        <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i>
+                                        </li>
                                     </ul>
                                 </div>
-                          
+
                             </div>
                         </div>
 
-                      </ng-container>
+                    </ng-container>
                 </div>
                 <div class="col-xl-3 col-xxl-3 col-lg-3">
                     <div [class]="'nav-wrap right-scroll-bar bg-transparent-card rounded-xxxl '">
-                        <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10 ">
-                
+                        <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10 "
+                            style="display: none;">
+
                             <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
-                                <h4 class="font-xssss text-grey-700 text-uppercase fw-700 ls-3">Nhân sự xuất sắc trong tháng</h4>
+                                <h4 class="font-xssss text-grey-700 text-uppercase fw-700 ls-3">Nhân sự xuất sắc trong
+                                    tháng</h4>
                                 <hr />
                                 <div class="flex-v-around h240">
                                     <div class="flex-center w-100">
-                                        <img width="125px" height="125px" class="br50per pointer" src="../../../assets/images/119119040_1495138037337380_4413383256920894917_n.jpg">
+                                        <img width="125px" height="125px" class="br50per pointer"
+                                            src="../../../assets/images/119119040_1495138037337380_4413383256920894917_n.jpg">
                                     </div>
                                     <div>
                                         <div class="flex-center w-100 bold17 pointer">Nguyễn Quỳnh Trang</div>
@@ -82,43 +93,45 @@
                                         <div class="star5">
                                             <span>
                                                 <i class="star filled">
-                
+
                                                 </i></span><span>
                                                 <i class="star filled">
-                
+
                                                 </i></span>
                                             <span>
                                                 <i class="star filled">
-                
+
                                                 </i>
                                             </span>
                                             <span>
                                                 <i class="star filled">
-                
+
                                                 </i>
                                             </span>
                                             <span>
                                                 <i class="star filled">
-                
+
                                                 </i>
                                             </span><!---->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                
-                
+
+
                         </div>
-                
+
                         <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10">
                             <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
                                 <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Danh sách Onboard</h4>
                                 <hr />
                                 <ul class="list-group list-group-flush">
-                                    <li *ngFor="let value of chatMembers"
+                                    <li *ngFor="let value of onboardMembers"
                                         class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
                                         <figure class="avatar float-left mb-0 me-2">
-                                            <img height="35px"  [src]="value.imageUrl" alt="avater" class="w35 avatar-rounder" />
+                                            <img height="35px"
+                                                [src]="value.imageUrl!=null?value.imageUrl:'../../../assets/images/defaultAvatar.png'"
+                                                alt="avater" class="avatar-dashboard avatar-rounder" />
                                         </figure>
                                         <span>
                                             <div class="fw-700 mb-0 mt-0">
@@ -129,16 +142,54 @@
                                                 <span
                                                     class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.org}}</span>
                                             </div>
+
                                         </span>
-                
+
                                         <span [class]="value.status + ' ms-auto btn-round-xss'"></span>
                                     </li>
                                 </ul>
                             </div>
-                
+
                         </div>
-                
-                        <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10 pb-3">
+                        <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10">
+                            <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
+                                <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Tri ân nhân sự trong
+                                    ngày</h4>
+                                <hr />
+                                <ul class="list-group list-group-flush">
+                                    <li *ngFor="let value of topMembers"
+                                        class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
+                                        <figure class="avatar float-left mb-0 me-2">
+                                            <img height="35px"
+                                                [src]="value.imageUrl!=null?value.imageUrl:'../../../assets/images/defaultAvatar.png'"
+                                                alt="avater" class="avatar-dashboard avatar-rounder" />
+                                        </figure>
+                                        <span>
+                                            <div class="fw-700 mb-0 mt-0">
+                                                <span
+                                                    class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.name}}</span>
+
+                                            </div>
+                                            <div class="fw-500 mb-0 mt-0">
+                                                <span
+                                                    class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.org}}</span>
+                                            </div>
+                                            <div class="fw-500 mb-0 mt-0">
+                                                <span
+                                                    class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">Ngày
+                                                    vào: {{ value.tn}}</span>
+                                            </div>
+                                        </span>
+
+                                        <span [class]="value.status + ' ms-auto btn-round-xss'"></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10 pb-3"
+                            style="display: none;">
                             <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
                                 <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Khảo sát</h4>
                                 <hr />
@@ -148,41 +199,41 @@
                                         class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
                                         <span>
                                             <div class="fw-700 mb-0 mt-0 flex-center">
-                                                <ejs-checkbox  [checked]="value.check"></ejs-checkbox>
+                                                <ejs-checkbox [checked]="value.check"></ejs-checkbox>
                                                 <span
-                                                    class="p-2 font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.name}} 
+                                                    class="p-2 font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">{{value.name}}
                                                 </span>
                                             </div>
-                                            
+
                                         </span>
                                     </li>
                                 </ul>
                                 <div class="text-center">
                                     <div type="button" class="btn btn-sm btn-outline-warning btn-round">
-                                      <i class="fa fa-paper-plane " aria-hidden="true"></i> 
-                                      Gửi
+                                        <i class="fa fa-paper-plane " aria-hidden="true"></i>
+                                        Gửi
                                     </div>
-                                  </div>
-                                  <hr />
-                                  <h5 class="font-xssss  text-grey-700 fw-700 ls-3">Địa điểm tổ chức sinh nhật 11 năm?</h5>
-                                  <div class="fw-700 mb-0 mt-0 flex-center">
+                                </div>
+                                <hr />
+                                <h5 class="font-xssss  text-grey-700 fw-700 ls-3">Địa điểm tổ chức sinh nhật 11 năm?
+                                </h5>
+                                <div class="fw-700 mb-0 mt-0 flex-center">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                     <span
                                         class="p-2 font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">
-                                        Phú Quốc 
+                                        Phú Quốc
                                     </span>
                                 </div>
 
                             </div>
-                
+
                         </div>
-                
+
                     </div>
                 </div>
-             
+
             </div>
         </div>
     </div>
-    
-</div>
 
+</div>

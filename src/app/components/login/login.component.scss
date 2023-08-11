@@ -1,4 +1,3 @@
-
 body {
     background-color: #f2f7fb
 }
@@ -21,7 +20,7 @@ body {
     margin-bottom: 30px;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-        background-color: #fff;
+    background-color: #fff;
 }
 
 .card .card-block {
@@ -33,7 +32,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 1.25em
+    margin-bottom: 10px
 }
 
 .form-material .form-control {
@@ -84,20 +83,20 @@ body {
     line-height: 23px
 }
 
-.heading{
+.heading {
 
-  font-size: 21px;
+    font-size: 21px;
 
 }
 
-#infoMessage p{
+#infoMessage p {
 
-      color: red !important;
+    color: red !important;
 }
 
 
 .btn-google {
-        color: #545454;
+    color: #545454;
     background-color: #ffffff;
     box-shadow: 0 1px 2px 1px #ddd;
     border-radius: 10px;
@@ -109,7 +108,7 @@ body {
     align-items: center;
     color: #ccc;
     display: flex;
-    margin: 25px 0;
+    margin: 10px 0;
 }
 
 .line-separator {
@@ -123,75 +122,147 @@ body {
     margin: 0 15px;
     text-align: center;
 }
-.miuka-text-logo {
-    background: -webkit-linear-gradient(#09f, rgb(0, 69, 207));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.form-group.icon-input{
-    padding-bottom: 10px;
-}
+
+
+.form-group.icon-input {}
+
 .theme-dark .style2-input {
     background-color: #1a2236 !important;
     color: #ddd !important;
 }
-.login-logo{
+
+.login-logo {
     position: absolute;
     left: 100px;
     top: 50px;
 }
-.login-background{
+
+.login-background {
     background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url('../../../assets/images/auth/login-background.png');
-        z-index: 999999;
-        
-}
-.form-control{
-    line-height: 35px!important;
-}
-.card {
-    
+    background-size: cover;
+    background-image: url('../../../assets/images/auth/login-background.png');
+    z-index: 999999;
+
 }
 
-.h-50{
-    height: 50px!important;
+.form-control {
+    line-height: 35px !important;
 }
-.form-check{
+
+.card {}
+
+.h-50 {
+    height: 50px !important;
+}
+
+.form-check {
     padding-bottom: 10px;
 }
-.card-body{
+
+.card-body {
     margin: 10px;
 }
-.login-text{
-    padding-bottom: 10px;
-    p{
-        color: #ff6d00;
-        font-weight: bold;
-        text-transform: uppercase;
+
+.login-text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    .text-note {
+        /* Frame 56 */
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+
+        width: 205px;
+        height: 23px;
+
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+
+        /* Cổng thông tin nhân sự */
+
+        width: 205px;
+        height: 23px;
+
+        /* Common/Body 1 */
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 23px;
         text-align: center;
-        font-size: xx-large;
-    
+
+        /* Secondary/grey-500 */
+        color: #333333;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    .text-name {
+        height: 38px;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+
+
+
+        /* Desktop/Heading 3 */
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 38px;
+        color: #FA7200;
+
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
     }
 }
-.login-text label{
-    color:black;
-    height: 60px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 60px;
-    /* identical to box height */
-    text-transform: uppercase;
-    color: #000000;
-}
-.remember{
+
+.remember {
     color: #FFA427;
 
 }
-.login-button{
-    background: #464646!important;
+
+.login-button {
+    background: #FA7200 !important;
     border-radius: 10px;
 }
 
 
+.logo {
+    margin-top: 30px;
+}
+
+.form-group.icon-input i {
+    position: absolute;
+    left: 15px;
+    top: 13px;
+}
+
+.lg-bg {
+    background-color: white !important;
+    padding-left: 25px;
+    padding-right: 25px;
+
+}

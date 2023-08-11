@@ -1,38 +1,72 @@
-<div class="right-chat-active">
+<div class="main-content">
     <div class="middle-sidebar-bottom">
-        <div class="middle-sidebar-left pe-0">
-            <div class="row">
-                <div class="col-xl-12">
+        <div class="middle-sidebar-left">
+            <div class="row feed-body">
+                <div #middleColumn class="col-xl-12 col-xxl-12 col-lg-12">
+                    <div class="app-content card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
+                        <div class="">
+                            <h3 class="form-header">Đội ngũ</h3>
+                            <div class="form-search"></div>
+                            <ejs-grid #overviewgrid4 id="overviewgrid4" [dataSource]="data"
+                                [height]="configs.height() - 100" [allowPaging]="true" rowHeight="37" headerHeight="42"
+                                allowResizing="true" [allowSelection]="true" allowTextWrap="true" [enableHover]="false"
+                                [showColumnChooser]="true" [pageSettings]="configs.pageSettings" [frozenColumns]="2">
+                                <e-columns>
 
-                    <label class="p-1">
-                        <input type="checkbox" [checked]="showMessenger" (click)="toggleMessenger()">
-                        Messager
-                    </label>
-
-                    <label class="p-1">
-                        <input type="checkbox" [checked]="showConfig" (click)="toggleConfig()">
-                        Config
-                    </label>
-
-                    <section *ngIf="showMessenger">
-                        <app-messages></app-messages>
-                    </section>
-                    <section *ngIf="showConfig">
-                        <app-config></app-config>
-                    </section>
-
-                    <h3>Dashboard</h3>
-
-                    <p>Session ID: {{ sessionId | async }}</p>
-                    <div id="anchor"></div>
-                    <p>Token: {{ token | async }}</p>
-
-                    Preloaded Modules
-                    <ul>
-                        <li *ngFor="let module of modules">{{ module }}</li>
-                    </ul>
-
-
+                                    <e-column field='EMPLOYEE_CODE' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Mã NV" clipMode='EllipsisWithTooltip' width='100'></e-column>
+                                    <e-column field='EMPLOYEE_NAME' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Họ tên" clipMode='EllipsisWithTooltip' width='180'>
+                                    </e-column>
+                                    <e-column field='ORG_NAME' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Phòng ban" clipMode='EllipsisWithTooltip'>
+                                    </e-column>
+                                    <e-column field='POSITION_NAME' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Chức danh" clipMode='EllipsisWithTooltip'>
+                                    </e-column>
+                                    <e-column field='JOIN_DATE' headerTextAlign="Center" type='date' format="dd/mm/yyyy"
+                                        textAlign='Right' headerText="Ngày vào công ty" clipMode='EllipsisWithTooltip'
+                                        width='180'></e-column>
+                                    <!-- <e-column field='birthDate' headerTextAlign="Center" type="date"
+                      [format]="{ type: 'date', format: 'dd/MM/yyyy' }" [allowFiltering]="false" textAlign="Center"
+                      headerText="Ngày sinh" clipMode='EllipsisWithTooltip' width='115'></e-column> -->
+                                    <e-column field='BIRTH_DATE' headerTextAlign="Center" textAlign="Center"
+                                        headerText="Ngày sinh" clipMode='EllipsisWithTooltip' width='180'></e-column>
+                                    <e-column field='BIRTH_PLACE' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Nơi sinh" clipMode='EllipsisWithTooltip' width='120'>
+                                    </e-column>
+                                    <e-column field='GENDER_NAME' headerTextAlign="Center" textAlign="Center"
+                                        headerText="Giới tính" clipMode='EllipsisWithTooltip' width='105'>
+                                    </e-column>
+                                    <e-column field='MOBILE_PHONE' headerTextAlign="Left" textAlign="Left"
+                                        headerText="SDT" clipMode='EllipsisWithTooltip' width='200'>
+                                    </e-column>
+                                    <e-column field='WORK_EMAIL' headerTextAlign="Left" textAlign="Left"
+                                        headerText="Email" clipMode='EllipsisWithTooltip' width='200'>
+                                    </e-column>
+                                    <e-column field='WORK_STATUS_ID' headerTextAlign="Center" textAlign="Center"
+                                        headerText="Trạng thái" clipMode='EllipsisWithTooltip' width='200'>
+                                        <ng-template #template let-data>
+                                            <div class="row-status full-width">
+                                                <div class="status-effect text-center"
+                                                    *ngIf="data.WORK_STATUS_ID == 1 ">
+                                                    <span>Đang làm việc</span>
+                                                </div>
+                                                <div class="status-warning text-center"
+                                                    *ngIf="data.WORK_STATUS_ID == 3">
+                                                    <span>Nghỉ sinh</span>
+                                                </div>
+                                                <div class="status-not-effect text-center"
+                                                    *ngIf="data.WORK_STATUS_ID == 2">
+                                                    <span>Nghỉ việc</span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </e-column>
+                                </e-columns>
+                            </ejs-grid>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

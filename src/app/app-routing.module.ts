@@ -27,6 +27,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'my-team',
+    component: DeveloperComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'hrm',
     loadChildren: () => import('./business-modules/hrm/hrm.module').then(m => m.HrmModule),
     canLoad: [AuthGuard],
