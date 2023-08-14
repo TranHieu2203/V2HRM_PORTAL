@@ -62,3 +62,24 @@
   /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
 }
 
+/* Áp dụng cho phần tử nút */
+.custom-button {
+  background-color: #28a745; /* Màu nền xanh lá cây */
+  color: #fff; /* Màu chữ trắng */
+  border: none; /* Loại bỏ viền */
+  padding: 8px 15px; /* Kích thước nút */
+  cursor: pointer;
+  border-radius: 5px; /* Góc bo viền */
+  font-size: 14px; /* Kích thước chữ */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #218838; /* Màu nền xanh lá cây khi hover */
+  transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+}
+
+/* Biểu tượng lưu */
+.custom-button i {
+  margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
