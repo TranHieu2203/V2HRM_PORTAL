@@ -18,7 +18,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class ProbationaryAssessmentComponent implements OnInit {
   @ViewChild('embeddedContainer', { read: ViewContainerRef }) embeddedContainer!: ViewContainerRef;
-
+  id: number = 1234;
   public selectedDosing = {
     steps: [
 
@@ -68,7 +68,7 @@ export class ProbationaryAssessmentComponent implements OnInit {
   //get data node
   loadData() {
     let id = 1;
-    this.processServices.getHrProcessById(id).subscribe((data: any) => {
+    this.processServices.getHrProcessById(this.id).subscribe((data: any) => {
       if (data.status === 200) {
         // load lại dữ liệu cho process
         // map với nhau theo component name

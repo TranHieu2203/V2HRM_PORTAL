@@ -27,7 +27,7 @@ export class DirectManagerReviewComponent implements OnInit {
 
   private curentNodeInfo!: any;
 
-  private processId: number = 746;
+  private processId: number = 1234;
 
 
   @ViewChild("empReportGrid", { static: true })

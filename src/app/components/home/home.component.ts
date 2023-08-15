@@ -158,7 +158,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           imageUrl: element.AVATAR,
           name: element.EMPLOYEE_NAME,
           org: element.ORG_NAME,
-          tn: element.JOIN_DATE
+          tn: element.SENIORITY
         }
         this.topMembers.push(obj)
       });

@@ -8,17 +8,17 @@ export enum Consts {
 
   // DEVELOPER
 
-  API_URL_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/",
-  API_FILE_MANAGER_SERVICE_PRODUCTION = "http://10.1.4.92:8001/api/",
-  API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:4436/8001/",
-  API_URL_NODE_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/",
+  // API_URL_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/",
+  // API_FILE_MANAGER_SERVICE_PRODUCTION = "http://10.1.4.92:8001/api/",
+  // API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:4436/8001/",
+  // API_URL_NODE_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/",
 
   // DEVELOPER
 
-  // API_URL_SERVICE_PRODUCTION = "http://10.1.4.92:8000/api/",
-  // API_FILE_MANAGER_SERVICE_PRODUCTION = "http://10.1.4.92:8001/api/",
-  // API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:4436/8001/",
-  // API_URL_NODE_SERVICE_PRODUCTION = "http://10.1.4.92:8000/api/",
+  API_URL_SERVICE_PRODUCTION = "http://10.1.4.92:8000/api/",
+  API_FILE_MANAGER_SERVICE_PRODUCTION = "http://10.1.4.92:8001/api/",
+  API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:4436/8001/",
+  API_URL_NODE_SERVICE_PRODUCTION = "http://10.1.4.92:8000/api/",
 
 
   // VDT DEMO

@@ -19,12 +19,14 @@
                                         class="shadow-sm rounded-circle w45" />
                                 </figure> -->
                                 <figure class="avatar me-3">
-                                    <img *ngIf="post.avater; else defaultAvatar" [src]="post.avater" alt="avater" class="shadow-sm rounded-circle w45" />
-                                  </figure>
-                                  
-                                  <ng-template #defaultAvatar>
-                                    <img src="../../../assets/images/VMO_Logo_Positive.png" alt="avater" class="shadow-sm rounded-circle w45" />
-                                  </ng-template>
+                                    <img *ngIf="post.avater; else defaultAvatar" [src]="post.avater" alt="avater"
+                                        class="shadow-sm rounded-circle w45" />
+                                </figure>
+
+                                <ng-template #defaultAvatar>
+                                    <img src="../../../assets/images/VMO_Logo_Positive.png" alt="avater"
+                                        class="shadow-sm rounded-circle w45" />
+                                </ng-template>
                                 <h4 class="fw-700 text-grey-900 font-xssss mt-1"> {{post.createBy}} <span
                                         class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
                                         {{post.updateDate}}</span></h4>
@@ -160,8 +162,7 @@
                         </div>
                         <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxxl mb-10">
                             <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
-                                <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Tri ân nhân sự trong
-                                    ngày</h4>
+                                <h4 class="font-xssss  text-grey-700 text-uppercase fw-700 ls-3">Tri ân thâm niên</h4>
                                 <hr />
                                 <ul class="list-group list-group-flush">
                                     <li *ngFor="let value of topMembers"
@@ -183,8 +184,8 @@
                                             </div>
                                             <div class="fw-500 mb-0 mt-0">
                                                 <span
-                                                    class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">Ngày
-                                                    vào: {{ value.tn}}</span>
+                                                    class="font-xsss text-grey-600 d-block text-dark model-popup-chat pointer">Thâm
+                                                    niên: {{ value.tn }} (năm)</span>
                                             </div>
                                         </span>
 

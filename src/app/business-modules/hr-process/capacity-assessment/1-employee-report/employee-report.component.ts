@@ -13,6 +13,7 @@ import { GridComponent, ToolbarItems } from "@syncfusion/ej2-angular-grids";
 import { NotificationService } from 'src/app/services/notification.service';
 import { Router } from '@angular/router';
 import { ProcessTypeService } from '../../_services/process-type.service';
+import { ControlService } from '../control.service';
 
 @Component({
   selector: 'app-1-employee-report',
@@ -27,7 +28,7 @@ export class EmployeeReportComponent implements OnInit {
 
   private curentNodeInfo!: any;
 
-  private processId: number = 746;
+  private processId: number = 1234;
 
 
   @ViewChild("empReportGrid", { static: true })
@@ -43,6 +44,7 @@ export class EmployeeReportComponent implements OnInit {
     private authService: AuthService,
     private notification: NotificationService,
     private processServices: ProcessTypeService,
+    private controlServices: ControlService
 
   ) {
     this.groupOptions = { columns: ['GROUP_NAME'] };
@@ -51,7 +53,6 @@ export class EmployeeReportComponent implements OnInit {
   ngOnInit() {
     // this.getCompentencySeltList()
     this.getCompentencySeltList()
-    console.log("this", this);
     // get nodeInfo
     let id = 1;
 
@@ -125,13 +126,13 @@ export class EmployeeReportComponent implements OnInit {
       "objectId": 1,
       "capacityObjects": rankUpdate
     }
-    console.log("payload", payload)
     return this.commonHttpRequestService.commonPostRequest(
       'updateCompentencySeltList',
       this.authService.serverModel.updateCompentencySeltList!, payload
     ).subscribe((res: any) => {
       if (JSON.parse(res.body.message).StatusCode === '200') {
         this.notification.success("[Đã cập nhật kết quả, chờ phê duyệt!]")
+        this.controlServices.needLoad.next(true);
       } else {
         this.notification.warning("[Không thể cập nhật kết quả!]")
 

@@ -19,57 +19,57 @@ export class HrProcessButtonComponent implements OnInit {
       id: "[SEND]",
       text: "[SEND]",
       function: this.onSend,
-      class: "btn-outline-primary",
+      class: "btn-warning",
       icon: "feather-send"
     },
     {
       id: "[CANCEL]",
       text: "[CANCEL]",
       function: this.onCancel,
-      class: "btn-outline-danger",
-      icon: "feather-send"
+      class: "btn-outline-warning",
+      icon: "feather-x-circle"
     },
     {
       id: "[APPROVE]",
       text: "[APPROVE]",
       function: this.onApprove,
-      class: "btn-outline-success",
-      icon: "feather-send"
+      class: "btn-outline-warning",
+      icon: "feather-user-check"
     },
     {
       id: "[REJECT]",
       text: "[REJECT]",
       function: this.onReject,
-      class: "btn-outline-secondary",
-      icon: "feather-send"
+      class: "btn-outline-warning",
+      icon: "feather-user-x"
     },
     {
       id: "[SUBMIT]",
       text: "[SUBMIT]",
       function: this.onSubmit,
-      class: "btn-outline-info",
-      icon: "feather-send"
+      class: "btn-outline-warning",
+      icon: "feather-check-circle"
     },
     {
       id: "[SEND_BACK]",
       text: "[SEND_BACK]",
       function: this.onSend_Back,
-      class: "btn-outline-warning",
-      icon: "feather-send"
+      class: "btn-outline-secondary",
+      icon: "feather-skip-back"
     },
     {
       id: "[BREAK]",
       text: "[BREAK]",
       function: this.onBreak,
       class: "btn-outline-dark",
-      icon: "feather-send"
+      icon: "feather-skip-forward"
     },
     {
       id: "[REASSIGN]",
       text: "[REASSIGN]",
       function: this.onReassign,
-      class: "btn-outline-success",
-      icon: "feather-send"
+      class: "btn-outline-warning",
+      icon: "feather-search"
     },
   ]
   languages!: any;

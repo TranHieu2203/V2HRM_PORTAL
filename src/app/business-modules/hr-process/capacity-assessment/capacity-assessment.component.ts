@@ -12,6 +12,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { HrProcessNode } from 'src/app/model/hr-process/hr-process-node';
 import { fromEvent } from 'rxjs';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
+import { ControlService } from './control.service';
 
 @Component({
   selector: 'app-capacity-assessment',
@@ -28,7 +29,7 @@ export class CapacityAssessmentComponent implements OnInit {
 
   injector!: Injector;
 
-  private processId: number = 746;
+  private processId: number = 1234;
 
   isLinear = false;
 
@@ -42,6 +43,7 @@ export class CapacityAssessmentComponent implements OnInit {
         status: true,
         employeeName: "",
         showTab: true,
+        valid: false,
         nodeId: 0
       },
       {
@@ -50,6 +52,7 @@ export class CapacityAssessmentComponent implements OnInit {
         status: true,
         employeeName: "",
         showTab: true,
+        valid: false,
         nodeId: 0
 
       },
@@ -59,6 +62,7 @@ export class CapacityAssessmentComponent implements OnInit {
         status: false,
         employeeName: "",
         showTab: true,
+        valid: false,
         nodeId: 0
       },
 
@@ -72,7 +76,16 @@ export class CapacityAssessmentComponent implements OnInit {
   constructor(
     private processServices: ProcessTypeService,
     private notificationServices: NotificationService,
+    private controlServices: ControlService
+
   ) {
+    this.controlServices.needLoad.subscribe(value => {
+
+      console.log("needLoad", value)
+      this.loadData()
+
+    })
+
   }
 
 
@@ -103,6 +116,7 @@ export class CapacityAssessmentComponent implements OnInit {
           element.employeeName = nodeData.employeeName
           element.status = nodeData.complete
           element.nodeId = nodeData.nodeId
+          element.valid = nodeData.valid
         });
       } else (
         this.notificationServices.warning("[Không lấy được dữ liệu!]")
