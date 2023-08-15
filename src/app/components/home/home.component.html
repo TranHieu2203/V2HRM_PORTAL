@@ -15,9 +15,16 @@
                         {{post.updateBy}}
                         <div class="card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
                             <div class="card-body p-0 d-flex">
-                                <figure class="avatar me-3"><img [src]="post.avater" alt="avater"
+                                <!-- <figure class="avatar me-3"><img [src]="post.avater" alt="avater"
                                         class="shadow-sm rounded-circle w45" />
-                                </figure>
+                                </figure> -->
+                                <figure class="avatar me-3">
+                                    <img *ngIf="post.avater; else defaultAvatar" [src]="post.avater" alt="avater" class="shadow-sm rounded-circle w45" />
+                                  </figure>
+                                  
+                                  <ng-template #defaultAvatar>
+                                    <img src="../../../assets/images/VMO_Logo_Positive.png" alt="avater" class="shadow-sm rounded-circle w45" />
+                                  </ng-template>
                                 <h4 class="fw-700 text-grey-900 font-xssss mt-1"> {{post.createBy}} <span
                                         class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
                                         {{post.updateDate}}</span></h4>
@@ -161,7 +168,7 @@
                                         class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center">
                                         <figure class="avatar float-left mb-0 me-2">
                                             <img height="35px"
-                                                [src]="value.imageUrl!=null?value.imageUrl:'../../../assets/images/defaultAvatar.png'"
+                                                [src]="value.imageUrl!=null?value.imageUrl:'../../../assets/images/defaultAvatar.jpg'"
                                                 alt="avater" class="avatar-dashboard avatar-rounder" />
                                         </figure>
                                         <span>
