@@ -134,7 +134,7 @@ export class EmployeeComponent implements OnInit {
         birthDate: ['', [Validators.required]],
         genderId: ['', [Validators.required]],
         birthPlace: ['', [Validators.required, this.globals.noWhitespaceValidator]],
-        idNo: ['', [Validators.required]], //CMND
+        idNo: [''], //CMND
         idNoOld: ['',[Validators.required]],
         idDate: ['', [Validators.required]], //Ngày cấp
         idPlace: ['', [Validators.required]], //Nơi cấp
@@ -168,7 +168,7 @@ export class EmployeeComponent implements OnInit {
       contact: this._formBuilder.group({
         mobilePhone: ['', [Validators.required]],
         email: ['', [Validators.required]],
-        workEmail: ['', [Validators.required]],
+        workEmail: [''],
         contactPer: ['', [Validators.required]], //Người liên hệ khi cần
         contactPerPhone: ['', [Validators.required]],
       }),
@@ -208,10 +208,10 @@ export class EmployeeComponent implements OnInit {
       situation: this._formBuilder.group({
         name: ['', [Validators.required]],
         birth: ['', []],
-        no: ['', [Validators.required]], // CMND
-        taxNo: ['', [Validators.required]], // CMND
-        familyNo: ['', [Validators.required]], // CMND
-        familyName: ['', [Validators.required]], // CMND
+        no: [''], // CMND
+        taxNo: [''], // CMND
+        familyNo: [''], // CMND
+        familyName: [''], // CMND
         address: ['', [Validators.required]], // CMND
         relationshipId: ['', [Validators.required]],
         dateStart: ['', []],
@@ -226,23 +226,23 @@ export class EmployeeComponent implements OnInit {
         formTrainId: ['', [Validators.required]],
         specializedTrainId: ['', [Validators.required]],
         resultTrain: ['', [Validators.required]],
-        note: ['', [Validators.required]],
-        effectiveDateFrom: ['', [Validators.required]],
-        effectiveDateTo: ['', [Validators.required]],
+        note: [''],
+        effectiveDateFrom: [''],
+        effectiveDateTo: [''],
       }),
       workingbefore: this._formBuilder.group({
         orgName: ['', [Validators.required]],
         joinDate: ['', [Validators.required]],
         endDate: ['', [Validators.required]],
         companyAddress: ['', [Validators.required]],
-        telephone: ['', [Validators.required]],
-        salary: ['', [Validators.required]],
+        telephone: [''],
+        salary: [''],
         titleName: ['', [Validators.required]],
-        levelName: ['', [Validators.required]],
-        reference: ['', [Validators.required]],
-        remark: ['', [Validators.required]],
-        workDetail: ['', [Validators.required]],
-        terReason: ['', [Validators.required]],
+        levelName: [''],
+        reference: [''],
+        remark: [''],
+        workDetail: [''],
+        terReason: [''],
         companyId: ['', [Validators.required]],
       }),
     });
@@ -552,6 +552,10 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataWorkingBeforeEdit = res.body.data;
+        if (this.dataWorkingBeforeEdit.length !== 0) {
+          this.checkWorkingBefore = 1;
+
+        }
       });
   }
 
@@ -1095,6 +1099,72 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
+      if(this.employeeInfo.workStatusId == undefined){
+
+        let param1 = this.convertModel(this.employeeInfo);
+        if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
+          || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
+          alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          // this.notification.warning("Form chưa hợp lệ !");
+          this.editForm.markAllAsTouched();
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+
+          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
+  
+          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          return;
+        }
+
+        new Promise((resolve) => {
+          this.commomHttpService
+            .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param1)
+            .subscribe((res: any) => {
+
+            })
+        });
+
+        
+        
+
+        let param2 = this.convertModel(this.trainingbefore);
+  
+          if(this.editForm.get('trainingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddTrainingBeforeEdit',
+                param2
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['trainingbefore'].reset();
+                this.getListTrainingBefore();
+              })});
+          }
+
+        let param3 = this.convertModel(this.workingbefore);
+  
+          if(this.editForm.get('workingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddWorkingBeforeEdit',
+                param3
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['workingbefore'].reset();
+                this.getListWorkingBefore();
+              })});
+          }
+          
+      }
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1124,8 +1194,8 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
-      let param = this.convertModel(this.trainingbefore);
-      if (this.checkTrainingBefore == 0) {
+      if(this.employeeInfo.workStatusId == undefined){
+
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
           || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
@@ -1135,6 +1205,25 @@ export class EmployeeComponent implements OnInit {
           this.editForm.markAllAsTouched();
           return;
         }
+
+        if(!this.editForm.get('situation')?.valid){
+          alert('Form gia cảnh chưa hợp lệ !');
+          this.editForm.markAllAsTouched();
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+
+          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
+  
+          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          return;
+        }
+
         new Promise((resolve) => {
           this.commomHttpService
             .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param1)
@@ -1142,7 +1231,46 @@ export class EmployeeComponent implements OnInit {
 
             })
         });
+
+        
+        
+
+        let param2 = this.convertModel(this.situation);
+  
+          if(this.editForm.get('situation')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddSituation',
+                param2
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['situation'].reset();
+                this.getListSituation();
+              })});
+          }
+
+        let param3 = this.convertModel(this.workingbefore);
+  
+          if(this.editForm.get('workingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddWorkingBeforeEdit',
+                param3
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['workingbefore'].reset();
+                this.getListWorkingBefore();
+              })});
+          }
+          
       }
+
+
+
+      let param = this.convertModel(this.trainingbefore);
+      
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
@@ -1175,7 +1303,8 @@ export class EmployeeComponent implements OnInit {
         return;
       }
       let param = this.convertModel(this.workingbefore);
-      if (this.checkWorkingBefore == 0) {
+      if(this.employeeInfo.workStatusId == undefined){
+
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
           || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
@@ -1185,6 +1314,24 @@ export class EmployeeComponent implements OnInit {
           this.editForm.markAllAsTouched();
           return;
         }
+
+        if(!this.editForm.get('situation')?.valid){
+          alert('Form gia cảnh chưa hợp lệ !');
+          this.editForm.markAllAsTouched();
+          return;
+        }
+        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+
+          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
+  
+          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          return;
+        }
+
         new Promise((resolve) => {
           this.commomHttpService
             .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param1)
@@ -1192,6 +1339,40 @@ export class EmployeeComponent implements OnInit {
 
             })
         });
+
+        
+        
+
+        let param2 = this.convertModel(this.situation);
+  
+          if(this.editForm.get('situation')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddSituation',
+                param2
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['situation'].reset();
+                this.getListSituation();
+              })});
+          }
+
+        let param3 = this.convertModel(this.trainingbefore);
+  
+          if(this.editForm.get('trainingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddTrainingBeforeEdit',
+                param3
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['trainingbefore'].reset();
+                this.getListWorkingBefore();
+              })});
+          }
+          
       }
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1221,20 +1402,98 @@ export class EmployeeComponent implements OnInit {
       // lưu thông tin sơ yếu lý lịch, thông tin phụ, trình độ văn hóa, tài khoản
     } else {
       let param = this.convertModel(this.employeeInfo);
+      // Kiểm tra xem nếu chọn đã có kinh nghiệm và lưới của quá trình công tác trc đây k có gì thì bắt phải nhập quá trình công tác trước đây
 
-      return new Promise((resolve) => {
-        this.commomHttpService
-          .commonPostRequest('INSERT', 'portal/employee/EditInfomation', param)
-          .subscribe((res: any) => {
-            if (res.statusCode == 400) {
-              alert('lỗi');
-              return;
-            } else {
-              alert('thành công');
-              return;
-            }
-          });
-      });
+      if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid 
+        || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid 
+        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid)
+         {
+          alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          // this.notification.warning("Form chưa hợp lệ !");
+          this.editForm.markAllAsTouched();
+          return;
+        }
+      
+      if(this.employeeInfo.workStatusId == undefined){
+        if(!this.editForm.get('situation')?.valid){
+          alert('Form gia cảnh chưa hợp lệ !');
+          this.editForm.markAllAsTouched();
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+
+          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          return;
+        }
+
+        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
+  
+          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          return;
+        }
+        
+
+        let param1 = this.convertModel(this.situation);
+  
+          if(this.editForm.get('situation')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddSituation',
+                param1
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['situation'].reset();
+                this.getListSituation();
+              })});
+          }
+
+        let param2 = this.convertModel(this.workingbefore);
+  
+          if(this.editForm.get('workingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddWorkingBeforeEdit',
+                param2
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['workingbefore'].reset();
+                this.getListWorkingBefore();
+              })});
+          }
+          let param3 = this.convertModel(this.trainingbefore);
+  
+          if(this.editForm.get('trainingbefore')?.valid){
+            new Promise((resolve) => {this.commomHttpService
+              .commonPostRequest(
+                'INSERT',
+                'portal/employee/AddTrainingBeforeEdit',
+                param3
+              )
+              .subscribe((res: any) => {
+                this.editForm.controls['trainingbefore'].reset();
+                this.getListTrainingBefore();
+              })});
+          }
+      }
+
+        return new Promise((resolve) => {
+          this.commomHttpService
+            .commonPostRequest(
+              'INSERT',
+              'portal/employee/EditInfomation',
+              param
+            )
+            .subscribe((res: any) => {
+              if (res.statusCode == 400) {
+                alert('lỗi');
+              } else {
+                alert('thành công');
+              }
+            });
+        });
     }
 
     // let param = this.convertModel(this.employeeInfo);

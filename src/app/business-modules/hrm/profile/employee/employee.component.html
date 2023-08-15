@@ -191,9 +191,9 @@
                                               <label class="">Số CMND/Căn cước</label>
                                               <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNo"
                                                 name="idNo" formControlName="idNo" maxlength="12">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['infor'].get('idNo')!.hasError('required') && !editForm.controls['infor'].get('idNo')!.untouched">
-                                                Bắt buộc nhập</span>
+                                                Bắt buộc nhập</span> -->
                                             </div>
                                           </div>
                                           <!--Ngày cấp  -->
@@ -571,9 +571,9 @@
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.workEmail" name="workEmail"
                                                 formControlName="workEmail">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['contact'].get('workEmail')!.hasError('required') && !editForm.controls['contact'].get('workEmail')!.untouched">
-                                                Bắt buộc nhập</span>
+                                                Bắt buộc nhập</span> -->
                                             </div>
                                           </div>
                                         </div>
@@ -1095,9 +1095,9 @@
                                               <label class="">CMND/ Thẻ căn cước</label>
                                               <input class="form-control" type="text" formControlName="no"
                                                 [(ngModel)]="situation.no" maxlength="12">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['situation'].get('no')!.hasError('required') && !editForm.controls['situation'].get('no')!.untouched">
-                                                Bắt buộc chọn</span>
+                                                Bắt buộc chọn</span> -->
                                             </div>
                                           </div>
                                           <!-- Mã số thuế -->
@@ -1106,9 +1106,9 @@
                                               <label class="">Mã số thuế</label>
                                               <input class="form-control" type="text" formControlName="taxNo"
                                                 [(ngModel)]="situation.taxNo" maxlength="20">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['situation'].get('taxNo')!.hasError('required') && !editForm.controls['situation'].get('taxNo')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                           <!-- Sổ hộ khẩu -->
@@ -1117,9 +1117,9 @@
                                               <label class="">Số sổ hộ khẩu</label>
                                               <input class="form-control" type="text" formControlName="familyNo"
                                                 [(ngModel)]="situation.familyNo" maxlength="20">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['situation'].get('familyNo')!.hasError('required') && !editForm.controls['situation'].get('familyNo')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                           <!-- Tên chủ hộ -->
@@ -1128,9 +1128,9 @@
                                               <label class="">Tên chủ hộ</label>
                                               <input class="form-control" type="text" formControlName="familyName"
                                                 [(ngModel)]="situation.familyName">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['situation'].get('familyName')!.hasError('required') && !editForm.controls['situation'].get('familyName')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                           <!-- Địa chỉ -->
@@ -1497,9 +1497,9 @@
                                                 (blur)="changeDate('effectiveDateFrom')"
                                                 formControlName="effectiveDateFrom" placeholder=".../.../...">
                                               </ejs-datepicker>
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['trainingbefore'].get('effectiveDateFrom')!.hasError('required') && !editForm.controls['trainingbefore'].get('effectiveDateFrom')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                               <!-- <span class="input-error"
                                                   *ngIf="editForm.get('effectiveDateFrom')!.hasError('incorrect') && !editForm.get('effectiveDateFrom')!.untouched">
                                                   Sai định dạng
@@ -1515,9 +1515,9 @@
                                                 (blur)="changeDate('effectiveDateTo')" formControlName="effectiveDateTo"
                                                 placeholder=".../.../...">
                                               </ejs-datepicker>
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['trainingbefore'].get('effectiveDateTo')!.hasError('required') && !editForm.controls['trainingbefore'].get('effectiveDateTo')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                               <!-- <span class="input-error"
                                                   *ngIf="editForm.get('effectiveDateTo')!.hasError('incorrect') && !editForm.get('effectiveDateTo')!.untouched">
                                                   Sai định dạng
@@ -1535,9 +1535,9 @@
                                               <label class="">Ghi chú</label>
                                               <input type="text" class="form-control" formControlName="note"
                                                 [(ngModel)]="trainingbefore.note">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['trainingbefore'].get('note')!.hasError('required') && !editForm.controls['trainingbefore'].get('note')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
 
@@ -1798,9 +1798,9 @@
                                               <label class="">SĐT công ty</label>
                                               <input type="text" class="form-control" formControlName="telephone"
                                                 [(ngModel)]="workingbefore.telephone">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('telephone')!.hasError('required') && !editForm.controls['workingbefore'].get('telephone')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
 
@@ -1811,9 +1811,9 @@
                                                 formControlName="salary" [(ngModel)]="workingbefore.salary" min="0"
                                                 max="999999999">
                                               </ejs-numerictextbox>
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('salary')!.hasError('required') && !editForm.controls['workingbefore'].get('salary')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
@@ -1835,9 +1835,9 @@
                                               <label class="">Cấp bậc</label>
                                               <input type="text" class="form-control" formControlName="levelName"
                                                 [(ngModel)]="workingbefore.levelName">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('levelName')!.hasError('required') && !editForm.controls['workingbefore'].get('levelName')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
@@ -1845,9 +1845,9 @@
                                               <label class="">Người giới thiệu</label>
                                               <input type="text" class="form-control" formControlName="reference"
                                                 [(ngModel)]="workingbefore.reference">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('reference')!.hasError('required') && !editForm.controls['workingbefore'].get('reference')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                         </div>
@@ -1859,9 +1859,9 @@
                                               <label class="">Ghi chú</label>
                                               <input type="text" class="form-control" formControlName="remark"
                                                 [(ngModel)]="workingbefore.remark">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('remark')!.hasError('required') && !editForm.controls['workingbefore'].get('remark')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                         </div>
@@ -1872,9 +1872,9 @@
                                               <label class="">Mô tả công việc</label>
                                               <input type="text" class="form-control" formControlName="workDetail"
                                                 [(ngModel)]="workingbefore.workDetail">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('workDetail')!.hasError('required') && !editForm.controls['workingbefore'].get('workDetail')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                         </div>
@@ -1885,9 +1885,9 @@
                                               <label class="">Lý do nghỉ việc</label>
                                               <input type="text" class="form-control" formControlName="terReason"
                                                 [(ngModel)]="workingbefore.terReason">
-                                              <span class="input-error"
+                                              <!-- <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('terReason')!.hasError('required') && !editForm.controls['workingbefore'].get('terReason')!.untouched">
-                                                Bắt buộc</span>
+                                                Bắt buộc</span> -->
                                             </div>
                                           </div>
                                         </div>
