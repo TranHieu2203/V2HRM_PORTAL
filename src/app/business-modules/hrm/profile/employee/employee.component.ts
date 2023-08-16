@@ -135,7 +135,7 @@ export class EmployeeComponent implements OnInit {
         genderId: ['', [Validators.required]],
         birthPlace: ['', [Validators.required, this.globals.noWhitespaceValidator]],
         idNo: [''], //CMND
-        idNoOld: ['',[Validators.required]],
+        idNoOld: ['', [Validators.required]],
         idDate: ['', [Validators.required]], //Ngày cấp
         idPlace: ['', [Validators.required]], //Nơi cấp
 
@@ -1099,7 +1099,7 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
-      if(this.employeeInfo.workStatusId == undefined){
+      if (this.employeeInfo.workStatusId == undefined) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1111,14 +1111,14 @@ export class EmployeeComponent implements OnInit {
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+        if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
           alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
-  
+        if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
+
           alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
@@ -1131,13 +1131,14 @@ export class EmployeeComponent implements OnInit {
             })
         });
 
-        
-        
+
+
 
         let param2 = this.convertModel(this.trainingbefore);
-  
-          if(this.editForm.get('trainingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('trainingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddTrainingBeforeEdit',
@@ -1146,13 +1147,15 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['trainingbefore'].reset();
                 this.getListTrainingBefore();
-              })});
-          }
+              })
+          });
+        }
 
         let param3 = this.convertModel(this.workingbefore);
-  
-          if(this.editForm.get('workingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('workingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddWorkingBeforeEdit',
@@ -1161,9 +1164,10 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['workingbefore'].reset();
                 this.getListWorkingBefore();
-              })});
-          }
-          
+              })
+          });
+        }
+
       }
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
@@ -1194,7 +1198,7 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
-      if(this.employeeInfo.workStatusId == undefined){
+      if (this.employeeInfo.workStatusId == undefined) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1206,20 +1210,20 @@ export class EmployeeComponent implements OnInit {
           return;
         }
 
-        if(!this.editForm.get('situation')?.valid){
+        if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+        if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
           alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
-  
+        if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
+
           alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
@@ -1232,13 +1236,14 @@ export class EmployeeComponent implements OnInit {
             })
         });
 
-        
-        
+
+
 
         let param2 = this.convertModel(this.situation);
-  
-          if(this.editForm.get('situation')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('situation')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddSituation',
@@ -1247,13 +1252,15 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['situation'].reset();
                 this.getListSituation();
-              })});
-          }
+              })
+          });
+        }
 
         let param3 = this.convertModel(this.workingbefore);
-  
-          if(this.editForm.get('workingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('workingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddWorkingBeforeEdit',
@@ -1262,15 +1269,16 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['workingbefore'].reset();
                 this.getListWorkingBefore();
-              })});
-          }
-          
+              })
+          });
+        }
+
       }
 
 
 
       let param = this.convertModel(this.trainingbefore);
-      
+
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
@@ -1303,7 +1311,7 @@ export class EmployeeComponent implements OnInit {
         return;
       }
       let param = this.convertModel(this.workingbefore);
-      if(this.employeeInfo.workStatusId == undefined){
+      if (this.employeeInfo.workStatusId == undefined) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1315,19 +1323,19 @@ export class EmployeeComponent implements OnInit {
           return;
         }
 
-        if(!this.editForm.get('situation')?.valid){
+        if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
-        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+        if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
           alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
-  
+        if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
+
           alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
@@ -1340,13 +1348,14 @@ export class EmployeeComponent implements OnInit {
             })
         });
 
-        
-        
+
+
 
         let param2 = this.convertModel(this.situation);
-  
-          if(this.editForm.get('situation')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('situation')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddSituation',
@@ -1355,13 +1364,15 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['situation'].reset();
                 this.getListSituation();
-              })});
-          }
+              })
+          });
+        }
 
         let param3 = this.convertModel(this.trainingbefore);
-  
-          if(this.editForm.get('trainingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('trainingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddTrainingBeforeEdit',
@@ -1370,9 +1381,10 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['trainingbefore'].reset();
                 this.getListWorkingBefore();
-              })});
-          }
-          
+              })
+          });
+        }
+
       }
       if (param.status == 2 || param.status == 3) {
         alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
@@ -1404,40 +1416,40 @@ export class EmployeeComponent implements OnInit {
       let param = this.convertModel(this.employeeInfo);
       // Kiểm tra xem nếu chọn đã có kinh nghiệm và lưới của quá trình công tác trc đây k có gì thì bắt phải nhập quá trình công tác trước đây
 
-      if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid 
-        || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid 
-        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid)
-         {
-          alert('Form sơ yếu lý lịch chưa hợp lệ !');
-          // this.notification.warning("Form chưa hợp lệ !");
-          this.editForm.markAllAsTouched();
-          return;
-        }
-      
-      if(this.employeeInfo.workStatusId == undefined){
-        if(!this.editForm.get('situation')?.valid){
+      if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
+        || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
+        alert('Form sơ yếu lý lịch chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
+
+      if (this.employeeInfo.workStatusId == undefined) {
+        if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10968  && !this.editForm.get('workingbefore')?.valid) {
+        if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
           alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
-        if (this.employeeInfo.experienceId == 10969  && !this.editForm.get('trainingbefore')?.valid) {
-  
+        if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
+
           alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
-        
+
 
         let param1 = this.convertModel(this.situation);
-  
-          if(this.editForm.get('situation')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('situation')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddSituation',
@@ -1446,13 +1458,15 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['situation'].reset();
                 this.getListSituation();
-              })});
-          }
+              })
+          });
+        }
 
         let param2 = this.convertModel(this.workingbefore);
-  
-          if(this.editForm.get('workingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+
+        if (this.editForm.get('workingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddWorkingBeforeEdit',
@@ -1461,12 +1475,14 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['workingbefore'].reset();
                 this.getListWorkingBefore();
-              })});
-          }
-          let param3 = this.convertModel(this.trainingbefore);
-  
-          if(this.editForm.get('trainingbefore')?.valid){
-            new Promise((resolve) => {this.commomHttpService
+              })
+          });
+        }
+        let param3 = this.convertModel(this.trainingbefore);
+
+        if (this.editForm.get('trainingbefore')?.valid) {
+          new Promise((resolve) => {
+            this.commomHttpService
               .commonPostRequest(
                 'INSERT',
                 'portal/employee/AddTrainingBeforeEdit',
@@ -1475,25 +1491,26 @@ export class EmployeeComponent implements OnInit {
               .subscribe((res: any) => {
                 this.editForm.controls['trainingbefore'].reset();
                 this.getListTrainingBefore();
-              })});
-          }
+              })
+          });
+        }
       }
 
-        return new Promise((resolve) => {
-          this.commomHttpService
-            .commonPostRequest(
-              'INSERT',
-              'portal/employee/EditInfomation',
-              param
-            )
-            .subscribe((res: any) => {
-              if (res.statusCode == 400) {
-                alert('lỗi');
-              } else {
-                alert('thành công');
-              }
-            });
-        });
+      return new Promise((resolve) => {
+        this.commomHttpService
+          .commonPostRequest(
+            'INSERT',
+            'portal/employee/EditInfomation',
+            param
+          )
+          .subscribe((res: any) => {
+            if (res.statusCode == 400) {
+              alert('lỗi');
+            } else {
+              alert('thành công');
+            }
+          });
+      });
     }
 
     // let param = this.convertModel(this.employeeInfo);
@@ -1516,4 +1533,39 @@ export class EmployeeComponent implements OnInit {
     this.curentTab = param;
 
   }
+  uploadAvatar(files: FileList | null) {
+    setTimeout(() => {
+      if (files!.length > 0) {
+        let data = new FormData();
+        // for (let i = 0; i < files!.length; i++) {
+        //   data.append("files", files![i]);
+        // }
+        data.append("files", "profile");
+        data.append("files", files![0]);
+        this.profileEmployeeService.uploadFileV2Hrm(data, "profile", "avatar").subscribe((res: any) => {
+          var url = this.globals.apiUrlFileManager.toString().replace("api/", "") + res.data;
+          this.employeeInfo.avatar = url;
+          let x: any = document.getElementById("avatar");
+          x.value = null;
+          this.commomHttpService
+            .commonGetRequest(
+              'updateImage',
+              "hr/Employee/UpdateImageProfile?empId=" + this.employeeInfo.id + "&avatar=" + this.employeeInfo.avatar
+            )
+            .subscribe((res: any) => {
+              if(res.status == 200){
+                alert("Tải avatar thành công")
+              }
+              else{
+                alert("Tải avatar thất bại")
+              }
+            });
+        });
+
+
+      }
+    }, 200);
+  }
+  
 }
+

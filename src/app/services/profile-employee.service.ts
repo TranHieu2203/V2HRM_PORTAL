@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonHttpRequestService } from './common-http-request.service';
 import { AuthService } from './auth.service';
-
+import { Globals } from "src/app/common/globals";
+import { HttpClient as Http } from "@angular/common/http";
+import { catchError, map } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
+@Injectable()
 export class ProfileEmployeeService {
 
 
@@ -17,6 +20,8 @@ export class ProfileEmployeeService {
 
 constructor(private commonHttpRequestService: CommonHttpRequestService,
   private authService: AuthService,
+  private globals: Globals,
+  @Inject(Http) private http: Http,
 ) { }
 
   getEmployeeInfo(): Observable<any> {
@@ -103,6 +108,16 @@ constructor(private commonHttpRequestService: CommonHttpRequestService,
       
     )
   }
+  uploadFileV2Hrm = (formData: any,_module: string,_function: string): Observable<any> => {
+    const url = this.globals.apiUrlFileManager + "file/uploadv2" +"?module=" + _module + "&function=" + _function;
+    return this.http.post(url, formData).pipe(
+      map((response: any) => {
+
+        return response;
+      })
+    );
+  };
+  
   
 }
 
