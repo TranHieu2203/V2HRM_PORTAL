@@ -8,7 +8,7 @@ export class SpinnerService {
 
   constructor() {
     this.visibility = new BehaviorSubject(false);
-    if(this.count<=0) this.visibility.next(false);
+    if (this.count <= 0) this.visibility.next(false);
   }
 
   show() {
@@ -17,15 +17,15 @@ export class SpinnerService {
   }
 
   hide() {
-    if(this.count>=1)this.count--;
+    if (this.count >= 1) this.count--;
     if (this.count <= 0) {
       setTimeout(() => {
         this.visibility.next(false);
-      }, 200);
+      }, 0);
     }
   }
   hideAll() {
-    this.count=0;
+    this.count = 0;
     this.visibility.next(false);
   }
 }

@@ -5394,7 +5394,7 @@ fieldset:disabled .btn {
 .btn-outline-warning:active,
 .btn-outline-warning.active,
 .btn-outline-warning.dropdown-toggle.show {
-  color: #000;
+  color: white;
   background-color: #FE9431;
   border-color: #FE9431;
 }

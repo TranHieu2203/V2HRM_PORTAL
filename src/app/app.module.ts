@@ -77,6 +77,7 @@ import {
   SocialAuthService,
 } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
+import { ClickOutsideDirective } from './pipe/clickOutSide';
 
 const googleClientId = environment.googleClientId;
 
@@ -114,7 +115,8 @@ const googleClientId = environment.googleClientId;
     AccountComponent,
     TotalOverviewComponent,
     StringHtmlPipe,
-    NotificationListComponent
+    NotificationListComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,

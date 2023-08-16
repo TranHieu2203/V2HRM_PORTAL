@@ -10,6 +10,7 @@ import { Configs } from 'src/app/common/configs';
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { Globals } from 'src/app/common/globals';
 import { TranslateService } from '@ngx-translate/core';
+import { L10n } from '@syncfusion/ej2-base';
 
 @Component({
   selector: 'app-developer',
@@ -34,6 +35,8 @@ export class DeveloperComponent implements OnInit {
     private globals: Globals,
     private _formBuilder: FormBuilder,
     protected translate: TranslateService,) {
+    L10n.load(this.configs.languageGrid);
+
   }
 
   ngOnInit(): void {

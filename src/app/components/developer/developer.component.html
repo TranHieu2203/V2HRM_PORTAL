@@ -10,9 +10,9 @@
                             <ejs-grid #overviewgrid4 id="overviewgrid4" [dataSource]="data"
                                 [height]="configs.height() - 100" [allowPaging]="true" rowHeight="37" headerHeight="42"
                                 allowResizing="true" [allowSelection]="true" allowTextWrap="true" [enableHover]="false"
-                                [showColumnChooser]="true" [pageSettings]="configs.pageSettings" [frozenColumns]="2">
+                                [showColumnChooser]="true" [pageSettings]="configs.pageSettings" [frozenColumns]="2"
+                                [locale]='configs.currentLang'>
                                 <e-columns>
-
                                     <e-column field='EMPLOYEE_CODE' headerTextAlign="Left" textAlign="Left"
                                         headerText="Mã NV" clipMode='EllipsisWithTooltip' width='100'></e-column>
                                     <e-column field='EMPLOYEE_NAME' headerTextAlign="Left" textAlign="Left"

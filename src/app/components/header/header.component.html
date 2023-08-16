@@ -18,8 +18,8 @@
         <span class="p-2 pointer text-center ms-auto menu-icon"><i
                 class="feather-home font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500"></i></span>
 
-        <span [class]="'p-2 pointer text-center ms-auto menu-icon' + notiClass" id="dropdownMenu3"
-            data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleIsNoti()">
+        <span id="toggleIsNoti" #notificationButton [class]="'p-2 pointer text-center ms-auto menu-icon'"
+            id="dropdownMenu3" (click)="toggleIsNoti()" (clickOutside)="clickOutside()">
             <div class="noti-icon-wrapper">
                 <i class="feather-bell font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500">
                 </i>
@@ -31,41 +31,23 @@
             <h4 class="fw-700 font-xss mb-4">Notification</h4>
             <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
                 <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
-                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Hendrix Stamp <span
+                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Admin <span
                         class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 3 min</span></h5>
-                <h6 class="text-grey-500 fw-500 font-xssss lh-4">There are many variations of pass..</h6>
-            </div>
-            <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
-                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Goria Coast <span
-                        class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 2 min</span></h5>
-                <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
+                <h6 class="text-grey-500 fw-500 font-xssss lh-4">Hoàn thiện giấy tờ</h6>
             </div>
 
-            <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
-                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Surfiya Zakir <span
-                        class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 1 min</span></h5>
-                <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
-            </div>
-            <div class="card bg-transparent-card w-100 border-0 ps-5">
-                <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
-                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Victor Exrixon <span
-                        class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 30 sec</span></h5>
-                <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
-            </div>
         </div>
 
         <app-darkbutton></app-darkbutton>
-        <a class="p-0 ms-3 menu-icon" id="infoMenu" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="toggleIsInfo()" (clickOutside)="clickOutside()">
             <div class="flex-center w50 h50">
                 <img [src]="avatar" alt="user" class="w50 rounded-circle" />
             </div>
         </a>
-        <div class="dropdown-menu" aria-labelledby="infoMenu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg" [class]="infoClass"
+            aria-labelledby="infoMenu">
+            <a class="dropdown-item">Đổi mật khẩu</a>
         </div>
 
     </div>
@@ -177,4 +159,13 @@
             </div>
         </form>
     </div> -->
+
+    <!-- help: https://ej2.syncfusion.com/angular/documentation/dialog/getting-started/#modal-dialog -->
+
+    <!-- <div class="control-section">
+        <ejs-dialog  content='' [isModal]='true'  target='.control-section'  width='250px'>
+            Mật khẩu
+        </ejs-dialog>
+    </div>
+     -->
 </div>

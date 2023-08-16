@@ -1,27 +1,32 @@
-
-
-
 @use 'src/app/style-variables.scss';
 
 // @import '../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
-.background-white{
-  background: white!important;
+.background-white {
+  background: white !important;
 }
-.element-disable{
+
+.element-disable {
   pointer-events: none;
 }
-.form-grid{
+
+.form-grid {
   padding-top: 20px;
 }
+
 .checkboxes {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
-.e-dlg-overlay{
-  z-index: -1!important;
+
+.e-dlg-overlay {
+  z-index: -1 !important;
 }
-.mr-5{margin-right: 5px!important;}
+
+.mr-5 {
+  margin-right: 5px !important;
+}
+
 .checkboxes>label {
   flex: 0 0 max-content;
   margin: 0.5rem;
@@ -91,9 +96,11 @@ section:not(:last-of-type) {
 .rounded-10px {
   border-radius: 10px;
 }
-.form-group{
+
+.form-group {
   margin-top: 10px;
 }
+
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -105,9 +112,13 @@ section:not(:last-of-type) {
   display: flex;
   justify-content: center;
   align-items: center;
+
   .loading-icon {
-      width: 50px;
-      height: 50px;
+    width: 50px;
+    height: 50px;
   }
 }
-.e-recordplusexpand{text-align: center;}
+
+.e-recordplusexpand {
+  text-align: center;
+}

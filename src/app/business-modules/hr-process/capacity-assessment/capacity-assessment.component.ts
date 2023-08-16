@@ -44,6 +44,7 @@ export class CapacityAssessmentComponent implements OnInit {
         employeeName: "",
         showTab: true,
         valid: false,
+        lock: false,
         nodeId: 0
       },
       {
@@ -53,6 +54,7 @@ export class CapacityAssessmentComponent implements OnInit {
         employeeName: "",
         showTab: true,
         valid: false,
+        lock: false,
         nodeId: 0
 
       },
@@ -63,6 +65,7 @@ export class CapacityAssessmentComponent implements OnInit {
         employeeName: "",
         showTab: true,
         valid: false,
+        lock: false,
         nodeId: 0
       },
 

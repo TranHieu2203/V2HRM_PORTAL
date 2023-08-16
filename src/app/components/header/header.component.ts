@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewEncapsulation, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { RandomAvatarService } from 'src/app/services/random-avatar.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
@@ -30,21 +30,22 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('webButton') webButton!: ElementRef;
   @ViewChild('mobButton') mobButton!: ElementRef;
   @ViewChild('searcher') searcher!: ElementRef;
+  @ViewChild('notificationButton') notificationButton!: ElementRef;
 
   isOpen: boolean = true;
   isNoti: boolean = false;
-
+  isInfo: boolean = false;
   moduleRouterLink!: any[];
   activeModule!: IModule | null;
 
-  
+
   randomAvatarSrc: string = this.randomAvatarService.get();
 
   navClass?: string;
   buttonClass?: string;
   searchClass = `${this.headerService.searchActive ? " show" : ""}`
-  notiClass = `${this.isNoti ? " show" : ""}`
-
+  notiClass = this.isNoti == true ? " show" : ""
+  infoClass = this.isInfo == true ? " show" : ""
   keyword: string = this.headerService.keyword;
   searchActive: boolean = this.headerService.searchActive;
 
@@ -68,6 +69,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleIsNoti(): void {
     this.isNoti = !this.isNoti;
+    this.notiClass = this.isNoti == true ? " show" : ""
+  }
+  toggleIsInfo(): void {
+    debugger;
+    this.isInfo = !this.isInfo;
+    this.infoClass = this.isInfo == true ? " show" : ""
   }
 
   handleCloseHeader(): void {
@@ -77,7 +84,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   bgClass(columIndex: number, index: number): string {
     return colors[columIndex][index % 4];
   }
-
+  clickOutside() {
+    // this.isNoti = false;
+    // this.isInfo = false;
+    // this.notiClass = "";
+    // this.infoClass = "";
+  }
   myTasks!: ITaskCard[];
 
   constructor(
@@ -86,7 +98,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private headerService: HeaderService,
     public authService: AuthService,
     private modulesService: ModulesService,
-  ) { }
+    private renderer: Renderer2
+  ) {
+    // this.renderer.listen('window', 'click', (e: Event) => {
+    //   debugger;
+    //   if (e.target !== this.notificationButton.nativeElement) {
+
+    //     this.isNoti = false;
+    //     this.notiClass = ""
+    //   }
+    // });
+
+  }
 
   ngOnInit(): void {
     this.moduleRouterLink = moduleRouterLink;
@@ -99,7 +122,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.buttonClass = value ? " active" : "";
         this.navClass = value ? " nav-active" : "";
       });
-    
+
 
     this.avatar = this.authService.avatar;
 
@@ -123,71 +146,71 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.chatMembers = [
       {
-        imageUrl:"https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
-        name:"Phan Tuấn Anh",
-        org:"VDX"
+        imageUrl: "https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
+        name: "Phan Tuấn Anh",
+        org: "VDX"
       },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Tống Thanh Sơn",
-        org:"DU10"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Lê Quỳnh Chi",
-        org:"VAI"
-      }, 
+        imageUrl: this.randomAvatarService.get(),
+        name: "Tống Thanh Sơn",
+        org: "DU10"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Lê Quỳnh Chi",
+        org: "VAI"
+      },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Phan Linh",
-        org:"DU13"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Nguyễn Việt Hải",
-        org:"R&D"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Lệ Chi",
-        org:"IT"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Đặng Xuân Hồng",
-        org:"Takumi"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Nguyễn Văn Nam",
-        org:"BA"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Văn Đức",
-        org:"DU13"
-      }, 
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Phan Linh",
+        org: "DU13"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Nguyễn Việt Hải",
+        org: "R&D"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Lệ Chi",
+        org: "IT"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Đặng Xuân Hồng",
+        org: "Takumi"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Nguyễn Văn Nam",
+        org: "BA"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Văn Đức",
+        org: "DU13"
+      },
     ]
 
     this.topMembers = [
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Tuấn Anh",
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Tuấn Anh",
       },
       {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Tống Thanh Sơn",
-        org:"DU10"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Lê Quỳnh Chi",
-        org:"VAI"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phạm Thanh Lam",
-        org:"DU18"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Trần Tuấn Anh",
-        org:"DU13"
-      },  {
-        imageUrl:this.randomAvatarService.get(),
-        name:"Phan Đức Bảo",
-        org:"DU13"
+        imageUrl: this.randomAvatarService.get(),
+        name: "Tống Thanh Sơn",
+        org: "DU10"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Lê Quỳnh Chi",
+        org: "VAI"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phạm Thanh Lam",
+        org: "DU18"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Trần Tuấn Anh",
+        org: "DU13"
+      }, {
+        imageUrl: this.randomAvatarService.get(),
+        name: "Phan Đức Bảo",
+        org: "DU13"
       },
     ]
 
@@ -282,18 +305,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     ]
 
   }
-  logout(){
+  logout() {
     this.authService.logout()
   }
 
   ngAfterViewInit(): void {
 
-  
+
   }
 
   ngOnDestroy(): void {
-    if(this.authServiceAuthenticatedSubscription)this.authServiceAuthenticatedSubscription.unsubscribe();
-    if(this.menuServiceIsOpenSubscription)this.menuServiceIsOpenSubscription.unsubscribe();
+    if (this.authServiceAuthenticatedSubscription) this.authServiceAuthenticatedSubscription.unsubscribe();
+    if (this.menuServiceIsOpenSubscription) this.menuServiceIsOpenSubscription.unsubscribe();
   }
 
 }
