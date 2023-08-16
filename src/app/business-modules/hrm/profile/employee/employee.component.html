@@ -14,17 +14,21 @@
                     <ng-template #content>
 
                       <div class="row">
-                        <div class="col-sm-4" displau = "flex" align-items = "center">
+                        <div class="col-sm-4" displau="flex" align-items="center">
                           <div class="d-flex h-100">
                             <div class="row justify-content-center align-self-center">
+                              <div id="target" onclick="javascript:document.getElementById('avatar').click();">
+                                <img *ngIf="!employeeInfo.avatar" src="../../../../../assets/images/defaultAvatar.jpg"
+                                  class="img-avatar" />
+                                <img *ngIf="employeeInfo.avatar" [src]='employeeInfo.avatar' class="img-avatar"
+                                  style="object-fit: cover;" />
+                              </div>
                               <!-- <img src="{{employeeInfo.avatar}}"
                                 class="rounded-circle img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
                                 alt=""> -->
-                              <img *ngIf="!employeeInfo.avatar"
-                                src="../../../../../assets/images/defaultAvatar.jpg"
-                                class="img-avatar" />
-                              <img *ngIf="employeeInfo.avatar" [src]='employeeInfo.avatar' class="img-avatar"
-                                style="object-fit: cover;" />
+
+                              <input style="font-size: 13px;" #file type="file" id="avatar" accept="image/*"
+                                data-max-size="5120" (change)="uploadAvatar(file.files)" style="display: none;" />
                             </div>
                           </div>
                         </div>

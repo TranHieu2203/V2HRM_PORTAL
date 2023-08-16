@@ -55,13 +55,18 @@
   font-size: 18px; /* Kích thước biểu tượng */
 }
 .img-avatar {
-  width: 244px; /* Điều chỉnh kích thước theo mong muốn */
+  width: 210px; /* Điều chỉnh kích thước theo mong muốn */
   height: 210px;
   border-radius: 50%; /* Làm tròn viền để tạo hình tròn */
- 
-  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+  transition: all 0.3s ease; /* Thời gian hiệu ứng và kiểu easing */
+  cursor: pointer;
 }
 
+.img-avatar:hover {
+  /* Thay đổi kích thước và hiệu ứng khác khi hover */
+  transform: scale(1.1); /* Tăng kích thước khi hover */
+  /* Các hiệu ứng khác mà bạn muốn thêm */
+}
 /* Áp dụng cho phần tử nút */
 .custom-button {
   background-color: #28a745; /* Màu nền xanh lá cây */
