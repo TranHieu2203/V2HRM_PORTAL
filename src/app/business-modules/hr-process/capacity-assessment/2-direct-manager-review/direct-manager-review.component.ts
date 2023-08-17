@@ -13,6 +13,7 @@ import { GridComponent, ToolbarItems } from "@syncfusion/ej2-angular-grids";
 import { NotificationService } from 'src/app/services/notification.service';
 import { Router } from '@angular/router';
 import { ProcessTypeService } from '../../_services/process-type.service';
+import { ControlService } from '../../_services/control.service';
 
 @Component({
   selector: 'direct-manager-review',
@@ -43,30 +44,35 @@ export class DirectManagerReviewComponent implements OnInit {
     private authService: AuthService,
     private notification: NotificationService,
     private processServices: ProcessTypeService,
+    private controlServices: ControlService
+
 
   ) {
     this.groupOptions = { columns: ['GROUP_NAME'] };
   }
 
   ngOnInit() {
-    // this.getCompentencySeltList()
-    this.getCompentencySeltList()
-    console.log("this", this);
-    // get nodeInfo
-    let id = 1;
-
-    this.processServices.getHrProcessById(this.processId).subscribe((data: any) => {
-      if (data.status === 200) {
-        this.curentNodeInfo = data.body.data.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];
-        console.log(this.curentNodeInfo)
+    this.controlServices.curentNodeInfo$.subscribe((value: any) => {
+      if (value.length != 0) {
+        this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];
       }
+    })
+
+    this.controlServices.processId$.subscribe(value => {
+      this.processId = value
+
+      this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
+        this.data = JSON.parse(res.body.message).Data
+        this.table = this.data.Table
+      })
+
     })
   }
 
 
   getCompentencySeltList() {
     let period = 1
-    this._compentencySeltListService.getCompentencySeltList(period).subscribe((res: any) => {
+    this._compentencySeltListService.getCompentencySeltList(period, 1).subscribe((res: any) => {
       this.data = JSON.parse(res.body.message).Data
       this.table = this.data.Table
     })
@@ -132,6 +138,8 @@ export class DirectManagerReviewComponent implements OnInit {
     ).subscribe((res: any) => {
       if (JSON.parse(res.body.message).StatusCode === '200') {
         this.notification.success("[Đã cập nhật kết quả, chờ phê duyệt!]")
+        this.controlServices.needLoad.next(true);
+
       } else {
         this.notification.warning("[Không thể cập nhật kết quả!]")
 

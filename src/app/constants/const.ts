@@ -16,27 +16,28 @@ export enum Consts {
 
   // uat
 
-  // API_URL_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
-  // API_FILE_MANAGER_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/", // sỬ DỤNG TẠM DONMAIN CỦA DX
-  // API_REPORT_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
-  // API_URL_NODE_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
+  API_URL_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
+  API_FILE_MANAGER_SERVICE_PRODUCTION = "http://hrms-api.vmo.group/api/", // sỬ DỤNG TẠM DONMAIN CỦA DX
+  API_REPORT_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
+  API_URL_NODE_SERVICE_PRODUCTION = "http://hrm-uat-api.vmogroup.com/api/",
 
 
 
   // DEVELOPER
 
-  API_URL_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
-  API_FILE_MANAGER_SERVICE_PRODUCTION = "http://27.72.100.225:8007/api/",
-  API_REPORT_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
-  API_URL_NODE_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
+  // API_URL_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
+  // API_FILE_MANAGER_SERVICE_PRODUCTION = "http://27.72.100.225:8007/api/",
+  // API_REPORT_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
+  // API_URL_NODE_SERVICE_PRODUCTION = "http://27.72.100.225:8005/api/",
 
 
   // VDT DEMO
 
-  // API_URL_SERVICE_PRODUCTION = "http://10.1.4.92:8003/api/",
+
+  // API_URL_SERVICE_PRODUCTION = "http://10.1.4.92:8100/api/",
   // API_FILE_MANAGER_SERVICE_PRODUCTION = "http://10.1.4.92:8004/api/",
-  // API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:4436/8005/",
-  // API_URL_NODE_SERVICE_PRODUCTION = "http://10.1.4.92:8003/api/",
+  // API_REPORT_SERVICE_PRODUCTION = "http://10.1.4.92:8100/api/",
+  // API_URL_NODE_SERVICE_PRODUCTION = "http://10.1.4.92:8100/api/",
 
 
   // BACKEND URL

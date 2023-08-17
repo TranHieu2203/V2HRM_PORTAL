@@ -63,7 +63,6 @@ export class MainComponent implements OnInit {
 
     this.commonHttpRequestService.commonPostRequest("createHrProcess", this.authService.serverModel.createHrProcess!, data)
       .subscribe((res: any) => {
-        console.log("res", res)
       })
 
   }

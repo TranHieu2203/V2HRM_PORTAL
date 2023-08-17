@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { HrProcessNode } from 'src/app/model/hr-process/hr-process-node';
 import { fromEvent } from 'rxjs';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
-import { ControlService } from './control.service';
+import { ControlService } from '../_services/control.service';
 
 @Component({
   selector: 'app-capacity-assessment',
@@ -32,7 +32,7 @@ export class CapacityAssessmentComponent implements OnInit {
   private processId: number = 1234;
 
   isLinear = false;
-
+  public lstStep: any[] = []
   public selectedDosing = {
 
     steps: [
@@ -40,33 +40,33 @@ export class CapacityAssessmentComponent implements OnInit {
       {
         label: 'Nhân viên tự đánh giá',
         component: EmployeeReportComponent,
-        status: true,
+        status: 0,
         employeeName: "",
         showTab: true,
         valid: false,
         lock: false,
-        nodeId: 0
+        nodeId: "",
       },
       {
         label: 'Quản lý trực tiếp đánh giá',
         component: DirectManagerReviewComponent,
-        status: true,
+        status: 0,
         employeeName: "",
         showTab: true,
         valid: false,
         lock: false,
-        nodeId: 0
+        nodeId: ""
 
       },
       {
         label: 'Quản lý đơn vị review',
         component: LineManagerReviewComponent,
-        status: false,
+        status: 0,
         employeeName: "",
         showTab: true,
         valid: false,
         lock: false,
-        nodeId: 0
+        nodeId: ""
       },
 
     ]
@@ -82,25 +82,40 @@ export class CapacityAssessmentComponent implements OnInit {
     private controlServices: ControlService
 
   ) {
-    this.controlServices.needLoad.subscribe(value => {
-
-      console.log("needLoad", value)
-      this.loadData()
-
-    })
-
   }
 
 
   ngOnInit() {
-    this.loadData()
+    // this.loadData()
+    this.controlServices.curentNodeInfo$.subscribe((value: any) => {
+      this.lstStep = []
 
+      if (value.length !== 0) {
+        this.baseInfo = value.baseInfo
+        this.selectedDosing.steps.forEach((element: any) => {
+          var nodeData = value.nodeInfo.filter((res: any) => res.component === element.component.name)[0]
+          element.label = nodeData.nodeName
+          element.employeeName = nodeData.employeeName
+          element.status = nodeData.complete
+          element.nodeId = nodeData.nodeId
+          element.valid = nodeData.valid
+          element.status = nodeData.status
+          this.lstStep.push(element)
+        });
+      }
+
+
+    })
   }
   createInjector(dataObj: any) {
     return Injector.create(
       [{ provide: String, useValue: dataObj }],
       this.injector
     );
+  }
+
+  trackByFn(index: any) {
+    return index;
   }
 
   //get data node
@@ -112,7 +127,7 @@ export class CapacityAssessmentComponent implements OnInit {
         // map với nhau theo component name
         var nodeInfo = data.body.data.nodeInfo;
         this.baseInfo = data.body.data.baseInfo
-        console.log(this.baseInfo)
+
         this.selectedDosing.steps.forEach(element => {
           var nodeData = nodeInfo.filter((res: any) => res.component === element.component.name)[0]
           element.label = nodeData.nodeName

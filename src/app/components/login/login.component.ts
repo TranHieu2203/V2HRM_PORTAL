@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe({
           next: (res: any) => {
             if (res.body.statusCode === "200") {
-              debugger;
+
               localStorage.setItem('user', JSON.stringify(res.body.data));
               this.authService.userSubject.next(res.body.data);
               // this.notification.success("Thông báo", "[Đăng nhập thành công]")
@@ -231,7 +231,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
           .subscribe({
             next: (res: any) => {
               if (res.body.statusCode === "200") {
-                debugger;
+
                 localStorage.setItem('user', JSON.stringify(res.body.data));
                 this.authService.userSubject.next(res.body.data);
                 this.notification.success("[Đăng nhập thành công]")

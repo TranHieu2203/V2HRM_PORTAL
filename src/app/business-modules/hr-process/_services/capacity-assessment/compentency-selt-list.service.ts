@@ -12,10 +12,10 @@ export class CompentencySeltListService {
     private authService: AuthService) {
 
   }
-  getCompentencySeltList(periodId: number = 1) {
+  getCompentencySeltList(periodId: number = 1, processId: number) {
     return this.commonHttpRequestService.commonGetRequest(
       'getCompentencySeltList',
-      this.authService.serverModel.getCompentencySeltList! + "?periodId=" + periodId
+      this.authService.serverModel.getCompentencySeltList! + "?periodId=" + periodId + "&processId=" + processId
 
     )
   }

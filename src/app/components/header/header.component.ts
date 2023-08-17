@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.notiClass = this.isNoti == true ? " show" : ""
   }
   toggleIsInfo(): void {
-    debugger;
+
     this.isInfo = !this.isInfo;
     this.infoClass = this.isInfo == true ? " show" : ""
   }
@@ -91,7 +91,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.infoClass = "";
   }
   myTasks!: ITaskCard[];
-
+  userName = "";
   constructor(
     private randomAvatarService: RandomAvatarService,
     private menuService: MenuService,
@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2
   ) {
     // this.renderer.listen('window', 'click', (e: Event) => {
-    //   debugger;
+    //
     //   if (e.target !== this.notificationButton.nativeElement) {
 
     //     this.isNoti = false;
@@ -112,6 +112,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.authService.user.subscribe((res: any) => this.userName = res.fullName)
     this.moduleRouterLink = moduleRouterLink;
     this.modulesServiceActiveModuleSubscription = this.modulesService.activeModule.subscribe((value: IModule | null) => {
       this.activeModule = value;

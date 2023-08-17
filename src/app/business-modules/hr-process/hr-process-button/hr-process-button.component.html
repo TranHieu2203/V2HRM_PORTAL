@@ -1,6 +1,7 @@
 <div class="text-right">
   <div class="button-group">
-    <span *ngFor="let link of lstButton; let i = index">
+    button
+    <span *ngFor="let link of lstNodeButton; let i = index">
       <button class="btn" (click)="link.function.apply(this)" [ngClass]="link.class">
         <i [ngClass]="link.icon"></i>
         {{ link.text |translate}}

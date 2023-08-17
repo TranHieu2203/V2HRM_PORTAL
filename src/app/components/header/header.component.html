@@ -15,9 +15,7 @@
         <button (click)="toggleOpen()" [class]="'nav-menu me-0 ms-2' + buttonClass"></button>
     </div>
     <div class="top-right-icons">
-        <span class="p-2 pointer text-center ms-auto menu-icon"><i
-                class="feather-home font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500"></i></span>
-
+        <app-darkbutton></app-darkbutton>
         <span id="toggleIsNoti" #notificationButton [class]="'p-2 pointer text-center ms-auto menu-icon'"
             id="dropdownMenu3" (click)="toggleIsNoti()" (clickOutside)="clickOutside()">
             <div class="noti-icon-wrapper">
@@ -38,15 +36,16 @@
 
         </div>
 
-        <app-darkbutton></app-darkbutton>
-        <a class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
+
+        <span class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="toggleIsInfo()" (clickOutside)="clickOutside()">
-            <div class="flex-center w50 h50">
+            <div class="flex-center ">
                 <img [src]="avatar" alt="user" class="w50 rounded-circle" />
             </div>
-        </a>
-        <div class="dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg" [class]="infoClass"
-            aria-labelledby="infoMenu">
+            <span>{{userName}}</span>
+
+        </span>
+        <div class="dropdown-menu p-4 right-0 border-0 shadow-lg" [class]="infoClass" aria-labelledby="infoMenu">
             <a class="dropdown-item">Đổi mật khẩu</a>
         </div>
 
@@ -76,7 +75,8 @@
                         <li><a routerLink="/register" class="nav-content-bttn open-font element-disable"><i
                                     class="feather-edit btn-space-md bg-primary-gradiant1 me-2"></i><span>Đăng ký
                                 </span></a></li> -->
-                        <li><a routerLink="/hr-process/c-a" class="nav-content-bttn open-font"><i
+                        <li><a routerLink="/hr-process/c-a?process=CJR4OlcoDd8dbK0ay6tIqQ%3D%3D&node=PUVcgrd+GDksZsNhQ3LrfQ=="
+                                class="nav-content-bttn open-font"><i
                                     class="feather-sliders btn-space-md bg-primary-gradiant1 me-2"></i><span>Quy trình
                                     nhân sự
                                 </span></a></li>

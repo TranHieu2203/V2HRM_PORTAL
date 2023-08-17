@@ -63,8 +63,8 @@ export interface IServerModel {
   getFormTrainUrl?: string,
   getSpecializedUrl?: string,
   getlstExperienceUrl?: string,
-  getSchoolUrl?:string;
-  getQualificationUrl?:string;
+  getSchoolUrl?: string;
+  getQualificationUrl?: string;
   // attendance
   getTimeExplaint?: string
 
@@ -72,7 +72,13 @@ export interface IServerModel {
   //hrProcess
   getProcessType?: string
   getHrProcessById?: string
-
+  onSend?: string
+  onApprove?: string
+  onSubmit?: string
+  onCancel?: string
+  onReject?: string
+  onSend_Back?: string
+  onBreak?: string
   createHrProcess?: string
 
   getCompentencySeltList?: string
@@ -134,16 +140,22 @@ export const V2Hrm2022: IServerModel = {
   getFormTrainUrl: 'hr/otherlist/GetListTrainingForm',
   getSpecializedUrl: 'hr/otherlist/SPECIALIZED_TRAIN',
   getlstExperienceUrl: 'hr/otherlist/GetListExperience',
-  getSchoolUrl:'hr/otherlist/GetListSchool',
+  getSchoolUrl: 'hr/otherlist/GetListSchool',
   // attendance
   getTimeExplaint: "at-portal/timeexplain",
 
 
   // hrProcess
   getProcessType: "hr-process/template/gettemplate",
-  getHrProcessById: "hr-process/process/getHrProcessById",
-  createHrProcess: "hr-process/process/create",
-
+  getHrProcessById: "hr-process/getHrProcessById",
+  createHrProcess: "hr-process/create",
+  onSend: "hr-process/on-send",
+  onApprove: "hr-process/on-approve",
+  onSubmit: "hr-process/on-submit",
+  onCancel: "hr-process/on-cancel",
+  onReject: "hr-process/on-reject",
+  onSend_Back: "hr-process/on-sendback",
+  onBreak: "hr-process/on-break",
   getCompentencySeltList: "hr-process/capacity/getcompentencyseltlist",
   updateCompentencySeltList: "hr-process/capacity/updateCompentencySeltList"
 }

@@ -11,8 +11,8 @@
               <profile-info [baseInfo]="baseInfo" *ngIf="baseInfo!==undefined"></profile-info>
 
             </div>
-            <div ngClass="mb-3" *ngFor=" let step of selectedDosing.steps; index as i" class="step" [attr.step]="i"
-              [attr.nodeId]="step.nodeId">
+            <div ngClass="mb-3" *ngFor=" let step of lstStep; let i = index; trackBy: trackByFn" class="step"
+              [attr.step]="i" [attr.nodeId]="step.nodeId">
               <div class="pt-2">
 
                 <div class="node-header" [ngClass]="{'node-header-toggle': !step.showTab}" [id]="step.component.name"
@@ -30,8 +30,9 @@
 
                   </ng-container>
                 </div>
-                <div class="node-button" *ngIf="step.showTab && step.valid">
-                  <hr-process-button id="{{step.component.name}}">
+                <div class="node-button" *ngIf="step.showTab && (step.status==1||step.status==0)">
+                  {{step.nodeId}}
+                  <hr-process-button [nodeId]="step.nodeId" id="{{step.component.name}}">
                   </hr-process-button>
                 </div>
               </div>
