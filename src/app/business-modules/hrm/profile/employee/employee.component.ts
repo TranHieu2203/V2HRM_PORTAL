@@ -1104,8 +1104,9 @@ export class EmployeeComponent implements OnInit {
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
           || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
-          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
-          alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
+          ||!this.editForm.get('user')?.valid) {
+          alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
           // this.notification.warning("Form chưa hợp lệ !");
           this.editForm.markAllAsTouched();
           return;
@@ -1202,13 +1203,14 @@ export class EmployeeComponent implements OnInit {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
-          || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
-          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
-          alert('Form sơ yếu lý lịch chưa hợp lệ !');
-          // this.notification.warning("Form chưa hợp lệ !");
-          this.editForm.markAllAsTouched();
-          return;
-        }
+        || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
+        ||!this.editForm.get('user')?.valid) {
+        alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
 
         if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');
@@ -1315,13 +1317,14 @@ export class EmployeeComponent implements OnInit {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
-          || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
-          || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
-          alert('Form sơ yếu lý lịch chưa hợp lệ !');
-          // this.notification.warning("Form chưa hợp lệ !");
-          this.editForm.markAllAsTouched();
-          return;
-        }
+        || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
+        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
+        ||!this.editForm.get('user')?.valid) {
+        alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
+        // this.notification.warning("Form chưa hợp lệ !");
+        this.editForm.markAllAsTouched();
+        return;
+      }
 
         if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');

@@ -1011,7 +1011,9 @@
                                               <label class="">Số tài khoản</label>
                                               <input class="form-control" type="text" formControlName="bankNo"
                                                 [(ngModel)]="employeeInfo.bankNo">
-
+                                                <span class="input-error"
+                                                *ngIf="editForm.controls['user'].get('bankNo')!.hasError('required') && !editForm.controls['user'].get('bankNo')!.untouched">
+                                                Bắt buộc nhập</span>
                                             </div>
                                           </div>
                                           <div class="col-sm-4">
@@ -1023,6 +1025,9 @@
                                                 [allowFiltering]='true' (filtering)='onFiltering($event,lstBankId)'
                                                 (change)='changeBank($event!)'>
                                               </ejs-dropdownlist>
+                                              <span class="input-error"
+                                                *ngIf="editForm.controls['user'].get('bankId')!.hasError('required') && !editForm.controls['user'].get('bankId')!.untouched">
+                                                Bắt buộc chọn</span>
                                             </div>
                                           </div>
                                           <!--HÌnh thức đào tạo  -->
