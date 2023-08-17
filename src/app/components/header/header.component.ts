@@ -5,11 +5,14 @@ import { MenuService } from 'src/app/services/menu.service';
 import { HeaderService } from 'src/app/services/header.service';
 import { ITaskCard } from '../task-card/task-card.component';
 import { Subscription } from 'rxjs';
-
+import { ModalService } from "src/app/services/modal.service";
 import { ModulesService } from 'src/app/services/modules.service';
-
+import { NotificationService } from 'src/app/services/notification.service';
 import { IModule } from 'src/app/components/modules/modules.component';
-
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
+import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
+const $ = require("jquery");
 const moduleRouterLink = [{ outlets: { ppMain: ['modules'] } }]
 
 const colors: string[][] = [
@@ -32,13 +35,17 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('searcher') searcher!: ElementRef;
   @ViewChild('notificationButton') notificationButton!: ElementRef;
 
+  @ViewChild('defaultDialog')
+  public defaultDialog!: DialogComponent;
+
   isOpen: boolean = true;
   isNoti: boolean = false;
   isInfo: boolean = false;
   moduleRouterLink!: any[];
   activeModule!: IModule | null;
-
-
+  public dialogHeader!:string;
+  public animationSettings: Object = { effect: 'Zoom' };
+  editForm!: FormGroup;
   randomAvatarSrc: string = this.randomAvatarService.get();
 
   navClass?: string;
@@ -58,7 +65,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   articleServiceGetArticlesSubscription!: Subscription;
   chatMembers: any[] = [];
   topMembers: any[] = [];
+  userInfo = {
+    username: "",
+  };
 
+  passwordForm!: FormGroup;
+  confirmFlag = false;
+  flagOldPassword = false;
+  
+  tooglePassWord1 = false;
+  tooglePassWord2 = false;
+  tooglePassWord3 = false;
+  model: ChangePassword = new ChangePassword();
   toggleActive(): void {
     this.headerService.searchActive = !this.headerService.searchActive;
   }
@@ -98,7 +116,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private headerService: HeaderService,
     public authService: AuthService,
     private modulesService: ModulesService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private modalService: ModalService,
+    private _formBuilder: FormBuilder,
+    protected notification: NotificationService,
+    private commomHttpService: CommonHttpRequestService,
+
   ) {
     // this.renderer.listen('window', 'click', (e: Event) => {
     //
@@ -108,7 +131,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.notiClass = ""
     //   }
     // });
-
+    this.editForm  = _formBuilder.group({
+      currentPass: ["", Validators.required],
+      password: ["", Validators.required],
+      confirm_password: ["", Validators.required],
+    });
+    this.userInfo.username = JSON.parse(localStorage.getItem("user")!).userName
+    ;
+    this.model.userName = this.userInfo.username;
   }
 
   ngOnInit(): void {
@@ -319,5 +349,57 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.authServiceAuthenticatedSubscription) this.authServiceAuthenticatedSubscription.unsubscribe();
     if (this.menuServiceIsOpenSubscription) this.menuServiceIsOpenSubscription.unsubscribe();
   }
+  // Xác nhận đổi mật khẩu or không đổi mật khẩu
+  confirmChoose(status: any) {
+    if (status == "cancel") {
+      // Reset trạng thái của mắt
+      this.tooglePassWord3 = false;
+      this.tooglePassWord2 = false;
+      this.tooglePassWord1 = false;
+      this.flagOldPassword = false;
+      // Bỏ check không trùng mật khẩu
+      this.confirmFlag = false;
+      // Reset Form
+      this.editForm.reset();
+      this.defaultDialog.hide();
+    } else {
+      if (!this.editForm.valid) {
+        this.editForm.markAsUntouched();
+        this.editForm.markAsPristine();
+        this.editForm.markAllAsTouched();
+      } else {
+        if (this.model.newPassword !== this.model.confirm_password) {
+          this.confirmFlag = true;
+        } else {
+          this.commomHttpService.commonPostRequest("updatePassWord","tenant/ChangePassword", this.model).subscribe((res: any)=>{
+            console.log(res)
+            if(res.body.statusCode == "200")
+            {
+              this.notification.success("Đổi mật khẩu thành công");
+              this.editForm.reset();
+             this.defaultDialog.hide();
+            }
+            else{
+              this.confirmFlag = false;
+              if(res.statusCode == "400") 
+              this.notification.warning("Mật khẩu hiện tại không đúng !");
+              if(res.statusCode == "404")
+              this.notification.warning("Không tìm thấy tài khoản !");
+            }
+          })
+        }
+      }
+    }
+  }
+  openChangePass = () => {
+    this.defaultDialog.show();
+  };
 
+}
+export class ChangePassword {
+  userName!: string;
+  currentPassword!: string;
+  newPassword!: string;
+  confirm_password!: string;
+  avatar?:string;
 }

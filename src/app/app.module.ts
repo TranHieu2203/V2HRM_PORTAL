@@ -78,6 +78,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { ClickOutsideDirective } from './pipe/clickOutSide';
+import { ModalModule } from './components/modals/modals.module';
 
 const googleClientId = environment.googleClientId;
 
@@ -135,6 +136,7 @@ const googleClientId = environment.googleClientId;
     SharedModule, // used in multiple modules
     NgbModule,
     AppRoutingModule,
+    ModalModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',
