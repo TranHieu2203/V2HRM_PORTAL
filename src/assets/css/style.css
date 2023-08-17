@@ -18482,6 +18482,10 @@ body.theme-dark .btn{
 color: #eee!important;
 
 }
+body.theme-dark .background-white{
+  background: #293145 !important;
+  border: 0.5px solid #eee;
+}
 .node-header-toggle{
   border-radius: 10px!important;
 }

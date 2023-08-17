@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   isInfo: boolean = false;
   moduleRouterLink!: any[];
   activeModule!: IModule | null;
-  public dialogHeader!:string;
+  public dialogHeader!: string;
   public animationSettings: Object = { effect: 'Zoom' };
   editForm!: FormGroup;
   randomAvatarSrc: string = this.randomAvatarService.get();
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   passwordForm!: FormGroup;
   confirmFlag = false;
   flagOldPassword = false;
-  
+
   tooglePassWord1 = false;
   tooglePassWord2 = false;
   tooglePassWord3 = false;
@@ -131,18 +131,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.notiClass = ""
     //   }
     // });
-    this.editForm  = _formBuilder.group({
+    this.editForm = _formBuilder.group({
       currentPass: ["", Validators.required],
       password: ["", Validators.required],
       confirm_password: ["", Validators.required],
     });
     this.userInfo.username = JSON.parse(localStorage.getItem("user")!).userName
-    ;
+      ;
     this.model.userName = this.userInfo.username;
   }
 
   ngOnInit(): void {
-    this.authService.user.subscribe((res: any) => this.userName = res.fullName)
+    this.authService.user.subscribe((res: any) => this.userName = res!.fullName!)
     this.moduleRouterLink = moduleRouterLink;
     this.modulesServiceActiveModuleSubscription = this.modulesService.activeModule.subscribe((value: IModule | null) => {
       this.activeModule = value;
@@ -371,20 +371,19 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.model.newPassword !== this.model.confirm_password) {
           this.confirmFlag = true;
         } else {
-          this.commomHttpService.commonPostRequest("updatePassWord","tenant/ChangePassword", this.model).subscribe((res: any)=>{
+          this.commomHttpService.commonPostRequest("updatePassWord", "tenant/ChangePassword", this.model).subscribe((res: any) => {
             console.log(res)
-            if(res.body.statusCode == "200")
-            {
+            if (res.body.statusCode == "200") {
               this.notification.success("Đổi mật khẩu thành công");
               this.editForm.reset();
-             this.defaultDialog.hide();
+              this.defaultDialog.hide();
             }
-            else{
+            else {
               this.confirmFlag = false;
-              if(res.statusCode == "400") 
-              this.notification.warning("Mật khẩu hiện tại không đúng !");
-              if(res.statusCode == "404")
-              this.notification.warning("Không tìm thấy tài khoản !");
+              if (res.statusCode == "400")
+                this.notification.warning("Mật khẩu hiện tại không đúng !");
+              if (res.statusCode == "404")
+                this.notification.warning("Không tìm thấy tài khoản !");
             }
           })
         }
@@ -401,5 +400,5 @@ export class ChangePassword {
   currentPassword!: string;
   newPassword!: string;
   confirm_password!: string;
-  avatar?:string;
+  avatar?: string;
 }
