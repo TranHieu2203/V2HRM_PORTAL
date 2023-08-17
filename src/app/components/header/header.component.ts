@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { IModule } from 'src/app/components/modules/modules.component';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popups';
+import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 const $ = require("jquery");
 const moduleRouterLink = [{ outlets: { ppMain: ['modules'] } }]
 
@@ -64,7 +65,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   articleServiceGetArticlesSubscription!: Subscription;
   chatMembers: any[] = [];
   topMembers: any[] = [];
-
+  userInfo = {
+    username: "",
+  };
 
   passwordForm!: FormGroup;
   confirmFlag = false;
@@ -117,6 +120,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private modalService: ModalService,
     private _formBuilder: FormBuilder,
     protected notification: NotificationService,
+    private commomHttpService: CommonHttpRequestService,
 
   ) {
     // this.renderer.listen('window', 'click', (e: Event) => {
@@ -132,7 +136,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       password: ["", Validators.required],
       confirm_password: ["", Validators.required],
     });
-
+    this.userInfo.username = JSON.parse(localStorage.getItem("user")!).userName
+    ;
+    this.model.userName = this.userInfo.username;
   }
 
   ngOnInit(): void {
@@ -353,32 +359,33 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       // Bỏ check không trùng mật khẩu
       this.confirmFlag = false;
       // Reset Form
-      this.passwordForm.reset();
-      this.modalService.close("open-change-pass");
+      this.editForm.reset();
+      this.defaultDialog.hide();
     } else {
-      if (!this.passwordForm.valid) {
-        this.passwordForm.markAsUntouched();
-        this.passwordForm.markAsPristine();
-        this.passwordForm.markAllAsTouched();
+      if (!this.editForm.valid) {
+        this.editForm.markAsUntouched();
+        this.editForm.markAsPristine();
+        this.editForm.markAllAsTouched();
       } else {
         if (this.model.newPassword !== this.model.confirm_password) {
           this.confirmFlag = true;
         } else {
-          // this._coreService.Post("tenant/ChangePassword", this.model).subscribe((res: any)=>{
-          //   if(res.statusCode == "200")
-          //   {
-          //     this.notification.success("Đổi mật khẩu thanh công");
-          //     this.passwordForm.reset();
-          //     this.modalService.close("open-change-pass");
-          //   }
-          //   else{
-          //     this.confirmFlag = false;
-          //     if(res.statusCode == "400") 
-          //     this.notification.warning("Mật khẩu hiện tại không đúng !");
-          //     if(res.statusCode == "404")
-          //     this.notification.warning("Không tìm thấy tài khoản !");
-          //   }
-          // })
+          this.commomHttpService.commonPostRequest("updatePassWord","tenant/ChangePassword", this.model).subscribe((res: any)=>{
+            console.log(res)
+            if(res.body.statusCode == "200")
+            {
+              this.notification.success("Đổi mật khẩu thành công");
+              this.editForm.reset();
+             this.defaultDialog.hide();
+            }
+            else{
+              this.confirmFlag = false;
+              if(res.statusCode == "400") 
+              this.notification.warning("Mật khẩu hiện tại không đúng !");
+              if(res.statusCode == "404")
+              this.notification.warning("Không tìm thấy tài khoản !");
+            }
+          })
         }
       }
     }

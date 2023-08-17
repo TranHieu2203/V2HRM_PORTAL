@@ -1,88 +1,88 @@
 <div class="nav-header bg-white shadow-xs border-0">
-    <div class="nav-top">
-        <a routerLink="/home"><i class="text-success display2-size me-2 ms-0">
-                <img class="logo-img" style="padding-left: 25px;" alt='VMO icon' width="150" />
-            </i>
-        </a>
-        <a [routerLink]="moduleRouterLink" class="mob-menu ms-auto me-2 chat-active-btn"><i #mobButton
-                class="feather-command btn-round-md module font-xl"></i></a>
+  <div class="nav-top">
+    <a routerLink="/home"><i class="text-success display2-size me-2 ms-0">
+        <img class="logo-img" style="padding-left: 25px;" alt='VMO icon' width="150" />
+      </i>
+    </a>
+    <a [routerLink]="moduleRouterLink" class="mob-menu ms-auto me-2 chat-active-btn"><i #mobButton
+        class="feather-command btn-round-md module font-xl"></i></a>
 
-        <a routerLink="/defaultvideo" class="mob-menu me-2 mob-extend"><i
-                class="feather-video text-grey-900 font-sm btn-round-md bg-greylight mob-extend"></i></a>
+    <a routerLink="/defaultvideo" class="mob-menu me-2 mob-extend"><i
+        class="feather-video text-grey-900 font-sm btn-round-md bg-greylight mob-extend"></i></a>
 
-        <span (click)="toggleActive()" class="me-2 menu-search-icon mob-menu mob-extend"><i
-                class="feather-search text-grey-900 font-sm btn-round-md bg-greylight mob-extend"></i></span>
-        <button (click)="toggleOpen()" [class]="'nav-menu me-0 ms-2' + buttonClass"></button>
-    </div>
-    <div class="top-right-icons">
-        <span class="p-2 pointer text-center ms-auto menu-icon"><i
-                class="feather-home font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500"></i></span>
+    <span (click)="toggleActive()" class="me-2 menu-search-icon mob-menu mob-extend"><i
+        class="feather-search text-grey-900 font-sm btn-round-md bg-greylight mob-extend"></i></span>
+    <button (click)="toggleOpen()" [class]="'nav-menu me-0 ms-2' + buttonClass"></button>
+  </div>
+  <div class="top-right-icons">
+    <span class="p-2 pointer text-center ms-auto menu-icon"><i
+        class="feather-home font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500"></i></span>
 
-        <span id="toggleIsNoti" #notificationButton [class]="'p-2 pointer text-center ms-auto menu-icon'"
-            id="dropdownMenu3" (click)="toggleIsNoti()" (clickOutside)="clickOutside()">
-            <div class="noti-icon-wrapper">
-                <i class="feather-bell font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500">
-                </i>
-                <span class="notification-badge bg-notification-badge"><label>12</label></span>
-            </div>
-        </span>
-        <div [class]="'dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg' + notiClass"
-            aria-labelledby="dropdownMenu3">
-            <h4 class="fw-700 font-xss mb-4">Notification</h4>
-            <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
-                <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
-                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Admin <span
-                        class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 3 min</span></h5>
-                <h6 class="text-grey-500 fw-500 font-xssss lh-4">Hoàn thiện giấy tờ</h6>
-            </div>
-
-        </div>
-
-        <app-darkbutton></app-darkbutton>
-        <a class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
-            aria-expanded="false" (click)="toggleIsInfo()" (clickOutside)="clickOutside()">
-            <div class="flex-center w50 h50">
-                <img [src]="avatar" alt="user" class="w50 rounded-circle" />
-            </div>
-        </a>
-        <div class="dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg" [class]="infoClass"
-            aria-labelledby="infoMenu">
-            <!-- <a class="dropdown-item" (click)="ChangePassword()">Đổi mật khẩu</a> -->
-            <li role="presentation" class="user-item" (click)="openChangePass()"> <a role="menuitem"><i
-                        class="fa fa-key"></i>Đổi mật khẩu</a></li>
-        </div>
+    <span id="toggleIsNoti" #notificationButton [class]="'p-2 pointer text-center ms-auto menu-icon'" id="dropdownMenu3"
+      (click)="toggleIsNoti()" (clickOutside)="clickOutside()">
+      <div class="noti-icon-wrapper">
+        <i class="feather-bell font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500">
+        </i>
+        <span class="notification-badge bg-notification-badge"><label>12</label></span>
+      </div>
+    </span>
+    <div [class]="'dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg' + notiClass"
+      aria-labelledby="dropdownMenu3">
+      <h4 class="fw-700 font-xss mb-4">Notification</h4>
+      <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
+        <img [src]="randomAvatarSrc" alt="user" class="w40 position-absolute left-0" />
+        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Admin <span
+            class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 3 min</span></h5>
+        <h6 class="text-grey-500 fw-500 font-xssss lh-4">Hoàn thiện giấy tờ</h6>
+      </div>
 
     </div>
 
+    <app-darkbutton></app-darkbutton>
+    <a class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown" aria-expanded="false"
+      (click)="toggleIsInfo()" (clickOutside)="clickOutside()">
+      <div class="flex-center w50 h50">
+        <img [src]="avatar" alt="user" class="w50 rounded-circle" />
+      </div>
+    </a>
+    <div class="dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg" [class]="infoClass"
+      aria-labelledby="infoMenu">
+      <!-- <a class="dropdown-item" (click)="ChangePassword()">Đổi mật khẩu</a> -->
+      <li role="presentation" class="user-item" (click)="openChangePass()"> <a role="menuitem"><i
+            class="fa fa-key"></i>Đổi mật khẩu</a></li>
+    </div>
 
-    <nav [class]="'navigation scroll-bar' + navClass">
-        <div class="container ps-0 pe-0">
-            <div class="nav-content">
-                <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
-                    <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
-                    <ul class="mb-3 top-content1">
-                        <li class="logo d-none d-xl-block d-lg-block"></li>
-                        <li><a routerLink="/home" class="nav-content-bttn open-font"><i
-                                    class="feather-grid btn-space-md bg-blue-gradiant1 me-2"></i><span>Dashboard</span></a>
-                        </li>
-                        <li><a routerLink="/hrm/profile/employee" class="nav-content-bttn open-font"><i
-                                    class="feather-user btn-space-md bg-red-gradiant1 me-2"></i><span>Thông tin của
-                                    tôi</span></a>
-                        </li>
-                        <li><a routerLink="/my-team" class="nav-content-bttn open-font"><i
-                                    class="feather-users btn-space-md bg-gold-gradiant1 me-2"></i><span>Đội ngũ của
-                                    tôi</span></a></li>
-                        <!-- <li><a routerLink="/hrm/attendance/dtl" class="nav-content-bttn open-font"><i
+  </div>
+
+
+  <nav [class]="'navigation scroll-bar' + navClass">
+    <div class="container ps-0 pe-0">
+      <div class="nav-content">
+        <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
+          <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
+          <ul class="mb-3 top-content1">
+            <li class="logo d-none d-xl-block d-lg-block"></li>
+            <li><a routerLink="/home" class="nav-content-bttn open-font"><i
+                  class="feather-grid btn-space-md bg-blue-gradiant1 me-2"></i><span>Dashboard</span></a>
+            </li>
+            <li><a routerLink="/hrm/profile/employee" class="nav-content-bttn open-font"><i
+                  class="feather-user btn-space-md bg-red-gradiant1 me-2"></i><span>Thông tin của
+                  tôi</span></a>
+            </li>
+            <li><a routerLink="/my-team" class="nav-content-bttn open-font"><i
+                  class="feather-users btn-space-md bg-gold-gradiant1 me-2"></i><span>Đội ngũ của
+                  tôi</span></a></li>
+            <!-- <li><a routerLink="/hrm/attendance/dtl" class="nav-content-bttn open-font"><i
                                     class="feather-clock btn-space-md bg-mini-gradiant1 me-2"></i><span>Chấm
                                     công</span></a></li>
                         <li><a routerLink="/register" class="nav-content-bttn open-font element-disable"><i
                                     class="feather-edit btn-space-md bg-primary-gradiant1 me-2"></i><span>Đăng ký
                                 </span></a></li> -->
-                        <li><a routerLink="/hr-process/c-a" class="nav-content-bttn open-font"><i
-                                    class="feather-sliders btn-space-md bg-primary-gradiant1 me-2"></i><span>Quy trình
-                                    nhân sự
-                                </span></a></li>
-                        <!--<li><a routerLink="/carreer-path"
+            <li><a routerLink="/hr-process/c-a" class="nav-content-bttn open-font"><i
+                  class="feather-sliders btn-space-md bg-primary-gradiant1 me-2"></i><span>Quy trình
+                  nhân sự
+                </span></a></li>
+            <!--<li><a routerLink="/carreer-path"
                                 class="nav-content-bttn open-font"><i
                                     class="feather-trending-up btn-space-md bg-primary-gradiant1 me-2"></i><span>Quản lý
                                     công việc
@@ -96,58 +96,58 @@
                                 </span></a></li> -->
 
 
-                    </ul>
-                </div>
+          </ul>
+        </div>
 
-                <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2"
-                    style="display: none;">
-                    <ul class="mb-3">
-                        <li (click)="toggleOpen()">
-                            <a routerLink="/days-of-leave" class="nav-content-bttn open-font">
-                                <div class="btn-square-md bg-greenlight me-2"><label>P</label></div>
-                                <span>Số ngày phép còn</span><span class="oval-count bg-redlight mt-1">{{ 10 }}</span>
-                            </a>
-                        </li>
-                        <li (click)="toggleOpen()">
-                            <a routerLink="/times-of-late" class="nav-content-bttn open-font">
-                                <div class="btn-square-md bg-redlight me-2"><label>M</label></div>
-                                <span>Số lần đi muộn</span><span class="oval-count bg-redlight mt-1">{{ 2 }}</span>
-                            </a>
-                        </li>
-                        <li (click)="toggleOpen()">
-                            <a routerLink="/times-of-late" class="nav-content-bttn open-font">
-                                <div class="btn-square-md bg-orangelight me-2"><label>N</label></div>
-                                <span>Số lần nghỉ trong tháng</span><span class="oval-count bg-graylight mt-1">{{ 0
-                                    }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2"
+          style="display: none;">
+          <ul class="mb-3">
+            <li (click)="toggleOpen()">
+              <a routerLink="/days-of-leave" class="nav-content-bttn open-font">
+                <div class="btn-square-md bg-greenlight me-2"><label>P</label></div>
+                <span>Số ngày phép còn</span><span class="oval-count bg-redlight mt-1">{{ 10 }}</span>
+              </a>
+            </li>
+            <li (click)="toggleOpen()">
+              <a routerLink="/times-of-late" class="nav-content-bttn open-font">
+                <div class="btn-square-md bg-redlight me-2"><label>M</label></div>
+                <span>Số lần đi muộn</span><span class="oval-count bg-redlight mt-1">{{ 2 }}</span>
+              </a>
+            </li>
+            <li (click)="toggleOpen()">
+              <a routerLink="/times-of-late" class="nav-content-bttn open-font">
+                <div class="btn-square-md bg-orangelight me-2"><label>N</label></div>
+                <span>Số lần nghỉ trong tháng</span><span class="oval-count bg-graylight mt-1">{{ 0
+                  }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-                <!-- <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
+        <!-- <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
                     <div class="nav-caption fw-600 font-xssss text-grey-500"><span>Công việc </span>của tôi</div>
                     <app-task-reminder [tasks]="myTasks"></app-task-reminder>
                 </div> -->
-                <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
-                    <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
-                    <ul class="mb-3 top-content1">
-                        <li class="logo d-none d-xl-block d-lg-block"></li>
+        <div class="nav-wrap bg-white bg-transparent-card rounded-xxxl shadow-xss pt-3 pb-1 mb-2 mt-2">
+          <!-- <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div> -->
+          <ul class="mb-3 top-content1">
+            <li class="logo d-none d-xl-block d-lg-block"></li>
 
-                        <li (click)="logout()"><a class="nav-content-bttn open-font"><i
-                                    class="feather-log-out btn-space-md bg-primary-gradiant1 me-2"></i><span>Logout
-                                </span></a></li>
+            <li (click)="logout()"><a class="nav-content-bttn open-font"><i
+                  class="feather-log-out btn-space-md bg-primary-gradiant1 me-2"></i><span>Logout
+                </span></a></li>
 
 
-                    </ul>
-                </div>
-
-            </div>
+          </ul>
         </div>
-    </nav>
+
+      </div>
+    </div>
+  </nav>
 
 
 
-    <!-- <div [class]="'app-header-search' + searchClass">
+  <!-- <div [class]="'app-header-search' + searchClass">
         <form class="search-form">
             <div class="form-group searchbox mb-0 border-0 p-1">
                 <input type="text" class="form-control border-0" placeholder="Search..." [(ngModel)]="keyword"
@@ -162,9 +162,9 @@
         </form>
     </div> -->
 
-    <!-- help: https://ej2.syncfusion.com/angular/documentation/dialog/getting-started/#modal-dialog -->
+  <!-- help: https://ej2.syncfusion.com/angular/documentation/dialog/getting-started/#modal-dialog -->
 
-    <!-- <div class="control-section">
+  <!-- <div class="control-section">
         <ejs-dialog  content='' [isModal]='true'  target='.control-section'  width='250px'>
             Mật khẩu
         </ejs-dialog>
@@ -209,7 +209,7 @@
                   [(ngModel)]="model.newPassword" formControlName="password" placeholder="Nhập mật khẩu mới...">
                 <span class="e-float-line"></span>
                 <label class="e-float-text required" for="password">Mật khẩu mới (<span
-                    style="color: rgb(255, 36, 36);">Chứa ký tự in hoa và thường</span>)</label>
+                    style="color: red;">Chứa ký tự in hoa và thường</span>)</label>
                 <span class="eye" (click)="tooglePassWord2 = !tooglePassWord2"><i class="fa"
                     [class.fa-eye]="!tooglePassWord2" [class.fa-eye-slash]="tooglePassWord2"></i></span>
                 <span class="e-float-line"></span>
@@ -254,70 +254,78 @@
   </v2hrm-confirm-modal> -->
 
 <ejs-dialog #defaultDialog id="animationDialog" [header]='dialogHeader' [isModal]='true' [visible]='false'
-    [animationSettings]='animationSettings' [showCloseIcon]='true' [width]="900">
-    <ng-template #content>
-        <div class="card">
-
-            <form name="editForm" [formGroup]="editForm" novalidate>
-                <div class="group-box">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                              <div class="e-float-input">
-                                <input  [type]="tooglePassWord1 ? 'text' : 'password'" id="currentPass" name="currentPass"
-                                  [(ngModel)]="model.currentPassword" formControlName="currentPass"
-                                  placeholder="Nhập mật khẩu hiện tại...">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text required" for="currentPass">Mật khẩu hiện tại</label>
-                                <span class="eye" (click)="tooglePassWord1 = !tooglePassWord1"><i class="fa"
-                                    [class.fa-eye]="!tooglePassWord1" [class.fa-eye-slash]="tooglePassWord1"></i></span>
-                                <span class="e-float-line"></span>
-                                <span class="input-error"
-                                  *ngIf="editForm.get('currentPass')!.hasError('required') && !editForm.get('currentPass')!.untouched">
-                                  Trường Mật khẩu cũ {{'[Bắt buộc nhập]' | translate }}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <div class="e-float-input">
-                                <input  [type]="tooglePassWord2 ? 'text' : 'password'" id="password" name="password"
-                                  [(ngModel)]="model.newPassword" formControlName="password" placeholder="Nhập mật khẩu mới...">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text required" for="password">Mật khẩu mới (<span
-                                    style="color: rgb(255, 36, 36);">Chứa ký tự in hoa và thường</span>)</label>
-                                <span class="eye" (click)="tooglePassWord2 = !tooglePassWord2"><i class="fa"
-                                    [class.fa-eye]="!tooglePassWord2" [class.fa-eye-slash]="tooglePassWord2"></i></span>
-                                <span class="e-float-line"></span>
-                                <span class="input-error"
-                                  *ngIf="editForm.get('password')!.hasError('required') && !editForm.get('password')!.untouched">
-                                  Trường Mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <div class="e-float-input">
-                                <input  [type]="tooglePassWord3 ? 'text' : 'password'" id="confirm_password" name="old-confirm_password"
-                                  [(ngModel)]="model.confirm_password" formControlName="confirm_password"
-                                  placeholder="Nhập lại mật khẩu mới...">
-                                <span class="e-float-line"></span>
-                                <label class="e-float-text required" for="confirm_password">Nhập lại mật khẩu mới</label>
-                                <span class="eye" (click)="tooglePassWord3 = !tooglePassWord3"><i class="fa"
-                                    [class.fa-eye]="!tooglePassWord3" [class.fa-eye-slash]="tooglePassWord3"></i></span>
-                                <span class="e-float-line"></span>
-                                <span class="input-error"
-                                  *ngIf="editForm.get('confirm_password')!.hasError('required') && !editForm.get('confirm_password')!.untouched">
-                                  Trường Nhập lại mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
-                                <span class="input-error" *ngIf=" confirmFlag === true">
-                                  Mật khẩu mới không trùng nhau
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
+  [animationSettings]='animationSettings' [showCloseIcon]='true' [width]="500" style="max-height: 500px;">
+  <ng-template #content>
+    <div class="card">
+      <label class="dialog-title"><p style="font-weight: bold;">Đổi mật khẩu</p></label>
+      <form name="editForm" [formGroup]="editForm" novalidate>
+        <div class="group-box">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="e-float-input">
+                  <input [type]="tooglePassWord1 ? 'text' : 'password'" id="currentPass" name="currentPass"
+                    [(ngModel)]="model.currentPassword" formControlName="currentPass"
+                    placeholder="Nhập mật khẩu hiện tại...">
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text required" style="top: 15px; color:blue" for="currentPass">Mật khẩu hiện tại</label>
+                  <span class="eye" (click)="tooglePassWord1 = !tooglePassWord1"><i class="fa"
+                      [class.fa-eye]="!tooglePassWord1" [class.fa-eye-slash]="tooglePassWord1"></i></span>
+                  
+                  <span class="input-error"
+                    *ngIf="editForm.get('currentPass')!.hasError('required') && !editForm.get('currentPass')!.untouched">
+                    Trường Mật khẩu hiện tại {{'[Bắt buộc nhập]' | translate }}</span>
                 </div>
-            </form>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="e-float-input">
+                  <input [type]="tooglePassWord2 ? 'text' : 'password'" id="password" name="password"
+                    [(ngModel)]="model.newPassword" formControlName="password" placeholder="Nhập mật khẩu mới...">
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text required" style="top: 15px; color:blue" for="password">Mật khẩu mới (<span
+                      style="color: red;">Chứa ký tự in hoa và thường</span>)</label>
+                  <span class="eye" (click)="tooglePassWord2 = !tooglePassWord2"><i class="fa"
+                      [class.fa-eye]="!tooglePassWord2" [class.fa-eye-slash]="tooglePassWord2"></i></span>
+                  
+                  <span class="input-error"
+                    *ngIf="editForm.get('password')!.hasError('required') && !editForm.get('password')!.untouched">
+                    Trường Mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="e-float-input">
+                  <input [type]="tooglePassWord3 ? 'text' : 'password'" id="confirm_password"
+                    name="old-confirm_password" [(ngModel)]="model.confirm_password" formControlName="confirm_password"
+                    placeholder="Nhập lại mật khẩu mới...">
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text required" style="top: 15px; color:blue" for="confirm_password">Nhập lại mật khẩu mới</label>
+                  <span class="eye" (click)="tooglePassWord3 = !tooglePassWord3"><i class="fa"
+                      [class.fa-eye]="!tooglePassWord3" [class.fa-eye-slash]="tooglePassWord3"></i></span>
+                  
+                  <span class="input-error"
+                    *ngIf="editForm.get('confirm_password')!.hasError('required') && !editForm.get('confirm_password')!.untouched">
+                    Trường Nhập lại mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
+                  <span class="input-error" *ngIf=" confirmFlag === true">
+                    Mật khẩu mới không trùng nhau
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+            <div class = "col-sm-12">
+              <div class="button-group">
+                <button class="btn btn-save" (click)="confirmChoose('ok')">Lưu</button>
+                <button class="btn btn-cancel" (click)="confirmChoose('cancel')">Hủy</button>
+              </div>
+            </div>
+
+          </div>
         </div>
-    </ng-template>
+      </form>
+    </div>
+  </ng-template>
 </ejs-dialog>

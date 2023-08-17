@@ -330,7 +330,7 @@ i.star.filled:before {
       height: 90px;
       padding: 8px 15px;
       font-size: 14px;
-  
+      
       .user-theme-list {
         .user-theme-item {
           margin-top: 5px;
@@ -445,7 +445,7 @@ i.star.filled:before {
         padding: 8px 15px;
         font-size: 14px;
         cursor: pointer;
-  
+        
         i {
           margin-right: 10px;
         }
@@ -586,8 +586,78 @@ i.star.filled:before {
     }
   
     .fa-eye {
-        position: absolute;
-        top: 5px;
-        right: 5px;
+        position: absolute !important;
+        top: 6px;
+        right: 15px;
     }
-  
+    .fa-eye-slash:before {
+      content: "\f070";
+      position: absolute;
+      right: 14px;
+      top: 6px;
+  }
+    .e-float-input{
+      left: 10px;
+      width: 450px;
+    }
+    
+    .e-float-text.required {
+      top: 5px;
+      
+  }
+  #currentPass,#password,#confirm_password {
+    width: 440px;
+    /* Thêm các thuộc tính CSS khác bạn cần */
+}
+
+.input-error {
+  color: red;
+  font-size: 12px;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn.btn-save {
+  background-color: orange; /* Màu cam */
+  color: white;
+}
+
+.btn.btn-cancel {
+  background-color: gray;
+  color: white;
+}
+.dialog-title {
+  margin-top: 13px;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: -20px;
+}
+.e-dialog-container {
+  border-radius: 50px; /* Đặt bán kính góc bo tròn tùy ý */
+}
+#animationDialog {
+  max-height: 500px !important;
+  width: 500px;
+  left: 0;
+  top: 0;
+  position: relative;
+  z-index: 10000;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  background-color: white;
+}
