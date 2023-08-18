@@ -108,6 +108,7 @@ export class EmployeeComponent implements OnInit {
   public curentTab: string = 'profile';
   public checkWorkingBefore: number = 0;
   public checkTrainingBefore: number = 0;
+  public checkSituation: number = 0 ;
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
@@ -501,6 +502,10 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataFamilyEdit = res.body.data;
+        if (this.dataFamilyEdit.length !== 0) {
+          this.checkSituation = 1;
+
+        }
         this.gridInstance.refresh();
       });
   }
@@ -512,6 +517,8 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataFamily = res.body.data;
+        
+        
         this.gridInstance.refresh();
       });
   }
@@ -538,10 +545,7 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataTraining = res.body.data;
-        if (this.dataTraining.length !== 0) {
-          this.checkTrainingBefore = 1;
-
-        }
+        
       });
   }
   getListWorkingBefore() {
@@ -567,10 +571,7 @@ export class EmployeeComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.dataWorkingBefore = res.body.data;
-        if (this.dataWorkingBefore.length !== 0) {
-          this.checkWorkingBefore = 1;
-
-        }
+        
       });
   }
   getListDecisionProfile() {
@@ -1099,7 +1100,7 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
-      if (this.employeeInfo.workStatusId == undefined) {
+      if (this.employeeInfo.workStatusId == undefined && this.checkSituation == 0 && this.checkTrainingBefore == 0 && this.checkWorkingBefore == 0) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1199,7 +1200,7 @@ export class EmployeeComponent implements OnInit {
         this.editForm.markAllAsTouched();
         return;
       }
-      if (this.employeeInfo.workStatusId == undefined) {
+      if (this.employeeInfo.workStatusId == undefined && this.checkSituation == 0 && this.checkTrainingBefore == 0 && this.checkWorkingBefore == 0) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1313,7 +1314,7 @@ export class EmployeeComponent implements OnInit {
         return;
       }
       let param = this.convertModel(this.workingbefore);
-      if (this.employeeInfo.workStatusId == undefined) {
+      if (this.employeeInfo.workStatusId == undefined && this.checkSituation == 0 && this.checkTrainingBefore == 0 && this.checkWorkingBefore == 0) {
 
         let param1 = this.convertModel(this.employeeInfo);
         if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
@@ -1428,7 +1429,7 @@ export class EmployeeComponent implements OnInit {
         return;
       }
 
-      if (this.employeeInfo.workStatusId == undefined) {
+      if (this.employeeInfo.workStatusId == undefined && this.checkSituation == 0 && this.checkTrainingBefore == 0 && this.checkWorkingBefore == 0) {
         if (!this.editForm.get('situation')?.valid) {
           alert('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
