@@ -84,7 +84,6 @@ export class DetailComponent implements OnInit {
     this.loadingIndicator = { indicatorType: 'Shimmer' };
     this.translate.use(this.languages);
     this.explaintService.getTimeExplaint().subscribe((res: any) => {
-      console.log("res", res)
       this.data = res.body.data
     })
   }

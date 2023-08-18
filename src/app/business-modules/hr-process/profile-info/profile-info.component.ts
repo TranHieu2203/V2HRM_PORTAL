@@ -11,7 +11,6 @@ export class ProfileInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("this.baseInfo", this.baseInfo)
   }
 
 }

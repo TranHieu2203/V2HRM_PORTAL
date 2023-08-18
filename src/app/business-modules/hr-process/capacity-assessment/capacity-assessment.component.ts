@@ -30,7 +30,7 @@ export class CapacityAssessmentComponent implements OnInit {
   injector!: Injector;
 
   private processId: number = 1234;
-
+  private curentNode!: any;
   isLinear = false;
   public lstStep: any[] = []
   public selectedDosing = {
@@ -87,6 +87,11 @@ export class CapacityAssessmentComponent implements OnInit {
 
   ngOnInit() {
     // this.loadData()
+
+    this.controlServices.nodeId$.subscribe(value => {
+      this.curentNode = value;
+    })
+
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       this.lstStep = []
 
@@ -96,14 +101,17 @@ export class CapacityAssessmentComponent implements OnInit {
           var nodeData = value.nodeInfo.filter((res: any) => res.component === element.component.name)[0]
           element.label = nodeData.nodeName
           element.employeeName = nodeData.employeeName
-          element.status = nodeData.complete
+          element.status = nodeData.status
           element.nodeId = nodeData.nodeId
           element.valid = nodeData.valid
           element.status = nodeData.status
+          element.showTab = this.curentNode == nodeData.nodeId ? true : false;
+          element.complete = nodeData.complete
+          if (element.status > 1) { element.icon = 'feather-check' }
+          else { element.icon = 'feather-minus' }
           this.lstStep.push(element)
         });
       }
-
 
     })
   }

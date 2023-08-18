@@ -57,10 +57,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (isDevMode()) {
-      console.log('Development!');
       this.messageService.add(`${new Date().toLocaleString()}: Your application is running in Development mode!`);
     } else {
-      console.log('Production!');
       this.messageService.add(`${new Date().toLocaleString()}: Your application is running in Production mode!`);
     }
   }

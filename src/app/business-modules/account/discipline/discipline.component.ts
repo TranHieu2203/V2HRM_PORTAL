@@ -41,7 +41,6 @@ export class DisciplineComponent implements OnInit {
   getDiscipline() {
     this.accountService.getDiscipline()
       .subscribe(response => {
-        console.log("discipline",response.body.result)
         if (response.ok && response.status === 200) {
           this.discipline = response.body.result;
         }

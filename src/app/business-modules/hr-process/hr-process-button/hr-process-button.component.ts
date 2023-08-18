@@ -1,6 +1,6 @@
 import { filter } from 'rxjs/operators';
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, AfterViewInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Configs } from 'src/app/common/configs';
 import { Globals } from 'src/app/common/globals';
@@ -10,6 +10,10 @@ import { locale as vietnam } from "src/assets/i18n/vi";
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ControlService } from '../_services/control.service';
+import { DialogComponent } from '@syncfusion/ej2-angular-popups';
+import { EmitType } from '@syncfusion/ej2-base';
+import { SelectionSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { DialogUtility } from '@syncfusion/ej2-popups';
 
 @Component({
   selector: 'hr-process-button',
@@ -85,6 +89,20 @@ export class HrProcessButtonComponent implements OnInit {
   lstNodeButton: any[] = [];
   languages!: any;
 
+  data!: any;
+
+  allowDialog: boolean = false;
+
+  windownWidth: number = 0;
+  windownHeight: number = 0;
+
+  @ViewChild('ejDialog') ejDialog: DialogComponent | any;
+  @ViewChild('container', { read: ElementRef }) container: ElementRef | any;
+  public targetElement?: HTMLElement;
+  public selectionOptions?: SelectionSettingsModel;
+
+  private employeeSelected!: any;
+  private confirm!: any;
   constructor(protected translationLoaderService: TranslationLoaderService,
     protected _translateService: TranslateService,
     protected globals: Globals,
@@ -97,15 +115,15 @@ export class HrProcessButtonComponent implements OnInit {
     this.languages = this.globals.currentLang;
     this._translateService.use(this.languages);
     this.translationLoaderService.loadTranslations(vietnam, english);
+    this.selectionOptions = { type: 'Single', mode: 'Row' };
 
 
 
   }
 
   ngOnInit() {
-    console.log('nodeId', this.nodeId)
-    console.log('buttonNodeName', this.buttonNodeName)
-
+    this.windownWidth = window.innerWidth;
+    this.windownHeight = window.innerHeight;
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
         this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.nodeId === this.nodeId)[0];
@@ -113,17 +131,23 @@ export class HrProcessButtonComponent implements OnInit {
         this.lstNodeButton = [];
         action.forEach((name: any) => {
           var button = this.lstButton.filter((e: any) => e.id.toLowerCase() === name.toLowerCase())[0]
-          console.log(button, button)
           this.lstNodeButton.push(button)
         });
-        console.log("action", action)
 
       }
     })
   }
+  public initilaizeTarget: EmitType<object> = () => {
+    this.targetElement = this.container.nativeElement.parentElement;
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.windownWidth = window.innerWidth;
+    this.windownHeight = window.innerHeight;
+
+  }
 
   actionMessage(res: any) {
-    debugger;
     if (res.ok) {
       if (res.body.status === "400") {
         this.notificationService.error("[Không có quyền thực hiện]")
@@ -178,7 +202,58 @@ export class HrProcessButtonComponent implements OnInit {
   }
 
   onReassign() {
-    console.log(this.onReassign)
+    this.allowDialog = true;
+    this.commonHttpRequestService.commonPostRequest("getAuthority", this.authServices.serverModel.getAuthority!, {}).subscribe((res: any) => {
+      this.data = res.body
+      this.onOpenDialog()
+    })
   }
+
+  affterReassign() {
+
+  }
+
+  public onOpenConfirm = (event: any): void => {
+    this.confirm = DialogUtility.confirm({
+      title: ' Xác nhận',
+      content: "Ủy quyền cho [] tiếp tục quy trình!",
+      okButton: {
+        text: 'Đồng ý',
+        click: this.okClick.bind(this),
+        cssClass: "btn-outline-warning", icon: "feather-check-circle"
+      },
+      cancelButton: { text: 'Hủy', },
+      showCloseIcon: true,
+      closeOnEscape: true,
+      animationSettings: { effect: 'Zoom' },
+      position: {
+        X: "center",
+        Y: "center"
+      },
+    });
+  }
+
+  okClick(event: any): void {
+    this.commonHttpRequestService.commonPostRequest("onReassign", this.authServices.serverModel.onReassign!, { nodeId: this.nodeId, employeeId: this.employeeSelected.id }).subscribe((res: any) => {
+      this.actionMessage(res);
+      this.confirm.hide()
+      this.ejDialog.hide();
+      this.allowDialog = false;
+      this.controlServices.needLoad.next(true);
+    })
+  }
+
+  onSelectRow(event: any) {
+    this.employeeSelected = event.data
+  }
+
+  public hideDialog() {
+    this.ejDialog.hide();
+    this.allowDialog = false;
+  }
+  public onOpenDialog() {
+    this.ejDialog.show();
+  }
+  public animationSettings: Object = { effect: 'Zoom', duration: 400, delay: 0 };
 
 }

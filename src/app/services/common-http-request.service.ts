@@ -79,6 +79,8 @@ export interface IServerModel {
   onReject?: string
   onSend_Back?: string
   onBreak?: string
+  onReassign?: string
+  getAuthority?: string
   createHrProcess?: string
 
   getCompentencySeltList?: string
@@ -156,6 +158,8 @@ export const V2Hrm2022: IServerModel = {
   onReject: "hr-process/on-reject",
   onSend_Back: "hr-process/on-sendback",
   onBreak: "hr-process/on-break",
+  onReassign: "hr-process/on-reassign",
+  getAuthority: "hr-process/get-authority",
   getCompentencySeltList: "hr-process/capacity/getcompentencyseltlist",
   updateCompentencySeltList: "hr-process/capacity/updateCompentencySeltList"
 }

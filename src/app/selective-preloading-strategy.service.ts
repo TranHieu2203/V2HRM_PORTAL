@@ -14,7 +14,6 @@ export class SelectivePreloadingStrategyService implements PreloadingStrategy {
       this.preloadedModules.push(route.path);
 
       // log the route path to the console
-      console.log('Preloaded: ' + route.path);
 
       return load();
     } else {

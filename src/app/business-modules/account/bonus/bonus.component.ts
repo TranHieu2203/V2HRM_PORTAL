@@ -45,7 +45,6 @@ export class BonusComponent implements OnInit {
   getBonuses() {
     this.accountService.getBonuses()
       .subscribe(response => {
-        console.log("bonus",response.body.result)
         if (response.ok && response.status === 200) {
           this.bonuses = response.body.result;
         }

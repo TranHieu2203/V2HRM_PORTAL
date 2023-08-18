@@ -1,6 +1,5 @@
 <div class="text-right">
   <div class="button-group">
-    button
     <span *ngFor="let link of lstNodeButton; let i = index">
       <button class="btn" (click)="link.function.apply(this)" [ngClass]="link.class">
         <i [ngClass]="link.icon"></i>
@@ -9,4 +8,50 @@
     </span>
   </div>
 
+</div>
+<div #container class='root-container'></div>
+
+<div class="control-section" *ngIf="allowDialog">
+  <ejs-dialog id='dialog' #ejDialog [target]='targetElement' [visible]="false" [animationSettings]='animationSettings'
+    [isModal]="true" [width]='windownWidth*60/100'>
+    <ng-template #footerTemplate>
+      <div class="button-group">
+        <button class="btn btn-warning" (click)="onOpenConfirm($event)">
+          <i ngClass="feather-check-circle"></i>
+          {{ 'Chọn' |translate}}
+        </button>
+        <button class="btn btn-outline-warning" (click)="hideDialog()">
+          <i ngClass="feather-x-circle"></i>
+          {{ 'Hủy' |translate}}
+        </button>
+
+      </div>
+    </ng-template>
+    <ng-template #content>
+      <div class="dialogContent">
+        <ejs-grid [dataSource]='data' [height]='windownHeight*30/100' [allowPaging]="true"
+          (rowSelected)="onSelectRow($event)" [selectionSettings]='selectionOptions'>
+          <e-columns>
+            <!-- <e-column type='checkbox' [showInColumnChooser]='false' [allowFiltering]='false' [allowSorting]='false'
+              width='50' textAlign="Center" [allowEditing]="false">
+            </e-column> -->
+            <e-column field='id' [showInColumnChooser]='false' [visible]='false' headerText='ID' [isPrimaryKey]='true'
+              [allowEditing]="false">
+            </e-column>
+            <e-column field='code' headerTextAlign="Center" textAlign="Left"
+              headerText="{{'[Mã nhân viên]' | translate }}" clipMode='EllipsisWithTooltip'></e-column>
+            <e-column field='fullname' headerTextAlign="Center" textAlign="Left"
+              headerText="{{'[Họ tên]' | translate }}" clipMode='EllipsisWithTooltip'></e-column>
+            <e-column field='positionName' headerTextAlign="Center" textAlign="Left"
+              headerText="{{'[Vị trí]' | translate }}" clipMode='EllipsisWithTooltip'></e-column>
+            <e-column field='orgName' headerTextAlign="Center" textAlign="Left"
+              headerText="{{'[Bộ phận]' | translate }}" clipMode='EllipsisWithTooltip'></e-column>
+          </e-columns>
+        </ejs-grid>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      {{'[Chọn nhân sự ủy quyền]'|translate}} <i class="feather-check-circle"></i>
+    </ng-template>
+  </ejs-dialog>
 </div>

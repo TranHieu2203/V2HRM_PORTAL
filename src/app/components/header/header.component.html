@@ -39,12 +39,15 @@
         </div>
 
         <app-darkbutton></app-darkbutton>
-        <a class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
+        <div class="p-0 ms-3 menu-icon" style="cursor: pointer;" id="infoMenu" data-bs-toggle="dropdown"
             aria-expanded="false" (click)="toggleIsInfo()" (clickOutside)="clickOutside()">
-            <div class="flex-center w50 h50">
+            <div class="flex-center  h50">
                 <img [src]="avatar" alt="user" class="w50 rounded-circle" />
             </div>
-        </a>
+            <div class="flex-center  h50">
+                <label>{{userName}}</label>
+            </div>
+        </div>
         <div class="dropdown-menu p-4 right-0 rounded-xxxl border-0 shadow-lg" [class]="infoClass"
             aria-labelledby="infoMenu">
             <!-- <a class="dropdown-item" (click)="ChangePassword()">Đổi mật khẩu</a> -->
@@ -146,112 +149,8 @@
     </nav>
 
 
-
-    <!-- <div [class]="'app-header-search' + searchClass">
-          <form class="search-form">
-              <div class="form-group searchbox mb-0 border-0 p-1">
-                  <input type="text" class="form-control border-0" placeholder="Search..." [(ngModel)]="keyword"
-                      name="keyword" />
-                  <i class="input-icon">
-  
-                  </i>
-                  <span class="ms-1 mt-1 d-inline-block close searchbox-close">
-                      <i class="ti-close font-xs" (click)="toggleActive()"></i>
-                  </span>
-              </div>
-          </form>
-      </div> -->
-
-    <!-- help: https://ej2.syncfusion.com/angular/documentation/dialog/getting-started/#modal-dialog -->
-
-    <!-- <div class="control-section">
-          <ejs-dialog  content='' [isModal]='true'  target='.control-section'  width='250px'>
-              Mật khẩu
-          </ejs-dialog>
-      </div>
-       -->
 </div>
-<!-- <v2hrm-confirm-modal id="open-change-pass">
-      <form name="passwordForm" [formGroup]="passwordForm">
-        <div class="row full-width v2hrm-modal-header"
-          style="margin-bottom: 0 !important;text-align: center;display: block;">
-          Đổi mật khẩu
-        </div>
-  
-        <div class="row full-width v2hrm-modal-content">
-          <div class="row full-width">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="e-float-input">
-                  <input  [type]="tooglePassWord1 ? 'text' : 'password'" id="currentPass" name="currentPass"
-                    [(ngModel)]="model.currentPassword" formControlName="currentPass"
-                    placeholder="Nhập mật khẩu hiện tại...">
-                  <span class="e-float-line"></span>
-                  <label class="e-float-text required" for="currentPass">Mật khẩu hiện tại</label>
-                  <span class="eye" (click)="tooglePassWord1 = !tooglePassWord1"><i class="fa"
-                      [class.fa-eye]="!tooglePassWord1" [class.fa-eye-slash]="tooglePassWord1"></i></span>
-                  <span class="e-float-line"></span>
-                  <span class="input-error"
-                    *ngIf="passwordForm.get('currentPass')!.hasError('required') && !passwordForm.get('currentPass')!.untouched">
-                    Trường Mật khẩu cũ {{'[Bắt buộc nhập]' | translate }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="row full-width v2hrm-modal-content">
-          <div class="row full-width">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="e-float-input">
-                  <input  [type]="tooglePassWord2 ? 'text' : 'password'" id="password" name="password"
-                    [(ngModel)]="model.newPassword" formControlName="password" placeholder="Nhập mật khẩu mới...">
-                  <span class="e-float-line"></span>
-                  <label class="e-float-text required" for="password">Mật khẩu mới (<span
-                      style="color: red;">Chứa ký tự in hoa và thường</span>)</label>
-                  <span class="eye" (click)="tooglePassWord2 = !tooglePassWord2"><i class="fa"
-                      [class.fa-eye]="!tooglePassWord2" [class.fa-eye-slash]="tooglePassWord2"></i></span>
-                  <span class="e-float-line"></span>
-                  <span class="input-error"
-                    *ngIf="passwordForm.get('password')!.hasError('required') && !passwordForm.get('password')!.untouched">
-                    Trường Mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="row full-width v2hrm-modal-content">
-          <div class="row full-width">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="e-float-input">
-                  <input  [type]="tooglePassWord3 ? 'text' : 'password'" id="confirm_password" name="old-confirm_password"
-                    [(ngModel)]="model.confirm_password" formControlName="confirm_password"
-                    placeholder="Nhập lại mật khẩu mới...">
-                  <span class="e-float-line"></span>
-                  <label class="e-float-text required" for="confirm_password">Nhập lại mật khẩu mới</label>
-                  <span class="eye" (click)="tooglePassWord3 = !tooglePassWord3"><i class="fa"
-                      [class.fa-eye]="!tooglePassWord3" [class.fa-eye-slash]="tooglePassWord3"></i></span>
-                  <span class="e-float-line"></span>
-                  <span class="input-error"
-                    *ngIf="passwordForm.get('confirm_password')!.hasError('required') && !passwordForm.get('confirm_password')!.untouched">
-                    Trường Nhập lại mật khẩu mới {{'[Bắt buộc nhập]' | translate }}</span>
-                  <span class="input-error" *ngIf=" confirmFlag === true">
-                    Mật khẩu mới không trùng nhau
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row full-width v2hrm-modal-footer text-center">
-          <button class="btn btn-primary" (click)="confirmChoose('ok')">Đồng ý</button>
-          <button class="btn btn-default" (click)="confirmChoose('cancel')">Hủy</button>
-        </div>
-      </form>
-    </v2hrm-confirm-modal> -->
+
 
 <ejs-dialog #defaultDialog id="animationDialog" [header]='dialogHeader' [isModal]='true' [visible]='false'
     [animationSettings]='animationSettings' [showCloseIcon]='true' [width]="500" style="max-height: 500px;">

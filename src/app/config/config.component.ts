@@ -24,11 +24,9 @@ export class ConfigComponent {
     this.configService.getConfig()
       .subscribe({
         next: (data: Config) => {
-          console.log("data: ", data)
           this.config = { ...data }
         }, // success path
         error: error => {
-          console.log("error: ", error)
           this.error = error; // error path
         }
       });

@@ -126,3 +126,7 @@ section:not(:last-of-type) {
 .header-button {
   margin: 10px 0px 10px 0px;
 }
+
+.mat-vertical-stepper-header .mat-step-icon {
+  display: none !important;
+}

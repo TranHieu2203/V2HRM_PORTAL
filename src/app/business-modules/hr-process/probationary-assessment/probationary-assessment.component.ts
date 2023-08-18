@@ -74,7 +74,6 @@ export class ProbationaryAssessmentComponent implements OnInit {
         // map với nhau theo component name
         var nodeInfo = data.body.data.nodeInfo;
         this.baseInfo = data.body.data.baseInfo
-        console.log(this.baseInfo)
         this.selectedDosing.steps.forEach(element => {
           var nodeData = nodeInfo.filter((res: any) => res.component === element.component.name)[0]
           element.label = nodeData.nodeName

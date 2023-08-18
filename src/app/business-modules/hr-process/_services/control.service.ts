@@ -14,7 +14,7 @@ export class ControlService {
   private nodeId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   public processId$ = this.processId.asObservable()
-  public nodeId$ = this.processId.asObservable()
+  public nodeId$ = this.nodeId.asObservable()
 
   private curentNode: BehaviorSubject<object> = new BehaviorSubject<object>([])
   public curentNodeInfo$ = this.curentNode.asObservable()
@@ -23,7 +23,6 @@ export class ControlService {
     private commonHttpRequestService: CommonHttpRequestService,
     private authService: AuthService) {
     this.route.queryParams.subscribe(value => {
-      console.log("value", value)
       this.processId.next(value.process)
       this.nodeId.next(value.node)
     })

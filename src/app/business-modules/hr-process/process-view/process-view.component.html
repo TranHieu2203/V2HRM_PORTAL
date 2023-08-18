@@ -1,10 +1,18 @@
-<mat-vertical-stepper #stepper [linear]="true">
-  <div *ngFor="let step of selectedDosing.steps">
-    <mat-step [label]="step.label" [completed]="step.status" [aria-labelledby]="'true'">
-      <ng-template matStepperIcon="home">
-        <mat-icon>home</mat-icon>
+<mat-vertical-stepper #stepper [linear]="true" [selectedIndex]="selectIndex">
+  <div *ngFor="let step of selectedDosing">
+    <mat-step [completed]="step.status" [aria-labelledby]="'disabled_Resi'">
+      <ng-template matStepLabel>
+        <div class="stepper-label">
+          <div class="step-ico"> <i [class]="step.icon"></i>
+          </div>
+          <div class="mont-font" style="padding-left: 10px;">
+            {{step.label}}
+          </div>
+        </div>
       </ng-template>
-      {{step.employeeName}}
+      <div class="mont-font">
+        {{step.employeeName}}
+      </div>
     </mat-step>
   </div>
 </mat-vertical-stepper>
