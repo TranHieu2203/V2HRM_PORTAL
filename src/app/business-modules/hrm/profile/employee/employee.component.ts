@@ -6,6 +6,7 @@ import { Query, Predicate } from '@syncfusion/ej2-data';
 import { FieldSettingsModel } from '@syncfusion/ej2-dropdowns';
 import { L10n, setCulture } from '@syncfusion/ej2-base';
 import { Configs } from 'src/app/common/configs';
+import { NotificationService } from 'src/app/services/notification.service';
 import {
   FormBuilder,
   FormGroup,
@@ -114,7 +115,8 @@ export class EmployeeComponent implements OnInit {
     private otherListService: OtherListService,
     private commomHttpService: CommonHttpRequestService,
     private globals: Globals,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    protected notification: NotificationService,
   ) {
     this.editForm = this._formBuilder.group({
       currentinfor: this._formBuilder.group({
@@ -937,7 +939,7 @@ export class EmployeeComponent implements OnInit {
     if (this.situation.status == 1) {
       this.DeleteSituation(this.removeId);
     } else {
-      alert('Bản ghi đã phê duyệt, không được xóa');
+      this.notification.warning('Bản ghi đã phê duyệt, không được xóa');
     }
   }
   RemoveRelation1(id: any) {
@@ -945,7 +947,7 @@ export class EmployeeComponent implements OnInit {
     if (this.trainingbefore.status == 1) {
       this.DeleteTrainingBeforeEdit(this.removeId);
     } else {
-      alert('Bản ghi đã phê duyệt, không được xóa');
+      this.notification.warning('Bản ghi đã phê duyệt, không được xóa');
     }
   }
   RemoveRelation2(id: any) {
@@ -953,7 +955,7 @@ export class EmployeeComponent implements OnInit {
     if (this.workingbefore.status == 1) {
       this.DeleteWorkingBeforeEdit(this.removeId);
     } else {
-      alert('Bản ghi đã phê duyệt, không được xóa');
+      this.notification.warning('Bản ghi đã phê duyệt, không được xóa');
     }
 
     this.getListWorkingBefore();
@@ -1095,7 +1097,7 @@ export class EmployeeComponent implements OnInit {
     if (this.tabDefault.selectedItem == 4) {
 
       if (!this.editForm.get('situation')?.valid) {
-        alert('Form chưa hợp lệ !');
+        this.notification.warning('Form chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
@@ -1107,7 +1109,7 @@ export class EmployeeComponent implements OnInit {
           || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
           || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
           ||!this.editForm.get('user')?.valid) {
-          alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
+            this.notification.warning('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
           // this.notification.warning("Form chưa hợp lệ !");
           this.editForm.markAllAsTouched();
           return;
@@ -1115,13 +1117,13 @@ export class EmployeeComponent implements OnInit {
 
         if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
-          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          this.notification.warning('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
         if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
 
-          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          this.notification.warning('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
 
@@ -1173,7 +1175,7 @@ export class EmployeeComponent implements OnInit {
       }
       let param = this.convertModel(this.situation);
       if (param.status == 2 || param.status == 3) {
-        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        this.notification.warning('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
       }
       return new Promise((resolve) => {
@@ -1181,11 +1183,11 @@ export class EmployeeComponent implements OnInit {
           .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
-              alert('lỗi');
+              this.notification.error('Lỗi');
             } else {
               this.editForm.controls['situation'].reset();
               this.getListSituation();
-              alert('thành công');
+              this.notification.success('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
@@ -1195,7 +1197,7 @@ export class EmployeeComponent implements OnInit {
     } else if (this.tabDefault.selectedItem == 5) {
 
       if (!this.editForm.get('trainingbefore')?.valid) {
-        alert('Form chưa hợp lệ !');
+        this.notification.warning('Form chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
@@ -1207,27 +1209,27 @@ export class EmployeeComponent implements OnInit {
         || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
         || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
         ||!this.editForm.get('user')?.valid) {
-        alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
+          this.notification.warning('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
       }
 
         if (!this.editForm.get('situation')?.valid) {
-          alert('Form gia cảnh chưa hợp lệ !');
+          this.notification.warning('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
 
         if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
-          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          this.notification.warning('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
         if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
 
-          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          this.notification.warning('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
 
@@ -1283,7 +1285,7 @@ export class EmployeeComponent implements OnInit {
       let param = this.convertModel(this.trainingbefore);
 
       if (param.status == 2 || param.status == 3) {
-        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        this.notification.warning('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
       }
       return new Promise((resolve) => {
@@ -1295,11 +1297,11 @@ export class EmployeeComponent implements OnInit {
           )
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
-              alert('lỗi');
+              this.notification.error('lỗi');
             } else {
               this.editForm.controls['trainingbefore'].reset();
               this.getListTrainingBefore();
-              alert('thành công');
+              this.notification.success('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
@@ -1308,7 +1310,7 @@ export class EmployeeComponent implements OnInit {
       // Lưu quá trình công tác trước đây
     } else if (this.tabDefault.selectedItem == 6) {
       if (!this.editForm.get('workingbefore')?.valid) {
-        alert('Form chưa hợp lệ !');
+        this.notification.warning('Form chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
@@ -1321,26 +1323,26 @@ export class EmployeeComponent implements OnInit {
         || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
         || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
         ||!this.editForm.get('user')?.valid) {
-        alert('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
+          this.notification.warning('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
       }
 
         if (!this.editForm.get('situation')?.valid) {
-          alert('Form gia cảnh chưa hợp lệ !');
+          this.notification.warning('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
         if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
-          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          this.notification.warning('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
         if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
 
-          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          this.notification.warning('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
 
@@ -1391,7 +1393,7 @@ export class EmployeeComponent implements OnInit {
 
       }
       if (param.status == 2 || param.status == 3) {
-        alert('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
+        this.notification.warning('Bản ghi đã được phê duyệt hoặc từ chối, không thể sửa');
         return;
       }
 
@@ -1404,11 +1406,11 @@ export class EmployeeComponent implements OnInit {
           )
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
-              alert('lỗi');
+              this.notification.error('lỗi');
             } else {
               this.editForm.controls['workingbefore'].reset();
               this.getListWorkingBefore();
-              alert('thành công');
+              this.notification.success('thành công');
               // this.router.navigate(["/cms/profile/business/staffprofile"]);
             }
           });
@@ -1423,7 +1425,7 @@ export class EmployeeComponent implements OnInit {
       if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
         || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
         || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
-        alert('Form sơ yếu lý lịch chưa hợp lệ !');
+          this.notification.warning('Form sơ yếu lý lịch chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
@@ -1431,20 +1433,20 @@ export class EmployeeComponent implements OnInit {
 
       if (this.employeeInfo.workStatusId == undefined && this.checkSituation == 0 && this.checkTrainingBefore == 0 && this.checkWorkingBefore == 0) {
         if (!this.editForm.get('situation')?.valid) {
-          alert('Form gia cảnh chưa hợp lệ !');
+          this.notification.warning('Form gia cảnh chưa hợp lệ !');
           this.editForm.markAllAsTouched();
           return;
         }
 
         if (this.employeeInfo.experienceId == 10968 && !this.editForm.get('workingbefore')?.valid) {
 
-          alert('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
+          this.notification.warning('Đã có kinh nghiệm cần nhập thông tin quá trình công tác trước đây');
           return;
         }
 
         if (this.employeeInfo.experienceId == 10969 && !this.editForm.get('trainingbefore')?.valid) {
 
-          alert('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
+          this.notification.warning('Chưa có kinh nghiệm cần nhập thông tin quá trình đào tạo trước đây');
           return;
         }
 
@@ -1509,9 +1511,9 @@ export class EmployeeComponent implements OnInit {
           )
           .subscribe((res: any) => {
             if (res.statusCode == 400) {
-              alert('lỗi');
+              this.notification.error('lỗi');
             } else {
-              alert('thành công');
+              this.notification.success('thành công');
             }
           });
       });
@@ -1558,10 +1560,10 @@ export class EmployeeComponent implements OnInit {
             )
             .subscribe((res: any) => {
               if(res.status == 200){
-                alert("Tải avatar thành công")
+                this.notification.success("Tải avatar thành công")
               }
               else{
-                alert("Tải avatar thất bại")
+                this.notification.warning("Tải avatar thất bại")
               }
             });
         });
