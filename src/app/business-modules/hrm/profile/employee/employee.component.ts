@@ -1424,8 +1424,9 @@ export class EmployeeComponent implements OnInit {
 
       if (!this.editForm.get('currentinfor')?.valid || !this.editForm.get('infor')?.valid
         || !this.editForm.get('homeAddress')?.valid || !this.editForm.get('address')?.valid
-        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid) {
-          this.notification.warning('Form sơ yếu lý lịch chưa hợp lệ !');
+        || !this.editForm.get('curAddress')?.valid || !this.editForm.get('contact')?.valid
+        ||!this.editForm.get('user')?.valid) {
+          this.notification.warning('Form sơ yếu lý lịch, tài khoản chưa hợp lệ !');
         // this.notification.warning("Form chưa hợp lệ !");
         this.editForm.markAllAsTouched();
         return;
