@@ -13883,7 +13883,7 @@ strong,
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1001;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18489,6 +18489,11 @@ body.theme-dark .background-white{
   background: #293145 !important;
   border: 0.5px solid #eee!important;
 }
+body.theme-dark .e-panel-header{
+  background: #293145 !important;
+
+}
 .node-header-toggle{
   border-radius: 10px!important;
 }
+.full-width{width:100%}

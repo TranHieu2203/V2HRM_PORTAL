@@ -4,12 +4,13 @@ import { AuthService } from '../../services/auth.service';
 import { RandomAvatarService } from 'src/app/services/random-avatar.service';
 import { RandomImageService } from 'src/app/services/random-image.service';
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
-import { fromEvent, Observable } from 'rxjs';
+import { fromEvent, groupBy, Observable } from 'rxjs';
 import { HeaderService } from 'src/app/services/header.service';
 import { Globals } from "src/app/common/globals";
 import { Home } from 'src/app/model/home';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { HrProcessService } from 'src/app/services/hr-process.service';
 
 
 @Component({
@@ -31,6 +32,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onboardMembers: any[] = [];
   topMembers: any[] = [];
   survey: any[] = [];
+  public cellSpacing: number[] = [10, 10];
+  public cellAspectRatio: number = 100 / 50;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -41,6 +45,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private globals: Globals,
     private _sanitizer: DomSanitizer,
     protected translate: TranslateService,
+    private hrProcessServices: HrProcessService
 
   ) {
     translate.setDefaultLang('vi');
@@ -59,12 +64,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   randomAvatarSrc4?: string;
   randomAvatarSrc5?: string;
 
+  processData!: any;
+  processDataKey!: any[];
+
   ngOnInit(): void {
-    this.postimage1 = "/assets/images/demo/1.png";
-    this.postimage2 = "/assets/images/demo/2.png";
-    this.postimage3 = "/assets/images/demo/3.png";
-    this.postimage4 = "/assets/images/demo/4.png";
-    this.postimage5 = "/assets/images/demo/5.png";
     this.getData();
     this.getdashboard();
 
@@ -75,6 +78,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
       { name: "Tổ chức dã ngoại", check: false, total: 425 },
       { name: "Sách thiếu nhi", check: false, total: 571 },
     ]
+
+    // employee proces
+
+    this.hrProcessServices.processList$.subscribe((data: any) => {
+      // group lại theo loại quy trình
+      const groupedKeys = data.reduce((group: { [key: string]: any[] }, item: { process_Name: string | number; }) => {
+        if (!group[item.process_Name]) {
+          group[item.process_Name] = [];
+        }
+        group[item.process_Name].push(item);
+        return group;
+      }, {});
+      this.processData = groupedKeys
+      this.processDataKey = Object.keys(this.processData)
+      console.log(this.processData)
+    })
+
+  }
+  log(val: any) {
+    console.log(val)
+  }
+  getColumn() {
+    if (this.processDataKey.length >= 2) { return 2 } else { return 1; }
+
   }
 
   ngAfterViewInit(): void {
@@ -107,6 +134,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.headerService.searchWidth$.next(rec1.width);
 
   }
+  formatStt = (index: string) => {
+    return (
+      parseInt(index, 0) +
+      1
+    );
+  };
+  goToProcess(event: any) {
+    console.log(event.rowData)
+    this.router.navigate(['hr-process/c-a'], { queryParams: { process: event.rowData.process_Id_Str, node: event.rowData.node_Id_Str } });
+  }
   getData() {
     this.commomHttpService
       .commonGetRequest(
@@ -137,13 +174,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.commomHttpService.commonGetRequest("GetDashboardInfo", 'hr/BlogInternal/GetDashboardInfo').subscribe((dashboardInfo: any) => {
       // let data = JSON.parse(dashboardInfo.body)
       let data = (JSON.parse(dashboardInfo.body.message).Data)
-      console.log(data)
-
-      // {
-      //   imageUrl: "https://scontent.fhan14-3.fna.fbcdn.net/v/t1.18169-9/27332319_1348363645296437_1552865183192937450_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=zos5zZZQviUAX8EaomQ&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCjOuDqQEEhVPmgfl34Y8NEK-Dl_OXAcw5M2DZ9bIcPMQ&oe=64CB0895",
-      //   name: "Phan Tuấn Anh",
-      //   org: "VDX"
-      // },
 
       data.Table.forEach((element: any) => {
         let obj = {

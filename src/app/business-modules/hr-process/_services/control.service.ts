@@ -22,6 +22,7 @@ export class ControlService {
   constructor(private route: ActivatedRoute,
     private commonHttpRequestService: CommonHttpRequestService,
     private authService: AuthService) {
+
     this.route.queryParams.subscribe(value => {
       this.processId.next(value.process)
       this.nodeId.next(value.node)

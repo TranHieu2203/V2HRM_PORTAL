@@ -24,6 +24,7 @@ const routes: Routes = [
     path: 'c-a',
     component: CapacityAssessmentComponent,
     canLoad: [AuthGuard],
+    pathMatch: 'full'
   },
 ];
 

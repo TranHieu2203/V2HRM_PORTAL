@@ -68,6 +68,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Configs } from './common/configs';
 
+import { DashboardLayoutModule } from '@syncfusion/ej2-angular-layouts';
+
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
@@ -137,6 +139,7 @@ const googleClientId = environment.googleClientId;
     NgbModule,
     AppRoutingModule,
     ModalModule,
+    DashboardLayoutModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',

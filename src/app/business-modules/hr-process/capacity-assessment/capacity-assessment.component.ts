@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Injector, OnInit, QueryList, TemplateRef, ViewChildren, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Injector, OnDestroy, OnInit, QueryList, TemplateRef, ViewChildren, inject } from '@angular/core';
 import { EmployeeReportComponent } from './1-employee-report/employee-report.component';
 import { LineManagerReviewComponent } from './3-line-manager-review/3-line-manager-review.component';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { MatStepper } from '@angular/material/stepper'
 import { ProcessTypeService } from '../_services/process-type.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { HrProcessNode } from 'src/app/model/hr-process/hr-process-node';
-import { fromEvent } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { ControlService } from '../_services/control.service';
 
@@ -23,7 +23,7 @@ import { ControlService } from '../_services/control.service';
   }]
 
 })
-export class CapacityAssessmentComponent implements OnInit {
+export class CapacityAssessmentComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') stepper!: MatStepper;
 
@@ -76,6 +76,13 @@ export class CapacityAssessmentComponent implements OnInit {
   selections!: QueryList<ElementRef<HTMLLinkElement>>;
 
   public baseInfo: any;
+
+
+
+  nodeIdSubscription!: Subscription;
+  curentNodeInfoSubscription!: Subscription;
+  getHrProcessByIdSubscription!: Subscription;
+
   constructor(
     private processServices: ProcessTypeService,
     private notificationServices: NotificationService,
@@ -83,16 +90,21 @@ export class CapacityAssessmentComponent implements OnInit {
 
   ) {
   }
+  ngOnDestroy(): void {
+    this.nodeIdSubscription.unsubscribe()
+    this.curentNodeInfoSubscription.unsubscribe()
+
+  }
 
 
   ngOnInit() {
     // this.loadData()
 
-    this.controlServices.nodeId$.subscribe(value => {
+    this.nodeIdSubscription = this.controlServices.nodeId$.subscribe(value => {
       this.curentNode = value;
     })
 
-    this.controlServices.curentNodeInfo$.subscribe((value: any) => {
+    this.curentNodeInfoSubscription = this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       this.lstStep = []
 
       if (value.length !== 0) {
@@ -129,7 +141,7 @@ export class CapacityAssessmentComponent implements OnInit {
   //get data node
   loadData() {
     let id = 1;
-    this.processServices.getHrProcessById(this.processId).subscribe((data: any) => {
+    this.getHrProcessByIdSubscription = this.processServices.getHrProcessById(this.processId).subscribe((data: any) => {
       if (data.status === 200) {
         // load lại dữ liệu cho process
         // map với nhau theo component name

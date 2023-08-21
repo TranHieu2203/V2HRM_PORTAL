@@ -81,7 +81,9 @@
                           <li><a routerLink="/register" class="nav-content-bttn open-font element-disable"><i
                                       class="feather-edit btn-space-md bg-primary-gradiant1 me-2"></i><span>Đăng ký
                                   </span></a></li> -->
-                        <li><a routerLink="/hr-process/c-a" class="nav-content-bttn open-font"><i
+                        <li><a [routerLink]="['hr-process/c-a']"
+                                [queryParams]="{process: '3100320033003400',node:'330030003800'}"
+                                class="nav-content-bttn open-font"><i
                                     class="feather-sliders btn-space-md bg-primary-gradiant1 me-2"></i><span>Quy trình
                                     nhân sự
                                 </span></a></li>
