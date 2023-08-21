@@ -119,7 +119,7 @@
                                           <!-- Mã số thuế -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Mã số thuế cá nhân</label>
+                                              <label class="">Mã số thuế cá nhân<span class="red-asterisk">*</span></label>
                                               <input class="form-control" name="taxCode" formControlName="taxCode"
                                                 type="text" [(ngModel)]="employeeInfo.taxCode">
                                               <span class="input-error"
@@ -129,7 +129,7 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Nơi làm viêc</label>
+                                              <label class="">Nơi làm viêc<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='placeId' [dataSource]='lstPlaceId' name="placeId"
                                                 formControlName="placeId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.placeId" [fields]='fields'
@@ -147,7 +147,7 @@
                                           <!--Ngày sinh  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Ngày sinh</label>
+                                              <label class="">Ngày sinh<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="birthDate" name="birthDate"
                                                 formControlName="birthDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="employeeInfo.birthDate" (keydown)="changeDate('birthDate')"
@@ -164,7 +164,7 @@
                                           <!-- Nơi sinh -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Nơi sinh</label>
+                                              <label class="">Nơi sinh<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.birthPlace" name="birthPlace"
                                                 formControlName="birthPlace">
@@ -177,7 +177,7 @@
                                           <!--Giới tính  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Giới tính</label>
+                                              <label class="">Giới tính<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='genderId' [dataSource]='lstGenderId' name="genderId"
                                                 formControlName="genderId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.genderId" [fields]='fields'
@@ -204,7 +204,7 @@
                                           <!--Ngày cấp  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Ngày cấp</label>
+                                              <label class="">Ngày cấp<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="idDate" format="dd/MM/yyyy" name="idDate"
                                                 formControlName="idDate" [(ngModel)]="employeeInfo.idDate"
                                                 placeholder=".../.../...">
@@ -217,7 +217,7 @@
                                           <!-- Nơi cấp-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Nơi cấp</label>
+                                              <label class="">Nơi cấp<span class="red-asterisk">*</span></label>
                                               <input class="form-control" type="text" class="form-control"
                                                 name="idPlace" formControlName="idPlace"
                                                 [(ngModel)]="employeeInfo.idPlace">
@@ -230,7 +230,7 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Số CMND/Căn cước cũ</label>
+                                              <label class="">Số CMND/Căn cước cũ<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNoOld"
                                                 name="idNoOld" formControlName="idNoOld" maxlength="12">
                                               <span class="input-error"
@@ -243,7 +243,7 @@
                                           <!--Quốc tịch  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Quốc tịch</label>
+                                              <label class="">Quốc tịch<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='nationalityId' [dataSource]='lstNationalityId'
                                                 name="nationalityId" formControlName="nationalityId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.nationalityId"
@@ -258,7 +258,7 @@
                                           <!--Dân tộc  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Dân tộc</label>
+                                              <label class="">Dân tộc<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='nativeId' [dataSource]='lstNativeId'
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.nativeId"
                                                 [fields]='fields' name="nativeId" formControlName="nativeId"
@@ -272,7 +272,7 @@
                                           <!--Tôn giáo  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tôn giáo</label>
+                                              <label class="">Tôn giáo<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='religionId' [dataSource]='lstReligionId'
                                                 name="religionId" formControlName="religionId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.religionId" [fields]='fields'
@@ -287,7 +287,7 @@
                                           <!--Tình trạng hôn nhân  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tình trạng hôn nhân</label>
+                                              <label class="">Tình trạng hôn nhân<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId'
                                                 name="maritalStatusId" formControlName="maritalStatusId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.maritalStatusId"
@@ -302,7 +302,7 @@
                                           <!--Thưởng trú tại việt nam -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Đối tượng cư trú</label>
+                                              <label class="">Đối tượng cư trú<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='resident' [dataSource]='lstResident'
                                                 name="residentId" formControlName="residentId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.residentId" [fields]='fields'
@@ -316,7 +316,7 @@
 
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Kinh nghiệm</label>
+                                              <label class="">Kinh nghiệm<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='experienceId' [dataSource]='lstExperienceId'
                                                 name="experienceId" formControlName="experienceId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.experienceId"
@@ -339,7 +339,7 @@
                                           <!--Tỉnh/TP  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tỉnh/TP</label>
+                                              <label class="">Tỉnh/TP<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='homeProvinceId' [dataSource]='lsthomeProvinceId'
                                                 name="homeProvinceId" formControlName="homeProvinceId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.homeProvinceId"
@@ -355,7 +355,7 @@
                                           <!--Quận huyện  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Quận/Huyện</label>
+                                              <label class="">Quận/Huyện<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='homeDistrictId' [dataSource]='lsthomeDistrictId'
                                                 formControlName="homeDistrictId" name="homeDistrictId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.homeDistrictId"
@@ -371,7 +371,7 @@
                                           <!--Xã/Phường  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Xã/Phường</label>
+                                              <label class="">Xã/Phường<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='homeWardId' [dataSource]='lsthomeWardId'
                                                 formControlName="homeWardId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.homeWardId" [fields]='fields1'
@@ -384,7 +384,7 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm</label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="homeAddress"
                                                 formControlName="homeAddress" [(ngModel)]="employeeInfo.homeAddress">
                                               <span class="input-error"
@@ -411,7 +411,7 @@
                                           <!--Tỉnh/TP  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tỉnh/TP</label>
+                                              <label class="">Tỉnh/TP<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='provinceId' [dataSource]='lstProvinceId'
                                                 name="provinceId" formControlName="provinceId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.provinceId" [fields]='fields'
@@ -426,7 +426,7 @@
                                           <!--Quận huyện  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Quận/Huyện</label>
+                                              <label class="">Quận/Huyện<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='districtId' [dataSource]='lstDistrictId'
                                                 formControlName="districtId" name="districtId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.districtId" [fields]='fields1'
@@ -441,7 +441,7 @@
                                           <!--Xã/Phường  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Xã/Phường</label>
+                                              <label class="">Xã/Phường<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='wardId' [dataSource]='lstWardId'
                                                 formControlName="wardId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.wardId" [fields]='fields1'
@@ -454,7 +454,7 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm</label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="address"
                                                 formControlName="address" [(ngModel)]="employeeInfo.address">
                                               <span class="input-error"
@@ -483,7 +483,7 @@
                                           <!--Tỉnh/TP  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tỉnh/TP</label>
+                                              <label class="">Tỉnh/TP<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='curProvinceId' [dataSource]='lstCurProvinceId'
                                                 name="curProvinceId" formControlName="curProvinceId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.curProvinceId"
@@ -499,7 +499,7 @@
                                           <!--Quận huyện  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Quận/Huyện</label>
+                                              <label class="">Quận/Huyện<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='curDistrictId' [dataSource]='lstCurDistrictId'
                                                 name="curDistrictId" formControlName="curDistrictId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.curDistrictId"
@@ -515,7 +515,7 @@
                                           <!--Xã/Phường  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Xã/Phường</label>
+                                              <label class="">Xã/Phường<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='curWardId' [dataSource]='lstCurWardId'
                                                 name="curWardId" formControlName="curWardId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.curWardId" [fields]='fields1'
@@ -528,7 +528,7 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm</label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="curAddress"
                                                 formControlName="curAddress" [(ngModel)]="employeeInfo.curAddress">
                                               <span class="input-error"
@@ -546,7 +546,7 @@
                                           <!-- Điện thoại di động-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Điện thoại cá nhân</label>
+                                              <label class="">Điện thoại cá nhân<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="mobilePhone"
                                                 formControlName="mobilePhone" [(ngModel)]="employeeInfo.mobilePhone"
                                                 maxlength="50">
@@ -558,7 +558,7 @@
                                           <!-- Email cá nhân-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Email cá nhân</label>
+                                              <label class="">Email cá nhân<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="email"
                                                 formControlName="email" [(ngModel)]="employeeInfo.email">
                                               <span class="input-error"
@@ -586,7 +586,7 @@
                                           <!-- Người liên hệ khi cần-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Người liên hệ khi cần</label>
+                                              <label class="">Người liên hệ khi cần<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.contactPer" name="contactPer"
                                                 formControlName="contactPer">
@@ -598,7 +598,7 @@
                                           <!-- Số điện thoại người liên hệ-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Số điện thoại người liên hệ</label>
+                                              <label class="">Số điện thoại người liên hệ<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.contactPerPhone" name="contactPerPhone"
                                                 formControlName="contactPerPhone">
@@ -879,7 +879,7 @@
                                           </div> -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Trường</label>
+                                              <label class="">Trường<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='schoolId' [dataSource]='lstSchoolId'
                                                 formControlName="schoolId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.schoolId" [fields]='fields'
@@ -904,7 +904,7 @@
                                           </div> -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Chuyên ngành đào tạo</label>
+                                              <label class="">Chuyên ngành đào tạo<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='qualificationId' [dataSource]='lstQualificationId'
                                                 formControlName="qualificationId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.qualificationId" [fields]='fields'
@@ -919,7 +919,7 @@
                                           <!--HÌnh thức đào tạo  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Hình thức đào tạo</label>
+                                              <label class="">Hình thức đào tạo<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='trainingFormId' [dataSource]='lstTrainingFormId'
                                                 formControlName="trainingFormId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.trainingFormId" [fields]='fields'
@@ -934,7 +934,7 @@
                                           <!--Trình độ học vấn  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Trình độ học vấn</label>
+                                              <label class="">Trình độ học vấn<span class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='learningLevelId' [dataSource]='lstLearningLevelId'
                                                 formControlName="learningLevelId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.learningLevelId" [fields]='fields'
@@ -1146,7 +1146,7 @@
                                           <!-- Địa chỉ -->
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Địa chỉ chi tiết</label>
+                                              <label class="">Địa chỉ chi tiết<span class="red-asterisk">*</span></label>
                                               <textarea class="form-control" formControlName="address"
                                                 [(ngModel)]="situation.address" id="textarea" rows="2"></textarea>
                                               <span class="input-error"
@@ -1376,7 +1376,7 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Từ tháng</label>
+                                              <label class="" for="ngayhachtoan">Từ tháng<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="fromDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="trainingbefore.fromDate" (keydown)="changeDate('fromDate')"
                                                 (blur)="changeDate('fromDate')" formControlName="fromDate"
@@ -1393,7 +1393,7 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Đến tháng</label>
+                                              <label class="" for="ngayhachtoan">Đến tháng<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="toDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="trainingbefore.toDate" (keydown)="changeDate('toDate')"
                                                 (blur)="changeDate('toDate')" formControlName="toDate"
@@ -1752,7 +1752,7 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Ngày vào làm việc</label>
+                                              <label class="" for="ngayhachtoan">Ngày vào làm việc<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="joinDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.joinDate" (keydown)="changeDate('joinDate')"
                                                 (blur)="changeDate('joinDate')" formControlName="joinDate"
@@ -1772,7 +1772,7 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Ngày nghỉ việc</label>
+                                              <label class="" for="ngayhachtoan">Ngày nghỉ việc<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="endDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.endDate" (keydown)="changeDate('endDate')"
                                                 (blur)="changeDate('endDate')" formControlName="endDate"
@@ -1789,7 +1789,7 @@
                                           </div>
                                           <div class="col-sm-8">
                                             <div class="form-group ">
-                                              <label class="">Địa chỉ công ty</label>
+                                              <label class="">Địa chỉ công ty<span class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" formControlName="companyAddress"
                                                 [(ngModel)]="workingbefore.companyAddress">
                                               <span class="input-error"
