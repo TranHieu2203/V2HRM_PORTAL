@@ -110,6 +110,18 @@ export class EmployeeComponent implements OnInit {
   public checkWorkingBefore: number = 0;
   public checkTrainingBefore: number = 0;
   public checkSituation: number = 0 ;
+
+
+  
+  
+  public today: Date = new Date();
+  public currentYear: number = this.today.getFullYear();
+  public currentMonth: number = this.today.getMonth();
+  public currentDay: number = this.today.getDate();
+  public dateValue: Object = new Date(new Date().setDate(14));
+  public minDate: Object = new Date(this.currentYear, this.currentMonth, 1);
+  public maxDate: Object =  new Date(this.currentYear, this.currentMonth, this.currentDay);
+
   constructor(
     private profileEmployeeService: ProfileEmployeeService,
     private otherListService: OtherListService,
@@ -1089,6 +1101,12 @@ export class EmployeeComponent implements OnInit {
     this.workingbefore = new WorkingBefore();
     this.workingbefore.idWorking = undefined;
     this.workingbefore.id = 0;
+  }
+  getToday(): Date {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); 
+    console.log(today)
+    return today;
   }
 
   saveForm() {

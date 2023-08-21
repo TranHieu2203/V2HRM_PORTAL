@@ -151,7 +151,8 @@
                                               <ejs-datepicker id="birthDate" name="birthDate"
                                                 formControlName="birthDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="employeeInfo.birthDate" (keydown)="changeDate('birthDate')"
-                                                (blur)="changeDate('birthDate')" placeholder=".../.../...">
+                                                (blur)="changeDate('birthDate')" placeholder=".../.../..."
+                                                [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['infor'].get('birthDate')!.hasError('required') && !editForm.controls['infor'].get('birthDate')!.untouched">
@@ -207,7 +208,8 @@
                                               <label class="">Ngày cấp<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="idDate" format="dd/MM/yyyy" name="idDate"
                                                 formControlName="idDate" [(ngModel)]="employeeInfo.idDate"
-                                                placeholder=".../.../...">
+                                                placeholder=".../.../..."
+                                                [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['infor'].get('idDate')!.hasError('required') && !editForm.controls['infor'].get('idDate')!.untouched">
@@ -1164,7 +1166,8 @@
                                               <ejs-datepicker id="birth" format="dd/MM/yyyy"
                                                 [(ngModel)]="situation.birth" (keydown)="changeDate('birth')"
                                                 (blur)="changeDate('birth')" formControlName="birth"
-                                                placeholder=".../.../...">
+                                                placeholder=".../.../..."
+                                                [max]="maxDate">
                                               </ejs-datepicker>
                                             </div>
                                           </div>
@@ -1756,7 +1759,8 @@
                                               <ejs-datepicker id="joinDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.joinDate" (keydown)="changeDate('joinDate')"
                                                 (blur)="changeDate('joinDate')" formControlName="joinDate"
-                                                placeholder=".../.../...">
+                                                placeholder=".../.../..."
+                                                [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('joinDate')!.hasError('required') && !editForm.controls['workingbefore'].get('joinDate')!.untouched">
@@ -1776,7 +1780,8 @@
                                               <ejs-datepicker id="endDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.endDate" (keydown)="changeDate('endDate')"
                                                 (blur)="changeDate('endDate')" formControlName="endDate"
-                                                placeholder=".../.../...">
+                                                placeholder=".../.../..."
+                                                [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('endDate')!.hasError('required') && !editForm.controls['workingbefore'].get('endDate')!.untouched">
