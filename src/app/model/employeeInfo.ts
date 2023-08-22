@@ -95,7 +95,8 @@ export class EmployeeInfo {
     experienceId?: number;
     year?: number;
     idNoOld?:string;
-    certificateOther?:string
+    certificateOther?:string;
+    isTechcombank?:boolean;
   }
   export class Situation {
     

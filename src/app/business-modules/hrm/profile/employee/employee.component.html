@@ -119,7 +119,8 @@
                                           <!-- Mã số thuế -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Mã số thuế cá nhân<span class="red-asterisk">*</span></label>
+                                              <label class="">Mã số thuế cá nhân<span
+                                                  class="red-asterisk">*</span></label>
                                               <input class="form-control" name="taxCode" formControlName="taxCode"
                                                 type="text" [(ngModel)]="employeeInfo.taxCode">
                                               <span class="input-error"
@@ -140,6 +141,7 @@
                                                 Bắt buộc nhập </span>
                                             </div>
                                           </div>
+                                          
                                         </div>
                                       </div>
                                       <div class="group-box" formGroupName="infor">
@@ -208,8 +210,7 @@
                                               <label class="">Ngày cấp<span class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="idDate" format="dd/MM/yyyy" name="idDate"
                                                 formControlName="idDate" [(ngModel)]="employeeInfo.idDate"
-                                                placeholder=".../.../..."
-                                                [max]="maxDate">
+                                                placeholder=".../.../..." [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['infor'].get('idDate')!.hasError('required') && !editForm.controls['infor'].get('idDate')!.untouched">
@@ -232,12 +233,20 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Số CMND/Căn cước cũ<span class="red-asterisk">*</span></label>
+                                              <label class="">Số CMND/Căn cước cũ<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" [(ngModel)]="employeeInfo.idNoOld"
                                                 name="idNoOld" formControlName="idNoOld" maxlength="12">
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['infor'].get('idNoOld')!.hasError('required') && !editForm.controls['infor'].get('idNoOld')!.untouched">
                                                 Bắt buộc nhập</span>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-group">
+                                              <ejs-checkbox formControlName="isTechcombank" label="Đã có tài khoản Techcombank" [(ngModel)]="employeeInfo.isTechcombank">
+                                              </ejs-checkbox>
+
                                             </div>
                                           </div>
                                         </div>
@@ -289,7 +298,8 @@
                                           <!--Tình trạng hôn nhân  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Tình trạng hôn nhân<span class="red-asterisk">*</span></label>
+                                              <label class="">Tình trạng hôn nhân<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='maritalStatusId' [dataSource]='lstMaritalStatusId'
                                                 name="maritalStatusId" formControlName="maritalStatusId"
                                                 [showClearButton]="true" [(ngModel)]="employeeInfo.maritalStatusId"
@@ -304,7 +314,8 @@
                                           <!--Thưởng trú tại việt nam -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Đối tượng cư trú<span class="red-asterisk">*</span></label>
+                                              <label class="">Đối tượng cư trú<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='resident' [dataSource]='lstResident'
                                                 name="residentId" formControlName="residentId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.residentId" [fields]='fields'
@@ -386,7 +397,8 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="homeAddress"
                                                 formControlName="homeAddress" [(ngModel)]="employeeInfo.homeAddress">
                                               <span class="input-error"
@@ -456,7 +468,8 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="address"
                                                 formControlName="address" [(ngModel)]="employeeInfo.address">
                                               <span class="input-error"
@@ -530,7 +543,8 @@
                                           </div>
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Số nhà, đường phố, thôn xóm<span class="red-asterisk">*</span></label>
+                                              <label class="">Số nhà, đường phố, thôn xóm<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="curAddress"
                                                 formControlName="curAddress" [(ngModel)]="employeeInfo.curAddress">
                                               <span class="input-error"
@@ -548,7 +562,8 @@
                                           <!-- Điện thoại di động-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Điện thoại cá nhân<span class="red-asterisk">*</span></label>
+                                              <label class="">Điện thoại cá nhân<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control" name="mobilePhone"
                                                 formControlName="mobilePhone" [(ngModel)]="employeeInfo.mobilePhone"
                                                 maxlength="50">
@@ -588,7 +603,8 @@
                                           <!-- Người liên hệ khi cần-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Người liên hệ khi cần<span class="red-asterisk">*</span></label>
+                                              <label class="">Người liên hệ khi cần<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.contactPer" name="contactPer"
                                                 formControlName="contactPer">
@@ -600,7 +616,8 @@
                                           <!-- Số điện thoại người liên hệ-->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Số điện thoại người liên hệ<span class="red-asterisk">*</span></label>
+                                              <label class="">Số điện thoại người liên hệ<span
+                                                  class="red-asterisk">*</span></label>
                                               <input type="text" class="form-control"
                                                 [(ngModel)]="employeeInfo.contactPerPhone" name="contactPerPhone"
                                                 formControlName="contactPerPhone">
@@ -906,7 +923,8 @@
                                           </div> -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Chuyên ngành đào tạo<span class="red-asterisk">*</span></label>
+                                              <label class="">Chuyên ngành đào tạo<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='qualificationId' [dataSource]='lstQualificationId'
                                                 formControlName="qualificationId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.qualificationId" [fields]='fields'
@@ -921,7 +939,8 @@
                                           <!--HÌnh thức đào tạo  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Hình thức đào tạo<span class="red-asterisk">*</span></label>
+                                              <label class="">Hình thức đào tạo<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='trainingFormId' [dataSource]='lstTrainingFormId'
                                                 formControlName="trainingFormId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.trainingFormId" [fields]='fields'
@@ -936,7 +955,8 @@
                                           <!--Trình độ học vấn  -->
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="">Trình độ học vấn<span class="red-asterisk">*</span></label>
+                                              <label class="">Trình độ học vấn<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-dropdownlist id='learningLevelId' [dataSource]='lstLearningLevelId'
                                                 formControlName="learningLevelId" [showClearButton]="true"
                                                 [(ngModel)]="employeeInfo.learningLevelId" [fields]='fields'
@@ -1013,7 +1033,7 @@
                                               <label class="">Số tài khoản</label>
                                               <input class="form-control" type="text" formControlName="bankNo"
                                                 [(ngModel)]="employeeInfo.bankNo">
-                                                <span class="input-error"
+                                              <span class="input-error"
                                                 *ngIf="editForm.controls['user'].get('bankNo')!.hasError('required') && !editForm.controls['user'].get('bankNo')!.untouched">
                                                 Bắt buộc nhập</span>
                                             </div>
@@ -1148,7 +1168,8 @@
                                           <!-- Địa chỉ -->
                                           <div class="col-sm-12">
                                             <div class="form-group ">
-                                              <label class="">Địa chỉ chi tiết<span class="red-asterisk">*</span></label>
+                                              <label class="">Địa chỉ chi tiết<span
+                                                  class="red-asterisk">*</span></label>
                                               <textarea class="form-control" formControlName="address"
                                                 [(ngModel)]="situation.address" id="textarea" rows="2"></textarea>
                                               <span class="input-error"
@@ -1166,8 +1187,7 @@
                                               <ejs-datepicker id="birth" format="dd/MM/yyyy"
                                                 [(ngModel)]="situation.birth" (keydown)="changeDate('birth')"
                                                 (blur)="changeDate('birth')" formControlName="birth"
-                                                placeholder=".../.../..."
-                                                [max]="maxDate">
+                                                placeholder=".../.../..." [max]="maxDate">
                                               </ejs-datepicker>
                                             </div>
                                           </div>
@@ -1379,7 +1399,8 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Từ tháng<span class="red-asterisk">*</span></label>
+                                              <label class="" for="ngayhachtoan">Từ tháng<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="fromDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="trainingbefore.fromDate" (keydown)="changeDate('fromDate')"
                                                 (blur)="changeDate('fromDate')" formControlName="fromDate"
@@ -1396,7 +1417,8 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Đến tháng<span class="red-asterisk">*</span></label>
+                                              <label class="" for="ngayhachtoan">Đến tháng<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="toDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="trainingbefore.toDate" (keydown)="changeDate('toDate')"
                                                 (blur)="changeDate('toDate')" formControlName="toDate"
@@ -1755,12 +1777,12 @@
                                           </div>
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Ngày vào làm việc<span class="red-asterisk">*</span></label>
+                                              <label class="" for="ngayhachtoan">Ngày vào làm việc<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="joinDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.joinDate" (keydown)="changeDate('joinDate')"
                                                 (blur)="changeDate('joinDate')" formControlName="joinDate"
-                                                placeholder=".../.../..."
-                                                [max]="maxDate">
+                                                placeholder=".../.../..." [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('joinDate')!.hasError('required') && !editForm.controls['workingbefore'].get('joinDate')!.untouched">
@@ -1776,12 +1798,12 @@
                                         <div class="row">
                                           <div class="col-sm-4">
                                             <div class="form-group ">
-                                              <label class="" for="ngayhachtoan">Ngày nghỉ việc<span class="red-asterisk">*</span></label>
+                                              <label class="" for="ngayhachtoan">Ngày nghỉ việc<span
+                                                  class="red-asterisk">*</span></label>
                                               <ejs-datepicker id="endDate" format="dd/MM/yyyy"
                                                 [(ngModel)]="workingbefore.endDate" (keydown)="changeDate('endDate')"
                                                 (blur)="changeDate('endDate')" formControlName="endDate"
-                                                placeholder=".../.../..."
-                                                [max]="maxDate">
+                                                placeholder=".../.../..." [max]="maxDate">
                                               </ejs-datepicker>
                                               <span class="input-error"
                                                 *ngIf="editForm.controls['workingbefore'].get('endDate')!.hasError('required') && !editForm.controls['workingbefore'].get('endDate')!.untouched">
