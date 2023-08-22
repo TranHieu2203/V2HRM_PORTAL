@@ -1,6 +1,7 @@
 <div class="" (click)=" $event.stopPropagation() ">
   <div class=" header-button">
-    <div class="btn btn-outline-warning" (click)="updateCompentencySeltList()" *ngIf="validationRank()">
+    <div class="btn btn-outline-warning" (click)="updateCompentencySeltList()"
+      *ngIf="validationRank() && curentNodeInfo.status==1">
       <i class="feather-save"></i>
       {{'[Lưu kết quả tự đánh giá]'|translate}}
 

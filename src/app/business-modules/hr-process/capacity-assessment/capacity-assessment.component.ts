@@ -111,7 +111,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
 
     this.curentNodeInfoSubscription = this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       this.lstStep = []
-
+      this.lstProcess = []
       if (value.length !== 0) {
         this.baseInfo = value.baseInfo
         this.selectedDosing.steps.forEach((element: any) => {

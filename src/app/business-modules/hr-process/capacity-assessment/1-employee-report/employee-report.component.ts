@@ -26,7 +26,7 @@ export class EmployeeReportComponent implements OnInit {
   data: any;
   public groupOptions?: GroupSettingsModel;
 
-  private curentNodeInfo!: any;
+  public curentNodeInfo!: any;
   private curentNode!: any;
   private processId: number = 1234;
 
