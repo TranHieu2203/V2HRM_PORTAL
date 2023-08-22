@@ -159,7 +159,8 @@ export class EmployeeComponent implements OnInit {
         religionId: ['', [Validators.required]], //Tôn giáo
         maritalStatusId: ['', [Validators.required]], //Tình trạng hôn nhân
         residentId: ['', [Validators.required]],
-        experienceId: ['', [Validators.required]]
+        experienceId: ['', [Validators.required]],
+        isTechcombank: ['']
       }),
       homeAddress: this._formBuilder.group({
         homeAddress: ['', [Validators.required]],
@@ -1105,7 +1106,6 @@ export class EmployeeComponent implements OnInit {
   getToday(): Date {
     const today = new Date();
     today.setHours(0, 0, 0, 0); 
-    console.log(today)
     return today;
   }
 
@@ -1200,7 +1200,7 @@ export class EmployeeComponent implements OnInit {
         this.commomHttpService
           .commonPostRequest('INSERT', 'portal/employee/AddSituation', param)
           .subscribe((res: any) => {
-            if (res.statusCode == 400) {
+            if (res.status == 400) {
               this.notification.error('Lỗi');
             } else {
               this.editForm.controls['situation'].reset();
@@ -1314,7 +1314,7 @@ export class EmployeeComponent implements OnInit {
             param
           )
           .subscribe((res: any) => {
-            if (res.statusCode == 400) {
+            if (res.status == 400) {
               this.notification.error('lỗi');
             } else {
               this.editForm.controls['trainingbefore'].reset();
@@ -1423,7 +1423,7 @@ export class EmployeeComponent implements OnInit {
             param
           )
           .subscribe((res: any) => {
-            if (res.statusCode == 400) {
+            if (res.status == 400) {
               this.notification.error('lỗi');
             } else {
               this.editForm.controls['workingbefore'].reset();
@@ -1529,7 +1529,7 @@ export class EmployeeComponent implements OnInit {
             param
           )
           .subscribe((res: any) => {
-            if (res.statusCode == 400) {
+            if (res.status == 400) {
               this.notification.error('lỗi');
             } else {
               this.notification.success('thành công');
@@ -1578,6 +1578,7 @@ export class EmployeeComponent implements OnInit {
               "hr/Employee/UpdateImageProfile?empId=" + this.employeeInfo.id + "&avatar=" + this.employeeInfo.avatar
             )
             .subscribe((res: any) => {
+              
               if(res.status == 200){
                 this.notification.success("Tải avatar thành công")
               }

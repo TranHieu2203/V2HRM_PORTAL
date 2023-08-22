@@ -11,6 +11,10 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { BrowserModule } from '@angular/platform-browser';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { TabModule } from '@syncfusion/ej2-angular-navigations';
+import {
+  CheckBoxModule,
+  RadioButtonModule,
+} from "@syncfusion/ej2-angular-buttons";
 
 @NgModule({
   imports: [
@@ -23,7 +27,8 @@ import { TabModule } from '@syncfusion/ej2-angular-navigations';
     DatePickerModule,
     NumericTextBoxModule,
     TabModule,
-    GridModule 
+    GridModule,
+    CheckBoxModule
   ],
   
   declarations: [EmployeeComponent]
