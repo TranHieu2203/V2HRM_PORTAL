@@ -146,7 +146,6 @@ export const V2Hrm2022: IServerModel = {
   // attendance
   getTimeExplaint: "at-portal/timeexplain",
 
-
   // hrProcess
   getProcessType: "hr-process/template/gettemplate",
   getHrProcessById: "hr-process/getHrProcessById",

@@ -11,10 +11,16 @@ export class HrProcessService {
   public processList$ = this.processList.asObservable();
   constructor(private commonHttpRequestService: CommonHttpRequestService, private authService: AuthService) {
     // load các process của user đang đăng nhập
-    this.commonHttpRequestService.commonGetRequest("", "hr-process/employee-process").subscribe((res: any) => {
+    this.commonHttpRequestService.commonPostRequest("", "hr-process/employee-process", {}).subscribe((res: any) => {
       if (res.body.statusCode == "200") {
         this.processList.next(res.body.data)
       }
     })
+  }
+  getHrProcess(lstId: string) {
+    return this.commonHttpRequestService.commonPostRequest(
+      '',
+      "hr-process/employee-process", lstId
+    )
   }
 }

@@ -11,12 +11,21 @@ import { DialogComponent, ButtonPropsModel } from '@syncfusion/ej2-angular-popup
 import { DropDownListModule, DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { CommonHttpRequestService } from 'src/app/services/common-http-request.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { HrProcessService } from 'src/app/services/hr-process.service';
+import { TabComponent } from '@syncfusion/ej2-angular-navigations';
+import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+
+  public headerText: Object[] = [];
+
+
   languages!: any;
   processTypes: any;
   public dialogHeader!: string;
@@ -28,7 +37,14 @@ export class MainComponent implements OnInit {
   @ViewChild('saveProcessType')
   public saveProcessType!: DropDownListComponent;
 
+  processData!: any;
+  processDataKey!: any[];
+  processDataGrid!: any;
+  processSelected!: number;
+  @ViewChild('tab')
+  public tab!: TabComponent;
 
+  public lst: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([])
 
   constructor(
     protected globals: Globals,
@@ -37,9 +53,18 @@ export class MainComponent implements OnInit {
     protected _translateService: TranslateService,
     protected processTypeServices: ProcessTypeService,
     private commonHttpRequestService: CommonHttpRequestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private hrProcessServices: HrProcessService,
+    private router: ActivatedRoute,
+    private router1: Router,
+
   ) {
     L10n.load(this.configs.languageGrid);
+    this.router.queryParams
+      .subscribe(params => {
+        this.processSelected = params.processSelected;
+      }
+      );
 
   }
 
@@ -51,16 +76,62 @@ export class MainComponent implements OnInit {
     // load data
     this.processTypeServices.processType.subscribe((res: any) => {
       this.processTypes = res;
+      this.processTypes.forEach((element: any) => {
+        console.log(element, this.processSelected)
+        if (element.key.toString() == this.processSelected)
+          element.checked = true
+      });
     })
 
+    this.hrProcessServices.processList$.subscribe((data) => {
+      const groupedKeys = data.reduce((group: { [key: string]: any[] }, item: { process_Name: string | number; }) => {
+        if (!group[item.process_Name]) {
+          group[item.process_Name] = [];
+        }
+        group[item.process_Name].push(item);
+        return group;
+      }, {});
+      this.processData = groupedKeys
+      this.processDataKey = Object.keys(this.processData)
+      this.lst.subscribe((value: any) => {
+        if (value.length != 0) {
+          this.hrProcessServices.getHrProcess(JSON.stringify(value.toString())).subscribe((data: any) => {
+            console.log('dữ liệu trả về', data)
+            this.processDataGrid = data.body.data
+          })
+        }
+
+      })
+    })
   }
 
+  pushToList(event: any, value: string) {
+    if (event) {
+      this.lst.next(this.lst.getValue().concat([value]));
+    } else {
+      const roomArr: any[] = this.lst.getValue();
+
+      roomArr.forEach((item, index) => {
+        if (item === value) { roomArr.splice(index, 1); }
+      });
+
+      this.lst.next(roomArr);
+    }
+
+  }
+  goToProcess(event: any) {
+    console.log(event)
+    this.router1.navigate(['hr-process/c-a'], { queryParams: { process: event.rowData.process_Id_Str, node: event.rowData.node_Id_Str } });
+  }
+
+  getCount(key: string) {
+    if (this.processData[key] != undefined) { return this.processData[key]!.length } else return 0
+  }
   saveProcess() {
 
     var data: any = {
       SE_PROCESS_TEMPLATE_ID: this.saveProcessType.value
     }
-
     this.commonHttpRequestService.commonPostRequest("createHrProcess", this.authService.serverModel.createHrProcess!, data)
       .subscribe((res: any) => {
       })

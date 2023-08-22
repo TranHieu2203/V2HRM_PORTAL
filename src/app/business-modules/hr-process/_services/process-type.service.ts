@@ -9,7 +9,8 @@ import { CommonHttpRequestService } from 'src/app/services/common-http-request.s
 export class ProcessTypeService {
   processType = new BehaviorSubject<{
     key: number,
-    value: string
+    value: string,
+    check: boolean
   }[]>([])
   constructor(private commonHttpRequestService: CommonHttpRequestService,
     private authService: AuthService) {
@@ -20,11 +21,13 @@ export class ProcessTypeService {
         if (x.ok && x.status === 200) {
           const newList: {
             key: number,
-            value: string
+            value: string,
+            check: boolean
           }[] = [];
           x.body.data.map((g: any) => newList.push({
             key: g.id,
-            value: g.name
+            value: g.name,
+            check: false
           }))
           this.processType.next(newList);
         }

@@ -31,7 +31,7 @@ export class ControlService {
     this.processId.subscribe(value => {
       this.commonHttpRequestService.commonGetRequest(
         'GetHrProcessById',
-        this.authService.serverModel.getHrProcessById! + "?id=" + this.processId.value
+        this.authService.serverModel.getHrProcessById! + "?id=" + this.processId.value + "&nodeId=" + this.nodeId.value
       ).subscribe((res: any) => {
         this.curentNode.next(res.body.data)
       })

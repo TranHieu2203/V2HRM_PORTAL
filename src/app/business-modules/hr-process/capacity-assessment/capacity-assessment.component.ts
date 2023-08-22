@@ -33,6 +33,8 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
   private curentNode!: any;
   isLinear = false;
   public lstStep: any[] = []
+  public lstProcess: any[] = []
+
   public selectedDosing = {
 
     steps: [
@@ -40,6 +42,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
       {
         label: 'Nhân viên tự đánh giá',
         component: EmployeeReportComponent,
+        componentName: "EmployeeReportComponent",
         status: 0,
         employeeName: "",
         showTab: true,
@@ -50,6 +53,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
       {
         label: 'Quản lý trực tiếp đánh giá',
         component: DirectManagerReviewComponent,
+        componentName: "DirectManagerReviewComponent",
         status: 0,
         employeeName: "",
         showTab: true,
@@ -61,6 +65,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
       {
         label: 'Quản lý đơn vị review',
         component: LineManagerReviewComponent,
+        componentName: "LineManagerReviewComponent",
         status: 0,
         employeeName: "",
         showTab: true,
@@ -110,18 +115,35 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
       if (value.length !== 0) {
         this.baseInfo = value.baseInfo
         this.selectedDosing.steps.forEach((element: any) => {
-          var nodeData = value.nodeInfo.filter((res: any) => res.component === element.component.name)[0]
-          element.label = nodeData.nodeName
-          element.employeeName = nodeData.employeeName
-          element.status = nodeData.status
-          element.nodeId = nodeData.nodeId
-          element.valid = nodeData.valid
-          element.status = nodeData.status
-          element.showTab = this.curentNode == nodeData.nodeId ? true : false;
-          element.complete = nodeData.complete
-          if (element.status > 1) { element.icon = 'feather-check' }
-          else { element.icon = 'feather-minus' }
-          this.lstStep.push(element)
+          var nodeData = value.nodeInfo.filter((res: any) => res.component === element.componentName)[0]
+          if (nodeData != undefined) {
+            element.label = nodeData.nodeName
+            element.employeeName = nodeData.employeeName
+            element.status = nodeData.status
+            element.nodeId = nodeData.nodeId
+            element.valid = nodeData.valid
+            element.status = nodeData.status
+            element.showTab = this.curentNode == nodeData.nodeId ? true : false;
+            element.complete = nodeData.complete
+            if (element.status > 1) { element.icon = 'feather-check' }
+            else { element.icon = 'feather-minus' }
+            this.lstProcess.push(element)
+            this.lstStep.push(element)
+          } else {
+            var nodeData = value.lstNode.filter((res: any) => res.component === element.componentName)[0]
+            element.label = nodeData.nodeName
+            element.employeeName = nodeData.employeeName
+            element.status = nodeData.status
+            element.nodeId = nodeData.nodeId
+            element.valid = nodeData.valid
+            element.status = nodeData.status
+            element.showTab = this.curentNode == nodeData.nodeId ? true : false;
+            element.complete = nodeData.complete
+            if (element.status > 1) { element.icon = 'feather-check' }
+            else { element.icon = 'feather-minus' }
+            this.lstProcess.push(element)
+          }
+
         });
       }
 

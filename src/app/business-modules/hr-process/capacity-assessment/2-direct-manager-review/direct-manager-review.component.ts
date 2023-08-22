@@ -27,6 +27,7 @@ export class DirectManagerReviewComponent implements OnInit {
   public groupOptions?: GroupSettingsModel;
 
   private curentNodeInfo!: any;
+  private curentNode!: any;
 
   private processId: number = 1234;
 
@@ -52,6 +53,10 @@ export class DirectManagerReviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.controlServices.nodeId$.subscribe(value => {
+      this.curentNode = value;
+    })
+
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
         this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];

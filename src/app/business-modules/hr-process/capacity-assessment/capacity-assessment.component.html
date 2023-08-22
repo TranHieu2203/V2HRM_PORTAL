@@ -18,7 +18,7 @@
                 <div class="node-header" [ngClass]="{'node-header-toggle': !step.showTab}" [id]="step.component.name"
                   (click)="step.showTab=!step.showTab">
                   <label class="text-bold">
-                    {{ (i + 1) + "-" + step.label}}
+                    {{step.label}}
                   </label>
                   <label class="node-header-arrow">
                     <i class="feather-chevron-down" *ngIf="step.showTab"></i>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="col-sm-3">
-            <process-view *ngIf="lstStep.length>0" [selectedDosing]="lstStep">
+            <process-view *ngIf="lstStep.length>0" [selectedDosing]="lstProcess">
             </process-view>
           </div>
         </div>

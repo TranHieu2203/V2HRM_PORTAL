@@ -79,28 +79,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       { name: "Sách thiếu nhi", check: false, total: 571 },
     ]
 
-    // employee proces
-
-    this.hrProcessServices.processList$.subscribe((data: any) => {
-      // group lại theo loại quy trình
-      const groupedKeys = data.reduce((group: { [key: string]: any[] }, item: { process_Name: string | number; }) => {
-        if (!group[item.process_Name]) {
-          group[item.process_Name] = [];
-        }
-        group[item.process_Name].push(item);
-        return group;
-      }, {});
-      this.processData = groupedKeys
-      this.processDataKey = Object.keys(this.processData)
-      console.log(this.processData)
-    })
-
-  }
-  log(val: any) {
-    console.log(val)
-  }
-  getColumn() {
-    if (this.processDataKey.length >= 2) { return 2 } else { return 1; }
 
   }
 
@@ -141,8 +119,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     );
   };
   goToProcess(event: any) {
-    console.log(event.rowData)
-    this.router.navigate(['hr-process/c-a'], { queryParams: { process: event.rowData.process_Id_Str, node: event.rowData.node_Id_Str } });
+    console.log(event)
+    this.router.navigate(['hr-process'], { queryParams: { process: event.rowData.process_Id_Str, node: event.rowData.node_Id_Str } });
   }
   getData() {
     this.commomHttpService

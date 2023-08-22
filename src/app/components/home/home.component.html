@@ -6,57 +6,8 @@
 
                     <div #testerLeft class="tester-left"></div>
                     <div #testerRight class="tester-right"></div>
-                    <div class="card w-100 shadow-xss rounded-xxxl border-0 p-4 mb-3">
 
-                        <div class="card-body p-0">
-                            <div class="control-section">
-                                <ejs-dashboardlayout id="default_dashboard" #default_dashboard [columns]="getColumn()"
-                                    [allowResizing]="true" [cellSpacing]="cellSpacing" [cellAspectRatio]="3">
-                                    <e-panels>
-                                        <e-panel *ngFor="let key of processDataKey;let i = index" [sizeX]="1"
-                                            [sizeY]="1" [row]="0" [col]="0">
-                                            <ng-template #header>
-                                                <label>
-                                                    {{key}}
-                                                </label>
-
-                                            </ng-template>
-                                            <ng-template #content>
-                                                <!-- help: https://ej2.syncfusion.com/angular/documentation/grid/getting-started/ -->
-                                                <ejs-grid [className]="'grid-process'" [dataSource]='processData[key]'
-                                                    (recordDoubleClick)="goToProcess($event!)">
-                                                    <e-columns>
-                                                        <e-column field='id' [showInColumnChooser]='false'
-                                                            [visible]='false' headerText='ID' [isPrimaryKey]='true'
-                                                            [allowEditing]="false">
-                                                        </e-column>
-                                                        <e-column field="stt" headerText="STT" textAlign="center"
-                                                            isPrimaryKey="true" width="70" [edit]="false">
-                                                            <ng-template #template let-data>
-                                                                {{formatStt(data.index)}}
-                                                            </ng-template>
-                                                        </e-column>
-                                                        <e-column field='node_Name' textAlign="Left"
-                                                            headerText="Hành động/Thao tác"
-                                                            clipMode='EllipsisWithTooltip'>
-                                                        </e-column>
-                                                        <e-column field='employee_Name' textAlign="Left"
-                                                            headerText="Nhân viên" clipMode='EllipsisWithTooltip'>
-                                                        </e-column>
-
-                                                    </e-columns>
-                                                </ejs-grid>
-
-                                            </ng-template>
-                                        </e-panel>
-                                    </e-panels>
-                                </ejs-dashboardlayout>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <app-total-overview></app-total-overview> -->
+                    <app-total-overview></app-total-overview>
                     <div #postCreator>
                         <!-- <app-createpost></app-createpost> -->
                     </div>

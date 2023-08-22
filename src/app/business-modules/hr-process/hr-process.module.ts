@@ -30,6 +30,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { ProcessViewModule } from './process-view/process-view.module';
 import { HrProcessButtonModule } from './hr-process-button/hr-process-button.module';
+import { TabModule } from '@syncfusion/ej2-angular-navigations';
 
 @NgModule({
 
@@ -53,6 +54,7 @@ import { HrProcessButtonModule } from './hr-process-button/hr-process-button.mod
     ProgressButtonModule,
     MatStepperModule,
     MatIconModule,
+    TabModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

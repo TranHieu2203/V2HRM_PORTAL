@@ -2,9 +2,10 @@
     <div ngxSlickItem *ngFor="let value of totalOverviewList" class="mr15i w178 mh207"> <!-- w178 IS IMPORTANT! -->
         <div class="w178 h207" [style]="{ 
                 'background-color': value.bgColor,
-                backgroundPosition: 'center'
-            }">
-            <div class="icon-holder"> <img width="90px" [src]="value.iconPath"> </div>
+                backgroundPosition: 'center',
+                'border-radius':'15px'
+            }" (click)="goToProcess(value)">
+            <div class="icon-holder"><i style="font-size: 50px;" [ngClass]="value.iconPath"></i> </div>
             <div class="title open-font"> {{ value.name}} </div>
             <div class="total open-font"> {{ value.total}}
             </div>

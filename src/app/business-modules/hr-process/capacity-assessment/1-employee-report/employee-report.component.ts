@@ -27,7 +27,7 @@ export class EmployeeReportComponent implements OnInit {
   public groupOptions?: GroupSettingsModel;
 
   private curentNodeInfo!: any;
-
+  private curentNode!: any;
   private processId: number = 1234;
 
 
@@ -51,6 +51,10 @@ export class EmployeeReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.controlServices.nodeId$.subscribe(value => {
+      this.curentNode = value;
+    })
+
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
         this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];
@@ -126,7 +130,7 @@ export class EmployeeReportComponent implements OnInit {
     });
     let payload = {
       "processId": this.processId,
-      "nodeId": this.curentNodeInfo.nodeId,
+      "nodeId": this.curentNode,
       "objectId": 1,
       "capacityObjects": rankUpdate
     }
