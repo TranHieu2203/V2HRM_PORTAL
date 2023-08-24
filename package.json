@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^14.2.4",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@frxjs/ngx-timeline": "^2.2.2",
     "@icon/themify-icons": "^1.0.1-alpha.3",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@ngrx/store": "^14.3.1",

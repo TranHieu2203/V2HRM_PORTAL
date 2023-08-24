@@ -30,7 +30,7 @@
 
                   </ng-container>
                 </div>
-                <div class="node-button" *ngIf="step.showTab && (step.status<=1) && step.valid">
+                <div class="node-button" *ngIf="step.showTab && (step.status<=1)">
                   <hr-process-button [nodeId]="step.nodeId" id="{{step.component.name}}">
                   </hr-process-button>
                 </div>

@@ -95,14 +95,16 @@ export class AccountCenterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fullname = this.authService.auth.data.fullname;
+    if (this.authService.auth.data) {
+      this.fullname = this.authService.auth.data.fullname;
+    }
     if (this.authService.auth.data.avatar) this.avatar = this.authService.auth.data.avatar;
 
     this.routerEventsSubscription = this.router.events.subscribe(x => {
       if (x instanceof NavigationStart) {
         console.log("x", x)
         const arr = x.url?.split('/');
-        if (arr.length >2 ) {
+        if (arr.length > 2) {
           const path = arr[2];
           console.log("path", path);
           this.activeTabIndex = this.tabs.filter(t => t.routerLink === path)[0].index;

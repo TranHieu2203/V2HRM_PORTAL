@@ -133,7 +133,7 @@ export class DirectManagerReviewComponent implements OnInit {
     });
     let payload = {
       "processId": this.processId,
-      "nodeId": this.curentNodeInfo.nodeId,
+      "nodeId": this.curentNode,
       "objectId": 0,
       "capacityObjects": rankUpdate
     }
