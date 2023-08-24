@@ -118,9 +118,6 @@ export class HrProcessButtonComponent implements OnInit {
     this._translateService.use(this.languages);
     this.translationLoaderService.loadTranslations(vietnam, english);
     this.selectionOptions = { type: 'Single', mode: 'Row' };
-
-
-
   }
 
   ngOnInit() {
