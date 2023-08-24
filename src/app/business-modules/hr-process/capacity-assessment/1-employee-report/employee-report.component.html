@@ -16,28 +16,28 @@
       </e-column>
       <e-column field="status" headerText="Rank 5" width="100">
         <ng-template #template let-data>
-          <input type="checkbox" [disabled]="!(curentNodeInfo.status<=1)" [name]="data.ID" class="largerCheckbox"
+          <input type="checkbox" [disabled]="!canActive" [name]="data.ID" class="largerCheckbox"
             [(ngModel)]="data.RANK5_CKH" (change)="changeRank(data,data.RANK5,$event,'RANK5_CKH',data.ID)" />
         </ng-template>
       </e-column>
       <e-column field="status" headerText="Rank 4" width="100">
         <ng-template #template let-data>
-          <input type="checkbox" [disabled]="!(curentNodeInfo.status<=1)" [name]="data.ID" class="largerCheckbox"
+          <input type="checkbox" [disabled]="!canActive" [name]="data.ID" class="largerCheckbox"
             [(ngModel)]="data.RANK4_CKH" (change)="changeRank(data,data.RANK4,$event,'RANK4_CKH',data.ID)" />
         </ng-template></e-column>
       <e-column field="status" headerText="Rank 3" width="100">
         <ng-template #template let-data>
-          <input type="checkbox" [disabled]="!(curentNodeInfo.status<=1)" [name]="data.ID" class="largerCheckbox"
+          <input type="checkbox" [disabled]="!canActive" [name]="data.ID" class="largerCheckbox"
             [(ngModel)]="data.RANK3_CKH" (change)="changeRank(data,data.RANK3,$event,'RANK3_CKH',data.ID)" />
         </ng-template></e-column>
       <e-column field="status" headerText="Rank 2" width="100">
         <ng-template #template let-data>
-          <input type="checkbox" [disabled]="!(curentNodeInfo.status<=1)" [name]="data.ID" class="largerCheckbox"
+          <input type="checkbox" [disabled]="!canActive" [name]="data.ID" class="largerCheckbox"
             [(ngModel)]="data.RANK2_CKH" (change)="changeRank(data,data.RANK2,$event,'RANK2_CKH',data.ID)" />
         </ng-template></e-column>
       <e-column field="status" headerText="Rank 1" width="100">
         <ng-template #template let-data>
-          <input type="checkbox" [disabled]="!(curentNodeInfo.status<=1)" [name]="data.ID" class="largerCheckbox"
+          <input type="checkbox" [disabled]="!canActive" [name]="data.ID" class="largerCheckbox"
             [(ngModel)]="data.RANK1_CKH" (change)="changeRank(data,data.RANK1,$event,'RANK1_CKH',data.ID)" />
         </ng-template></e-column>
 
@@ -45,8 +45,7 @@
     </e-columns>
   </ejs-grid>
   <div class=" header-button">
-    <div class="btn btn-outline-warning" (click)="updateCompentencySeltList()"
-      *ngIf="validationRank() && curentNodeInfo.status<=1 ">
+    <div class="btn btn-outline-warning" (click)="updateCompentencySeltList()" *ngIf="validationRank() && canActive ">
       <i class="feather-save"></i>
       {{'[Lưu kết quả tự đánh giá]'|translate}}
 

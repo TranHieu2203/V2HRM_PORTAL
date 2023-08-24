@@ -30,6 +30,7 @@ export class EmployeeReportComponent implements OnInit {
   private curentNode!: any;
   private processId: number = 1234;
 
+  public canActive: boolean = false;
 
   @ViewChild("empReportGrid", { static: true })
   public empReportGrid!: GridComponent;
@@ -57,7 +58,8 @@ export class EmployeeReportComponent implements OnInit {
 
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
-        this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];
+        this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === 'EmployeeReportComponent')[0];
+        if (this.curentNodeInfo != undefined && this.curentNodeInfo!.status <= 1) this.canActive = true
       }
     })
 
@@ -94,6 +96,7 @@ export class EmployeeReportComponent implements OnInit {
     return check;
 
   }
+
 
   updateCompentencySeltList() {
     let rankUpdate: any = [];

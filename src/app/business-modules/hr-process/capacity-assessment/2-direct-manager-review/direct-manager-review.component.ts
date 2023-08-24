@@ -31,6 +31,7 @@ export class DirectManagerReviewComponent implements OnInit {
 
   private processId: number = 1234;
 
+  public canActive: boolean = false;
 
   @ViewChild("empReportGrid", { static: true })
   public empReportGrid!: GridComponent;
@@ -59,8 +60,8 @@ export class DirectManagerReviewComponent implements OnInit {
 
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
-        this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === this.constructor.name)[0];
-        console.log(this.curentNodeInfo)
+        this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.component === 'DirectManagerReviewComponent')[0];
+        if (this.curentNodeInfo != undefined && this.curentNodeInfo!.status <= 1) this.canActive = true
       }
     })
 
