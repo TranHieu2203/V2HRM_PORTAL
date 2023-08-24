@@ -88,9 +88,9 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
   nodeIdSubscription!: Subscription;
   curentNodeInfoSubscription!: Subscription;
   getHrProcessByIdSubscription!: Subscription;
-  data:any;
-  table:any
-  isShow:boolean=true;
+  data: any;
+  table: any
+  isShow: boolean = false;
   constructor(
     private processServices: ProcessTypeService,
     private notificationServices: NotificationService,
@@ -106,7 +106,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
   }
 
   viewHtml(str: any) {
-    
+
     return str.replace(". ", "\n").replace("\n", "<br/>")
   }
 
@@ -118,7 +118,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
       this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
         this.data = JSON.parse(res.body.message).Data
         this.table = this.data.Table1
-        console.log('data',this.table)
+        console.log('data', this.table)
       })
 
     })
