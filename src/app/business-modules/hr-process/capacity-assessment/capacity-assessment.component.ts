@@ -13,6 +13,7 @@ import { HrProcessNode } from 'src/app/model/hr-process/hr-process-node';
 import { Subscription, fromEvent } from 'rxjs';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { ControlService } from '../_services/control.service';
+import { CompentencySeltListService } from '../_services/capacity-assessment/compentency-selt-list.service';
 
 @Component({
   selector: 'app-capacity-assessment',
@@ -87,11 +88,14 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
   nodeIdSubscription!: Subscription;
   curentNodeInfoSubscription!: Subscription;
   getHrProcessByIdSubscription!: Subscription;
-
+  data:any;
+  table:any
+  isShow:boolean=true;
   constructor(
     private processServices: ProcessTypeService,
     private notificationServices: NotificationService,
-    private controlServices: ControlService
+    private controlServices: ControlService,
+    protected _compentencySeltListService: CompentencySeltListService,
 
   ) {
   }
@@ -101,9 +105,25 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
 
   }
 
+  viewHtml(str: any) {
+    
+    return str.replace(". ", "\n").replace("\n", "<br/>")
+  }
 
   ngOnInit() {
     // this.loadData()
+
+    this.controlServices.processId$.subscribe(value => {
+      this.processId = value
+      this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
+        this.data = JSON.parse(res.body.message).Data
+        this.table = this.data.Table1
+        console.log('data',this.table)
+      })
+
+    })
+
+
 
     this.nodeIdSubscription = this.controlServices.nodeId$.subscribe(value => {
       this.curentNode = value;
