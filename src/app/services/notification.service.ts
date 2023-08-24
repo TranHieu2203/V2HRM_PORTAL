@@ -31,6 +31,7 @@ export class NotificationService {
 
   success(message: string) {
     this.translate.get(message).subscribe((data) => {
+      console.log("data",data)
       this._subject.next(new Notification(this._idx++, NotificationType.success, "Thông báo", data, this.timeout));
     })
   }

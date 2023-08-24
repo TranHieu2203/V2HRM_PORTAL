@@ -142,7 +142,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.user.subscribe((res: any) => this.userName = res!.fullName!)
+    this.authService.user.subscribe((res: any) =>{ 
+      if(res!=undefined) this.userName = res!.fullName!
+     
+    })
     this.moduleRouterLink = moduleRouterLink;
     this.modulesServiceActiveModuleSubscription = this.modulesService.activeModule.subscribe((value: IModule | null) => {
       this.activeModule = value;

@@ -30,7 +30,7 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
 
   injector!: Injector;
 
-  private processId: number = 1234;
+  public processId: number = 1234;
   private curentNode!: any;
   isLinear = false;
   public lstStep: any[] = []

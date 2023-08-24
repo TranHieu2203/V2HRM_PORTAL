@@ -14,6 +14,7 @@ import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { EmitType } from '@syncfusion/ej2-base';
 import { SelectionSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { DialogUtility } from '@syncfusion/ej2-popups';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hr-process-button',
@@ -22,7 +23,7 @@ import { DialogUtility } from '@syncfusion/ej2-popups';
 })
 export class HrProcessButtonComponent implements OnInit {
 
-
+  @Input() processId: any;
   @Input() nodeId: any;
   @Input() buttonNodeName: any
   private curentNodeInfo!: any;
@@ -110,7 +111,8 @@ export class HrProcessButtonComponent implements OnInit {
     private commonHttpRequestService: CommonHttpRequestService,
     private authServices: AuthService,
     private notificationService: NotificationService,
-    private controlServices: ControlService
+    private controlServices: ControlService,
+    private router:Router
   ) {
     this.languages = this.globals.currentLang;
     this._translateService.use(this.languages);
@@ -154,6 +156,11 @@ export class HrProcessButtonComponent implements OnInit {
       }
       if (res.body.status === "SUCCESS") {
         this.notificationService.success("[Thực hiện thành công]")
+        console.log("res.body",res.body)
+        if(res.body.next==1){
+          this.router.navigate(['hr-process/c-a'], { queryParams: { process: this.processId,node:res.body.nextNode } });
+
+        }
       }
       if (res.body.status === "ERROR") {
         this.notificationService.warning("[Thao tác không thực hiện được]")

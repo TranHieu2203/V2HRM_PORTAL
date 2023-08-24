@@ -138,8 +138,10 @@ export class EmployeeReportComponent implements OnInit {
       'updateCompentencySeltList',
       this.authService.serverModel.updateCompentencySeltList!, payload
     ).subscribe((res: any) => {
-      if (JSON.parse(res.body.message).StatusCode === '200') {
+      console.log(JSON.parse(res.body.message))
+      if (JSON.parse(res.body.message).StatusCode == '200') {
         this.notification.success("[Đã cập nhật kết quả, chờ phê duyệt!]")
+        // alert('')
         this.controlServices.needLoad.next(true);
       } else {
         this.notification.warning("[Không thể cập nhật kết quả!]")
