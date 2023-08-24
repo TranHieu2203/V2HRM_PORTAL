@@ -269,30 +269,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
   }
-  googleAuthSDK() {
-
-    (<any>window)['googleSDKLoaded'] = () => {
-      (<any>window)['gapi'].load('auth2', () => {
-        this.auth2 = (<any>window)['gapi'].auth2.init({
-          client_id: '610100821104-bfe0jkmc5ka4cnag81gv2falidanmjcf.apps.googleusercontent.com',
-          plugin_name: 'login',
-          cookiepolicy: 'single_host_origin',
-          scope: 'profile email'
-        });
-        this.callLoginGoogle();
-      });
-    }
-
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement('script');
-      js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
-      fjs?.parentNode?.insertBefore(js, fjs);
-    }(document, 'script', 'google-jssdk'));
-  }
-
+  
   isDirty() {
     return this.authForm.dirty;
   }
