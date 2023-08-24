@@ -16,3 +16,10 @@
     </mat-step>
   </div>
 </mat-vertical-stepper>
+<div class="process-history">
+  <div #conntent class="history-content" *ngFor="let his of history">
+    <i><i class="feather-calendar"></i>{{his.action_Date }}: </i>
+    <b>{{his.employee_Name }} </b>
+    <u>{{his.action|translate}}</u><hr/>
+  </div>
+</div>

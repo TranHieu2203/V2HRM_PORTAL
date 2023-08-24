@@ -902,6 +902,13 @@
   "[SUBMIT]":"Xác nhận",
   "[SEND_BACK]":"Trả lại",
   "[BREAK]":"Bỏ qua",
-  "[REASSIGN]":"Ủy quyền"
-
+  "[REASSIGN]":"Ủy quyền",
+  "ONSEND":"Gửi duyệt",
+  "CANCEL":"Hủy",
+  "APPROVE":"Duyệt",
+  "REJECT":"Từ chối",
+  "SUBMIT":"Xác nhận",
+  "SEND_BACK":"Trả lại",
+  "BREAK":"Bỏ qua",
+  "REASSIGN":"Ủy quyền"
 }

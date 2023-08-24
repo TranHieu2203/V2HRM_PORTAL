@@ -1712,6 +1712,9 @@ body.theme-dark .e-pagerconstant{
 body.theme-dark .e-parentmsgbar{
   color: #eee!important;
 }
+.mat-step-text-label{
+  width:max-content
+}
 body.theme-dark .mat-step-text-label{
   color: #eee!important;
 }

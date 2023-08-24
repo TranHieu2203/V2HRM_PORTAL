@@ -50,8 +50,11 @@ export class ControlService {
     })
 
   }
-  GetHrProcessById() {
-
+  GetHistory() {
+    return       this.commonHttpRequestService.commonPostRequest(
+      'GetHrProcessById',
+      "hr-process/get-history",{processId:this.processId.value}
+    )
   }
 
 }
