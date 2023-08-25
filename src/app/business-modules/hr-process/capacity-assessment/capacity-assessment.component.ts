@@ -114,12 +114,15 @@ export class CapacityAssessmentComponent implements OnInit, OnDestroy {
     // this.loadData()
 
     this.controlServices.processId$.subscribe(value => {
-      this.processId = value
-      this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
-        this.data = JSON.parse(res.body.message).Data
-        this.table = this.data.Table1
-        console.log('data', this.table)
-      })
+      if (value != undefined) {
+        this.processId = value
+        this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
+          this.data = JSON.parse(res.body.message).Data
+          this.table = this.data.Table1
+          console.log('data', this.table)
+        })
+
+      }
 
     })
 

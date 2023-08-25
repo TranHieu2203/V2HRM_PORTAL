@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TooltipModule } from '@syncfusion/ej2-angular-popups';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     CommonModule,
     MatStepperModule,
     MatIconModule,
+    TooltipModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

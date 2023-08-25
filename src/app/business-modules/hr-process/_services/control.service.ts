@@ -26,16 +26,22 @@ export class ControlService {
     this.route.queryParams.subscribe(value => {
       this.processId.next(value.process)
       this.nodeId.next(value.node)
+      if (value != undefined && this.processId.value != undefined && this.nodeId.value != undefined) {
+        this.commonHttpRequestService.commonGetRequest(
+          'GetHrProcessById',
+          this.authService.serverModel.getHrProcessById! + "?id=" + this.processId.value + "&nodeId=" + this.nodeId.value
+        ).subscribe((res: any) => {
+          this.curentNode.next(res.body.data)
+        })
+      }
     })
 
-    this.processId.subscribe(value => {
-      this.commonHttpRequestService.commonGetRequest(
-        'GetHrProcessById',
-        this.authService.serverModel.getHrProcessById! + "?id=" + this.processId.value + "&nodeId=" + this.nodeId.value
-      ).subscribe((res: any) => {
-        this.curentNode.next(res.body.data)
-      })
-    })
+    // this.processId.subscribe(value => {
+    //   if (value != undefined) {
+
+    //   }
+
+    // })
 
     this.needLoad.subscribe((value: any) => {
       if (value) {
@@ -51,9 +57,9 @@ export class ControlService {
 
   }
   GetHistory() {
-    return       this.commonHttpRequestService.commonPostRequest(
+    return this.commonHttpRequestService.commonPostRequest(
       'GetHrProcessById',
-      "hr-process/get-history",{processId:this.processId.value}
+      "hr-process/get-history", { processId: this.processId.value }
     )
   }
 

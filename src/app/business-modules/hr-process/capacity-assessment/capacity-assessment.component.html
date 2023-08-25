@@ -13,29 +13,30 @@
             </div>
             <div class="mb-3">
 
-              <div class="node-header" [ngClass]="{'node-header-toggle': !isShow}" 
-              (click)="isShow=!isShow">
-              <label class="text-bold">
-                Mô tả xếp loại
-              </label>
-              <label class="node-header-arrow">
-                <i class="feather-chevron-down" *ngIf="isShow"></i>
-                <i class="feather-chevron-up" *ngIf="!isShow"></i>
-              </label>
-            </div>
-            <div class="node-content"  *ngIf="isShow">
-              <ejs-grid #empReportGrid [dataSource]="table" [allowGrouping]='false'>
-                <e-columns>
-                  <e-column field="MA_NHOM_HANHVI" headerTextAlign ="Center" headerText="Xếp loại" width="200"></e-column>
-                  <e-column field="HANHVI" headerTextAlign ="Center" headerText="Mô tả">
-                    <ng-template #template let-data>
-                      <span style="word-wrap: break-word;white-space: pre-wrap;text-align: left;float: left;" [innerHTML]="viewHtml(data.HANHVI)"></span>
-                    </ng-template>
-                  </e-column>
-            
-                </e-columns>
-                </ejs-grid> 
-            </div>
+              <div class="node-header" [ngClass]="{'node-header-toggle': !isShow}" (click)="isShow=!isShow">
+                <label class="text-bold">
+                  Mô tả xếp loại
+                </label>
+                <label class="node-header-arrow">
+                  <i class="feather-chevron-down" *ngIf="isShow"></i>
+                  <i class="feather-chevron-up" *ngIf="!isShow"></i>
+                </label>
+              </div>
+              <div class="node-content" *ngIf="isShow">
+                <ejs-grid #empReportGrid [dataSource]="table" [allowGrouping]='false'>
+                  <e-columns>
+                    <e-column field="MA_NHOM_HANHVI" headerTextAlign="Center" headerText="Xếp loại"
+                      width="200"></e-column>
+                    <e-column field="HANHVI" headerTextAlign="Center" headerText="Mô tả">
+                      <ng-template #template let-data>
+                        <span style="word-wrap: break-word;white-space: pre-wrap;text-align: left;float: left;"
+                          [innerHTML]="viewHtml(data.HANHVI)"></span>
+                      </ng-template>
+                    </e-column>
+
+                  </e-columns>
+                </ejs-grid>
+              </div>
 
             </div>
 
@@ -60,7 +61,7 @@
                   </ng-container>
                 </div>
                 <div class="node-button" *ngIf="step.showTab && (step.status<=1)">
-                  <hr-process-button  [processId]="processId" [nodeId]="step.nodeId" id="{{step.component.name}}">
+                  <hr-process-button [processId]="processId" [nodeId]="step.nodeId" id="{{step.component.name}}">
                   </hr-process-button>
                 </div>
               </div>

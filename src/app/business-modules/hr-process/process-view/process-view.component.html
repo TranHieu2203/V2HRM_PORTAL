@@ -5,7 +5,11 @@
         <div class="stepper-label">
           <div class="step-ico"> <i [class]="step.icon"></i>
           </div>
-          <div class="mont-font" style="padding-left: 10px;">
+          <div class="mont-font" style="    padding-left: 10px;
+          width: calc(90% - 35px);
+          word-wrap: break-word;
+          white-space: -moz-pre-wrap;
+          white-space: pre-wrap;">
             {{step.label}}
           </div>
         </div>
@@ -16,10 +20,13 @@
     </mat-step>
   </div>
 </mat-vertical-stepper>
+<hr />
+<label><b>{{'Lịch sử'|translate}}</b></label>
 <div class="process-history">
   <div #conntent class="history-content" *ngFor="let his of history">
     <i><i class="feather-calendar"></i>{{his.action_Date }}: </i>
     <b>{{his.employee_Name }} </b>
-    <u>{{his.action|translate}}</u><hr/>
+    <u>{{his.action|translate}}</u>
+    <hr />
   </div>
 </div>

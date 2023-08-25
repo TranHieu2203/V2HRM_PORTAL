@@ -64,11 +64,14 @@ export class EmployeeReportComponent implements OnInit {
     })
 
     this.controlServices.processId$.subscribe(value => {
-      this.processId = value
-      this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
-        this.data = JSON.parse(res.body.message).Data
-        this.table = this.data.Table
-      })
+      if (value != undefined) {
+        this.processId = value
+        this._compentencySeltListService.getCompentencySeltList(1, value).subscribe((res: any) => {
+          this.data = JSON.parse(res.body.message).Data
+          this.table = this.data.Table
+        })
+      }
+
 
     })
 
@@ -143,7 +146,7 @@ export class EmployeeReportComponent implements OnInit {
     ).subscribe((res: any) => {
       console.log(JSON.parse(res.body.message))
       if (JSON.parse(res.body.message).StatusCode == '200') {
-        this.notification.success("[Đã cập nhật kết quả, chờ phê duyệt!]")
+        this.notification.success("[Đã cập nhật kết quả!]")
         // alert('')
         this.controlServices.needLoad.next(true);
       } else {

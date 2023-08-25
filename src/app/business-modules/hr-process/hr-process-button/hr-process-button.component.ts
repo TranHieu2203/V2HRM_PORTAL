@@ -112,7 +112,7 @@ export class HrProcessButtonComponent implements OnInit {
     private authServices: AuthService,
     private notificationService: NotificationService,
     private controlServices: ControlService,
-    private router:Router
+    private router: Router
   ) {
     this.languages = this.globals.currentLang;
     this._translateService.use(this.languages);
@@ -126,12 +126,23 @@ export class HrProcessButtonComponent implements OnInit {
     this.controlServices.curentNodeInfo$.subscribe((value: any) => {
       if (value.length != 0) {
         this.curentNodeInfo = value.nodeInfo.filter((e: any) => e.nodeId === this.nodeId)[0];
-        let action = this.curentNodeInfo.action.split("|");
-        this.lstNodeButton = [];
-        action.forEach((name: any) => {
-          var button = this.lstButton.filter((e: any) => e.id.toLowerCase() === name.toLowerCase())[0]
-          this.lstNodeButton.push(button)
-        });
+        if (this.curentNodeInfo != undefined) {
+          let valid = this.curentNodeInfo.valid
+          let action = this.curentNodeInfo!.action.split("|");
+          this.lstNodeButton = [];
+          action.forEach((name: any) => {
+            var button = this.lstButton.filter((e: any) => e.id.toLowerCase() === name.toLowerCase())[0]
+            if (valid) {
+              this.lstNodeButton.push(button)
+            } else {
+              if (button.id != "APPROVE" || button.id != "SEND") {
+                this.lstNodeButton.push(button)
+
+              }
+            }
+          });
+
+        }
 
       }
     })
@@ -153,9 +164,9 @@ export class HrProcessButtonComponent implements OnInit {
       }
       if (res.body.status === "SUCCESS") {
         this.notificationService.success("[Thực hiện thành công]")
-        console.log("res.body",res.body)
-        if(res.body.next==1){
-          this.router.navigate(['hr-process/c-a'], { queryParams: { process: this.processId,node:res.body.nextNode } });
+        console.log("res.body", res.body)
+        if (res.body.next == 1) {
+          this.router.navigate(['hr-process/c-a'], { queryParams: { process: this.processId, node: res.body.nextNode } });
 
         }
       }
@@ -220,7 +231,7 @@ export class HrProcessButtonComponent implements OnInit {
   public onOpenConfirm = (event: any): void => {
     this.confirm = DialogUtility.confirm({
       title: ' Xác nhận',
-      content: "Ủy quyền cho [] tiếp tục quy trình!",
+      content: "Ủy quyền cho [" + this.employeeSelected.fullname + "] tiếp tục quy trình!",
       okButton: {
         text: 'Đồng ý',
         click: this.okClick.bind(this),
