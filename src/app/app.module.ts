@@ -74,15 +74,13 @@ import {
   SocialLoginModule,
   SocialAuthServiceConfig,
   GoogleLoginProvider,
-  GoogleSigninButtonDirective,
   GoogleSigninButtonModule,
-  SocialAuthService,
 } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { ClickOutsideDirective } from './pipe/clickOutSide';
 import { ModalModule } from './components/modals/modals.module';
 
-const googleClientId = environment.googleClientId;
+const googleClientId = "332397711555-vuf26oh4c9bmqk7k090o8i1o2m6ruffh.apps.googleusercontent.com";
 
 @NgModule({
   declarations: [
@@ -164,7 +162,6 @@ const googleClientId = environment.googleClientId;
     { provide: ErrorHandler, useClass: AppErrorHandler },
     httpInterceptorProviders,
     NotificationService,
-    Configs,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -172,13 +169,11 @@ const googleClientId = environment.googleClientId;
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(googleClientId),
-
+            provider: new GoogleLoginProvider("332397711555-vuf26oh4c9bmqk7k090o8i1o2m6ruffh.apps.googleusercontent.com"),
           },
         ],
       } as SocialAuthServiceConfig,
     },
-    // GoogleSigninButtonDirective,
   ],
   bootstrap: [AppComponent]
 })
