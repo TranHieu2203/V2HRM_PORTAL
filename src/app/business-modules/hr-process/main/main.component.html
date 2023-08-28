@@ -69,6 +69,9 @@
                 <ejs-grid [dataSource]='processDataGrid' [selectionSettings]="{ type: 'Multiple'}"
                   [height]="configs.height()-180" (recordDoubleClick)="goToProcess($event)">
                   <e-columns>
+                    <e-column field='description' textAlign="Left" headerTextAlign="Center" headerText="Mô tả"
+                      clipMode='EllipsisWithTooltip'>
+                    </e-column>
                     <e-column field='process_Name' textAlign="Left" headerTextAlign="Center" headerText="Tên quy trình"
                       clipMode='EllipsisWithTooltip'>
                     </e-column>
@@ -77,6 +80,10 @@
                     </e-column>
 
                     <e-column field='employee_Name' textAlign="Left" headerTextAlign="Center" headerText="Nhân sự"
+                      clipMode='EllipsisWithTooltip'>
+                    </e-column>
+
+                    <e-column field='status_Name' textAlign="Left" headerTextAlign="Center" headerText="Trạng thái"
                       clipMode='EllipsisWithTooltip'>
                     </e-column>
 

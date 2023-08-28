@@ -31,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProcessViewModule } from './process-view/process-view.module';
 import { HrProcessButtonModule } from './hr-process-button/hr-process-button.module';
 import { TabModule } from '@syncfusion/ej2-angular-navigations';
+import { Configs } from 'src/app/common/configs';
 
 @NgModule({
 
@@ -67,15 +68,13 @@ import { TabModule } from '@syncfusion/ej2-angular-navigations';
     ProbationaryAssessmentComponent,
     CapacityAssessmentComponent,
     MainComponent,
-
-
   ],
   exports: [
 
   ],
   providers: [
-    AuthService
-
+    AuthService,
+    Configs
   ]
 })
 export class HrProcessModule { }
